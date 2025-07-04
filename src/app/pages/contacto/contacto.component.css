@@ -1,0 +1,39 @@
+.contact-options {
+    display: flex;
+    gap: 62px;
+    align-items: flex-end;
+    padding: 52px
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+  }
+
+  .contact-phone-email {
+   color: var(--color-blue)
+  }
+
+iframe {
+    border-radius: 10px;
+  } 
+  
+  @media screen and (max-width: 766px) {
+    .contact-options {
+      padding: 0;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .contact-details {
+text-align: center;
+  }
+
+  iframe {
+    max-width:90vw
+  }
+.form {
+  order: -1
+}
+}

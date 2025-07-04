@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+align-items: center;
+margin: auto
+}
+
+.fa-solid {
+ color: var(--color-blue);
+ font-size: 32px;
+}
+
+.fa-solid:hover {
+  text-shadow: var(--black-shadow);
+ }
+
+ [hidden] {
+  display: none !important;
+} 
+
+.carousel-dots {
+    display: flex;
+    gap: 10px;
+  }
+
+  .carousel-dot {
+    background-color: var(--color-blue);
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .carousel-dot:hover,  .carousel-dot.active {
+    box-shadow: var(--white-shadow)
+  }
+  
+  .mobile-items-carousel  {
+   display: none;
+  }
+
+  @media screen and (max-width: 766px) {
+     i, .desktop-items-carousel {
+      display: none;
+    } 
+
+     .mobile-items-carousel  {
+   display: flex;
+  }
+    
+    :host {
+      width: 90vw;
+      align-items: flex-start;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      padding-bottom: 12px;
+    } 
+    }
+      

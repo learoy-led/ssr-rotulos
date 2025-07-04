@@ -1,0 +1,18 @@
+<main class="centered-main">
+  <!-- <app-banner
+  [bannerTitle]="'Letras corpóreas'"
+  [bannerSubtitle]="'Explora todos los modelos de rotulación'"
+  [bannerImage]="'https://res.cloudinary.com/dxuseyfxa/image/upload/v1736785873/tipos-de-rotulos-learoy_qhzbut.jpg'"
+  [bannerAlt]="'Letras corpóreas y rótulos de todo tipo Leaoy'"
+  ></app-banner> -->
+
+    <section class="centered-section">
+    <h1 class="page-title">Modelos de rotulación</h1>
+<app-filter-buttons [categorySelectedName]="categorySelectedName" (categorySelected)="onCategorySelectedChange($event)"></app-filter-buttons>
+    <div *ngFor="let category of categories$ | async | filter: categorySelectedName; let i = index">
+      <h2 class="subtitle centered-text">{{category.name}}</h2>
+     <app-cards [cardElements]="category.products" [cardsClass]="'cards-grid'"></app-cards>
+  </div>
+
+  </section>
+</main>

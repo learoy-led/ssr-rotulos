@@ -1,0 +1,30 @@
+<main class="centered-main">
+ <app-home-carousel></app-home-carousel>  
+    <section class="centered-section home-section">
+      <h2 class="page-title centered-text">Rotulación y letreros para tiendas y más</h2>
+      <app-cards [cardsClass]="'cards-grid'" [cardElements]="categories$ | async"></app-cards>
+    </section>
+
+  
+
+    <section class="vertical-carousel-section">
+      <div class="vertical-carousel-section-texts">
+      <h2 class="title">Amplia gama de letras corpóreas</h2>
+      <p>Desde letras de PVC hasta letras y números luminosos de metacrilato y aluminio, letras de madera, etc. Diseños minimalistas o personalizados que se integran en cualquier espacio. Solicita tu presupuesto.</p>
+      <app-button [buttonText]="'Ver todas'" [buttonLink]="'/catalogo'"   ></app-button>
+    </div>
+    <app-animated-vertical-carousel></app-animated-vertical-carousel> 
+  </section>
+
+  <section class="centered-section home-section">
+    <h2 class="title">Elige tu rótulo personalizado</h2>
+    <app-items-carousel></app-items-carousel>
+  </section>
+  
+      <app-texts-section></app-texts-section>
+  
+    <!-- <section class="customers-section">
+      <app-customers></app-customers>
+    </section> -->
+    <app-contact-banner></app-contact-banner>
+  </main>

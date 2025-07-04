@@ -1,0 +1,90 @@
+<form #myForm="ngForm" (submit)="onSubmit(); myForm.resetForm()">
+    <div>
+      <label for="name" class="sr-only">Nombre completo</label>
+      <input
+        class="form-field"
+        placeholder="Nombre"
+        type="text"
+        id="name"
+        name="name"
+        required
+        [(ngModel)]="formData.name"
+        #nameField="ngModel"
+        [attr.aria-describedby]="nameField.invalid && nameField.touched ? 'name-error' : null"
+      />
+      <p *ngIf="nameField.invalid && nameField.touched" class="error-message" id="name-error">
+        El nombre es obligatorio.
+      </p>
+    </div>
+  
+    <div class="contact-fields">
+      <div>
+        <label for="email" class="sr-only">Correo electrónico</label>
+        <input
+          class="form-field"
+          placeholder="Correo electrónico:"
+          type="email"
+          id="email"
+          name="email"
+          required
+          email
+          [(ngModel)]="formData.email"
+          #emailField="ngModel"
+          (ngModelChange)="emailField.control.setErrors(emailValidator(emailField.control))"
+          [attr.aria-describedby]="emailField.invalid && emailField.touched && emailField.errors?.['required'] ? 'email-error' : 
+            emailField.invalid && emailField.dirty && emailField.errors?.['invalidEmail'] ? 'email-invalid' :
+          null"
+        />
+        <p
+          *ngIf="emailField.invalid && emailField.touched && emailField.errors?.['required']"
+          class="error-message" id="email-error"
+        >
+          El correo electrónico es obligatorio.
+        </p>
+        <p
+          *ngIf="emailField.invalid && emailField.dirty && emailField.errors?.['invalidEmail']"
+          class="error-message" id="email-invalid"
+        >
+          El correo electrónico no es válido. Por favor, revísalo.
+        </p>
+      </div>
+      <div>
+        <label for="phone" class="sr-only">Teléfono</label>
+        <input
+          class="form-field"
+          placeholder="Teléfono:"
+          type="text"
+          id="phone"
+          name="phone"
+          required
+          [(ngModel)]="formData.phone"
+          #phoneField="ngModel"
+          [attr.aria-describedby]="phoneField.invalid && phoneField.touched ? 'phone-error' : null"
+        />
+        <p *ngIf="phoneField.invalid && phoneField.touched" class="error-message" id="phone-error">
+          El teléfono es obligatorio.
+        </p>
+      </div>
+    </div>
+  
+    <div>
+      <label for="question" class="sr-only">Mensaje</label>
+      <textarea
+        class="form-field"
+        placeholder="Escribe aquí tu consulta"
+        id="question"
+        name="message"
+        required
+        [(ngModel)]="formData.message"
+        #messageField="ngModel"
+        [attr.aria-describedby]="messageField.invalid && messageField.touched ? 'question-error' : null"
+      ></textarea>
+      <p *ngIf="messageField.invalid && messageField.touched" class="error-message"  id="question-error">
+        No olvides incluir tu mensaje.
+      </p>
+    </div>
+  
+    <button class="button" type="submit" [disabled]="myForm.invalid">Enviar</button>
+    <p *ngIf="submittedMessage" class="submitted-message">{{submittedMessage}}</p>
+  </form>
+  

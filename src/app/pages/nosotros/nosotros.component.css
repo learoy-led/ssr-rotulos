@@ -1,0 +1,41 @@
+.about-paragraph {
+  display: flex;
+  align-items: center;
+  gap: 10%;
+  padding: 30px 0;
+}
+
+.paragraph-image {
+  object-fit: cover;
+  max-width: 40%;
+  height: 55vh;
+  border-radius: 10px;
+}
+
+.paragraph-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px
+}
+
+.about-paragraph:nth-child(odd) {
+  flex-direction: row;
+}
+
+.about-paragraph:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 766px) {
+  .about-paragraph {
+    display: block;
+  }
+  .paragraph-image,
+  .paragraph-text {
+   max-width: 100%;
+  }
+
+  .paragraph-text {
+    padding-bottom: 36px;
+  }
+}

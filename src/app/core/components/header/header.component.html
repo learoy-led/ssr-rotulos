@@ -1,0 +1,30 @@
+<header>
+  <div class="secondary-header">
+  <p class="address"><i class="fa-solid fa-location-dot"></i>   {{contactDetails.address1}} - {{contactDetails.address2}}   </p>   
+   <p class="phones"><i class="fa-solid fa-phone"></i>   {{contactDetails.phone}}</p>
+   <p><i class="fa-solid fa-store"></i>   {{contactDetails.open}}</p>
+  </div>
+  
+  <div class="main-header-desktop">
+    <div class="main-header-mobile">
+    <span class="burguer" (click)="openBurguer()">{{burguerIsOpen ? 'X': '☰'}}</span>
+    <a class="logo" [routerLink]="['/']"
+      ><img
+        class="header-logo"
+        src="/rotulos-learoy-logo.webp"
+        alt="rotulos-learoy-logo"
+    /></a>
+   <a class="call-button-mobile" [href]="'tel:+34'+contactDetails.phone"><i aria-hidden="true" class="fa-solid fa-phone"></i>
+    <span class="sr-only">Llamar por teléfono</span>
+  </a>
+  </div>
+
+  <app-navbar 
+    [ngClass]="{ 'header-navbar': true, active: burguerIsOpen }"
+    [burguerIsOpen]="burguerIsOpen" (burguerIsClose)="onBurguerStateChanged($event)" (showSubmenu)="showSubmenu()" 
+    (hideSubmenu)="hideSubmenu()" 
+    ></app-navbar>
+  </div>
+   
+  <app-submenu [submenuVisible]="submenuVisible" (mouseleave)="hideSubmenu()"></app-submenu>
+  </header>

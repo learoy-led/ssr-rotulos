@@ -1,0 +1,50 @@
+<main class="centered-main">
+
+<form #adminForm="ngForm" (submit)="onSubmit(); adminForm.resetForm()" class="admin-form"> 
+    
+        <input
+          class="form-field"
+          placeholder="Correo electrónico:"
+          type="email"
+          id="email"
+          name="email"
+          required
+          email
+          [(ngModel)]="adminData.email"
+          #emailField="ngModel"
+          (ngModelChange)="emailField.control.setErrors(emailValidator(emailField.control))"
+        />
+        <p
+          *ngIf="emailField.invalid && emailField.touched && emailField.errors?.['required']"
+          class="error-message"
+        >
+          El correo electrónico es obligatorio.
+        </p>
+        <p
+          *ngIf="emailField.invalid && emailField.dirty && emailField.errors?.['invalidEmail']"
+          class="error-message"
+        >
+          El correo electrónico no es válido. Por favor, revísalo.
+        </p>
+      
+     
+        <input
+          class="form-field"
+          placeholder="Contraseña:"
+          type="password"
+          id="password"
+          name="password"
+          required
+          [(ngModel)]="adminData.password"
+          #passwordField="ngModel"
+        />
+        <p *ngIf="passwordField.invalid && passwordField.touched" class="error-message">
+          Debes introducir la contraseña.
+        </p>
+   
+
+  
+    <button class="button" type="submit" [disabled]="adminForm.invalid">Acceder</button>
+    <p *ngIf="adminLoginMessage" class="submitted-message">{{adminLoginMessage}}</p>
+  </form>
+</main>

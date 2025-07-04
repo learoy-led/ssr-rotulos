@@ -1,0 +1,47 @@
+:host {
+   display: flex;
+    position: relative; 
+    z-index: 0;
+    min-height: 60vh;
+    padding: 38px;
+    background-image: url('https://res.cloudinary.com/dxuseyfxa/image/upload/v1742551840/rotulos-personalizados-learoy-_oz05xj.webp');
+    background-size: cover;
+    background-position: center;
+  }
+
+  :host::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 21,38, 0.55);
+   z-index: -1; 
+  }
+
+
+.main-advantages-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-self: center;
+    gap: 52px; 
+        color: var(--color-white);
+    text-shadow: var(--black-shadow);
+}
+
+img {
+    width: 100%; 
+    object-fit: cover;
+     height: 100%; 
+    z-index: -2;
+}
+
+@media screen and (max-width: 766px) {
+
+.main-advantages-list {
+  display: flex;
+flex-direction: column;
+align-items: center;
+}
+}

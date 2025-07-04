@@ -1,0 +1,11 @@
+.cookies-policy-texts > ul {
+    padding-left: 40px
+}
+
+.cookies-policy-texts > ul > li {
+    list-style-type:circle;
+}
+
+.cookies-policy-texts > ul > li > a {
+    text-decoration: underline;
+  }

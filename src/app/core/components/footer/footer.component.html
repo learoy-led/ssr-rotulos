@@ -1,0 +1,61 @@
+<footer>
+  <div class="main-footer-container">
+    <div class="contact-details">
+      <h2 class="footer-nav-title">Contacto</h2>
+      <p class="footer-nav-element">
+        Dirección:<br />
+        {{ contact.address1 }}<br />{{ contact.address2 }}
+      </p>
+      <p class="footer-nav-element">Teléfono:<br />{{ contact.phone }}</p>
+      <p class="footer-nav-element">Email:<br />{{ contact.email }}</p>
+    </div>
+  
+    <nav>
+      <div>
+        <h2 class="footer-nav-title">Tipos de rótulos</h2>
+        <ul *ngFor="let category of categories$ | async ">
+          <li class="footer-nav-element">
+            <a class="category-links" [routerLink]="[category.slug]">{{ category.name }}</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <nav>
+      <div>
+        <h2 class="footer-nav-title">Elige tu letrero</h2>
+        <ul *ngFor="let keyword of keywords">
+          <li class="footer-nav-element">
+            <a class="category-links" [routerLink]="[keyword.link]">{{ keyword.text }}</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <nav>
+      <div>
+        <h2 class="footer-nav-title">Rótulos Learoy</h2>
+        <ul>
+          <li class="footer-nav-element">
+            <a class="category-links" [routerLink]="['/nosotros']">Nosotros</a>
+          </li>
+          <li class="footer-nav-element">
+            <a class="category-links" [routerLink]="['/aviso-legal']">Aviso legal</a>
+          </li>
+          <li class="footer-nav-element">
+            <a class="category-links" [routerLink]="['/politica-de-cookies']">Política de cookies</a>
+          </li>
+          <li class="footer-nav-element">
+            <a class="category-links" [routerLink]="['/politica-de-privacidad']">Política de privacidad</a>
+          </li>
+      
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="secondary-footer-container">
+    <p class="secondary-footer-text">Copyright © 2025 Learoy LED Tecnology | Todos los derechos reservados</p>
+  </div>
+  </footer>
+  
+

@@ -1,0 +1,37 @@
+:host { 
+    position:fixed;
+    right: 15px;
+    bottom: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none
+    }
+    
+    :host.visible { 
+      opacity: 0.7;
+      pointer-events: all
+      }
+
+      :host:hover { 
+        opacity: 1;
+        }
+      
+    .fa-arrow-up {
+      background-color: var(--color-blue);
+        padding: 12px;
+        font-size: 20px;
+        border-radius: 150px;
+        color: var(--color-white);
+        transition: transform 0.3s ease;
+      }
+
+      .fa-arrow-up:hover {
+        box-shadow: var(--white-shadow);
+        transform: var(--hover-scale)
+      }
+
+      @media screen and (max-width: 524px) {
+      .fa-arrow-up {
+      opacity: 0.7;
+      }
+    }

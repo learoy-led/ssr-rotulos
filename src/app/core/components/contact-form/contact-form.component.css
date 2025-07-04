@@ -1,0 +1,28 @@
+  form > div {
+    width: 100%;
+  }
+  
+  .contact-fields {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .contact-fields > div {
+    flex: 1;
+  }
+
+  textarea {
+    min-height: 120px
+  }
+
+
+  @media screen and (max-width: 524px) {
+   .contact-fields {
+    display: flex;
+    flex-direction: column;
+  }
+
+  textarea {
+    min-height: none
+  } 
+  }

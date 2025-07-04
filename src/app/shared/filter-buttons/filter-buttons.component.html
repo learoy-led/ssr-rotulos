@@ -1,0 +1,7 @@
+<ul class="category-buttons">
+    <li>
+        <button class="category-button" [class.active]="selectedCategoryIndex === null" (click)="updateFilterCategory('', null)">Todos</button>
+    </li>
+    <li  *ngFor="let category of categories$ | async; ; let i = index" ><button class="category-button" [class.active]="i === selectedCategoryIndex" (click)="updateFilterCategory(category.name, i)">{{category.name}}</button></li>
+</ul>
+

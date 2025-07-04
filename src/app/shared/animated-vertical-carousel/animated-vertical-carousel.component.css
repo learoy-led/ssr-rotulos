@@ -1,0 +1,76 @@
+@keyframes moveImages {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+
+  :host {
+    display: flex;
+    gap: 14px;
+  }
+
+  .letter-list-container {
+    overflow: hidden
+}    
+
+.left {
+         margin-top: -90px;
+      clip-path: inset(90px 0 0 0); 
+}
+
+.middle {
+    margin-top: -30px;
+    clip-path: inset(30px 0 0 0); 
+  }
+
+.right {
+    margin-top: -150px;
+    clip-path: inset(150px 0 0 0); 
+}
+
+.letter-list {
+  display: flex;
+    flex-direction: column;
+        gap: 10px;
+    height: 600px;
+    animation: moveImages 10s linear infinite;   
+}
+
+.letter-image {
+    border-radius: 10px;
+    max-width: 250px;
+}
+
+.letter-figure {
+    position: relative;
+    max-height: 250px
+}
+
+.letter-title {
+position: absolute;
+bottom: 3%;
+left: 3%;
+font-size: 18px;
+font-weight: 400;
+color: var(--color-white);
+text-shadow: var(--black-shadow);
+}
+
+
+@media screen and (max-width: 499px) {
+  :host {
+    width: fit-content;
+   margin-left: -30%;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 766px) {
+  :host {
+    width: fit-content;
+    align-self: center;
+  }
+}
+

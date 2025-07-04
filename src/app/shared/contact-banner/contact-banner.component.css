@@ -1,0 +1,30 @@
+:host {
+    height: 50vh;
+    width: 100%;
+    padding: 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    background-color: var(--color-black);
+    box-shadow: var(--white-shadow)
+  }
+  
+  .banner-title {
+    font-size: 38px;
+    font-weight: 500;
+  }
+  
+  .banner-text {
+    font-size: 22px;
+    font-weight: 400;
+    padding: 22px 0 48px 0px;
+  }
+  
+  @media screen and (max-width: 766px) {
+    .banner-text {
+      display: none;
+    }
+  }
+  

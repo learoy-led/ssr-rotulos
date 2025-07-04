@@ -1,0 +1,18 @@
+<nav>
+    <ul class="nav-links">
+      <li><a  (click)="closeBurguer()"  (mouseenter)="onCatalogoMouseEnter()" [routerLink]="['/catalogo']">Catálogo</a>
+      </li>
+      
+    <ul class="submenu">
+      <li *ngFor="let category of categories$ | async" ><a (click)="closeBurguer()" [routerLink]="[category.slug]">{{category.name}}</a></li>
+    </ul>
+
+     
+      <!-- <li><a  (click)="closeBurguer()" [routerLink]="['/sectores']">Sectores</a></li> -->
+    
+      <li><a (click)="closeBurguer()" [routerLink]="['/nosotros']">Nosotros</a></li>
+      <li><a  (click)="closeBurguer()" [routerLink]="['/casos-de-exito']">Casos</a></li>
+      <li><a (click)="closeBurguer()" [routerLink]="['/contacto']">Contacto</a></li>
+    </ul>
+  </nav>
+

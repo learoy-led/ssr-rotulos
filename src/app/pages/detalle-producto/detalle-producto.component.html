@@ -1,0 +1,82 @@
+
+<ng-template #noproduct>
+    <app-not-found [notFoundText]="'No hay productos con este nombre'"></app-not-found>
+</ng-template>
+
+<ng-container *ngIf="productSelectedData; else noproduct">
+    <main>
+  <section  class="product-details">
+    <div class="main-product-details">
+    <figure class="product-images">
+      <img
+        class="main-image"
+        [src]="imagePrefix + productSelectedData.images[mainImageIndex]"
+        [alt]="productSelectedData.slug"
+      />
+
+      <ul class="secondary-images">
+        <li *ngFor="let imageUrl of productSelectedData.images; let i = index">
+          <img
+            class="product-image"
+            [class.active]="i === mainImageIndex"
+            (click)="updateProductDetails(i)"
+            [src]="imagePrefix + imageUrl"
+            [alt]="productSelectedData.name"
+          />
+        </li>
+      </ul>
+    </figure>
+
+    <div class="product-texts">
+      <h1 class="title">{{ productSelectedData.name }}</h1>
+      <p *ngFor="let paragraph of productSelectedData.description.split('.')">
+        {{ paragraph }}.
+      </p>
+
+      <app-button
+        [buttonText]="'contacto'"
+        [buttonLink]="'/contacto'"
+      ></app-button>
+    </div>
+  </div>
+
+
+  <div class="secondary-product-details">
+    <h2 class="text-title">
+      Más información sobre
+      {{
+        productSelectedData.name.charAt(0).toUpperCase() +
+          productSelectedData.name.slice(1)
+      }}
+    </h2>
+
+    <ul class="selected-product-details">
+      <li>
+        <p class="description-title">Material</p>
+        <p>{{ productSelectedData.material }}</p>
+      </li>
+      <li>
+        <p class="description-title">Diseño</p>
+        <p>{{ productSelectedData.design }}</p>
+      </li>
+      <li>
+        <p class="description-title">Instalación</p>
+        <p>{{ productSelectedData.installation }}</p>
+      </li>
+      <li>
+        <p class="description-title">Aplicación</p>
+        <p>{{ productSelectedData.application }}</p>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+  <section class="related-products">
+    <h2 class="subtitle">
+      Más {{ this.categoryName }} que te pueden interesar
+    </h2>
+    <app-items-carousel></app-items-carousel>
+  </section>
+</main>
+</ng-container>

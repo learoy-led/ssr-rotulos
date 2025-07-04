@@ -1,0 +1,10 @@
+:host {
+   transition: var(--smooth-scale);
+   transform-origin: left;
+   padding: 26px 0;
+  }
+
+  :host:hover {
+    transform: var(--hover-scale)  
+  }
+ 

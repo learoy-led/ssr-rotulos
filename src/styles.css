@@ -1,1 +1,225 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+:root {
+  --color-black: rgb(2, 21, 38);
+  --color-blue: #059fec;
+  --color-grey: #e2e2e2;
+  --color-white: #ffffff;
+  --color-red: #ca0035;
+  --white-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); 
+  --black-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  --blue-shadow: 2px 2px 4px rgba(5, 159, 236, 0.5); 
+  --hover-scale: scale(1.025);
+  --smooth-scale: transform 0.3s ease;
+
+
+ font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+
+  font-family: "Figtree", serif;
+  font-optical-sizing: auto;
+  /* font-weight: 400; */
+  font-style: normal;
+  /* font-size: 20px; */
+    font-size: 16px; 
+    line-height: 1.5em;
+}
+
+main {
+  padding-top: 13vh;
+  min-height: 100vh;
+}
+
+.main-policy-page {
+  width: 90%;
+  margin: auto
+}
+
+
+.centered-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+section {
+  padding: 62px 0;
+  width: 80%
+}
+
+
+.centered-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px
+  }
+
+a {
+    text-decoration: none;
+  }
+  
+  ul {
+    padding-left: 0;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+
+  /* h1 y h2 */
+  .page-title {
+    font-size: 38px;
+    text-transform: uppercase;
+   }
+   .title {
+    font-size: 36px;
+    text-transform: uppercase;
+  }
+  .subtitle {
+    padding: 22px 0;
+    font-size: 28px;
+    text-transform: uppercase;
+  }
+  .element-title {
+    font-size: 22px;
+    padding: 0 20px;
+    font-weight: 500;
+  }
+  .element-title::first-letter {
+    text-transform: uppercase;
+   }
+   .policy-title {
+    padding: 0
+}
+   .centered-text {
+    text-align: center;
+   }
+
+.advantages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 60%;
+  margin: auto;
+  }
+  
+  .text-title {
+    padding: 12px 0;
+  font-size: 24px;
+  }
+
+  .texts-policy-page {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 52px;
+}
+
+button {
+  cursor: pointer;
+} 
+
+button:disabled {
+  cursor: auto;
+}
+
+.button {
+  padding: 16px 35px;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  border-radius: 150px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.button:hover {
+  box-shadow: var(--white-shadow);
+}
+
+
+.button:disabled {
+  background-color: var(--color-grey);
+}
+
+.button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+form {
+  padding: 72px 52px;
+  background-color: rgba(1, 90, 164, 0.1);
+  border-radius: 10px;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-field {
+  padding: 12px 22px;
+  background-color: rgba(1, 90, 164, 0.1) !important;
+  border-radius: 39px;
+  width: 100%;
+}
+
+.error-message {
+  color: var(--color-red);
+  text-align: left;
+  padding: 6px 22px 12px 22px;
+  font-size: 16px;
+}
+
+.submitted-message {
+  color: var(--color-blue);
+  padding: 6px 22px 12px 22px;
+  font-size: 20px;
+}
+
+  .buttons-container {
+    display: flex;
+    gap: 12px
+  }
+
+
+  @media screen and (max-width: 766px) {
+    section {
+      padding: 15px 0;
+      width: 90%
+    }
+    
+    .page-title {
+      /* padding: 48px; */
+      font-size: 34px;
+      /* font-weight: 400; */
+    } 
+  .title {
+    font-size: 30px
+  } 
+  .element-title {
+    font-size: 18px;
+  } 
+
+  .advantages-list {
+    width:80%
+  }
+
+  form {
+    padding: 20px;
+    width: 90vw
+  }
+  }

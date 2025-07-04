@@ -1,0 +1,9 @@
+<nav class="submenu-navbar"  *ngIf="submenuVisible">
+    <ul class="submenu-links">
+      <li *ngFor="let category of categories$ | async">
+        <a class="submenu-text" [routerLink]="[category.slug]"> 
+        <img [src]="imagePrefix+category.products[0].images[0]" [alt]="category.name" class="submenu-image">{{category.name}}
+    </a>
+</li>
+    </ul>
+  </nav>

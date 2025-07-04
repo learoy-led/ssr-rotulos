@@ -1,0 +1,26 @@
+<div class="letter-list-container left">
+    <ul class="letter-list">
+    <li class="letter-figure" *ngFor="let image of letterImagesLeft">
+        <img class="letter-image" [src]="image.url" [alt]="image.name" />
+         <h3 class="letter-title">{{ image.name }}</h3>
+      </li>
+    </ul>
+</div>
+
+<div class="letter-list-container middle">
+    <ul class="letter-list">
+        <li class="letter-figure" *ngFor="let image of letterImagesMiddle">
+            <img class="letter-image" [src]="image.url" [alt]="image.name" />
+             <h3 class="letter-title">{{ image.name }}</h3>
+          </li>
+        </ul>
+    </div>
+    
+    <div class="letter-list-container right">
+        <ul class="letter-list">
+            <li class="letter-figure" *ngFor="let image of letterImagesRight">
+                <img class="letter-image" [src]="image.url" [alt]="image.name" />
+                 <h3 class="letter-title">{{ image.name }}</h3>
+              </li>
+            </ul>
+        </div>
