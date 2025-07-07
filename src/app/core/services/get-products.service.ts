@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 export class GetProductsService {
 
  public API_URL = environment.API_URL || '';
+
   
   constructor(private http: HttpClient) {}
 
