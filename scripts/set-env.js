@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const API_URL = process.env.API_URL;
+
 const envConfig = `
 export const environment = {
   production: true,
