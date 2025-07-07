@@ -5,11 +5,11 @@ import { ContactBannerComponent } from '../../shared/contact-banner/contact-bann
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-nosotros',
-  standalone: true,
-  imports: [CommonModule, ContactBannerComponent],
-  templateUrl: './nosotros.component.html',
-  styleUrl: './nosotros.component.css'
+    selector: 'app-nosotros',
+      standalone: true,
+    imports: [CommonModule, ContactBannerComponent],
+    templateUrl: './nosotros.component.html',
+    styleUrl: './nosotros.component.css'
 })
 export class NosotrosComponent {
 public paragraphs: AboutParagraph[] = aboutParagraphs

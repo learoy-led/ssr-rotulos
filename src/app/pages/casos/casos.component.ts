@@ -3,11 +3,11 @@ import { cases } from '../../data/data';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-casos',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './casos.component.html',
-  styleUrl: './casos.component.css'
+    selector: 'app-casos',
+      standalone: true,
+    imports: [CommonModule],
+    templateUrl: './casos.component.html',
+    styleUrl: './casos.component.css'
 })
 export class CasosComponent {
 

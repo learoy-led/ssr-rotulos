@@ -7,11 +7,11 @@ import { SendEmailService } from '../../../services/send-email.service';
 import { FormData } from '../../../models/data.models';
 
 @Component({
-  selector: 'app-contact-form',
-  standalone: true,
-  imports: [FormsModule, CommonModule],
-  templateUrl: './contact-form.component.html',
-  styleUrl: './contact-form.component.css'
+    selector: 'app-contact-form',
+      standalone: true,
+    imports: [FormsModule, CommonModule],
+    templateUrl: './contact-form.component.html',
+    styleUrl: './contact-form.component.css'
 })
 export class ContactFormComponent implements OnInit, OnDestroy {
 

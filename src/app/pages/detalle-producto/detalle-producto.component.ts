@@ -10,11 +10,11 @@ import { ButtonComponent } from '../../shared/button/button.component';
 import { NotFoundComponent } from '../../shared/not-found/not-found.component';
 
 @Component({
-  selector: 'app-detalle-producto',
-  standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, NotFoundComponent],
-  templateUrl: './detalle-producto.component.html',
-  styleUrl: './detalle-producto.component.css'
+    selector: 'app-detalle-producto',
+      standalone: true,
+    imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, NotFoundComponent],
+    templateUrl: './detalle-producto.component.html',
+    styleUrl: './detalle-producto.component.css'
 })
 export class DetalleProductoComponent implements OnInit {
 

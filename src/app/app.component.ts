@@ -10,16 +10,16 @@ import { LoaderComponent } from './core/components/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { PlatformService } from './core/services/platform.service';
 import { ShowScrollButtonDirective } from './core/directives/show-scroll-button.directive';
-import { NgcCookieConsentService, NgcInitializationErrorEvent, NgcInitializingEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
+//import { NgcCookieConsentService, NgcInitializationErrorEvent, NgcInitializingEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 
 declare let gtag: Function;
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollTopButtonComponent, LoaderComponent, CommonModule, ShowScrollButtonDirective],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollTopButtonComponent, LoaderComponent, CommonModule, ShowScrollButtonDirective],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -28,19 +28,19 @@ export class AppComponent implements OnInit, OnDestroy {
   public isLoading: boolean = true;
 
 
-   private popupOpenSubscription!: Subscription;
-  private popupCloseSubscription!: Subscription;
-  private initializingSubscription!: Subscription;
-  private initializedSubscription!: Subscription;
-  private initializationErrorSubscription!: Subscription;
-  private statusChangeSubscription!: Subscription;
-  private revokeChoiceSubscription!: Subscription;
-  private noCookieLawSubscription!: Subscription;
+  //  private popupOpenSubscription!: Subscription;
+  // private popupCloseSubscription!: Subscription;
+  // private initializingSubscription!: Subscription;
+  // private initializedSubscription!: Subscription;
+  // private initializationErrorSubscription!: Subscription;
+  // private statusChangeSubscription!: Subscription;
+  // private revokeChoiceSubscription!: Subscription;
+  // private noCookieLawSubscription!: Subscription;
 
   private routerSubscription: Subscription | undefined;
 
   constructor(private platformService: PlatformService,
-  private loadingService: LoadingService, private router: Router, private seoService: SeoService, private ccService: NgcCookieConsentService) {}
+  private loadingService: LoadingService, private router: Router, private seoService: SeoService) {}
 
 
 
@@ -73,47 +73,47 @@ export class AppComponent implements OnInit, OnDestroy {
     //   this.addAnalyticsScript();
     // }
     
-    this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
-      () => {
-      });
+  //   this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
+  //     () => {
+  //     });
 
-    this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
-      () => {
-      });
+  //   this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
+  //     () => {
+  //     });
 
-    this.initializingSubscription = this.ccService.initializing$.subscribe(
-      (event: NgcInitializingEvent) => {
-        // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
-        console.log(`initializing: ${JSON.stringify(event)}`);
-      });
+  //   this.initializingSubscription = this.ccService.initializing$.subscribe(
+  //     (event: NgcInitializingEvent) => {
+  //       // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
+  //       console.log(`initializing: ${JSON.stringify(event)}`);
+  //     });
     
-    this.initializedSubscription = this.ccService.initialized$.subscribe(
-      () => {
-        // the cookieconsent has been successfully initialized.
-        // It's now safe to use methods on NgcCookieConsentService that require it, like `hasAnswered()` for eg...
-        console.log(`initialized: ${JSON.stringify(event)}`);
-      });
+  //   this.initializedSubscription = this.ccService.initialized$.subscribe(
+  //     () => {
+  //       // the cookieconsent has been successfully initialized.
+  //       // It's now safe to use methods on NgcCookieConsentService that require it, like `hasAnswered()` for eg...
+  //       console.log(`initialized: ${JSON.stringify(event)}`);
+  //     });
 
-    this.initializationErrorSubscription = this.ccService.initializationError$.subscribe(
-      (event: NgcInitializationErrorEvent) => {
-        // the cookieconsent has failed to initialize... 
-        console.log(`initializationError: ${JSON.stringify(event.error?.message)}`);
-      });
+  //   this.initializationErrorSubscription = this.ccService.initializationError$.subscribe(
+  //     (event: NgcInitializationErrorEvent) => {
+  //       // the cookieconsent has failed to initialize... 
+  //       console.log(`initializationError: ${JSON.stringify(event.error?.message)}`);
+  //     });
 
-    // this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
-    //   (event: NgcStatusChangeEvent) => {
-    //    event.status === 'allow'? this.addAnalyticsScript() : this.deleteAnalyticsScript()
-    //   });
+  //   // this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
+  //   //   (event: NgcStatusChangeEvent) => {
+  //   //    event.status === 'allow'? this.addAnalyticsScript() : this.deleteAnalyticsScript()
+  //   //   });
 
-    // this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
-    //   () => this.deleteAnalyticsScript());
+  //   // this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
+  //   //   () => this.deleteAnalyticsScript());
 
-      this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
-      (event: NgcNoCookieLawEvent) => {
-        //no está claro lo del low
-        console.log('nolow', event)
-      });
-  }
+  //     this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+  //     (event: NgcNoCookieLawEvent) => {
+  //       //no está claro lo del low
+  //       console.log('nolow', event)
+  //     });
+  // }
 
   // public setCanonicalTag(url: string) {
   //   let link: HTMLLinkElement | null = document.querySelector("link[rel='canonical']");
@@ -125,7 +125,7 @@ export class AppComponent implements OnInit, OnDestroy {
   //     link.setAttribute('href', url);
   //     document.head.appendChild(link);
   //   }
-  // }
+   }
 
   public listenLoading() {
     this.loadingService.getLoadingStatus().subscribe((isLoading) => {
@@ -167,14 +167,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.popupOpenSubscription.unsubscribe();
-    this.popupCloseSubscription.unsubscribe();
-    this.initializingSubscription.unsubscribe();
-    this.initializedSubscription.unsubscribe();
-    this.initializationErrorSubscription.unsubscribe();
-    this.statusChangeSubscription.unsubscribe();
-    this.revokeChoiceSubscription.unsubscribe();
-    this.noCookieLawSubscription.unsubscribe();
+    // this.popupOpenSubscription.unsubscribe();
+    // this.popupCloseSubscription.unsubscribe();
+    // this.initializingSubscription.unsubscribe();
+    // this.initializedSubscription.unsubscribe();
+    // this.initializationErrorSubscription.unsubscribe();
+    // this.statusChangeSubscription.unsubscribe();
+    // this.revokeChoiceSubscription.unsubscribe();
+    // this.noCookieLawSubscription.unsubscribe();
 this.routerSubscription && this.routerSubscription.unsubscribe();
   
   }

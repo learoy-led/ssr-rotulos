@@ -8,11 +8,11 @@ import { FilterPipe } from '../../pipes/filter.pipe';
 import { GetProductsService } from '../../core/services/get-products.service';
 
 @Component({
-  selector: 'app-categorias',
-  standalone: true,
-  imports: [CardsComponent, CommonModule, FilterButtonsComponent, FilterPipe],
-  templateUrl: './categorias.component.html',
-  styleUrl: './categorias.component.css'
+    selector: 'app-categorias',
+      standalone: true,
+    imports: [CardsComponent, CommonModule, FilterButtonsComponent, FilterPipe],
+    templateUrl: './categorias.component.html',
+    styleUrl: './categorias.component.css'
 })
 export class CategoriasComponent implements OnInit {
 public categories$?: Observable <Category[]>;

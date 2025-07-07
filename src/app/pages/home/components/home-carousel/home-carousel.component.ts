@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../../shared/button/button.component';
 
 @Component({
-  selector: 'app-home-carousel',
-  standalone: true,
-  imports: [ButtonComponent, CommonModule],
-  templateUrl: './home-carousel.component.html',
-  styleUrl: './home-carousel.component.css'
+    selector: 'app-home-carousel',
+      standalone: true,
+    imports: [ButtonComponent, CommonModule],
+    templateUrl: './home-carousel.component.html',
+    styleUrl: './home-carousel.component.css'
 })
 export class HomeCarouselComponent {
 

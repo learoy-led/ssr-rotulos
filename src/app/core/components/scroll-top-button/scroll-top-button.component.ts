@@ -3,11 +3,11 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-scroll-top-button',
-  standalone: true,
-  imports: [],
-  templateUrl: './scroll-top-button.component.html',
-  styleUrl: './scroll-top-button.component.css'
+    selector: 'app-scroll-top-button',
+      standalone: true,
+    imports: [],
+    templateUrl: './scroll-top-button.component.html',
+    styleUrl: './scroll-top-button.component.css'
 })
 export class ScrollTopButtonComponent implements OnInit, OnDestroy {
 

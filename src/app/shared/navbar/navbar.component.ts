@@ -6,11 +6,11 @@ import { Category } from '../../models/data.models';
 import { GetProductsService } from '../../core/services/get-products.service';
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+    selector: 'app-navbar',
+      standalone: true,
+    imports: [RouterModule, CommonModule],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
 

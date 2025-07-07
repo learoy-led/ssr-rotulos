@@ -7,11 +7,11 @@ import { IMAGEPREURL } from '../../data/data';
 import { GetProductsService } from '../../core/services/get-products.service';
 
 @Component({
-  selector: 'app-submenu',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './submenu.component.html',
-  styleUrl: './submenu.component.css'
+    selector: 'app-submenu',
+      standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './submenu.component.html',
+    styleUrl: './submenu.component.css'
 })
 export class SubmenuComponent implements OnInit {
 

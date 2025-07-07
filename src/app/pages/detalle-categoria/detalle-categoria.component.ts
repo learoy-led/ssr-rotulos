@@ -10,11 +10,11 @@ import { CommonModule } from '@angular/common';
 import { GenderPipe } from '../../pipes/gender.pipe';
 
 @Component({
-  selector: 'app-detalle-categoria',
-  standalone: true,
-  imports: [NotFoundComponent, CardsComponent, CommonModule, GenderPipe],
-  templateUrl: './detalle-categoria.component.html',
-  styleUrl: './detalle-categoria.component.css'
+    selector: 'app-detalle-categoria',
+      standalone: true,
+    imports: [NotFoundComponent, CardsComponent, CommonModule, GenderPipe],
+    templateUrl: './detalle-categoria.component.html',
+    styleUrl: './detalle-categoria.component.css'
 })
 export class DetalleCategoriaComponent implements OnInit {
 

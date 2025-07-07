@@ -7,11 +7,11 @@ import { ContactDetails } from '../../../models/data.models';
 import { contactDetails } from '../../../data/data';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule, CommonModule, NavbarComponent, SubmenuComponent],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+    selector: 'app-header',
+    standalone: true,
+    imports: [RouterModule, CommonModule, NavbarComponent, SubmenuComponent],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 

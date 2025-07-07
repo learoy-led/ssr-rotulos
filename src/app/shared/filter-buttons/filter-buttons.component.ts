@@ -6,11 +6,11 @@ import { GetProductsService } from '../../core/services/get-products.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-filter-buttons',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './filter-buttons.component.html',
-  styleUrl: './filter-buttons.component.css'
+    selector: 'app-filter-buttons',
+      standalone: true,
+    imports: [CommonModule],
+    templateUrl: './filter-buttons.component.html',
+    styleUrl: './filter-buttons.component.css'
 })
 
 export class FilterButtonsComponent implements OnInit {

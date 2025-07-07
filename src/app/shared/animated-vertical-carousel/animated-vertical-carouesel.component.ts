@@ -4,11 +4,11 @@ import { LetterImage } from '../../models/data.models';
 import { letterImages } from '../../data/data';
 
 @Component({
-  selector: 'app-animated-vertical-carousel',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './animated-vertical-carousel.component.html',
-  styleUrl: './animated-vertical-carousel.component.css'
+    selector: 'app-animated-vertical-carousel',
+      standalone: true,
+    imports: [CommonModule],
+    templateUrl: './animated-vertical-carousel.component.html',
+    styleUrl: './animated-vertical-carousel.component.css'
 })
 export class AnimatedVerticalCarouselComponent {
 

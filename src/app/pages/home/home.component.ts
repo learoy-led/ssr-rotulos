@@ -12,20 +12,20 @@ import { CardsComponent } from '../../shared/cards/cards.component';
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    ContactBannerComponent,
-    CardsComponent,
-    TextsSectionComponent,
-    HomeCarouselComponent,
-    ItemsCarouselComponent,
-    CommonModule,
-    AnimatedVerticalCarouselComponent,
-    ButtonComponent
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+      standalone: true,
+    imports: [
+        ContactBannerComponent,
+        CardsComponent,
+        TextsSectionComponent,
+        HomeCarouselComponent,
+        ItemsCarouselComponent,
+        CommonModule,
+        AnimatedVerticalCarouselComponent,
+        ButtonComponent
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 

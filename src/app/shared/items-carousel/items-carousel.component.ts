@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { CardsComponent } from '../cards/cards.component';
 
 @Component({
-  selector: 'app-items-carousel',
-  standalone: true,
-  imports: [CardsComponent],
-  templateUrl: './items-carousel.component.html',
-  styleUrl: './items-carousel.component.css'
+    selector: 'app-items-carousel',
+      standalone: true,
+    imports: [CardsComponent],
+    templateUrl: './items-carousel.component.html',
+    styleUrl: './items-carousel.component.css'
 })
 export class ItemsCarouselComponent implements OnInit, OnDestroy {
 

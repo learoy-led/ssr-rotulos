@@ -7,11 +7,11 @@ import { GetProductsService } from '../../core/services/get-products.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-cards',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './cards.component.html',
-  styleUrl: './cards.component.css'
+    selector: 'app-cards',
+      standalone: true,
+    imports: [CommonModule],
+    templateUrl: './cards.component.html',
+    styleUrl: './cards.component.css'
 })
 export class CardsComponent implements OnInit {
 
