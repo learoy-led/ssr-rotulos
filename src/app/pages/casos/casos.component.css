@@ -76,10 +76,13 @@ transform: var(--hover-scale);
 .page-title {
     text-align: center
 }
+ .case-container {
+  pointer-events: none;
+  }
 }
-
+/* 
 @media screen and (min-width: 767px) and (max-width: 1890px) {
     .case-image {
       max-width: 100%; 
-  } 
   }
+} */

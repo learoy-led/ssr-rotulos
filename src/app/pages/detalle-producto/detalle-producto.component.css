@@ -89,7 +89,7 @@
   }
 
   @media screen and (max-width: 766px) {
-  .product-details {
+  .main-product-details {
     flex-direction: column;
     gap: 24px;
   }
