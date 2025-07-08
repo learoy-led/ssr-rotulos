@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "npm build --configuration productiongit ",
+    "build": "ng build --configuration productiongit ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:ssr-rotulos": "node dist/ssr-rotulos/server/server.mjs"
