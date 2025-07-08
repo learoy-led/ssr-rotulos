@@ -5,7 +5,7 @@
         <li class="case-container" *ngFor="let case of cases; let i = index"><img (click)="selectCase(i)" class="case-image" [src]="case" alt="letrero-realizado-por-rotulos-learoy"></li>
       </ul>  
       <figure *ngIf="selectedCase" class="image-zoom-container">
-      <img class="case-image-zoom" [src]="selectedCase" alt="cartel-hecho-por-rotulos-learoy">
+      <img loading="lazy" class="case-image-zoom" [src]="selectedCase" alt="cartel-hecho-por-rotulos-learoy">
       <i (click)="closeImageZoom()" class="fa-solid fa-square-xmark"></i>      
     </figure>
     </section>
