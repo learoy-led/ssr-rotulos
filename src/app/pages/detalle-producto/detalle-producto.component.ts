@@ -51,7 +51,7 @@ public ngOnInit() {
      const title =  `${this.productSelectedData.name} · Rótulos Learoy`
         const description = `${this.productSelectedData.description} Infórmate.`
     const image = this.imagePrefix+this.productSelectedData.images[0]
-  const route =`/${categorySlug}/${productSlug}`
+  const route =`${categorySlug}/${productSlug}`
          this.seoService.updateSeoDynamicTags(title, description, image, route)
   
   }); 
