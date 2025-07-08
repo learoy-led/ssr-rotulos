@@ -9,10 +9,12 @@ import { environment } from '../../../environments/environment';
 })
 export class GetProductsService {
 
- public API_URL = environment.API_URL || '';
+ public API_URL = environment.API_URL;
 
   
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log(this.API_URL)
+  }
 
 
   public getCategories(): Observable<Category[]>{
