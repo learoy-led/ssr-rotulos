@@ -5,7 +5,7 @@ const checkSign = '\u{2705}';
 const dotenv = require('dotenv').config({path: 'src/.env'}); ;
 
 const envFile = `export const environment = {
-    APY_URL: '${process.env.APY_URL}',
+    API_URL: '${process.env.API_URL}',
 };
 `;
 
