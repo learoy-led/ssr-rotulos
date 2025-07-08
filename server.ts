@@ -54,9 +54,5 @@ function run(): void {
   });
 }
 
-const mainUrl = fileURLToPath(import.meta.url);
-if (process.argv[1] === mainUrl) {
-  run();
-}
+run();
 
-export const __app = app;
