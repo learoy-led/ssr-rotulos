@@ -153,6 +153,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private addAnalyticsScript() {
+    console.log('ejecuta añadir el script')
     if (!document.getElementById('google-analytics-script')) {
       const script = document.createElement('script');
       script.id = 'google-analytics-script';

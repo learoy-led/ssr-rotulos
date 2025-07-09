@@ -19,7 +19,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   theme: 'classic',
   type: 'opt-in', 
   content: {
-    message: 'Este sitio usa cookies para mejorar tu experiencia. Al hacer clic en “Aceptar todas las cookies”, aceptas que las cookies se guarden en tu dispositivo para mejorar la navegación del sitio, analizar el uso del mismo y colaborar con nuestros estudios para marketing. Si lo deseas, puedes elegir qué cookies permitir en Configuración de cookies. +Info:',
+    message: 'Este sitio usa cookies para mejorar tu experiencia. Al hacer clic en “Aceptar todas", aceptas que las cookies se guarden en tu dispositivo para mejorar la navegación del sitio, analizar el uso del mismo y colaborar con nuestros estudios para marketing. +Info:',
     deny: 'Rechazar todas',
     allow: 'Aceptar todas',
     link: 'Política de cookies',
