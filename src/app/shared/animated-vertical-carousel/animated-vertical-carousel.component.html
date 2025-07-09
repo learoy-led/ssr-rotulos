@@ -10,7 +10,7 @@
 <div class="letter-list-container middle">
     <ul class="letter-list">
         <li class="letter-figure" *ngFor="let image of letterImagesMiddle">
-            <img loading="lazy" class="letter-image" [src]="image.url" [alt]="image.name" />
+            <img class="letter-image" [src]="image.url" [alt]="image.name" />
              <h3 class="letter-title">{{ image.name }}</h3>
           </li>
         </ul>
