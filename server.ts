@@ -4,7 +4,6 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
-import { createProxyMiddleware } from 'http-proxy-middleware';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -21,12 +20,11 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
+  
 
-  server.use('/sitemap.xml', createProxyMiddleware({
-  target: 'https://rotuloslearoy-api.onrender.com',
-  changeOrigin: true,
-  pathRewrite: { '^/sitemap.xml': '/api/sitemap.xml' }
-}));
+  server.get('/sitemap.xml', (req, res) => {
+  res.redirect(301, 'https://rotuloslearoy-api.onrender.com/api/sitemap.xml');
+});
 
   server.get('**', express.static(browserDistFolder, {
     maxAge: '1y',
