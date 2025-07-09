@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.platformService.isBrowser()) {
-      console.log('cliente') 
+      
       this.listenLoading();
 
       this.routerSubscription = this.router.events.subscribe((event) => {
@@ -92,9 +92,7 @@ export class AppComponent implements OnInit, OnDestroy {
       });
 
       this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
-        () => {
-            console.log(`pop up abierto`);
-        }
+        () => {}
       );
 
       this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
@@ -112,10 +110,10 @@ export class AppComponent implements OnInit, OnDestroy {
         () => {
           console.log(`initialized: ${JSON.stringify(event)}`);
           console.log('hay consentimiento', this.ccService.hasConsented())
-          if (this.ccService.hasConsented()) {
+          //if (this.ccService.hasConsented()) {
           this.addAnalyticsScript();
-          this.checkFunction()
-        }   
+          
+        //}   
         }
       );
 
@@ -152,10 +150,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.loadingService.getLoadingStatus().subscribe((isLoading) => {
       this.isLoading = isLoading;
     });
-  }
-
-  private checkFunction() {
- console.log('ejecuta check')
   }
 
   private addAnalyticsScript() {
