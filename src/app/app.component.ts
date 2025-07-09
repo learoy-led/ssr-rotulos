@@ -186,6 +186,26 @@ export class AppComponent implements OnInit, OnDestroy {
   //   }
   // }
 
+
+  ngAfterViewInit() {
+  if (this.platformService.isBrowser()) {
+    console.log('ejecurta ngAfterViewInit');
+    console.log('¿Ya consintió?', this.ccService.hasConsented());
+    this.ccService.popupOpen$.subscribe(() => {
+      console.log('popup abierto');
+    });
+    this.ccService.initialized$.subscribe(() => {
+      console.log('CookieConsent inicializado');
+    });
+    this.ccService.statusChange$.subscribe((event: NgcStatusChangeEvent) => {
+      console.log('status changed:', event.status);
+      if (event.status === 'allow') {
+        this.addAnalyticsScript();
+      }
+    });
+  }
+}
+
   ngOnDestroy() {
     this.routerSubscription?.unsubscribe();
     this.popupOpenSubscription?.unsubscribe();
