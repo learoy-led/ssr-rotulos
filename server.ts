@@ -22,9 +22,16 @@ export function app(): express.Express {
   // Serve static files from /browser
   
 
-  server.get('/sitemap.xml', (req, res) => {
-  res.redirect(301, 'https://rotuloslearoy-api.onrender.com/api/sitemap.xml');
+server.get('/sitemap.xml', async (req, res) => {
+  try {
+    const response = await fetch('https://rotuloslearoy-api.onrender.com/api/sitemap.xml');
+    const xml = await response.text();
+    res.header('Content-Type', 'application/xml').send(xml);
+  } catch (err) {
+    res.status(500).send('Error fetching sitemap');
+  }
 });
+
 
   server.get('**', express.static(browserDistFolder, {
     maxAge: '1y',
