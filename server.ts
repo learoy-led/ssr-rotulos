@@ -4,7 +4,7 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
-import https from 'https';
+
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -20,28 +20,30 @@ export function app(): express.Express {
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
-server.get('/sitemap.xml', async (req, res) => {
-  try {
-    const apiUrl = 'https://rotuloslearoy-api.onrender.com/api/sitemap.xml';
 
-    https.get(apiUrl, (apiRes) => {
-      if (apiRes.statusCode !== 200) {
-        res.status(apiRes.statusCode ?? 500).send('Error al obtener sitemap');
-        return;
-      }
+  
+    server.get('/sitemap.xml', (req, res) => {
+      const routes = ['/', '/catalogo', '/nosotros', '/casos-de-exito', '/contacto'];   
+            // categories.forEach(category => {
+            //   routes.push(`/${category.slug}`)
+            //   if (category.products && category.products.length > 0) {
+            //   category.products.forEach((product) => 
+            //      routes.push(`/${category.slug}/${product.slug}`));
+            // }
+            // });
+            
+      const xmlbuilder = require('xmlbuilder');
+      const xml = xmlbuilder.create('urlset', { version: '1.0', encoding: 'UTF-8' })
+        .att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
 
-      res.setHeader('Content-Type', 'application/xml');
-      apiRes.pipe(res); 
-    }).on('error', (err) => {
-      console.error('Error al obtener sitemap:', err);
-      res.status(500).send('Error interno');
-    });
+      routes.forEach(route => {
+        const url = xml.ele('url');
+        url.ele('loc', `https://rotuloslearoy.com${route}`);
+      });
 
-  } catch (error) {
-    console.error('Fallo al servir sitemap:', error);
-    res.status(500).send('Error interno del servidor');
-  }
-});
+      res.set('Content-Type', 'application/xml');
+      res.send(xml.end({ pretty: true }));
+    })
 
  // Serve static files from /browser
   server.get('**', express.static(browserDistFolder, {
