@@ -17,17 +17,17 @@
 }    
 
 .left {
-         margin-top: -90px;
+         margin-top: -89px;
       clip-path: inset(90px 0 0 0); 
 }
 
 .middle {
-    margin-top: -30px;
+    margin-top: -29px;
     clip-path: inset(30px 0 0 0); 
   }
 
 .right {
-    margin-top: -150px;
+    margin-top: -149px;
     clip-path: inset(150px 0 0 0); 
 }
 
