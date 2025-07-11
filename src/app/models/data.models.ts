@@ -15,6 +15,7 @@ application: string,
 products: string,
 custom: string,   
 cost: string,
+metaDescription: string
 }
 
 
@@ -36,6 +37,7 @@ material: string,
 design: string,
 installation: string,
 application: string,
+metaDescription: string
 }
 
 

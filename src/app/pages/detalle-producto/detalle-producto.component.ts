@@ -29,7 +29,8 @@ export class DetalleProductoComponent implements OnInit {
     images: [],
     design: '', 
   installation: '',
-  application: ''
+  application: '',
+  metaDescription: '',
   }
   public mainImageIndex = 0
   public productDetailsIndex = 0

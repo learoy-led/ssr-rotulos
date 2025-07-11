@@ -27,7 +27,8 @@ export class DetalleCategoriaComponent implements OnInit {
       application: '',
       custom: '',
       cost: '',
-      products: ''
+      products: '',
+      metaDescription: '',
     }
   }
   public imagePrefix: string = IMAGEPREURL
@@ -43,7 +44,7 @@ public ngOnInit() {
       this.categorySelectedData = category
 
          const title =`${this.categorySelectedData.name} · Rótulos Learoy`
-         const description = `${this.categorySelectedData.description.custom} Infórmate.`
+         const description = this.categorySelectedData.description.metaDescription
           const image = this.imagePrefix+this.categorySelectedData.products[0].images[0]
  
           this.seoService.updateSeoDynamicTags(title, description, image, categorySlug)
