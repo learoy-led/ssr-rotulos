@@ -5,7 +5,6 @@ padding: 100px 0
 .vertical-carousel-section {
 display: flex;
 background-color: var(--color-black); 
-width:100%;
 padding-left: 52px;
 padding-right: 52px;
 padding-bottom: 0px;

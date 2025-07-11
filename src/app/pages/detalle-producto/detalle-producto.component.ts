@@ -51,7 +51,7 @@ public ngOnInit() {
       
      const title =  `${this.productSelectedData.name} · Rótulos Learoy`
  const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
-        const description = `${this.productSelectedData.description} Infórmate.`
+        const description = this.productSelectedData.metaDescription
     const image = this.imagePrefix+this.productSelectedData.images[0]
   const route =`${categorySlug}/${productSlug}`
          this.seoService.updateSeoDynamicTags(capitalizedTitle, description, image, route)
