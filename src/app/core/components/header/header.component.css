@@ -7,7 +7,7 @@ header {
 .main-header-desktop, .main-header-mobile {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 9vh;
   width: 100vw; 
   background-color: var(--color-black);
