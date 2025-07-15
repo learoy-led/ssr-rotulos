@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ResolveFn, Router } from '@angular/router';
 import { GetProductsService } from '../services/get-products.service';
-import { catchError, of } from 'rxjs';
+import { catchError, of, throwError } from 'rxjs';
 import { Category } from '../../models/data.models';
 
 export const categoryResolver: ResolveFn<Category | null> = (route, state) => {
@@ -14,8 +14,7 @@ export const categoryResolver: ResolveFn<Category | null> = (route, state) => {
   return getProductsService.getCategoryBySlug(categorySlug).pipe(
      catchError(err => {
       if (err.status === 404) {
-        router.navigate(['/pagina-no-encontrada']);
-        return of(null); 
+       return throwError(() => new Error('CATEGORY_NOT_FOUND'));
       }
       return of(null); 
     })
