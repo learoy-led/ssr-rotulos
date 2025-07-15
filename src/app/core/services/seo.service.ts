@@ -35,6 +35,9 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:image', content: image });
   }
 
+ public noRobots() {
+  this.meta.updateTag({ name: 'robots', content:'noindex, nofollow' });
+}
 
   private getDeepestChild(route: ActivatedRoute): ActivatedRoute {
     while (route.firstChild) {

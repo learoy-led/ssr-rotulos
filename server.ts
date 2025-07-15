@@ -40,7 +40,23 @@ export function app(): express.Express {
         publicPath: browserDistFolder,
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
       })
-      .then((html) => res.send(html))
+       .then((html) => {
+         
+
+          const transferStateMatch = html.match(/window\['TRANSFER_STATE'\] = (.*?);<\/script>/);
+    
+    if (transferStateMatch && transferStateMatch[1]) {
+      const stateObj = JSON.parse(transferStateMatch[1]);
+      const statusCodeKey = Object.keys(stateObj).find(k => k.includes('ssr-status-code'));
+      
+      if (statusCodeKey && stateObj[statusCodeKey] === 404) {
+        res.statusCode = 404;
+      }
+    }
+
+
+        res.send(html)
+        })
       .catch((err) => next(err));
   });
 
@@ -58,4 +74,3 @@ function run(): void {
 }
 
 run();
-

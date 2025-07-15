@@ -1,8 +1,9 @@
 <ng-template #nocategory>
-    <app-not-found [notFoundText]="'No hay categorías de rótulos con este nombre'"></app-not-found>
+    <app-not-found [notFoundText]="'No hay rótulos con este nombre'"></app-not-found>
 </ng-template>
 
 <ng-container *ngIf="categorySelectedData; else nocategory">
+    <ng-container *ngIf="categorySelectedData">
 <main class="category-page">
     <section class="centered-section">
         <h1 class="page-title centered-text">{{categorySelectedData.name}}</h1>

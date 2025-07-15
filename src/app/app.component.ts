@@ -66,18 +66,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     if (this.platformService.isBrowser()) {
-      
       this.listenLoading();
 
       this.routerSubscription = this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          if (
-            this.router.url === '/' ||
-            '/catalogo' ||
-            '/nosotros' ||
-            '/casos-de-exito' ||
-            '/contacto'
-          ) {
+        const staticRoutes = ['/', '/catalogo', '/nosotros', '/casos-de-exito', '/contacto'];
+         if (event instanceof NavigationEnd) {
+          if (staticRoutes.includes(this.router.url)) {
             this.seoService.updateSeoStaticTags();
           }
 
@@ -90,9 +84,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
           }
         }
       });
-
-     
-   }
+    }
   }
 
   public listenLoading() {
@@ -102,8 +94,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-  if (this.platformService.isBrowser()) {
-    this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
+    if (this.platformService.isBrowser()) {
+      this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
         () => {}
       );
 
@@ -121,14 +113,15 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       this.initializedSubscription = this.ccService.initialized$.subscribe(
         () => {
           console.log(`initialized: ${JSON.stringify(event)}`);
-          console.log('hay consentimiento', this.ccService.hasConsented())
+          console.log('hay consentimiento', this.ccService.hasConsented());
           if (this.ccService.hasConsented()) {
-          this.addAnalyticsScript();
-        }   
+            this.addAnalyticsScript();
+          }
         }
       );
 
-      this.initializationErrorSubscription = this.ccService.initializationError$.subscribe(
+      this.initializationErrorSubscription =
+        this.ccService.initializationError$.subscribe(
           (event: NgcInitializationErrorEvent) => {
             console.log(
               `initializationError: ${JSON.stringify(event.error?.message)}`
@@ -154,8 +147,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
           console.log('nolow', event);
         }
       );
+    }
   }
-}
 
   private addAnalyticsScript() {
     if (!document.getElementById('google-analytics-script')) {
@@ -177,20 +170,19 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-   private deleteAnalyticsScript() {
-      if (!this.platformService.isBrowser()) return;
-     if (
-       document.getElementById('google-analytics-script') &&
-       document.getElementById('google-analytics-second-script')
-     ) {
-       document.getElementById('google-analytics-script')?.remove();
-       document.getElementById('google-analytics-second-script')?.remove();
-     }
-     if (window.dataLayer) {
-       window.dataLayer.length = 0;
-     }
-   }
-
+  private deleteAnalyticsScript() {
+    if (!this.platformService.isBrowser()) return;
+    if (
+      document.getElementById('google-analytics-script') &&
+      document.getElementById('google-analytics-second-script')
+    ) {
+      document.getElementById('google-analytics-script')?.remove();
+      document.getElementById('google-analytics-second-script')?.remove();
+    }
+    if (window.dataLayer) {
+      window.dataLayer.length = 0;
+    }
+  }
 
   ngOnDestroy() {
     this.routerSubscription?.unsubscribe();

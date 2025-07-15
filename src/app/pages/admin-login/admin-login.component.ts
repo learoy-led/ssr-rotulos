@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AdminFormData } from '../../models/data.models';
 import { AdminLoginService } from '../../services/admin-login.service';
 import { emailValidator } from '../../core/components/contact-form/validator';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
     selector: 'app-admin-login',
@@ -22,10 +23,10 @@ export class AdminLoginComponent implements OnInit, OnDestroy {
     password: '',
   };
 
-  constructor(private adminLoginService: AdminLoginService) {}
+  constructor(private adminLoginService: AdminLoginService, private seoService: SeoService) {}
 
   ngOnInit() {
-
+this.seoService.noRobots();
   this.adminLoginMessageSubscription = this.adminLoginService.getSubmittedMessage().subscribe(message => {
     if (message) {
       this.adminLoginMessage = message;

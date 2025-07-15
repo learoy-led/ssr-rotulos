@@ -5,8 +5,8 @@ Disallow: /node_modules/
 Disallow: /*.ts$
 Disallow: /*.json$
 Disallow: /api/
-Disallow: /404
-Disallow: /pagina-no-encontrada
+Disallow: /admin-login
+Disallow: /admin-panel
 Disallow: /src/environments/
 
 Sitemap: https://www.rotuloslearoy.com/sitemap.xml

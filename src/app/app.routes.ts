@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
+import { categoryResolver } from './core/resolvers/category.resolver';
 
 export const routes: Routes = [
     {
@@ -91,23 +92,27 @@ export const routes: Routes = [
           canActivate: [authGuard],
         title: 'Panel administración | Rótulos Learoy'        
       },
-      {
-        path: ':category', loadComponent: () =>
-          import('./pages/detalle-categoria/detalle-categoria.component').then(
-            (c) => c.DetalleCategoriaComponent
-          ),
-      },
-      {
-        path: ':category/:product', loadComponent: () =>
-          import('./pages/detalle-producto/detalle-producto.component').then(
-            (c) => c.DetalleProductoComponent
-          ),
-      },
-      {
-        path: '**',  loadComponent: () =>
+       {
+        path: 'pagina-no-encontrada',  loadComponent: () =>
         import('./pages/pagina-no-encontrada/pagina-no-encontrada.component').then(
           (c) => c.PaginaNoEncontradaComponent
         ),
         title: 'Página no encontrada | Rótulos Learoy',
       },
+      {
+        path: ':category', loadComponent: () =>
+          import('./pages/detalle-categoria/detalle-categoria.component').then(
+            (c) => c.DetalleCategoriaComponent
+          ),
+           resolve:{
+            category: categoryResolver
+          },
+      },
+      // {
+      //   path: ':category/:product', loadComponent: () =>
+      //     import('./pages/detalle-producto/detalle-producto.component').then(
+      //       (c) => c.DetalleProductoComponent
+      //     ),
+      // },
+     
 ];

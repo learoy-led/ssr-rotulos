@@ -15,8 +15,6 @@ display: flex;
 gap: 52px;
 }
 
-
-
 .vertical-carousel-section-texts {
   display: flex;
   flex-direction: column;

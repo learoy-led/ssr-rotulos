@@ -4,21 +4,21 @@ import { IMAGEPREURL } from '../../data/data';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
 import { GetProductsService } from '../../core/services/get-products.service';
-import { NotFoundComponent } from "../../shared/not-found/not-found.component";
 import { CardsComponent } from "../../shared/cards/cards.component";
 import { CommonModule } from '@angular/common';
 import { GenderPipe } from '../../pipes/gender.pipe';
+import { NotFoundComponent } from '../../shared/not-found/not-found.component';
 
 @Component({
     selector: 'app-detalle-categoria',
       standalone: true,
-    imports: [NotFoundComponent, CardsComponent, CommonModule, GenderPipe],
+    imports: [CardsComponent, CommonModule, GenderPipe, NotFoundComponent],
     templateUrl: './detalle-categoria.component.html',
     styleUrl: './detalle-categoria.component.css'
 })
 export class DetalleCategoriaComponent implements OnInit {
 
-   public categorySelectedData: Category = {
+   public categorySelectedData: Category | null = {
     type: '',
     name: '',
     slug: '',
@@ -38,19 +38,22 @@ constructor(private route: ActivatedRoute, private GetProductsService: GetProduc
 
 public ngOnInit() {
 
-      this.route.paramMap.subscribe(params => {
-    const categorySlug = params.get('category') ?? '';
-    this.GetProductsService.getCategoryBySlug(categorySlug).subscribe((category)=>  {
-      this.categorySelectedData = category
+  this.route.data.subscribe(data => {
+    this.categorySelectedData = data['category'];
 
-         const title =`${this.categorySelectedData.name} · Rótulos Learoy`
-         const description = this.categorySelectedData.description.metaDescription
-          const image = this.imagePrefix+this.categorySelectedData.products[0].images[0]
+    //   this.route.paramMap.subscribe(params => {
+    // const categorySlug = params.get('category') ?? '';
+    // this.GetProductsService.getCategoryBySlug(categorySlug).subscribe((category)=>  {
+    //   this.categorySelectedData = category
+
+         const title =`${this.categorySelectedData?.name} · Rótulos Learoy`
+         const description = this.categorySelectedData?.description.metaDescription
+          const image = this.imagePrefix+this.categorySelectedData?.products[0].images[0];
+          const slug = this.categorySelectedData?.slug ?? ''
  
-          this.seoService.updateSeoDynamicTags(title, description, image, categorySlug)
+          this.seoService.updateSeoDynamicTags(title, description??'', image, slug)
   
   }); 
-});
   
 }
 }

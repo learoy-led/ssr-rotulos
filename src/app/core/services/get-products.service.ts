@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 

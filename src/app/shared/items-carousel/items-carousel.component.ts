@@ -60,8 +60,10 @@ carouselNextElements() {
         if (this.categorySlug !== '') {
           this.productsSub = this.getProductsService.getCategoryBySlug(this.categorySlug).subscribe(
        (category) => {
+        if (category) {
         this.products = category.products
         this.productsShown = this.products.slice(this.currentIndex,this.currentIndex + 5)
+        }
       }
      )
           } else {

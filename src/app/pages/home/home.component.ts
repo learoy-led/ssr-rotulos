@@ -8,15 +8,15 @@ import { AnimatedVerticalCarouselComponent } from '../../shared/animated-vertica
 import { ItemsCarouselComponent } from '../../shared/items-carousel/items-carousel.component';
 import { TextsSectionComponent } from '../../shared/texts-section/texts-section.component';
 import { ContactBannerComponent } from '../../shared/contact-banner/contact-banner.component';
-import { CardsComponent } from '../../shared/cards/cards.component';
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
+import { CategoryCardsComponent } from '../../shared/category-cards/category-cards.component';
 
 @Component({
     selector: 'app-home',
       standalone: true,
     imports: [
         ContactBannerComponent,
-        CardsComponent,
+        CategoryCardsComponent,
         TextsSectionComponent,
         HomeCarouselComponent,
         ItemsCarouselComponent,

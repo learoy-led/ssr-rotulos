@@ -43,7 +43,9 @@ public ngOnInit() {
 
    this.route.paramMap.subscribe(params => {
     const categorySlug = params.get('category') ?? '';
-    this.getProductsService.getCategoryBySlug(categorySlug).subscribe((category) =>  this.categoryName = category.name); 
+    this.getProductsService.getCategoryBySlug(categorySlug).subscribe((category) =>   
+      category? this.categoryName = category.name : this.categoryName = ''
+  ); 
     const productSlug = params.get('product') ?? '';
     console.log(productSlug)
     this.getProductsService.getProductBySlug(productSlug).subscribe((product) =>  {
@@ -63,5 +65,4 @@ public ngOnInit() {
 public updateProductDetails(index: number) {
   this.mainImageIndex = index
 }
-
 }
