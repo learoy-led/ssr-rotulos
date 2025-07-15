@@ -14,6 +14,7 @@ export const categoryResolver: ResolveFn<Category | null> = (route, state) => {
   return getProductsService.getCategoryBySlug(categorySlug).pipe(
      catchError(err => {
       if (err.status === 404) {
+       router.navigate(['/pagina-no-encontrada']); 
        return throwError(() => new Error('CATEGORY_NOT_FOUND'));
       }
       return of(null); 
