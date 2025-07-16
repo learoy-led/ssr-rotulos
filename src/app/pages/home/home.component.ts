@@ -31,24 +31,12 @@ export class HomeComponent implements OnInit {
 
   public categories$?: Observable<Category[]>;  
  
-@ViewChild("videoEl", { static: true, read: ElementRef<HTMLVideoElement> })
- public video!: ElementRef;
-
   constructor(
     private getProductsService: GetProductsService,
   ) {}
 
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
-    this.video.nativeElement.autoplay = true;
   }
-
-  // public ngAfterViewInit() {
-  //    const video = this.videoEl.nativeElement;
-  //   video.muted = true;
-  //   video.play().catch(err => {
-  //     console.warn('Autoplay bloqueado por el navegador:', err);
-  //   });
-  // }
 
 }
