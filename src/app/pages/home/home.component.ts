@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ButtonComponent } from "../../shared/button/button.component";
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -30,6 +30,9 @@ import { CategoryCardsComponent } from '../../shared/category-cards/category-car
 export class HomeComponent implements OnInit {
 
   public categories$?: Observable<Category[]>;  
+ 
+@ViewChild("videoEl", { static: true, read: ElementRef<HTMLVideoElement> })
+ public video!: ElementRef;
 
   constructor(
     private getProductsService: GetProductsService,
@@ -37,6 +40,15 @@ export class HomeComponent implements OnInit {
 
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
+    this.video.nativeElement.autoplay = true;
   }
+
+  // public ngAfterViewInit() {
+  //    const video = this.videoEl.nativeElement;
+  //   video.muted = true;
+  //   video.play().catch(err => {
+  //     console.warn('Autoplay bloqueado por el navegador:', err);
+  //   });
+  // }
 
 }
