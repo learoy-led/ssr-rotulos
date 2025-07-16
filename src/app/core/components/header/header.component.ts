@@ -5,6 +5,7 @@ import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { SubmenuComponent } from '../../../shared/submenu/submenu.component';
 import { ContactDetails } from '../../../models/data.models';
 import { contactDetails } from '../../../data/data';
+//import { SearchInputComponent } from '../../../shared/search-input/search-input.component';
 
 @Component({
     selector: 'app-header',

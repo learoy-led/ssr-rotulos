@@ -4,20 +4,15 @@ header {
   box-shadow:  2px 2px 4px lightgrey
 }
 
-.main-header-desktop, .main-header-mobile {
+.main-header {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+   justify-content: space-between; 
   height: 9vh;
   width: 100vw; 
+  padding: 12px 76px;
   background-color: var(--color-black);
-  
 }
-
-.main-header-desktop {
-    padding: 12px 76px;
-  }
-
 
   .fa-location-dot, .fa-phone, .fa-store {
 padding: 0 8px
@@ -33,17 +28,26 @@ padding: 0 8px
     font-size: 16px;
   }
   
-   .logo {
+   .logo, .logo > img {
     height: 100%;
   } 
   
-  .logo > img {
-    height: 100%;
-    padding: 12px 0
+
+.contact-buttons {
+display: flex;
+gap: 10px;
+}
+
+  .call-button, .contact-button {
+    color: var(--color-white);  
+    padding: 6px 3px;
+     /* border-style: solid;
+    border-color: var(--color-white);
+border-radius: 50%;
+border-width: 1.5px; */
   }
 
-
-  .burguer, .call-button-mobile {
+  .burguer {
     display: none;
   }
 
@@ -63,10 +67,10 @@ padding: 0 8px
       display: none;
     }
 
-    .main-header-desktop {
+    /* .main-header-desktop {
       justify-content: space-between;
       padding: 8px 16px;
-    }
+    } */
 
     .secondary-header {
       flex-direction: column;
@@ -76,7 +80,7 @@ padding: 0 8px
       height: 4vh;
   }
 
-  .burguer, .call-button-mobile {
+  .burguer, .call-button, .contact-button {
     display: block;
     color: var(--color-white);  
   }
@@ -86,13 +90,6 @@ padding: 0 8px
     width: 40px
   }
 
-  .call-button-mobile {
-    border-style: solid;
-    border-color: var(--color-white);
-border-radius: 50%;
-padding: 6px 3px;
-border-width: 1.5px;
-  }
 
   .header-navbar {
     display: none;

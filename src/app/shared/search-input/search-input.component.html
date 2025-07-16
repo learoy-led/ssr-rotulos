@@ -1,0 +1,14 @@
+  <i  aria-hidden="true" class="fa-solid fa-magnifying-glass"><span class="sr-only">Escribir nombre de producto para buscar</span></i>
+  <input
+        class="search-input"
+        placeholder="Buscar..."
+        type="search"
+        #search
+        (input)="updateInputValue($event)"
+      />
+  <button type="button" (click)="resetSearchInput()">
+  <i aria-hidden="true" class="fa-regular fa-circle-xmark"><span class="sr-only">Borrar nombre de producto para buscar</span></i>
+  </button> 
+
+
+

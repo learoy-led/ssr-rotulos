@@ -5,11 +5,12 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { CommonModule } from '@angular/common';
+import { OrderPipe } from '../../pipes/order.pipe';
 
 @Component({
     selector: 'app-cards',
       standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, OrderPipe],
     templateUrl: './cards.component.html',
     styleUrl: './cards.component.css'
 })
@@ -17,6 +18,8 @@ export class CardsComponent implements OnInit {
 
    @Input() cardElements: (Category | Product)[] | null = [];
    @Input() cardsClass?: string = ''
+   @Input() categorySelectedSlug?: string = ''
+
 
   public srcImage: string = ''
   public imagePrefix: string = IMAGEPREURL
@@ -27,20 +30,8 @@ export class CardsComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private getProductsService: GetProductsService) {}
 
-  public selectElement(element: Category | Product ) {  
-    if ( element.type === 'category') {
-      this.router.navigateByUrl(`/${element.slug}`)
-    } else { 
-        this.categoriesSub = this.getProductsService.getCategories().subscribe(
-          (categories) => {
-            const categorySelected = categories.find(category => 
-            category.products.some(product => product.slug === (element as Product).slug)
-          )
-      if(categorySelected) { this.categorySlug = categorySelected.slug }
-      this.router.navigateByUrl(  `/${this.categorySlug}/${element.slug}`) 
-    }
-    )
-  }
+  public selectElement(element: Category | Product ) {
+     element.type === 'category' ? this.router.navigateByUrl(`/${element.slug}`) :  this.router.navigateByUrl(  `/${this.categorySelectedSlug}/${element.slug}`) 
     }
 
     public getSrcImage(element: Category | Product) { 

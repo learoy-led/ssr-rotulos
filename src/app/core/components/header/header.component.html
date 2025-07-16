@@ -5,8 +5,9 @@
    <p><i class="fa-solid fa-store"></i>   {{contactDetails.open}}</p>
   </div>
   
-  <div class="main-header-desktop">
-    <div class="main-header-mobile">
+  
+    <div class="main-header">
+     
     <span class="burguer" (click)="openBurguer()">{{burguerIsOpen ? 'X': '☰'}}</span>
     <a class="logo" [routerLink]="['/']"
       ><img
@@ -14,17 +15,26 @@
         src="/rotulos-learoy-logo.webp"
         alt="rotulos-learoy-logo"
     /></a>
-   <a class="call-button-mobile" [href]="'tel:+34'+contactDetails.phone"><i aria-hidden="true" class="fa-solid fa-phone"></i>
+    <!-- <app-search-input></app-search-input> -->
+    <ul class="contact-buttons">
+   <li><a class="call-button" [href]="'tel:+34'+contactDetails.phone"><i aria-hidden="true" class="fa-solid fa-phone"></i>
     <span class="sr-only">Llamar por teléfono</span>
-  </a>
-  </div>
-
+  </a></li>
+  <li><a class="contact-button" [routerLink]="['/contacto']"><i aria-hidden="true" class="fa-solid fa-envelope"></i>
+    <span class="sr-only">Ir a formulario de contacto</span>
+  </a></li>
+  </ul>
+</div>
   <app-navbar 
     [ngClass]="{ 'header-navbar': true, active: burguerIsOpen }"
     [burguerIsOpen]="burguerIsOpen" (burguerIsClose)="onBurguerStateChanged($event)" (showSubmenu)="showSubmenu()" 
     (hideSubmenu)="hideSubmenu()" 
     ></app-navbar>
-  </div>
+
+ 
+
+
+
    
   <app-submenu [submenuVisible]="submenuVisible" (mouseleave)="hideSubmenu()"></app-submenu>
   </header>

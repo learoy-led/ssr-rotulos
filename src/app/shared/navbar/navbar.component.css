@@ -1,6 +1,15 @@
+  nav {
+  padding: 6px;
+  background-color: rgb(2, 21, 38, 0.6);
+}
+
 .nav-links {
     display: flex;
     gap: 60px;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+ 
   } 
   
   a {

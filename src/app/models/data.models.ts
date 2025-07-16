@@ -23,6 +23,7 @@ export interface Category {
   type: string,
   name: string;
   slug: string;
+    order?: number,
   description: CategoryDescription;
   products: Product[]
   }
@@ -31,6 +32,7 @@ export interface Product {
   type: string,
   name: string,
   slug: string,
+  order?: number,
   images: string[],
   description: string;
 material: string,
