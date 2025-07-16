@@ -2,6 +2,8 @@
 <li class="card-figure" *ngFor="let element of cardElements" (click)="selectElement(element)">
     <img class="card-image" [src]="imagePrefix+getSrcImage(element)" [alt]="element.name" />
      <h3 class="element-title centered-text">{{ element.name }}</h3>
+     <div class="category-card-description-container">
      <p class="category-card-description">{{ element.description.products }}</p>
+     </div>
   </li>
 </ul>
