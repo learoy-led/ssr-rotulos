@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../models/data.models';
+import { Category, Product } from '../../models/data.models';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CardsComponent } from '../../shared/cards/cards.component';
@@ -28,4 +28,9 @@ public categories$?: Observable <Category[]>;
   public onCategorySelectedChange(categoryName:string) {
 this.categorySelectedName = categoryName
   }
+
+  public isCategory(obj: Category | Product): obj is Category {
+  return (obj as Category).products !== undefined;
+}
+
 }
