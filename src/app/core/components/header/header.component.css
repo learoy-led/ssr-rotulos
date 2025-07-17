@@ -1,7 +1,8 @@
 header {
   position: fixed;
   z-index: 1000;
-  box-shadow:  2px 2px 4px lightgrey
+  box-shadow:  2px 2px 4px lightgrey;
+  background-color: white;
 }
 
 .main-header {
@@ -24,7 +25,6 @@ padding: 0 8px
     align-items: center;
     gap: 30px;
     height: 4vh;
-    background-color: var(--color-white);
     font-size: 16px;
   }
   
@@ -38,14 +38,22 @@ display: flex;
 gap: 10px;
 }
 
+.contact-buttons > li {
+  background-color: rgb(226, 226, 226, 0.1);
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    display: flex;
+}
+
   .call-button, .contact-button {
-    color: var(--color-white);  
-    padding: 6px 3px;
-     /* border-style: solid;
-    border-color: var(--color-white);
-border-radius: 50%;
-border-width: 1.5px; */
-  }
+       color: var(--color-white); 
+       margin: auto;
+  } 
+
+  .contact-buttons > li:hover {
+ box-shadow: var(--white-shadow); 
+}
 
   .burguer {
     display: none;
@@ -80,7 +88,7 @@ border-width: 1.5px; */
       height: 4vh;
   }
 
-  .burguer, .call-button, .contact-button {
+  .burguer, .contact-buttons > li {
     display: block;
     color: var(--color-white);  
   }

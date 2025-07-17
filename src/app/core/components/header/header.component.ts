@@ -5,12 +5,12 @@ import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { SubmenuComponent } from '../../../shared/submenu/submenu.component';
 import { ContactDetails } from '../../../models/data.models';
 import { contactDetails } from '../../../data/data';
-//import { SearchInputComponent } from '../../../shared/search-input/search-input.component';
+import { SearchInputComponent } from '../../../shared/search-input/search-input.component';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [RouterModule, CommonModule, NavbarComponent, SubmenuComponent],
+    imports: [RouterModule, CommonModule, NavbarComponent, SubmenuComponent, SearchInputComponent],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css'
 })

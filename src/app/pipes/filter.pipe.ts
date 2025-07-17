@@ -12,7 +12,7 @@ export class FilterPipe implements PipeTransform {
     elementSelected: string
   ): (Category | Product )[] | null | undefined {
     const elementFiltered = elements?.filter((el) =>
-      el.name.toLowerCase() === elementSelected.toLowerCase());
+      el.name.toLowerCase().includes(elementSelected.toLowerCase())  || el.slug.toLowerCase().includes(elementSelected.toLowerCase()));
     return elements && elementSelected ? elementFiltered : elements;
   }
 

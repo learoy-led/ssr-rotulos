@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import {  Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PlatformService } from '../../core/services/platform.service';
 
 
 @Component({
@@ -8,34 +9,27 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.css'
 })
-export class SearchInputComponent implements OnInit, OnDestroy {
+export class SearchInputComponent {
  
-  @Output() productSearch = new EventEmitter<string>()
-  private inputSubject = new Subject<string>();
-  private destroy$ = new Subject<void>();
+  query: string = '';
 
-  public ngOnInit() {
-       this.inputSubject.pipe(debounceTime(300),
-        distinctUntilChanged(),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(value => {
-        this.productSearch.emit(value);
-      });
+  constructor(private router: Router, private route: ActivatedRoute, private platformService: PlatformService){}
+
+
+public submitSearch(value: string): void  {
+  if (value.trim()) {
+    this.router.navigate(['/rotulos-encontrados'], { queryParams: { q: value.trim() } });
   }
-
-  public updateInputValue(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    this.inputSubject.next(value);
-    //prodcut?.name.toLowerCase().includes(text.toLowerCase())
-  }
-  
-  public resetSearchInput() {
-      this.inputSubject.next('');
-   }
-
-public ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();''
-    }
 }
+
+public listenInput(event: Event) {  
+    this.query = ((event as Event).target as HTMLInputElement)?.value.trim()
+    console.log('el input es', ((event as Event).target as HTMLInputElement)?.value.trim());
+    this.query === '' ? this.router.navigate(['/rotulos-encontrados/']) : this.router.navigate(['/rotulos-encontrados'], { queryParams: { q: this.query.trim() }
+  });  
+    }
+
+  }
+
+
+

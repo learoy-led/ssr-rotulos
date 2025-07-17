@@ -14,7 +14,7 @@ import { CardsComponent } from '../cards/cards.component';
 })
 export class ItemsCarouselComponent implements OnInit, OnDestroy {
 
-   public products: Product[] = [];
+  public products: Product[] = [];
   public productsShown: Product[] = []
   public categorySlug: string = '';
  

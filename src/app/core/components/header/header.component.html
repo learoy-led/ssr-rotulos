@@ -15,7 +15,7 @@
         src="/rotulos-learoy-logo.webp"
         alt="rotulos-learoy-logo"
     /></a>
-    <!-- <app-search-input></app-search-input> -->
+    <app-search-input></app-search-input>
     <ul class="contact-buttons">
    <li><a class="call-button" [href]="'tel:+34'+contactDetails.phone"><i aria-hidden="true" class="fa-solid fa-phone"></i>
     <span class="sr-only">Llamar por teléfono</span>
@@ -31,10 +31,6 @@
     (hideSubmenu)="hideSubmenu()" 
     ></app-navbar>
 
- 
 
-
-
-   
   <app-submenu [submenuVisible]="submenuVisible" (mouseleave)="hideSubmenu()"></app-submenu>
   </header>

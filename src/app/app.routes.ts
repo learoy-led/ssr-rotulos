@@ -22,6 +22,13 @@ export const routes: Routes = [
             image: 'https://res.cloudinary.com/dxuseyfxa/image/upload//v1738661134/cartel-con-luz-led-para-pared-pvc-rotulos-learoy_lrunve.webp',
           }
       },
+       {
+        path: 'rotulos-encontrados', loadComponent: () =>
+          import('./pages/search-results/search-results.component').then(
+            (c) => c.SearchResultsComponent
+          ),
+          title: 'Rótulos Learoy · Resultados de búsqueda',
+      },
       {
         path: 'nosotros', loadComponent: () =>
           import('./pages/nosotros/nosotros.component').then(
