@@ -1,6 +1,6 @@
-import {  Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { PlatformService } from '../../core/services/platform.service';
+import {  Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {  NavigationEnd, Router } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,12 +9,23 @@ import { PlatformService } from '../../core/services/platform.service';
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.css'
 })
-export class SearchInputComponent {
+export class SearchInputComponent implements OnInit, OnDestroy {
  
   query: string = '';
+public routeSubscription: Subscription | null = null;
+@ViewChild('search', { static: false }) searchInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private router: Router, private route: ActivatedRoute, private platformService: PlatformService){}
-
+  constructor(private router: Router){}
+ 
+public ngOnInit(){
+ this.routeSubscription = 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && !event.url.includes('rotulos-encontrados')) {
+        this.searchInput.nativeElement.value = ''
+        this.query = '';
+      }
+    });
+}
 
 public submitSearch(value: string): void  {
   if (value.trim()) {
@@ -29,6 +40,9 @@ public listenInput(event: Event) {
   });  
     }
 
+    public ngOnDestroy() {
+    this.routeSubscription?.unsubscribe();
+  }
   }
 
 
