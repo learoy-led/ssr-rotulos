@@ -8,7 +8,7 @@
   
     <div class="main-header">
      
-    <span class="burguer" (click)="openBurguer()">{{burguerIsOpen ? 'X': '☰'}}</span>
+    <span aria-label="Abrir menú de navegación" class="burguer" (click)="openBurguer()">{{burguerIsOpen ? 'X': '☰'}}</span>
     <a class="logo" [routerLink]="['/']"
       ><img
         class="header-logo"
@@ -17,12 +17,8 @@
     /></a>
     <app-search-input></app-search-input>
     <ul class="contact-buttons">
-   <li><a class="call-button" [href]="'tel:+34'+contactDetails.phone"><i aria-hidden="true" class="fa-solid fa-phone"></i>
-    <span class="sr-only">Llamar por teléfono</span>
-  </a></li>
-  <li><a class="contact-button" [routerLink]="['/contacto']"><i aria-hidden="true" class="fa-solid fa-envelope"></i>
-    <span class="sr-only">Ir a formulario de contacto</span>
-  </a></li>
+   <li><a class="call-button" aria-label="Llamar por teléfono" [href]="'tel:+34'+contactDetails.phone"><i aria-hidden="true" class="fa-solid fa-phone"></i></a></li>
+  <li><a class="contact-button" aria-label="Ir a formulario de contacto" [routerLink]="['/contacto']"><i aria-hidden="true" class="fa-solid fa-envelope"></i></a></li>
   </ul>
 </div>
   <app-navbar 

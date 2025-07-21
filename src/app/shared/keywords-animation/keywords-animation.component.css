@@ -1,0 +1,39 @@
+@keyframes moveWords {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+.keywords-banner {
+background-image: url(/frame_80\ \(1\).webp);
+ padding: 52px 0;
+ white-space: nowrap; 
+ width: 100vw;
+   overflow: hidden;
+}
+
+  .keywords {
+    display: flex;
+     max-width: 100%;
+  color: var(--color-white);
+  animation: moveWords 20s linear infinite; 
+  text-transform: uppercase;
+}
+
+.keywords > li {
+  display: flex;
+  gap: 24px;
+  padding: 0 12px;
+  
+ } 
+
+ .keywords > li > p, .keywords > li > span {
+ font-size: 18px;
+ } 
+
+ .keywords > li > p  {
+ white-space: nowrap;
+ } 

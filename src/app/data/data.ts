@@ -37,7 +37,7 @@ export const aboutParagraphs: AboutParagraph[] = [
       'Consúltanos y nuestro equipo te recomendará la mejor opción.',
     ],
     image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742556766/learoy-rotulo-plateado_it7zua.webp',
+      'https://res.cloudinary.com/dxuseyfxa/image/upload/v1753088451/rotulos-y-neones-decorativos-tiendas-learoy_vmxxsg.webp',
   },
   {
     title: 'Múltiples posibilidades de personalización',
@@ -48,7 +48,7 @@ export const aboutParagraphs: AboutParagraph[] = [
       'Cuéntanos tu idea y nuestros especialistas te ayudarán a desarrollarla.',
     ],
     image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739527191/imagenes_pantallas_web_hz9ext.webp',
+      'https://res.cloudinary.com/dxuseyfxa/image/upload/v1753088581/carteles-para-peluquerias-y-tiendas-baratos-rotulos-learoy_u2jkvl.webp',
   },
   {
     title: 'Showroom en Madrid',
@@ -61,7 +61,6 @@ export const aboutParagraphs: AboutParagraph[] = [
       'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736523883/image_20250110164118_e4c5e4.webp',
   },
 ];
-
 
 export const sectores = [
   {
@@ -220,4 +219,23 @@ export const cases = [
   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571010/decoracion-con-luz-bar-rotulos-learoy_ivtkdr.webp',
 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571013/letrero-led-rotulos-learoy_uf4iif.webp',
 //'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252663/cartel-neon-con-dibujo-rotulos-learoy_dfvyox.webp'
+]
+
+export const keywords = [
+'fabricamos rótulos personalizados', 
+'diseño de letreros baratos para tiendas',
+'montaje de letreros con luz',
+'señalización decorativa de centros comerciales',
+'carteles baratos en Madrid',
+'diseñamos tu logotipo luminoso',
+'rótulos a medida para fachadas',  
+'instalación de letreros led', 
+'rótulos publicitarios de bajo coste',
+'neones decorativos con figuras y textos',
+'letras de metacrilato para carteles',
+'proyectos de rotulación integrales',
+'logotipos de led',
+'letras decorativas para eventos',
+'instalamos letras corpóreas en madrid',
+'asesoramiento para rotular local'
 ]
