@@ -61,24 +61,14 @@ gap: 10px;
 
   
   @media screen and (max-width: 766px) {
-/* aplicar a un texto que añada con rótulos personalizados llama ya
-    @keyframes moveText {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    } */
-
     .address, .phones {
       display: none;
     }
 
-    /* .main-header-desktop {
-      justify-content: space-between;
-      padding: 8px 16px;
-    } */
+    .main-header {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
 
     .secondary-header {
       flex-direction: column;
@@ -88,16 +78,12 @@ gap: 10px;
       height: 4vh;
   }
 
-  .burguer, .contact-buttons > li {
+  .burguer  {
     display: block;
     color: var(--color-white);  
-  }
-
-  .burguer {
-    font-size: 26px;
+     font-size: 26px;
     width: 40px
   }
-
 
   .header-navbar {
     display: none;
@@ -105,16 +91,18 @@ gap: 10px;
 
   .header-navbar.active {
     display: flex;
-    /* flex-direction: column;
-    gap: 60px;
-    position: absolute;
-    top: 75px;
-    right: 0;
-    width: 100%;
-    padding: 20px;
-    z-index: 2;
-    background-color: var(--color-black);
-    color: var(--color-white); */
   }
+
+app-search-input {
+ order: 3;
+ margin-top: 22px;
+
+}
+
 }
   
+  @media screen and (max-width: 580px) {
+  .main-header {
+    padding: 12px 0;
+  }
+  } 

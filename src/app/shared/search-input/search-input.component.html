@@ -4,6 +4,8 @@
         class="search-input"
         placeholder="Buscar..."
         type="search"
+        id="search"
+        name="search"
         #search
         (input)="listenInput($event)"
         (keydown.enter)="submitSearch(search.value)"

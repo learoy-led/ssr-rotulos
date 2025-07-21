@@ -193,6 +193,10 @@ form {
 
 
   @media screen and (max-width: 766px) {
+    main {
+  padding-top: 21vh;
+}
+
     section {
       padding: 15px 0;
       width: 90%

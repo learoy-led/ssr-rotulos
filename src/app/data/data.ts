@@ -88,87 +88,87 @@ export const sectores = [
 export const letterImages: LetterImage[] = [
   {
     name: 'Letras luminosas con contorno',
-    url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738170070/letra-luminosa-metacrilato-con-contorno-acero-rotulos-learoy_zzu5ho.webp'
+    url: '/v1738170070/letra-luminosa-metacrilato-con-contorno-acero-rotulos-learoy_zzu5ho.webp'
   },
   {
     name: 'Letras de aluminio',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167659/letreros-de-aluminio-learoy_auxdsl.webp'
+   url: '/v1738167659/letreros-de-aluminio-learoy_auxdsl.webp'
   },
   {
     name: 'Letras de metacrilato y aluminio luminosas',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167659/letras-luminosas-personalizadas-rotulos-learoy_r00xlm.webp'
+   url: '/v1738167659/letras-luminosas-personalizadas-rotulos-learoy_r00xlm.webp'
   },
   {
     name: 'Números retroiluminados',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167179/numeros-retroiluminador-para-portales-rotulos-learoy_v2p4cs.webp'
+   url: '/v1738167179/numeros-retroiluminador-para-portales-rotulos-learoy_v2p4cs.webp'
   },
   {
     name: 'Letras de LED neón',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457666/letras-de-neon-personalizadas-rotulos-learoy_yfboud.webp'
+   url: '/v1739457666/letras-de-neon-personalizadas-rotulos-learoy_yfboud.webp'
   },
   {
     name: 'Aluminio y metacrilato',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167179/letras-retroiluminadas-para-rotulos-learoy_zalyps.webp'
+   url: '/v1738167179/letras-retroiluminadas-para-rotulos-learoy_zalyps.webp'
   },
   {
     name: 'Letras de PVC',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1736347828/letras-pvc-sin-luz-rotulos-learoy_ae6a7l.webp'
+   url: '/v1736347828/letras-pvc-sin-luz-rotulos-learoy_ae6a7l.webp'
   },
   {
     name: 'Letras retroiluminadas',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1737645056/rotulo-retroiluminado-metacrilato-incrustado-learoy_ggw92f.webp'
+   url: '/v1737645056/rotulo-retroiluminado-metacrilato-incrustado-learoy_ggw92f.webp'
   },
   {
     name: 'Letras luminosas magnéticas',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738166930/rotulo-luminoso-con-barra-rotulos-learoy_psxrzd.webp'
+   url: '/v1738166930/rotulo-luminoso-con-barra-rotulos-learoy_psxrzd.webp'
   },
   {
     name: 'Letras retroiluminadas',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167179/luminosos-de-metacrilato-y-aluminio-learoy_v9qvhn.webp'
+   url: '/v1738167179/luminosos-de-metacrilato-y-aluminio-learoy_v9qvhn.webp'
   },
   {
     name: 'Letras con luz posterior',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457669/letras-retroiluminadas-rotulos-learoy_qstthr.webp'
+   url: '/v1739457669/letras-retroiluminadas-rotulos-learoy_qstthr.webp'
   },
   {
     name: 'Letras de madera',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739461861/letras-de-madera-de-colores-rotulos-learoy_lzvq1v.webp'
+   url: '/v1739461861/letras-de-madera-de-colores-rotulos-learoy_lzvq1v.webp'
   },
   {
     name: 'Letras de neón',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457666/letras-led-neon-rotulos-learoy_q7owf6.webp'
+   url: '/v1739457666/letras-led-neon-rotulos-learoy_q7owf6.webp'
   },
   {
     name: 'Letras de acero y metacrilato',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457665/letras-acero-incrustado-sobre-metacrilato-luminoso-rotulos-learoy_uqwefc.webp'
+   url: '/v1739457665/letras-acero-incrustado-sobre-metacrilato-luminoso-rotulos-learoy_uqwefc.webp'
   },
   {
     name: 'Letras luminosas de acrílico',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457665/letras-corporativas-luminosas-colores-rotulos-learoy_vnov09.webp'
+   url: '/v1739457665/letras-corporativas-luminosas-colores-rotulos-learoy_vnov09.webp'
   },
   {
     name: 'Letras LED',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457665/letras-led-para-rotulos-learoy_idoy9o.webp'
+   url: '/v1739457665/letras-led-para-rotulos-learoy_idoy9o.webp'
   },
   {
     name: 'Letras de acrílico con luz',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457664/letras-meatacrilato-luminoso-rotulos-learoy_cnmwum.webp'
+   url: '/v1739457664/letras-meatacrilato-luminoso-rotulos-learoy_cnmwum.webp'
   },
   {
     name: 'Letras de neón flexible',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457665/letras-de-neon-flexible-rotulos-learoy_ntwiv7.webp'
+   url: '/v1739457665/letras-de-neon-flexible-rotulos-learoy_ntwiv7.webp'
   },
   {
     name: 'Letras corpóreas personalizadas',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457665/letras-corporeas-luminosas-rotulos-learoy_vaetfl.webp'
+   url: '/v1739457665/letras-corporeas-luminosas-rotulos-learoy_vaetfl.webp'
   },
   {
     name: 'Letras luminosas de PVC',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457665/letras-luminosas-pvc-rotulos-learoy_gdpw15.webp'
+   url: '/v1739457665/letras-luminosas-pvc-rotulos-learoy_gdpw15.webp'
   },
   {
     name: 'Letras de LED personalizadas',
-   url: 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1739457666/letras-de-tira-led-rotulos-learoy_fyy5xv.webp'
+   url: '/v1739457666/letras-de-tira-led-rotulos-learoy_fyy5xv.webp'
   },
 ]
 

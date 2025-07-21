@@ -9,11 +9,12 @@ nav {
     justify-content: space-around;
     width: 80%;
     margin: auto;
+   
   } 
   
   a {
     font-size: 20px;
-    color: var(--color-black)
+     color: var(--color-black)
   }
   
   a:hover {
@@ -32,7 +33,7 @@ nav {
   display: none
 }
  
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 766px) {
     .nav-links {
     flex-direction: column;
     gap: 20px;
@@ -43,8 +44,11 @@ nav {
     padding: 20px;
     z-index: 2;
     background-color: var(--color-black);
-    color: var(--color-white); 
     box-shadow:  2px 2px 4px lightgrey
+    }
+
+    a {
+ color: var(--color-white); 
     }
 
     .submenu {
@@ -63,3 +67,9 @@ nav {
    margin-left: 20px;
     }
   }
+
+ @media screen and (min-width: 767px) and (max-width: 1200px) {
+    .nav-links a {
+  font-size: 16px;
+    }
+       }

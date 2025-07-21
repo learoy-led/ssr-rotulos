@@ -10,11 +10,9 @@
   :host {
     display: flex;
     gap: 14px;
+    overflow: hidden;
+     min-width: fit-content; 
   }
-
-  .letter-list-container {
-    overflow: hidden
-}    
 
 .left {
          margin-top: -89px;
@@ -41,12 +39,12 @@
 
 .letter-image {
     border-radius: 10px;
-    max-width: 250px;
+      max-width: 250px;
 }
 
 .letter-figure {
     position: relative;
-    max-height: 250px
+       max-height: 250px
 }
 
 .letter-title {
@@ -60,17 +58,15 @@ text-shadow: var(--black-shadow);
 }
 
 
-@media screen and (max-width: 499px) {
+ @media screen and (max-width: 499px) {
   :host {
-    width: fit-content;
-   margin-left: -30%;
+    margin-left: -30%; 
   }
 }
 
 @media screen and (min-width: 500px) and (max-width: 766px) {
   :host {
-    width: fit-content;
     align-self: center;
   }
-}
+} 
 
