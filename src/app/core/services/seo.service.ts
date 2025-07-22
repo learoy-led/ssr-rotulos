@@ -15,7 +15,6 @@ export class SeoService {
       const title = route.routeConfig?.title ?? 'Rótulos Learoy'; 
         this.titleService.setTitle(title as string)
       const data = route.snapshot.data;
-      console.log(data['description'])
     this.meta.updateTag({ name: 'description', content: data['description']});
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
     this.meta.updateTag({ property: 'og:title', content: title as string })

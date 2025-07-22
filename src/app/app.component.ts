@@ -69,41 +69,25 @@ export class AppComponent implements OnInit, OnDestroy {
       this.routerSubscription = this.router.events.subscribe((event) => {
         const staticRoutes = ['/', '/catalogo', '/nosotros', '/casos-de-exito', '/contacto'];
        
-         if (event instanceof NavigationEnd) {
-          if (staticRoutes.includes(this.router.url)) {
+         if (event instanceof NavigationEnd) { 
+          if (staticRoutes.includes(event.urlAfterRedirects)) {
             this.seoService.updateSeoStaticTags();
           }
-
       //const url = 'https://www.rotuloslearoy.com' + this.router.url;
       //this.setCanonicalTag(url);
-      
-        }
-      });
-      
-    if (this.platformService.isBrowser()) {
-      this.listenLoading();
 
-      this.routerSubscription = this.router.events.subscribe((event) => {
-        
-         if (event instanceof NavigationEnd) {      
-      if (typeof gtag === 'function') {
+   if (this.platformService.isBrowser() && typeof gtag === 'function' ) {
             gtag('event', 'page_view', {
               page_path: event.urlAfterRedirects,
             });
-          }
+          }  }
         }
-      });
-    }
-  }
 
-  public listenLoading() {
-    this.loadingService.getLoadingStatus().subscribe((isLoading) => {
-      this.isLoading = isLoading;
-    });
-  
-
+        );   
 
     if (this.platformService.isBrowser()) {
+       this.listenLoading();
+
       this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
         () => {
         }
@@ -156,7 +140,13 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       );
     }
-        }
+  }
+
+  public listenLoading() {
+    this.loadingService.getLoadingStatus().subscribe((isLoading) => {
+      this.isLoading = isLoading;
+    });
+  }
   
 
   private addAnalyticsScript() {
