@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
@@ -40,7 +40,7 @@ declare global {
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Rótulos Learoy';
 
   public isLoading: boolean = true;
@@ -65,19 +65,28 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    if (this.platformService.isBrowser()) {
-      this.listenLoading();
-
+    
       this.routerSubscription = this.router.events.subscribe((event) => {
         const staticRoutes = ['/', '/catalogo', '/nosotros', '/casos-de-exito', '/contacto'];
+       
          if (event instanceof NavigationEnd) {
           if (staticRoutes.includes(this.router.url)) {
             this.seoService.updateSeoStaticTags();
           }
 
-          const url = 'https://www.rotuloslearoy.com' + this.router.url;
+      //const url = 'https://www.rotuloslearoy.com' + this.router.url;
+      //this.setCanonicalTag(url);
+      
+        }
+      });
+      
+    if (this.platformService.isBrowser()) {
+      this.listenLoading();
 
-          if (typeof gtag === 'function') {
+      this.routerSubscription = this.router.events.subscribe((event) => {
+        
+         if (event instanceof NavigationEnd) {      
+      if (typeof gtag === 'function') {
             gtag('event', 'page_view', {
               page_path: event.urlAfterRedirects,
             });
@@ -91,12 +100,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loadingService.getLoadingStatus().subscribe((isLoading) => {
       this.isLoading = isLoading;
     });
-  }
+  
 
-  ngAfterViewInit() {
+
     if (this.platformService.isBrowser()) {
       this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
-        () => {}
+        () => {
+        }
       );
 
       this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
@@ -113,7 +123,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       this.initializedSubscription = this.ccService.initialized$.subscribe(
         () => {
           console.log(`initialized: ${JSON.stringify(event)}`);
-          console.log('hay consentimiento', this.ccService.hasConsented());
           if (this.ccService.hasConsented()) {
             this.addAnalyticsScript();
           }
@@ -123,8 +132,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       this.initializationErrorSubscription =
         this.ccService.initializationError$.subscribe(
           (event: NgcInitializationErrorEvent) => {
-            console.log(
-              `initializationError: ${JSON.stringify(event.error?.message)}`
+            console.log(`initializationError: ${JSON.stringify(event.error?.message)}`
             );
           }
         );
@@ -148,9 +156,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       );
     }
-  }
+        }
+  
 
   private addAnalyticsScript() {
+    console.log('ejecuta añadir script')
     if (!document.getElementById('google-analytics-script')) {
       const script = document.createElement('script');
       script.id = 'google-analytics-script';
@@ -171,6 +181,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private deleteAnalyticsScript() {
+    console.log('ejecuta quitar script')
     if (!this.platformService.isBrowser()) return;
     if (
       document.getElementById('google-analytics-script') &&
