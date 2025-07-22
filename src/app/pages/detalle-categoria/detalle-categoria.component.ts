@@ -38,11 +38,6 @@ public ngOnInit() {
 
   this.route.data.subscribe(data => {
     this.categorySelectedData = data['category'];
-   
-    //   this.route.paramMap.subscribe(params => {
-    // const categorySlug = params.get('category') ?? '';
-    // this.GetProductsService.getCategoryBySlug(categorySlug).subscribe((category)=>  {
-    //   this.categorySelectedData = category
 
          const title =`${this.categorySelectedData?.name} · Rótulos Learoy`
          const description = this.categorySelectedData?.description.metaDescription

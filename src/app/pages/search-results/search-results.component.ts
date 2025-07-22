@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { CommonModule } from '@angular/common';
 import { GetProductsService } from '../../core/services/get-products.service';

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NotFoundComponent } from '../../shared/not-found/not-found.component';
 import { SeoService } from '../../core/services/seo.service';
+import { ButtonComponent } from '../../shared/button/button.component';
 
 
 @Component({
     selector: 'app-pagina-no-encontrada',
       standalone: true,
-    imports: [NotFoundComponent],
+    imports: [ButtonComponent],
     templateUrl: './pagina-no-encontrada.component.html',
     styleUrl: './pagina-no-encontrada.component.css'
 })

@@ -1,6 +1,6 @@
 import {  Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {  NavigationEnd, Router } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import {  Subscription } from 'rxjs';
 
 
 @Component({
@@ -35,7 +35,6 @@ public submitSearch(value: string): void  {
 
 public listenInput(event: Event) {  
     this.query = ((event as Event).target as HTMLInputElement)?.value.trim()
-    console.log('el input es', ((event as Event).target as HTMLInputElement)?.value.trim());
     this.query === '' ? this.router.navigate(['/rotulos-encontrados/']) : this.router.navigate(['/rotulos-encontrados'], { queryParams: { q: this.query.trim() }
   });  
     }

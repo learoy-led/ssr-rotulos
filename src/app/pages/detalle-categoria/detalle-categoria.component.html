@@ -1,13 +1,7 @@
-<!-- <ng-template #nocategory>
-    <app-not-found [notFoundText]="'No hay rótulos con este nombre'"></app-not-found>
-</ng-template> -->
-
-<!-- <ng-container *ngIf="categorySelectedData; else nocategory"> -->
-    <!-- <ng-container *ngIf="categorySelectedData"> -->
 <main *ngIf="categorySelectedData" class="category-page">
     <section class="centered-section">
         <h1 class="page-title centered-text">{{categorySelectedData.name}}</h1>
-        <app-cards [cardElements]="categorySelectedData.products" [cardsClass]="'cards-grid'" [categorySelectedSlug]="categorySelectedData.slug"></app-cards>
+        <app-cards [cardElements]="categorySelectedData.products" [cardsClass]="'cards-grid'" ></app-cards>
     </section>
 
     <section>
@@ -32,4 +26,3 @@
 </section>
 
 </main>
-<!-- </ng-container> -->

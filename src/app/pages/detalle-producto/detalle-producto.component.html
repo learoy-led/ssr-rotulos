@@ -1,17 +1,11 @@
-
-<ng-template #noproduct>
-    <app-not-found [notFoundText]="'No hay rótulos con este nombre'"></app-not-found>
-</ng-template>
-
-<ng-container *ngIf="productSelectedData; else noproduct">
-    <main>
+<main>
   <section  class="product-details">
     <div class="main-product-details">
     <figure class="product-images">
       <img
         class="main-image"
         [src]="imagePrefix + productSelectedData.images[mainImageIndex]"
-        [alt]="productSelectedData.slug"
+        [alt]="imageAlts[mainImageIndex]"
       />
 
       <ul class="secondary-images">
@@ -21,7 +15,7 @@
             [class.active]="i === mainImageIndex"
             (click)="updateProductDetails(i)"
             [src]="imagePrefix + imageUrl"
-            [alt]="productSelectedData.name"
+            [alt]="imageAlts[i]"
           />
         </li>
       </ul>
@@ -79,4 +73,3 @@
     <app-items-carousel></app-items-carousel>
   </section>
 </main>
-</ng-container>

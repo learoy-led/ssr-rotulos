@@ -28,6 +28,7 @@ export interface Category {
   products: Product[]
   }
 
+
 export interface Product {
   type: string,
   name: string,

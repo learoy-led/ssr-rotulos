@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { categoryResolver } from './core/resolvers/category.resolver';
+import { productResolver } from './core/resolvers/product.resolver';
 
 export const routes: Routes = [
     {
@@ -99,6 +100,13 @@ export const routes: Routes = [
           canActivate: [authGuard],
         title: 'Panel administración | Rótulos Learoy'        
       },
+       {
+        path: 'pagina-no-encontrada',  loadComponent: () =>
+        import('./pages/pagina-no-encontrada/pagina-no-encontrada.component').then(
+          (c) => c.PaginaNoEncontradaComponent
+        ),
+        title: 'Página no encontrada | Rótulos Learoy',
+      },
       {
         path: ':category', loadComponent: () =>
           import('./pages/detalle-categoria/detalle-categoria.component').then(
@@ -113,13 +121,10 @@ export const routes: Routes = [
           import('./pages/detalle-producto/detalle-producto.component').then(
             (c) => c.DetalleProductoComponent
           ),
+           resolve:{
+            product: productResolver
+          },
       },
-      {
-        path: '**',  loadComponent: () =>
-        import('./pages/pagina-no-encontrada/pagina-no-encontrada.component').then(
-          (c) => c.PaginaNoEncontradaComponent
-        ),
-        title: 'Página no encontrada | Rótulos Learoy',
-      },
+     
      
 ];

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
@@ -12,9 +12,7 @@ export class GetProductsService {
  public API_URL = environment.API_URL;
 
   
-  constructor(private http: HttpClient) {
-    console.log(this.API_URL)
-  }
+  constructor(private http: HttpClient) {}
 
 
   public getCategories(): Observable<Category[]>{
@@ -42,5 +40,16 @@ export class GetProductsService {
       headers: { 'Content-Type': 'application/json' },
     });   
   }
+
+public getCategoryWithProductSlug(slug: string): Observable<Category | null> {
+  return this.getCategories().pipe(
+    map(categories => {
+      const category = categories.find(category =>
+        category.products.some(product => product.slug === slug)
+      );
+      return category ? category : null;
+    })
+  );
+}
 
 }

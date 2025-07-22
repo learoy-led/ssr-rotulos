@@ -11,6 +11,7 @@ export const categoryResolver: ResolveFn<Category | null> = (route, state) => {
    null
 
   const categorySlug = route.paramMap.get('category') ?? '';
+
   return getProductsService.getCategoryBySlug(categorySlug).pipe(
      catchError(err => {
       if (err.status === 404) {
