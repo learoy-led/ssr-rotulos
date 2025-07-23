@@ -38,7 +38,7 @@ margin: auto
    display: none;
   }
 
-  @media screen and (max-width: 766px) {
+  @media screen and (max-width: 966px) {
      i, .desktop-items-carousel {
       display: none;
     } 
@@ -48,7 +48,7 @@ margin: auto
   }
     
     :host {
-      width: 90vw;
+       width: 90vw; 
       align-items: flex-start;
       overflow-x: scroll;
       scroll-behavior: smooth;

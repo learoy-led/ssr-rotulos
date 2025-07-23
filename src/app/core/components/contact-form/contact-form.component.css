@@ -1,4 +1,4 @@
-  form > div {
+form > div {
     width: 100%;
   }
   
@@ -20,6 +20,10 @@
    .contact-fields {
     display: flex;
     flex-direction: column;
+  }
+
+  .contact-fields > div {
+    flex: 0;
   }
 
   textarea {

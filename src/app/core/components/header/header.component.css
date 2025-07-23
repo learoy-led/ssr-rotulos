@@ -61,7 +61,7 @@ gap: 10px;
 
   
   @media screen and (max-width: 766px) {
-    .address, .phones {
+    .address {
       display: none;
     }
 
@@ -106,3 +106,10 @@ app-search-input {
     padding: 12px 0;
   }
   } 
+
+
+  @media screen and (max-width: 850px) {
+  .phones {
+      display: none;
+  }
+   }

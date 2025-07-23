@@ -2,14 +2,20 @@
     display: flex;
     gap: 62px;
     align-items: flex-end;
-    padding: 52px
+    padding: 52px 0;
   }
 
   .contact-details {
     display: flex;
     flex-direction: column;
-    gap: 12px
+    gap: 12px;
+    flex:1;
   }
+
+  .contact-form {
+  flex:1;
+}
+
 
   .contact-phone-email {
    color: var(--color-blue)
@@ -17,9 +23,10 @@
 
 iframe {
     border-radius: 10px;
+    max-width: 100%;
   } 
   
-  @media screen and (max-width: 766px) {
+  @media screen and (max-width: 1059px) {
     .contact-options {
       padding: 0;
       flex-direction: column;
