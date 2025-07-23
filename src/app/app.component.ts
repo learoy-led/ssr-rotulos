@@ -12,6 +12,7 @@ import { PlatformService } from './core/services/platform.service';
 import { ShowScrollButtonDirective } from './core/directives/show-scroll-button.directive';
 import {
   NgcCookieConsentService,
+  NgcCookieConsentStatus,
   NgcInitializationErrorEvent,
   NgcInitializingEvent,
   NgcNoCookieLawEvent,
@@ -66,7 +67,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    
+  this.platformService.isBrowser() && this.getCookie('cookieconsent_status') === 'allow' && this.addAnalyticsScript()
+  
     
       this.routerSubscription = this.router.events.subscribe((event) => {
         const staticRoutes = ['/', '/catalogo', '/nosotros', '/casos-de-exito', '/contacto'];
@@ -107,12 +109,9 @@ export class AppComponent implements OnInit, OnDestroy {
       );
 
       this.initializedSubscription = this.ccService.initialized$.subscribe(
-        (event) => {
+        () => {
           console.log(`initialized: ${JSON.stringify(event)}`);
-          if (this.ccService.hasConsented()) {
-            this.addAnalyticsScript();
           }
-        }
       );
 
       this.initializationErrorSubscription =
@@ -124,7 +123,7 @@ export class AppComponent implements OnInit, OnDestroy {
         );
 
       this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
-        (event: NgcStatusChangeEvent) => {         
+        (event: NgcStatusChangeEvent) => {    
           event.status === 'allow'
             ? this.addAnalyticsScript()
             : this.deleteAnalyticsScript(); 
@@ -143,6 +142,13 @@ export class AppComponent implements OnInit, OnDestroy {
       );
     }
   }
+
+ public getCookie(name: string): string | null {
+  return document.cookie
+    .split('; ')
+    .find(row => row.startsWith(name + '='))
+    ?.split('=')[1] || null;
+}
 
   public listenLoading() {
     this.loadingService.getLoadingStatus().subscribe((isLoading) => {

@@ -7,10 +7,12 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { provideCloudinaryLoader } from '@angular/common';
 import { NgcCookieConsentConfig, provideNgcCookieConsent } from 'ngx-cookieconsent';
+import { environment } from '../environments/environment';
+
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
-    domain: 'rotuloslearoy.com'
+    domain: environment.cookieDomain
     },
   palette: {
     popup: { background: '#021526' },
