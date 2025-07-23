@@ -109,9 +109,9 @@ export class AppComponent implements OnInit, OnDestroy {
       this.initializedSubscription = this.ccService.initialized$.subscribe(
         (event) => {
           console.log(`initialized: ${JSON.stringify(event)}`);
-          // if (this.ccService.hasConsented()) {
-          //   this.addAnalyticsScript();
-          // }
+          if (this.ccService.hasConsented()) {
+            this.addAnalyticsScript();
+          }
         }
       );
 
