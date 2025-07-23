@@ -65,6 +65,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+
+    
     
       this.routerSubscription = this.router.events.subscribe((event) => {
         const staticRoutes = ['/', '/catalogo', '/nosotros', '/casos-de-exito', '/contacto'];
@@ -122,10 +124,10 @@ export class AppComponent implements OnInit, OnDestroy {
         );
 
       this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
-        (event: NgcStatusChangeEvent) => {
+        (event: NgcStatusChangeEvent) => {         
           event.status === 'allow'
             ? this.addAnalyticsScript()
-            : this.deleteAnalyticsScript();
+            : this.deleteAnalyticsScript(); 
         }
       );
 
@@ -163,6 +165,9 @@ export class AppComponent implements OnInit, OnDestroy {
       secondScript.innerHTML = `
           window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+         gtag('consent', 'update', {
+    analytics_storage: 'granted'
+  });
         gtag('js', new Date());
         gtag('config', 'G-1JGFTPJSEQ');
         `;
@@ -184,6 +189,8 @@ export class AppComponent implements OnInit, OnDestroy {
       window.dataLayer.length = 0;
     }
   }
+
+
 
   ngOnDestroy() {
     this.routerSubscription?.unsubscribe();
