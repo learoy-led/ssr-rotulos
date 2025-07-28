@@ -6,6 +6,7 @@ import { Product } from '../../models/data.models';
 import { Observable } from 'rxjs';
 import { CardsComponent } from '../../shared/cards/cards.component';
 import { ActivatedRoute } from '@angular/router';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-search-results',
@@ -19,9 +20,12 @@ public products$?: Observable <Product[]>;
 
   public productSearch: string = ''
 
-constructor(private getProductsService: GetProductsService, private route: ActivatedRoute){} 
+constructor(private getProductsService: GetProductsService, private route: ActivatedRoute, private seoService: SeoService){} 
 
-  ngOnInit() {
+  ngOnInit() {    
+    
+   this.seoService.noRobots();
+    
    this.products$ = this.getProductsService.getAllProducts()
    
    this.route.queryParams.subscribe(params => {
