@@ -37,6 +37,12 @@ export class SeoService {
 
  public noRobots() {
   this.meta.updateTag({ name: 'robots', content:'noindex, nofollow' });
+  this.meta.removeTag( "name='description'" );
+  this.meta.removeTag( "property='og:title'" );
+   this.meta.removeTag( "property='og:description'" );
+  this.meta.removeTag( "property='og:url'");
+  this.meta.removeTag( "property='og:type'" );
+    this.meta.removeTag( "property='og:image'");
 }
 
   private getDeepestChild(route: ActivatedRoute): ActivatedRoute {
