@@ -15,8 +15,12 @@ header {
   background-color: var(--color-black);
 }
 
-  .fa-location-dot, .fa-phone, .fa-store {
-padding: 0 8px
+  .secondary-header .fa-solid {
+    height: 18px;
+  }
+
+  .contact-buttons .fa-solid {
+    height: 20px;
   }
 
   .secondary-header {
@@ -27,7 +31,12 @@ padding: 0 8px
     height: 4vh;
     font-size: 16px;
   }
-  
+
+   .secondary-header > li {
+     display: flex;
+      gap: 6px;
+  }
+
    .logo, .logo > img {
     height: 100%;
   } 
@@ -49,6 +58,7 @@ gap: 10px;
   .call-button, .contact-button {
        color: var(--color-white); 
        margin: auto;
+        display: flex;
   } 
 
   .contact-buttons > li:hover {

@@ -19,7 +19,7 @@
     .fa-arrow-up {
       background-color: var(--color-blue);
         padding: 12px;
-        font-size: 20px;
+        height: 52px;
         border-radius: 150px;
         color: var(--color-white);
         transition: transform 0.3s ease;

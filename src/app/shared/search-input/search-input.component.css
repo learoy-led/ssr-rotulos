@@ -4,6 +4,8 @@
     padding: 12px 22px;
     width: 500px;
     border: 1px solid  rgb(2,21,38,0.6);
+    display: flex;
+    align-items: center;
 }
 
 :host:hover {
@@ -11,7 +13,8 @@
 }
 
 .fa-magnifying-glass {
-    color: var(--color-white)
+    color: var(--color-white);
+    height: 20px;
 }
 
 .search-input {

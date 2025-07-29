@@ -44,15 +44,15 @@ cursor: pointer
 .fa-square-xmark {
     margin-top: 11vh;
     margin-left: -48px;
-        font-size: 32px;
+        height: 32px;
         color: var(--color-blue);
-        text-shadow: var(--white-shadow);
         transition: var(--smooth-scale);
     }
 
 .fa-square-xmark:hover {
 cursor: pointer;
 transform: var(--hover-scale);
+ filter: drop-shadow(var(--white-shadow));
         }
 
 .image-zoom-container {

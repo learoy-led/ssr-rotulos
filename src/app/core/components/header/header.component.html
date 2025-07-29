@@ -1,11 +1,25 @@
 <header>
-  <div class="secondary-header">
-  <p class="address"><i class="fa-solid fa-location-dot"></i>   {{contactDetails.address1}} - {{contactDetails.address2}}   </p>   
-   <p class="phones"><i class="fa-solid fa-phone"></i>   {{contactDetails.phone}}</p>
-   <p><i class="fa-solid fa-store"></i>   {{contactDetails.open}}</p>
-  </div>
-  
-  
+  <ul class="secondary-header">
+    <li class="address">
+       <svg aria-hidden="true" class="fa-solid fa-location-dot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+      <path fill="currentColor" d="M128 252.6C128 148.4 214 64 320 64C426 64 512 148.4 512 252.6C512 371.9 391.8 514.9 341.6 569.4C329.8 582.2 310.1 582.2 298.3 569.4C248.1 514.9 127.9 371.9 127.9 252.6zM320 320C355.3 320 384 291.3 384 256C384 220.7 355.3 192 320 192C284.7 192 256 220.7 256 256C256 291.3 284.7 320 320 320z"/>
+    </svg>
+  <p >   {{contactDetails.address1}} - {{contactDetails.address2}}   </p>   
+    </li>
+     <li class="phones">
+<svg aria-hidden="true" class="fa-solid fa-phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+        <path fill="currentColor" d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z"/>
+      </svg>
+    <p >{{contactDetails.phone}}</p>
+     </li>
+      <li>
+        <svg aria-hidden="true" class="fa-solid fa-store" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+      <path fill="currentColor" d="M94.7 136.3C101.6 112.4 123.5 96 148.4 96L492.4 96C517.3 96 539.2 112.4 546.2 136.3L569.6 216.5C582.4 260.2 549.5 304 504 304C477.7 304 454.6 289.1 443.2 266.9C431.6 288.8 408.6 304 381.8 304C355.2 304 332.1 289 320.5 267C308.9 289 285.8 304 259.2 304C232.4 304 209.4 288.9 197.8 266.9C186.4 289 163.3 304 137 304C91.4 304 58.6 260.3 71.4 216.5L94.7 136.3zM160.4 416L480.4 416L480.4 349.6C488 351.2 495.9 352 503.9 352C518.2 352 531.9 349.4 544.4 344.8L544.4 496C544.4 522.5 522.9 544 496.4 544L144.4 544C117.9 544 96.4 522.5 96.4 496L96.4 344.8C108.9 349.4 122.5 352 136.9 352C145 352 152.8 351.2 160.4 349.6L160.4 416z"/>
+    </svg>
+    <p >{{contactDetails.open}}</p>
+      </li>
+  </ul>
+   
     <div class="main-header">
      
     <span aria-label="Abrir menú de navegación" class="burguer" (click)="openBurguer()">{{burguerIsOpen ? 'X': '☰'}}</span>
@@ -17,8 +31,21 @@
     /></a>
     <app-search-input></app-search-input>
     <ul class="contact-buttons">
-   <li><a class="call-button" aria-label="Llamar por teléfono" [href]="'tel:+34'+contactDetails.phone"><i aria-hidden="true" class="fa-solid fa-phone"></i></a></li>
-  <li><a class="contact-button" aria-label="Ir a formulario de contacto" [routerLink]="['/contacto']"><i aria-hidden="true" class="fa-solid fa-envelope"></i></a></li>
+      
+      <li><a class="call-button" aria-label="Llamar por teléfono" [href]="'tel:+34'+contactDetails.phone">
+
+      <svg aria-hidden="true" class="fa-solid fa-phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+        <path fill="currentColor" d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z"/>
+      </svg>
+      </a>
+      <li><a class="contact-button" aria-label="Ir a formulario de contacto" [routerLink]="['/contacto']">
+<svg class="fa-solid fa-envelope" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+  <path fill="currentColor" d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"/>
+</svg>
+      </a></li>
+
+   
+  
   </ul>
 </div>
   <app-navbar 

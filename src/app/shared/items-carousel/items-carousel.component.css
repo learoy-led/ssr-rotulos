@@ -5,12 +5,13 @@ margin: auto
 }
 
 .fa-solid {
- color: var(--color-blue);
- font-size: 32px;
+ width: 52px;
+  color: var(--color-blue);
+
 }
 
 .fa-solid:hover {
-  text-shadow: var(--black-shadow);
+   filter: drop-shadow(var(--black-shadow));
  }
 
  [hidden] {
@@ -39,7 +40,7 @@ margin: auto
   }
 
   @media screen and (max-width: 966px) {
-     i, .desktop-items-carousel {
+     .fa-solid, .desktop-items-carousel {
       display: none;
     } 
 
