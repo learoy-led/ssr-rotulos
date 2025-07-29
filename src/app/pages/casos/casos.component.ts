@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { cases } from '../../data/data';
 import { CommonModule } from '@angular/common';
+import { AltPipe } from '../../pipes/alt.pipe';
 
 @Component({
     selector: 'app-casos',
       standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, AltPipe],
     templateUrl: './casos.component.html',
     styleUrl: './casos.component.css'
 })

@@ -7,7 +7,7 @@
 <h2 class="subtitle">{{paragraph.title}}</h2>
 <p *ngFor="let text of paragraph.text">{{text}}</p>
 </div>
-<img class="paragraph-image" loading="lazy" [src]="paragraph.image" [alt]="paragraph.image">
+<img class="paragraph-image" loading="lazy" decoding="async" [src]="paragraph.image" [alt]="paragraph.image | alt">
 
 </div>
            

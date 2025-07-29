@@ -5,7 +5,7 @@ import {
 } from '../models/data.models'
 
 export const carouselImages: string[] = [
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742550802/rotulo-luminoso-learoy_dgqanb.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1742550802/rotulo-luminoso-learoy_dgqanb.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736351997/letreros-gigantes-rotulos-learoy_wpqlgm.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736351994/letras-de-madera-rotulos-learoy_yrkjwn.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736781104/carteles-led-neon-personalizados-rotulos-learoy_phjj7e.webp',
@@ -13,7 +13,7 @@ export const carouselImages: string[] = [
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736352182/frame_61_jw9dfc.webp',
 ];
 
-export const IMAGEPREURL = 'https://res.cloudinary.com/dxuseyfxa/image/upload/'
+export const IMAGEPREURL = 'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto'
 
 export const contactDetails: ContactDetails = {
   url: 'https://rotuloslesaroy.com',
@@ -37,7 +37,7 @@ export const aboutParagraphs: AboutParagraph[] = [
       'Consúltanos y nuestro equipo te recomendará la mejor opción.',
     ],
     image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/v1753088451/rotulos-y-neones-decorativos-tiendas-learoy_vmxxsg.webp',
+      'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1753088451/rotulos-y-neones-decorativos-tiendas-learoy_vmxxsg.webp',
   },
   {
     title: 'Múltiples posibilidades de personalización',
@@ -48,7 +48,7 @@ export const aboutParagraphs: AboutParagraph[] = [
       'Cuéntanos tu idea y nuestros especialistas te ayudarán a desarrollarla.',
     ],
     image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/v1753088581/carteles-para-peluquerias-y-tiendas-baratos-rotulos-learoy_u2jkvl.webp',
+      'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1753088581/carteles-para-peluquerias-y-tiendas-baratos-rotulos-learoy_u2jkvl.webp',
   },
   {
     title: 'Showroom en Madrid',
@@ -58,7 +58,7 @@ export const aboutParagraphs: AboutParagraph[] = [
       'Pásate a buscar la solución que más se adapte a tus necesidades con la ayuda del personal.',
     ],
     image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736523883/image_20250110164118_e4c5e4.webp',
+      'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736523883/image_20250110164118_e4c5e4.webp',
   },
 ];
 
@@ -179,46 +179,46 @@ export const cases = [
   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571014/neon-para-decorar-paredes-rotulos-learoy_ilqj8q.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571009/carteles-led-para-restaurantes-y-tiendas-learoy_iudcj5.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571016/neon-personalizado-para-tienda-rotulos-learoy_zqdzqx.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252191/frases-de-neon-barartas-rotulos-learoy_v52mjp.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252190/banderolas-lumninosas-baratas-rotulos-learoy_a6zkce.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252191/regalos-neones-personalizados-rotulos-learoy_cinm2y.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748251504/rotulos-luminosos-para-fachada-rotulos-learoy_syj7is.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748251503/rotulos-luminosos-para-restaurantes-rotulos-learoy_zfikrm.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748251510/cartel-luminoso-para-pared-rotulos-learoy_fnh8bo.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252350/neones-luminosos-para-bares-y-discotecas-rotulos-learoy_vpknkk.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252351/letras-luminosas-decoracion-oficinas-rotulos-learoy_jqfeic.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252350/se%C3%B1alizacion-luminosa-rotulos-learoy_vkoxte.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571009/alas-angel-de-led-rotulos-learoy_axrspi.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748251332/cartel-neon-para-bares-y-tiendas-rotulos-learoy_a3m3uq.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748251332/regalar-neon-personalizado-rotulos-learoy_knldpe.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571013/luminoso-para-fachada-restaurante-rotulos-learoy_v3jrwg.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571009/banderola-luminosa-para-restaurante-rotulos-learoy_wyvura.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571014/luminoso-para-interior-restaurante-rotulos-learoy_ifdkpz.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571014/neon-luminoso-personalizado-rotulos-learoy_y1yu2p.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571014/luminoso-para-stand-feria-rotulos-learoy_luqi73.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571014/neones-para-bares-rotulos-learoy_vdnyuh.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571010/cartel-luminoso-para-tienda-moda-rotulos-learoy_j9m5d6.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571009/banderola-para-rotulacion-tienda-moda-rotulos-learoy_j8l0ow.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571017/rotulacion-tienda-por-rotulos-learoy_nu3rtl.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571013/letras-con-luz-para-restaurantes-y-locales-rotulos-learoy_swetsh.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571010/frases-en-neon-restaurantes-rotulos-learoy_g0rt00.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571010/figuras-de-led-para-eventos-rotulos-learoy_lc3w7b.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571014/luminosos-para-discotecas-rotulos-learoy_wtyghk.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571010/frame_83_2_fubukq.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571017/rotulos-led-para-tiendas-learoy_vjqx4n.webp',
-   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748251333/rotulo-neon-personalizado-rotulos-learoy_d4sc6o.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252663/carteles-luminosos-para-discotecas-rotulos-learoy_aykcxx.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252663/escudo-madrid-atleti-neon-rotulos-learoy_qxlepk.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571016/neon-personalizado-barato-rotulos-learoy_yirnc3.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571009/cartel-con-logo-luminoso-rotulos-learoy_lhrmuo.webp',
-   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571017/neon-personalizado-rapido-rotulos-learoy_gmjqrc.webp',
-   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571016/neon-para-tiendas-rotulos-learoy_sb9sox.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571017/rotulos-luminosos-personaliados-restaurantes-rotulos-learoy_azpm3z.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571009/alas-angel-neon-rotulos-learoy_fsppyy.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571013/letras-luminosas-restaurantes-rotulos-learoy_obm0xq.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571010/decoracion-con-luz-bar-rotulos-learoy_ivtkdr.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742571013/letrero-led-rotulos-learoy_uf4iif.webp',
-//'https://res.cloudinary.com/dxuseyfxa/image/upload/v1748252663/cartel-neon-con-dibujo-rotulos-learoy_dfvyox.webp'
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252191/frases-de-neon-barartas-rotulos-learoy_v52mjp.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252190/banderolas-lumninosas-baratas-rotulos-learoy_a6zkce.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252191/regalos-neones-personalizados-rotulos-learoy_cinm2y.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251504/rotulos-luminosos-para-fachada-rotulos-learoy_syj7is.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251503/rotulos-luminosos-para-restaurantes-rotulos-learoy_zfikrm.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251510/cartel-luminoso-para-pared-rotulos-learoy_fnh8bo.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252350/neones-luminosos-para-bares-y-discotecas-rotulos-learoy_vpknkk.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252351/letras-luminosas-decoracion-oficinas-rotulos-learoy_jqfeic.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252350/se%C3%B1alizacion-luminosa-rotulos-learoy_vkoxte.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/alas-angel-de-led-rotulos-learoy_axrspi.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251332/cartel-neon-para-bares-y-tiendas-rotulos-learoy_a3m3uq.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251332/regalar-neon-personalizado-rotulos-learoy_knldpe.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571013/luminoso-para-fachada-restaurante-rotulos-learoy_v3jrwg.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/banderola-luminosa-para-restaurante-rotulos-learoy_wyvura.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/luminoso-para-interior-restaurante-rotulos-learoy_ifdkpz.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/neon-luminoso-personalizado-rotulos-learoy_y1yu2p.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/luminoso-para-stand-feria-rotulos-learoy_luqi73.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/neones-para-bares-rotulos-learoy_vdnyuh.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571010/cartel-luminoso-para-tienda-moda-rotulos-learoy_j9m5d6.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/banderola-para-rotulacion-tienda-moda-rotulos-learoy_j8l0ow.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571017/rotulacion-tienda-por-rotulos-learoy_nu3rtl.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571013/letras-con-luz-para-restaurantes-y-locales-rotulos-learoy_swetsh.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571010/frases-en-neon-restaurantes-rotulos-learoy_g0rt00.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571010/figuras-de-led-para-eventos-rotulos-learoy_lc3w7b.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/luminosos-para-discotecas-rotulos-learoy_wtyghk.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571010/frame_83_2_fubukq.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571017/rotulos-led-para-tiendas-learoy_vjqx4n.webp',
+   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251333/rotulo-neon-personalizado-rotulos-learoy_d4sc6o.webp',
+'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252663/carteles-luminosos-para-discotecas-rotulos-learoy_aykcxx.webp',
+'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252663/escudo-madrid-atleti-neon-rotulos-learoy_qxlepk.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571016/neon-personalizado-barato-rotulos-learoy_yirnc3.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/cartel-con-logo-luminoso-rotulos-learoy_lhrmuo.webp',
+   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571017/neon-personalizado-rapido-rotulos-learoy_gmjqrc.webp',
+   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571016/neon-para-tiendas-rotulos-learoy_sb9sox.webp',
+'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571017/rotulos-luminosos-personaliados-restaurantes-rotulos-learoy_azpm3z.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/alas-angel-neon-rotulos-learoy_fsppyy.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571013/letras-luminosas-restaurantes-rotulos-learoy_obm0xq.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571010/decoracion-con-luz-bar-rotulos-learoy_ivtkdr.webp',
+'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571013/letrero-led-rotulos-learoy_uf4iif.webp',
+//'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252663/cartel-neon-con-dibujo-rotulos-learoy_dfvyox.webp'
 ]
 
 export const keywords = [

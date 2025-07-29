@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OrderPipe } from '../../pipes/order.pipe';
 import { GetProductsService } from '../../core/services/get-products.service';
+import { AltPipe } from '../../pipes/alt.pipe';
 
 
 @Component({
     selector: 'app-cards',
       standalone: true,
-    imports: [CommonModule, OrderPipe],
+    imports: [CommonModule, OrderPipe, AltPipe],
     templateUrl: './cards.component.html',
     styleUrl: './cards.component.css'
 })
@@ -32,7 +33,7 @@ categorySlug$.subscribe((category => element.type === 'category' ? this.router.n
     }
 
     public getSrcImage(element: Category | Product) { 
-      if (element.type === 'category' && (element as Category).products.length === 0) { return }
+      //if (element.type === 'category' && (element as Category).products.length === 0) { return }
       element.type === 'category' ? this.srcImage = (element as Category).products[0].images[0] : this.srcImage = (element as Product).images[0]
       return this.srcImage
     }
