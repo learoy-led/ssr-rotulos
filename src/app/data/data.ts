@@ -19,7 +19,7 @@ export const contactDetails: ContactDetails = {
   url: 'https://rotuloslesaroy.com',
   longName: 'Learoy LED Tecnology, S.L.',
   shortName: 'Learoy LED Tecnology',
-  address1: 'Calle  del Cincel 6, Nave 25',
+  address1: 'C/ del Cincel 6, Nave 25',
   address2: '28946 Fuenlabrada, Madrid',
   phone: '642 678 199',
   email: 'rotulos@learoyled.com',
