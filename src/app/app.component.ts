@@ -17,12 +17,15 @@ import {
   NgcStatusChangeEvent,
 } from 'ngx-cookieconsent';
 
-declare let gtag: Function;
 declare global {
   interface Window {
     dataLayer: any[];
+    gtag?: (...args: any[]) => void;
   }
 }
+
+declare let gtag: (...args: any[]) => void;
+
 
 @Component({
   selector: 'app-root',
