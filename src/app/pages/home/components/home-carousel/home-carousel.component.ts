@@ -1,13 +1,12 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { carouselImages } from '../../../../data/data';
-import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../../shared/button/button.component';
 import { PlatformService } from '../../../../core/services/platform.service';
 
 @Component({
     selector: 'app-home-carousel',
       standalone: true,
-    imports: [ButtonComponent, CommonModule],
+    imports: [ButtonComponent],
     templateUrl: './home-carousel.component.html',
     styleUrl: './home-carousel.component.css'
 })

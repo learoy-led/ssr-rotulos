@@ -1,11 +1,12 @@
-import { Directive, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Directive, HostBinding, HostListener, inject, Input } from '@angular/core';
+import { PlatformService } from '../services/platform.service';
 
 @Directive({
   selector: '[appShowSubmennu]',
   standalone: true
 })
 export class ShowSubmennuDirective {
-
+ private platformService = inject(PlatformService);
   @Input() catalogoMouseEnter: boolean = false
 
   @HostBinding('class.visible') submenuVisible = this.catalogoMouseEnter;
@@ -13,7 +14,8 @@ export class ShowSubmennuDirective {
 
   @HostListener('mouseleave')
   public onMouseExit() {
-    this.submenuVisible = false;
+     if (this.platformService.isBrowser()) {
+      this.submenuVisible = false;
+    }
   }
-
 }

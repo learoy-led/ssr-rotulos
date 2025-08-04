@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { cases } from '../../data/data';
-import { CommonModule } from '@angular/common';
 import { AltPipe } from '../../pipes/alt.pipe';
 
 @Component({

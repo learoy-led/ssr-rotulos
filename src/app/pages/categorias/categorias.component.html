@@ -9,10 +9,16 @@
     <section class="centered-section">
     <h1 class="page-title">Modelos de rotulación</h1>
 <app-filter-buttons [categorySelectedName]="categorySelectedName" (categorySelected)="onCategorySelectedChange($event)"></app-filter-buttons>
-    <div *ngFor="let category of categories$ | async | filter: categorySelectedName; let i = index">
+@for(category of categories$ | async | filter: categorySelectedName; track category.name; let i = $index) {
+  <div>
       <h2 class="subtitle centered-text">{{category.name}}</h2>
-     <app-cards *ngIf="isCategory(category)" [cardElements]="category.products" [cardsClass]="'cards-grid'"></app-cards>
+      @if(isCategory(category)) {
+<app-cards [cardElements]="category.products" [cardsClass]="'cards-grid'"></app-cards>
+      }
+     
   </div>
+}
+  
 
   </section>
 </main>

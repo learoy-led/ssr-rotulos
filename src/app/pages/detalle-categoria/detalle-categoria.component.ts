@@ -33,6 +33,7 @@ export class DetalleCategoriaComponent implements OnInit {
 
 
 constructor(private route: ActivatedRoute, private seoService:SeoService) {}
+  
 
 public ngOnInit() {
 

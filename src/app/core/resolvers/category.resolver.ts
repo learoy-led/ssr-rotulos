@@ -1,23 +1,18 @@
 import { inject } from '@angular/core';
-import { ResolveFn, Router } from '@angular/router';
+import { ResolveFn } from '@angular/router';
 import { GetProductsService } from '../services/get-products.service';
-import { catchError, of, throwError } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 import { Category } from '../../models/data.models';
 
-export const categoryResolver: ResolveFn<Category | null> = (route, state) => {
+export const categoryResolver: ResolveFn<Category | { navigationCommands: any[] }> = (route, state) => {
    const getProductsService =  inject(GetProductsService)
-   const router =  inject(Router)
 
   const categorySlug = route.paramMap.get('category') ?? '';
-
   return getProductsService.getCategoryBySlug(categorySlug).pipe(
-     catchError(err => {
-      if (err.status === 404) {
-       router.navigate(['/pagina-no-encontrada']); 
-       return throwError(() => new Error('CATEGORY_NOT_FOUND'));
-      }
-      return of(null); 
-    })
+    map(category => category ?? { navigationCommands: ['/pagina-no-encontrada'] }),
+    catchError(() => of({ navigationCommands: ['/pagina-no-encontrada'] }))
   );
+  }
 
-};
+
+ 
