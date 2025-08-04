@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { emailValidator } from './validator';
 import { Subscription } from 'rxjs';
@@ -9,7 +8,7 @@ import { FormData } from '../../../models/data.models';
 @Component({
     selector: 'app-contact-form',
       standalone: true,
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule],
     templateUrl: './contact-form.component.html',
     styleUrl: './contact-form.component.css'
 })

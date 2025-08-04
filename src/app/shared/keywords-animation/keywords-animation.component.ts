@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { keywords } from '../../data/data';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-keywords-animation',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './keywords-animation.component.html',
   styleUrl: './keywords-animation.component.css'
 })

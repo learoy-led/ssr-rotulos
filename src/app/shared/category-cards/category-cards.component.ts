@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Category } from '../../models/data.models';
 import { IMAGEPREURL } from '../../data/data';
@@ -6,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-cards',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './category-cards.component.html',
   styleUrl: './category-cards.component.css'
 })

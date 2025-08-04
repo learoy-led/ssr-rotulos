@@ -2,14 +2,20 @@
     
 <section>
     <h1 class="page-title centered-text">Learoy, especialistas en rotulación</h1>
-<div class="about-paragraph" *ngFor="let paragraph of paragraphs">
+@for(paragraph of paragraphs; track paragraph.title) {
+<div class="about-paragraph">
 <div class="paragraph-text">
 <h2 class="subtitle">{{paragraph.title}}</h2>
-<p *ngFor="let text of paragraph.text">{{text}}</p>
+@for(text of paragraph.text; track text) {
+<p>{{text}}</p>
+}
+
 </div>
 <img class="paragraph-image" loading="lazy" decoding="async" [src]="paragraph.image" [alt]="paragraph.image | alt">
 
 </div>
+}
+
            
         </section>
    <app-keywords-animation></app-keywords-animation>

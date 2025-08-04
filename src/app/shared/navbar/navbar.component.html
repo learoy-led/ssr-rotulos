@@ -4,7 +4,9 @@
       </li>
       
     <ul class="submenu">
-      <li *ngFor="let category of categories$ | async" ><a (click)="closeBurguer()" [routerLink]="[category.slug]">{{category.name}}</a></li>
+      @for(category of categories$ | async; track category.slug) {
+ <li><a (click)="closeBurguer()" [routerLink]="[category.slug]">{{category.name}}</a></li>
+      }
     </ul>
 
      

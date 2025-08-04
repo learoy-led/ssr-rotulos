@@ -17,8 +17,7 @@ import { SeoService } from '../../core/services/seo.service';
 export class SearchResultsComponent implements OnInit{
 
 public products$?: Observable <Product[]>;
-
-  public productSearch: string = ''
+public productSearch: string = ''
 
 constructor(private getProductsService: GetProductsService, private route: ActivatedRoute, private seoService: SeoService){} 
 

@@ -47,7 +47,6 @@ carouselNextElements() {
   }
 
   public ngOnInit() {
-
       //aplicar el pipe filter
      
     this.categorySub = this.route.paramMap.subscribe(

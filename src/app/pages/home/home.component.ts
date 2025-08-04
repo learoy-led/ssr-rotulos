@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonComponent } from "../../shared/button/button.component";
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';

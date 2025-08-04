@@ -6,7 +6,7 @@ import { AltPipe } from '../../pipes/alt.pipe';
 @Component({
     selector: 'app-casos',
       standalone: true,
-    imports: [CommonModule, AltPipe],
+    imports: [AltPipe],
     templateUrl: './casos.component.html',
     styleUrl: './casos.component.css'
 })

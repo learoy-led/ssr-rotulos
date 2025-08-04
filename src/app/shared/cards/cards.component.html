@@ -1,6 +1,11 @@
-<ul [ngClass]="cardsClass" *ngIf="cardElements">
-<li class="card-figure" [ngClass]="getCardClass(element)" *ngFor="let element of cardElements | order" (click)="selectElement(element)">
+ @if(cardElements){
+<ul [ngClass]="cardsClass">
+@for(element of cardElements | order; track element.name) {
+<li class="card-figure" [ngClass]="getCardClass(element)" (click)="selectElement(element)">
     <img class="card-image" [src]="imagePrefix+getSrcImage(element)" [alt]="getSrcImage(element) | alt" />
      <h3 class="element-title centered-text">{{ element.name }}</h3>
   </li>
+}
 </ul>
+}
+

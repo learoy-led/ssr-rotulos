@@ -1,8 +1,11 @@
 <figure class="keywords-banner">
     <ul class="keywords">
-    <li *ngFor="let keyword of keywords">
+        @for(keyword of keywords; track keyword) {
+<li>
         <p>{{keyword}}</p>
         <span> · </span>
-    </li></ul>
+    </li>
+        }
+    </ul>
     </figure>
 

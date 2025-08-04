@@ -1,26 +1,33 @@
 <div class="letter-list-container left">
     <ul class="letter-list">
-    <li class="letter-figure" *ngFor="let image of letterImagesLeft">
+        @for(image of letterImagesLeft; track image.url) {
+<li class="letter-figure">
         <img class="letter-image" [ngSrc]="image.url" [alt]="image.name" width="250" height="250"/>
          <h3 class="letter-title">{{ image.name }}</h3>
       </li>
+        }
+    
     </ul>
 </div>
 
 <div class="letter-list-container middle">
     <ul class="letter-list">
-        <li class="letter-figure"  *ngFor="let image of letterImagesMiddle">
+         @for(image of letterImagesMiddle; track image.url) {
+        <li class="letter-figure">
             <img class="letter-image" [ngSrc]="image.url" [alt]="image.name" width="250" height="250"/>
              <h3 class="letter-title">{{ image.name }}</h3>
           </li>
+           }
         </ul>
     </div>
     
     <div class="letter-list-container right">
         <ul class="letter-list">
-            <li class="letter-figure" *ngFor="let image of letterImagesRight">
+              @for(image of letterImagesRight; track image.url) {
+            <li class="letter-figure">
                 <img class="letter-image" [ngSrc]="image.url" [alt]="image.name" width="250" height="250"/>
                  <h3 class="letter-title">{{ image.name }}</h3>
               </li>
+                }
             </ul>
         </div>

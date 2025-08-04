@@ -13,22 +13,27 @@
     <nav>
       <div>
         <h2 class="footer-nav-title">Tipos de rótulos</h2>
-        <ul *ngFor="let category of categories$ | async ">
+        @for(category of categories$ | async; track category.slug) {
+ <ul>
           <li class="footer-nav-element">
             <a class="category-links" [routerLink]="[category.slug]">{{ category.name }}</a>
           </li>
         </ul>
+        }
       </div>
     </nav>
 
     <nav>
       <div>
         <h2 class="footer-nav-title">Elige tu letrero</h2>
-        <ul *ngFor="let keyword of keywords">
+        @for(keyword of keywords; track keyword.text) {
+<ul>
           <li class="footer-nav-element">
             <a class="category-links" [routerLink]="[keyword.link]">{{ keyword.text }}</a>
           </li>
         </ul>
+        }
+        
       </div>
     </nav>
 

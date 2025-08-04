@@ -6,13 +6,11 @@ import { ScrollTopButtonComponent } from './core/components/scroll-top-button/sc
 import { SeoService } from './core/services/seo.service';
 import { LoadingService } from './core/services/loading.service';
 import { Subscription } from 'rxjs';
-import { LoaderComponent } from './core/components/loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { PlatformService } from './core/services/platform.service';
 import { ShowScrollButtonDirective } from './core/directives/show-scroll-button.directive';
 import {
   NgcCookieConsentService,
-  NgcCookieConsentStatus,
   NgcInitializationErrorEvent,
   NgcInitializingEvent,
   NgcNoCookieLawEvent,
@@ -34,7 +32,6 @@ declare global {
     HeaderComponent,
     FooterComponent,
     ScrollTopButtonComponent,
-    LoaderComponent,
     CommonModule,
     ShowScrollButtonDirective,
   ],

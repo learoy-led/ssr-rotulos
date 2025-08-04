@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { LetterImage } from '../../models/data.models';
 import { letterImages } from '../../data/data';
@@ -6,7 +6,7 @@ import { letterImages } from '../../data/data';
 @Component({
     selector: 'app-animated-vertical-carousel',
       standalone: true,
-    imports: [CommonModule, NgOptimizedImage],
+    imports: [NgOptimizedImage],
     templateUrl: './animated-vertical-carousel.component.html',
     styleUrl: './animated-vertical-carousel.component.css'
 })

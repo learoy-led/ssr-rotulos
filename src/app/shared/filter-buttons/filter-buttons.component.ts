@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Category } from '../../models/data.models';
 import { Observable } from 'rxjs';
-
 import { GetProductsService } from '../../core/services/get-products.service';
 import { CommonModule } from '@angular/common';
 

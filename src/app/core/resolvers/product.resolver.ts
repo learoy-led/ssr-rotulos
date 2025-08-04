@@ -8,8 +8,6 @@ export const productResolver: ResolveFn<Product | null> = (route, state) => {
   const getProductsService =  inject(GetProductsService)
    const router =  inject(Router)
 
-   null
-
   const productSlug = route.paramMap.get('product') ?? '';
 
   return getProductsService.getProductBySlug(productSlug).pipe(
