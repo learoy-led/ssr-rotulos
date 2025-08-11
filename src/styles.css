@@ -140,6 +140,7 @@ button:disabled {
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 500;
+  width: fit-content;
 }
 
 .button:hover {

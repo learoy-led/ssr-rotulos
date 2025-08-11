@@ -21,8 +21,7 @@ import { CategoryCardsComponent } from '../../shared/category-cards/category-car
         HomeCarouselComponent,
         ItemsCarouselComponent,
         CommonModule,
-        AnimatedVerticalCarouselComponent,
-        ButtonComponent
+        AnimatedVerticalCarouselComponent
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'

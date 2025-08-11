@@ -7,6 +7,7 @@ padding: 100px 0
 background-image: url(/frame_80\ \(1\).webp);
 padding: 0 52px;
 overflow: hidden;
+background-size: cover;
 }
 
 .vertical-carousel-container { 

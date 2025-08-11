@@ -1,0 +1,55 @@
+:host {
+    display: flex;
+ width: 80%;
+  margin: auto; 
+gap: 52px;
+background-image: url(/frame_80\ \(1\).webp);
+border-radius: 10px;
+padding: 0 52px;
+}
+
+.download-catalogue-texts {
+ display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  color: var(--color-white);
+  padding: 52px 0;
+  }
+
+  .download-catalogue-image {
+    max-width: 40%; 
+  object-fit: cover;
+  }
+
+   @media screen and (min-width: 391px) and (max-width: 1200px) {
+    :host {
+width: 100%
+    }
+    .download-catalogue-image {
+    max-width: 70%; 
+  }
+   }
+
+   @media screen and (max-width: 931px) {
+ :host {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        gap: 0;
+        background-size: cover;
+  }
+
+  .download-catalogue-image {
+    align-self: center;
+    justify-self: center;
+    border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+overflow: hidden;
+max-width: 100%;
+  }
+
+ .download-catalogue-texts {
+    padding: 32px;
+}  
+}

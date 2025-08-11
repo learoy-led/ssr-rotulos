@@ -6,11 +6,12 @@ import { SeoService } from '../../core/services/seo.service';
 import { CardsComponent } from "../../shared/cards/cards.component";
 import { CommonModule } from '@angular/common';
 import { GenderPipe } from '../../pipes/gender.pipe';
+import { DownloadCatalogueComponent } from '../../shared/download-catalogue/download-catalogue.component';
 
 @Component({
     selector: 'app-detalle-categoria',
       standalone: true,
-    imports: [CardsComponent, CommonModule, GenderPipe],
+    imports: [CardsComponent, CommonModule, GenderPipe, DownloadCatalogueComponent],
     templateUrl: './detalle-categoria.component.html',
     styleUrl: './detalle-categoria.component.css'
 })
@@ -30,6 +31,7 @@ export class DetalleCategoriaComponent implements OnInit {
     }
   }
   public imagePrefix: string = IMAGEPREURL
+  public pdfCatalogueVisible = false
 
 
 constructor(private route: ActivatedRoute, private seoService:SeoService) {}
@@ -44,9 +46,8 @@ public ngOnInit() {
          const description = this.categorySelectedData?.description.metaDescription
           const image = this.imagePrefix+this.categorySelectedData?.products[0].images[0];
           const slug = this.categorySelectedData?.slug ?? ''
- 
           this.seoService.updateSeoDynamicTags(title, description??'', image, slug)
-  
+          this.pdfCatalogueVisible = this.categorySelectedData?.slug === 'letras-corporeas'
   }); 
   
 }
