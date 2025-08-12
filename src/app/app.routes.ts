@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
+import { categoryResolver } from './core/resolvers/category.resolver';
+import { productResolver } from './core/resolvers/product.resolver';
 
 export const routes: Routes = [
   {
@@ -132,12 +134,18 @@ export const routes: Routes = [
       import('./pages/detalle-categoria/detalle-categoria.component').then(
         (c) => c.DetalleCategoriaComponent
       ),
-  },
+    resolve: {
+  category: categoryResolver
+}  
+    },
   {
     path: ':category/:product',
     loadComponent: () =>
       import('./pages/detalle-producto/detalle-producto.component').then(
         (c) => c.DetalleProductoComponent
       ),
+      resolve: {
+  product: productResolver
+}  
   },
 ];

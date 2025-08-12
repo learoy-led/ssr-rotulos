@@ -47,17 +47,18 @@ export class DetalleCategoriaComponent implements OnInit {
   {}
 
   public ngOnInit() {
-    //this.route.data.subscribe(data => {
-    //this.categorySelectedData = data['category'];
-    this.route.params.subscribe((params) => {
-      const categorySlug = params['category'];
+    this.route.data.subscribe(data => {
+    this.categorySelectedData = data['category'];
+    
+   // this.route.params.subscribe((params) => {
+     // const categorySlug = params['category'];
 
-      this.getProductsService
-        .getCategoryBySlug(categorySlug)
-        .subscribe((category) => {
-          this.categorySelectedData = category;
+     // this.getProductsService
+       // .getCategoryBySlug(this.categorySlug)
+        //.subscribe((category) => {
+          //this.categorySelectedData = category;
 
-          const title = `${this.categorySelectedData.name} · Rótulos Learoy`;
+          const title = `${this.categorySelectedData?.name} · Rótulos Learoy`;
           const description =
             this.categorySelectedData?.description.metaDescription;
           const image =
@@ -72,7 +73,7 @@ export class DetalleCategoriaComponent implements OnInit {
           this.pdfCatalogueVisible =
             this.categorySelectedData?.slug === 'letras-corporeas';
         });
-    });
+    //});
     // if (this.platformService.isBrowser()) {
     //   this.listenLoading();
     // }

@@ -47,15 +47,22 @@ export class DetalleProductoComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
+
+    this.route.data.subscribe(data => {
+    this.productSelectedData = data['product'];
+
+});
+
+
     this.route.paramMap.subscribe((params) => {
       const categorySlug = params.get('category') ?? '';
       const productSlug = params.get('product') ?? '';
       this.currentRoute = `${categorySlug}/${productSlug}`;
 
-      this.getProductsService
-        .getProductBySlug(productSlug)
-        .subscribe((product) => {
-          this.productSelectedData = product;
+      //this.getProductsService
+       // .getProductBySlug(productSlug)
+        //.subscribe((product) => {
+          //this.productSelectedData = product;
           this.imageAlts = this.productSelectedData.images.map((img) =>
             this.getImageAlt(img)
           );
@@ -79,7 +86,7 @@ export class DetalleProductoComponent implements OnInit {
             this.currentRoute
           );
         });
-    });
+   // });
     if (this.platformService.isBrowser()) {
       this.listenLoading();
     }
