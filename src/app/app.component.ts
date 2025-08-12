@@ -16,6 +16,7 @@ import {
   NgcNoCookieLawEvent,
   NgcStatusChangeEvent,
 } from 'ngx-cookieconsent';
+import { LoaderComponent } from './core/components/loader/loader.component';
 
 declare global {
   interface Window {
@@ -25,7 +26,6 @@ declare global {
 }
 
 declare let gtag: (...args: any[]) => void;
-
 
 @Component({
   selector: 'app-root',
@@ -44,7 +44,7 @@ declare let gtag: (...args: any[]) => void;
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Rótulos Learoy';
 
-  public isLoading: boolean = true;
+  //public isLoading: boolean = true;
 
   private popupOpenSubscription!: Subscription;
   private popupCloseSubscription!: Subscription;
@@ -66,35 +66,39 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.platformService.isBrowser() &&
+      this.getCookie('cookieconsent_status') === 'allow' &&
+      this.addAnalyticsScript();
 
-  this.platformService.isBrowser() && this.getCookie('cookieconsent_status') === 'allow' && this.addAnalyticsScript()
-  
-    
-      this.routerSubscription = this.router.events.subscribe((event) => {
-        const staticRoutes = ['/', '/catalogo', '/nosotros', '/casos-de-exito', '/contacto'];
-       
-         if (event instanceof NavigationEnd) { 
-          if (staticRoutes.includes(event.urlAfterRedirects)) {
-            this.seoService.updateSeoStaticTags();
-          }
-      //const url = 'https://www.rotuloslearoy.com' + this.router.url;
-      //this.setCanonicalTag(url);
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      const staticRoutes = [
+        '/',
+        '/catalogo',
+        '/nosotros',
+        '/casos-de-exito',
+        '/contacto',
+      ];
 
-   if (this.platformService.isBrowser() && typeof gtag === 'function' ) {
-            gtag('event', 'page_view', {
-              page_path: event.urlAfterRedirects,
-            });
-          }  }
+      if (event instanceof NavigationEnd) {
+        if (staticRoutes.includes(event.urlAfterRedirects)) {
+          this.seoService.updateSeoStaticTags();
         }
+        //const url = 'https://www.rotuloslearoy.com' + this.router.url;
+        //this.setCanonicalTag(url);
 
-        );   
+        if (this.platformService.isBrowser() && typeof gtag === 'function') {
+          gtag('event', 'page_view', {
+            page_path: event.urlAfterRedirects,
+          });
+        }
+      }
+    });
 
     if (this.platformService.isBrowser()) {
-       this.listenLoading();
+      //this.listenLoading();
 
       this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
-        () => {
-        }
+        () => {}
       );
 
       this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
@@ -111,22 +115,23 @@ export class AppComponent implements OnInit, OnDestroy {
       this.initializedSubscription = this.ccService.initialized$.subscribe(
         () => {
           console.log(`initialized: ${JSON.stringify(event)}`);
-          }
+        }
       );
 
       this.initializationErrorSubscription =
         this.ccService.initializationError$.subscribe(
           (event: NgcInitializationErrorEvent) => {
-            console.log(`initializationError: ${JSON.stringify(event.error?.message)}`
+            console.log(
+              `initializationError: ${JSON.stringify(event.error?.message)}`
             );
           }
         );
 
       this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
-        (event: NgcStatusChangeEvent) => {    
+        (event: NgcStatusChangeEvent) => {
           event.status === 'allow'
             ? this.addAnalyticsScript()
-            : this.deleteAnalyticsScript(); 
+            : this.deleteAnalyticsScript();
         }
       );
 
@@ -143,22 +148,23 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
- public getCookie(name: string): string | null {
-  return document.cookie
-    .split('; ')
-    .find(row => row.startsWith(name + '='))
-    ?.split('=')[1] || null;
-}
-
-  public listenLoading() {
-    this.loadingService.getLoadingStatus().subscribe((isLoading) => {
-      this.isLoading = isLoading;
-    });
+  public getCookie(name: string): string | null {
+    return (
+      document.cookie
+        .split('; ')
+        .find((row) => row.startsWith(name + '='))
+        ?.split('=')[1] || null
+    );
   }
-  
+
+  // public listenLoading() {
+  //   this.loadingService.getLoadingStatus().subscribe((isLoading) => {
+  //     this.isLoading = isLoading;
+  //   });
+  // }
 
   private addAnalyticsScript() {
-    console.log('ejecuta añadir script')
+    console.log('ejecuta añadir script');
     if (!document.getElementById('google-analytics-script')) {
       const script = document.createElement('script');
       script.id = 'google-analytics-script';
@@ -182,7 +188,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private deleteAnalyticsScript() {
-    console.log('ejecuta quitar script')
+    console.log('ejecuta quitar script');
     if (!this.platformService.isBrowser()) return;
     if (
       document.getElementById('google-analytics-script') &&
@@ -195,8 +201,6 @@ export class AppComponent implements OnInit, OnDestroy {
       window.dataLayer.length = 0;
     }
   }
-
-
 
   ngOnDestroy() {
     this.routerSubscription?.unsubscribe();

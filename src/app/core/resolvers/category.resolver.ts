@@ -5,26 +5,8 @@ import { catchError, map, of } from 'rxjs';
 import { Category } from '../../models/data.models';
 
 export const categoryResolver: ResolveFn<Category | null> = (route, state) => {
-   const getProductsService =  inject(GetProductsService)
-   const router = inject(Router);
-
+  const getProductsService = inject(GetProductsService);
+  const router = inject(Router);
   const categorySlug = route.paramMap.get('category') ?? '';
-
-  return getProductsService.getCategoryBySlug(categorySlug).pipe(
-    map(category => {
-      if (!category) {
-        router.navigate(['/pagina-no-encontrada']);
-        return null;
-      }
-      return category;
-    }),
-    catchError(() => {
-      router.navigate(['/pagina-no-encontrada']);
-      return of(null);
-    })
-  );
-
-  }
-
-
- 
+  return getProductsService.getCategoryBySlug(categorySlug);
+};

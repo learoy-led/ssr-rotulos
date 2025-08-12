@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ButtonComponent } from "../../shared/button/button.component";
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Category } from '../../models/data.models';
@@ -12,30 +11,26 @@ import { HomeCarouselComponent } from './components/home-carousel/home-carousel.
 import { CategoryCardsComponent } from '../../shared/category-cards/category-cards.component';
 
 @Component({
-    selector: 'app-home',
-      standalone: true,
-    imports: [
-        ContactBannerComponent,
-        CategoryCardsComponent,
-        TextsSectionComponent,
-        HomeCarouselComponent,
-        ItemsCarouselComponent,
-        CommonModule,
-        AnimatedVerticalCarouselComponent
-    ],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.css'
+  selector: 'app-home',
+  standalone: true,
+  imports: [
+    ContactBannerComponent,
+    CategoryCardsComponent,
+    TextsSectionComponent,
+    HomeCarouselComponent,
+    ItemsCarouselComponent,
+    CommonModule,
+    AnimatedVerticalCarouselComponent,
+  ],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
+  public categories$?: Observable<Category[]>;
 
-  public categories$?: Observable<Category[]>;  
- 
-  constructor(
-    private getProductsService: GetProductsService,
-  ) {}
+  constructor(private getProductsService: GetProductsService) {}
 
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
   }
-
 }
