@@ -189,7 +189,7 @@ export const cases = [
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571013/luminoso-para-fachada-restaurante-rotulos-learoy_v3jrwg.webp',
 'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/banderola-luminosa-para-restaurante-rotulos-learoy_wyvura.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/luminoso-para-interior-restaurante-rotulos-learoy_ifdkpz.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1759144213/banderola-redonda-rotulos-learoy-caja-de-luz_ws8lbe.webp',
+'https://res.cloudinary.com/dxuseyfxa/image/upload/v1759154769/banderola-redonda-rotulos-learoy-caja-de-luz_hjo64m.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251332/cartel-neon-para-bares-y-tiendas-rotulos-learoy_a3m3uq.webp',
   'https://res.cloudinary.com/dxuseyfxa/image/upload/v1759147690/lightbox-redondo-rotulos-learoy_swdktf.webp',
     'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/luminoso-para-stand-feria-rotulos-learoy_luqi73.webp',
