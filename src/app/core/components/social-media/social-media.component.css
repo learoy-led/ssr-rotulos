@@ -1,0 +1,25 @@
+.social-media-posts {
+    display: flex;
+    gap: 10px;
+justify-content: center;
+}
+
+.social-media-post {
+ display: flex;
+ justify-content: center;
+}
+
+@media screen and (max-width: 766px) {
+.social-media-post:nth-child(3), .social-media-post:nth-child(4) {
+    display: none;
+}
+.social-media-posts {
+      flex-direction: column;
+}
+}
+
+@media screen and (min-width: 767px) and (max-width: 1260px) {
+.social-media-post:nth-child(4) {
+    display: none;
+}
+}

@@ -48,7 +48,15 @@
   .secondary-footer-text {
   font-size: 14px;
 }
-  
+
+.fa-brands {
+   height: 22px;
+}
+  .footer-social-media-icons {
+display: flex;
+gap: 6px
+  }
+
   @media screen and (max-width: 766px) {
     nav {
       display: none;

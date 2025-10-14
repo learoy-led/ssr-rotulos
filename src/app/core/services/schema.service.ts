@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { contactDetails } from '../../data/data';
 import { ContactDetails } from '../../models/data.models';
 

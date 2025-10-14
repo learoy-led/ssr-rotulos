@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { aboutParagraphs } from '../../data/data';
 import { AboutParagraph } from '../../models/data.models';
 import { ContactBannerComponent } from '../../shared/contact-banner/contact-banner.component';
-import { KeywordsAnimationComponent } from '../../shared/keywords-animation/keywords-animation.component';
 import { AltPipe } from '../../pipes/alt.pipe';
+import { SocialMediaComponent } from '../../core/components/social-media/social-media.component';
 
 @Component({
     selector: 'app-nosotros',
       standalone: true,
-    imports: [ContactBannerComponent, KeywordsAnimationComponent, AltPipe],
+    imports: [ContactBannerComponent, AltPipe, SocialMediaComponent],
     templateUrl: './nosotros.component.html',
     styleUrl: './nosotros.component.css'
 })

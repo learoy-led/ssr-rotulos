@@ -25,6 +25,13 @@
   flex-direction: row-reverse;
 }
 
+.social-media-section {
+   background-image: url(/frame_80\ \(1\).webp);
+   background-size: cover;
+  width: 100%;
+  color: var(--color-white)
+}
+
 @media screen and (max-width: 766px) {
   .about-paragraph {
     display: block;

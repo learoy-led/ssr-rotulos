@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Category } from '../../models/data.models';
@@ -10,6 +10,7 @@ import { TextsSectionComponent } from '../../shared/texts-section/texts-section.
 import { ContactBannerComponent } from '../../shared/contact-banner/contact-banner.component';
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
 import { CategoryCardsComponent } from '../../shared/category-cards/category-cards.component';
+import { SocialMediaComponent } from '../../core/components/social-media/social-media.component';
 
 
 @Component({
@@ -27,7 +28,7 @@ import { CategoryCardsComponent } from '../../shared/category-cards/category-car
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   public categories$?: Observable<Category[]>;
 
   constructor(private getProductsService: GetProductsService, private schemaService: SchemaService) {}
@@ -37,4 +38,16 @@ export class HomeComponent implements OnInit {
     this.schemaService.insertSchema(this.schemaService.getLocalBusinessSchema(),'schema-localbusiness')
     this.schemaService.insertSchema(this.schemaService.getWebSiteSchema(), 'schema-website')
   }
+
+  public ngAfterViewInit() {
+  const instagramScript = document.createElement('script');
+  instagramScript.src = "https://www.instagram.com/embed.js";
+  instagramScript.async = true;
+  document.body.appendChild(instagramScript);
+  
+  const tiktokScript = document.createElement('script');
+   tiktokScript.src = "https://www.tiktok.com/embed.js";
+  tiktokScript.async = true;
+  document.body.appendChild(tiktokScript);
+}
 }
