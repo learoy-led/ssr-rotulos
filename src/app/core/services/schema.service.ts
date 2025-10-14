@@ -115,7 +115,3 @@ export class SchemaService {
 
 }
 
-
-//category y product:
-//const squema = this.squemaService.getServiceSchema(serviceName, serviceDescription, serviceSlug)
-//this.squemaService.insertSchema(squema)
