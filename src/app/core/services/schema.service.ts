@@ -93,6 +93,15 @@ export class SchemaService {
     "@type": "LocalBusiness",
     "@id": "https://www.rotuloslearoy.com/#business",
     "name": "Rótulos Learoy", 
+    "address": {
+    "@type": "PostalAddress",
+    "streetAddress": this.contactDetails.address1,
+    "addressLocality": "Madrid",
+    "postalCode": "28946",
+    "addressCountry": "ES"
+  },
+  "telephone": '+34'+this.contactDetails.phone,
+  "image": 'https://www.rotuloslearoy.com/rotulos-learoy-logo.webp',
   },
    "areaServed": "España",
   "serviceType":`Fabricación de ${serviceName}`,
