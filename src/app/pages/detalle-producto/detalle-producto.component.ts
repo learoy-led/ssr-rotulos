@@ -9,6 +9,7 @@ import { ButtonComponent } from '../../shared/button/button.component';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { LoadingService } from '../../core/services/loading.service';
 import { PlatformService } from '../../core/services/platform.service';
+import { SchemaService } from '../../core/services/schema.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -43,7 +44,8 @@ export class DetalleProductoComponent implements OnInit {
     private seoService: SeoService,
     private getProductsService: GetProductsService,
     private loadingService: LoadingService,
-    private platformService: PlatformService
+    private platformService: PlatformService,
+    private schemaService: SchemaService
   ) {}
 
   public ngOnInit() {
@@ -85,6 +87,7 @@ export class DetalleProductoComponent implements OnInit {
             image,
             this.currentRoute
           );
+          this.schemaService.insertSchema(this.schemaService.getServiceSchema(capitalizedTitle, description, this.currentRoute, image), 'schema-service')
         });
    // });
     if (this.platformService.isBrowser()) {

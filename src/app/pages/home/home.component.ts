@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Category } from '../../models/data.models';
 import { GetProductsService } from '../../core/services/get-products.service';
+import { SchemaService } from '../../core/services/schema.service';
 import { AnimatedVerticalCarouselComponent } from '../../shared/animated-vertical-carousel/animated-vertical-carouesel.component';
 import { ItemsCarouselComponent } from '../../shared/items-carousel/items-carousel.component';
 import { TextsSectionComponent } from '../../shared/texts-section/texts-section.component';
 import { ContactBannerComponent } from '../../shared/contact-banner/contact-banner.component';
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
 import { CategoryCardsComponent } from '../../shared/category-cards/category-cards.component';
+
 
 @Component({
   selector: 'app-home',
@@ -28,9 +30,11 @@ import { CategoryCardsComponent } from '../../shared/category-cards/category-car
 export class HomeComponent implements OnInit {
   public categories$?: Observable<Category[]>;
 
-  constructor(private getProductsService: GetProductsService) {}
+  constructor(private getProductsService: GetProductsService, private schemaService: SchemaService) {}
 
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
+    this.schemaService.insertSchema(this.schemaService.getLocalBusinessSchema(),'schema-localbusiness')
+    this.schemaService.insertSchema(this.schemaService.getWebSiteSchema(), 'schema-website')
   }
 }

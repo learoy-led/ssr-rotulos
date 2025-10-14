@@ -16,7 +16,7 @@ import {
   NgcNoCookieLawEvent,
   NgcStatusChangeEvent,
 } from 'ngx-cookieconsent';
-import { LoaderComponent } from './core/components/loader/loader.component';
+//import { LoaderComponent } from './core/components/loader/loader.component';
 
 declare global {
   interface Window {
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private ccService: NgcCookieConsentService,
     private platformService: PlatformService,
-    private loadingService: LoadingService,
+    //private loadingService: LoadingService,
     private router: Router,
     private seoService: SeoService
   ) {}

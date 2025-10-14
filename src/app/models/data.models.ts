@@ -8,6 +8,8 @@ export interface ContactDetails {
   email: string;
   open: string;
   cif: string;
+  tiktok: string,
+  instagram: string
 }
 
 export interface CategoryDescription {

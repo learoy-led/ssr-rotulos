@@ -7,7 +7,7 @@ import { CardsComponent } from '../../shared/cards/cards.component';
 import { CommonModule } from '@angular/common';
 import { GenderPipe } from '../../pipes/gender.pipe';
 import { DownloadCatalogueComponent } from '../../shared/download-catalogue/download-catalogue.component';
-import { GetProductsService } from '../../core/services/get-products.service';
+import { SchemaService } from '../../core/services/schema.service';
 
 @Component({
   selector: 'app-detalle-categoria',
@@ -42,21 +42,13 @@ export class DetalleCategoriaComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private seoService: SeoService,
-    private getProductsService: GetProductsService // private platformService: PlatformService,
-  ) // private loadingService: LoadingService
+    private schemaService: SchemaService
+  ) 
   {}
 
   public ngOnInit() {
     this.route.data.subscribe(data => {
     this.categorySelectedData = data['category'];
-    
-   // this.route.params.subscribe((params) => {
-     // const categorySlug = params['category'];
-
-     // this.getProductsService
-       // .getCategoryBySlug(this.categorySlug)
-        //.subscribe((category) => {
-          //this.categorySelectedData = category;
 
           const title = `${this.categorySelectedData?.name} · Rótulos Learoy`;
           const description =
@@ -70,6 +62,7 @@ export class DetalleCategoriaComponent implements OnInit {
             image,
             slug
           );
+          this.schemaService.insertSchema(this.schemaService.getServiceSchema(title, description ?? '', slug, image), 'schema-service')
           this.pdfCatalogueVisible =
             this.categorySelectedData?.slug === 'letras-corporeas';
         });
