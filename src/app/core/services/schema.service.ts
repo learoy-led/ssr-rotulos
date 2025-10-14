@@ -36,7 +36,7 @@ export class SchemaService {
       "url": this.contactDetails.url,
       "telephone": '+34'+this.contactDetails.phone,
       "address": {
-        "@type": this.contactDetails.address1+this.contactDetails.address2,
+        "@type": "PostalAddress",
         "streetAddress": this.contactDetails.address1,
         "addressLocality": "Madrid",
         "postalCode": "28946",
@@ -92,7 +92,7 @@ export class SchemaService {
   "provider": {
     "@type": "LocalBusiness",
     "@id": "https://www.rotuloslearoy.com/#business",
-    "name": "Rótulos Learoy"
+    "name": "Rótulos Learoy", 
   },
    "areaServed": "España",
   "serviceType":`Fabricación de ${serviceName}`,
