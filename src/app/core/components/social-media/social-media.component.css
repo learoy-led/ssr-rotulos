@@ -1,13 +1,9 @@
 .social-media-posts {
     display: flex;
-    gap: 10px;
+    gap: 30px;
 justify-content: center;
 }
 
-.social-media-post {
- display: flex;
- justify-content: center;
-}
 
 @media screen and (max-width: 766px) {
 .social-media-post:nth-child(3), .social-media-post:nth-child(4) {
