@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 export class FooterComponent implements OnInit {
 
    public contact: ContactDetails = contactDetails;
+   public currentYear = new Date().getFullYear();
   public categories$?: Observable<Category[]>;
   public keywords = [
     {
