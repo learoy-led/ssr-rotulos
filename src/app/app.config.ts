@@ -15,7 +15,7 @@ import {
 } from 'ngx-cookieconsent';
 import { environment } from '../environments/environment';
 import { notFoundInterceptor } from './core/interceptors/not-found.interceptor';
-import { loadingInterceptor } from './core/interceptors/loading.interceptor';
+
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {

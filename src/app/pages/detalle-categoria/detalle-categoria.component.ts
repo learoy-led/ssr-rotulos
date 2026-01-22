@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../models/data.models';
+import { Category, Product } from '../../models/data.models';
 import { IMAGEPREURL } from '../../data/data';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { GenderPipe } from '../../pipes/gender.pipe';
 import { DownloadCatalogueComponent } from '../../shared/download-catalogue/download-catalogue.component';
 import { SchemaService } from '../../core/services/schema.service';
+import { GetProductsService } from '../../core/services/get-products.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detalle-categoria',
@@ -26,7 +28,7 @@ export class DetalleCategoriaComponent implements OnInit {
     type: '',
     name: '',
     slug: '',
-    products: [],
+   image: '',
     description: {
       application: '',
       custom: '',
@@ -38,11 +40,13 @@ export class DetalleCategoriaComponent implements OnInit {
   public imagePrefix: string = IMAGEPREURL;
   public pdfCatalogueVisible = false;
   public isLoading: boolean = true;
+  public products$?: Observable <Product[]>;
 
   constructor(
     private route: ActivatedRoute,
     private seoService: SeoService,
-    private schemaService: SchemaService
+    private schemaService: SchemaService,
+    private getProductsService: GetProductsService
   ) 
   {}
 
@@ -54,8 +58,11 @@ export class DetalleCategoriaComponent implements OnInit {
           const description =
             this.categorySelectedData?.description.metaDescription;
           const image =
-            this.imagePrefix + this.categorySelectedData?.products[0].images[0];
+            this.imagePrefix + this.categorySelectedData?.image;
           const slug = this.categorySelectedData?.slug ?? '';
+
+           this.products$ = this.getProductsService.getProductsByCategory(slug)
+
           this.seoService.updateSeoDynamicTags(
             title,
             description ?? '',

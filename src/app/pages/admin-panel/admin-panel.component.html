@@ -1,1 +1,69 @@
-<p>admin-panel works!</p>
+<main class="centered-main admin-panel-main">
+
+    <section  class="centered-section">
+        <div class="title-and-add-button">
+    <h2 class="title">Categorías</h2>
+    <button class="button-icon" (click)="openNewCategoryModal()">
+    <app-icon [iconPath]="plusPath" ></app-icon>
+    </button>
+    </div>
+        <app-elements-list [elements]="categories$ | async"
+        (updateCategoryModalIsOpenState)="onUpdateModalStateChange($event)"
+        (categoryDeleted)="updateCategories()"
+    (updateEditableElement)="updateEditableElement($event)"
+    ></app-elements-list>
+    </section>
+    
+    <section class="centered-section">
+        <div class="title-and-add-button">
+    <h2 class="title">Productos</h2>
+         <button class="button-icon" (click)="openNewProductModal()">
+    <app-icon [iconPath]="plusPath" ></app-icon>
+    </button>
+
+    </div>
+    <app-elements-list [elements]="products$ | async"
+    (updateProductModalIsOpenState)="onUpdateProductModalStateChange($event)"
+    (productDeleted)="updateProducts()"
+(updateEditableElement)="updateEditableElement($event)"
+    ></app-elements-list>
+    </section>
+
+    <section *ngIf="newCategoryModalIsOpen || newProductModalIsOpen" class="modal-section">
+        @defer(when newCategoryModalIsOpen) {
+        <app-new-category-modal 
+        [newCategoryModalIsOpen]="newCategoryModalIsOpen" 
+        (newCategoryModalIsOpenState)="onNewModalStateChange($event)"
+        (categoryAdded)="updateCategories()" 
+        ></app-new-category-modal>
+    }
+    @defer(when newProductModalIsOpen) {
+        <app-new-product-modal 
+        [newProductModalIsOpen]="newProductModalIsOpen" 
+        (newProductModalIsOpenState)="onNewProdModalStateChange($event)"
+        (productAdded)="updateProducts()" 
+        ></app-new-product-modal>
+    }
+    </section>
+
+
+     <section *ngIf="updateCategoryModalIsOpen || updateProductModalIsOpen" class="modal-section">
+        @defer(when updateCategoryModalIsOpen) {
+         <app-edit-category-modal 
+         (updateCategoryModalIsOpenState)="onUpdateModalStateChange($event)"
+         [updateCategoryModalIsOpen]="updateCategoryModalIsOpen" 
+         [editableElement]="editableElement"
+        (categoryUpdated)="updateCategories()" 
+          ></app-edit-category-modal>
+        }  
+
+        @defer(when updateProductModalIsOpen) {
+            <app-edit-product-modal 
+            (updateProductModalIsOpenState)="onUpdateProductModalStateChange($event)"
+            [updateProductModalIsOpen]="updateProductModalIsOpen" 
+            [editableElement]="editableElement"
+           (categoryUpdated)="updateProducts()" 
+             ></app-edit-product-modal>
+           }  
+    </section> 
+    </main>

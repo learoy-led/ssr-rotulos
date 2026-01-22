@@ -1,0 +1,57 @@
+<form 
+*ngIf="categoryElement"
+ #editCategoryForm="ngForm"  (submit)="onSubmit(); editCategoryForm.resetForm()"> 
+    
+    <input
+    class="form-field"
+    [placeholder]="categoryElement.name"
+    [value]="categoryElement.name"
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="updateCategoryData.name"
+      #nameField="ngModel"
+    />
+    
+
+    <input
+    class="form-field"
+    [placeholder]="categoryElement.description.application"
+  [value]="categoryElement.description.application"
+  type="text"
+  id="application"
+  name="application"
+  [(ngModel)]="updateCategoryData.description.application"
+  #applicationField="ngModel"
+/>
+
+
+
+<input
+class="form-field"
+[placeholder]="categoryElement.description.custom"
+[value]="categoryElement.description.custom"
+  type="text"
+  id="custom"
+  name="custom"
+  
+  [(ngModel)]="updateCategoryData.description.custom"
+  #customField="ngModel"
+/>
+
+<input
+class="form-field" 
+[placeholder]="categoryElement.description.cost"
+[value]="categoryElement.description.cost"
+  type="text"
+  id="cost"
+  name="cost"
+  [(ngModel)]="updateCategoryData.description.cost"
+  #costField="ngModel"
+/> 
+
+<div class="buttons-container">
+<button class="button"  (click)="closeUpdateCategoryModal()" type="submit" [disabled]="editCategoryForm.invalid">Actaulizar</button>
+<button class="button"  type="button" (click)="closeUpdateCategoryModal()">Cancelar</button>
+</div> 
+</form>

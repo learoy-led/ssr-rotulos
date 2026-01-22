@@ -31,6 +31,7 @@ export class DetalleProductoComponent implements OnInit {
     installation: '',
     application: '',
     metaDescription: '',
+    categories: []
   };
   public mainImageIndex = 0;
   public productDetailsIndex = 0;

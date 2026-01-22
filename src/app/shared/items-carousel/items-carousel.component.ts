@@ -47,23 +47,18 @@ carouselNextElements() {
   }
 
   public ngOnInit() {
-      //aplicar el pipe filter
      
     this.categorySub = this.route.paramMap.subscribe(
       params => { 
         
-        
         this.categorySlug = params.get('category') ?? ''
 
-
         if (this.categorySlug !== '') {
-          this.productsSub = this.getProductsService.getCategoryBySlug(this.categorySlug).subscribe(
-       (category) => {
-        if (category) {
-        this.products = category.products
+          this.productsSub = this.getProductsService.getProductsByCategory(this.categorySlug).subscribe(
+       (products) => { 
+        this.products = products   
         this.productsShown = this.products.slice(this.currentIndex,this.currentIndex + 5)
-        }
-      }
+       }
      )
           } else {
            this.productsSub = this.getProductsService.getAllProducts().subscribe(

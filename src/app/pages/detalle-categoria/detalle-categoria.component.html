@@ -3,7 +3,7 @@
   <section class="centered-section">
     <h1 class="page-title centered-text">{{ categorySelectedData.name }}</h1>
     <app-cards
-      [cardElements]="categorySelectedData.products"
+      [cardElements]="products$ | async"
       [cardsClass]="'cards-grid'"
     ></app-cards>
   </section>

@@ -15,22 +15,28 @@ import { GetProductsService } from '../../core/services/get-products.service';
     styleUrl: './categorias.component.css'
 })
 export class CategoriasComponent implements OnInit {
+
 public categories$?: Observable <Category[]>;
   public categorySelectedName: string = ''
+public productsInCategory$?: Observable <Product[]>
+private productsCache = new Map<string, Observable<Product[]>>();
 
   constructor(private getProductsService: GetProductsService  ){} 
 
   ngOnInit() {
-   this.categories$ = this.getProductsService.getCategories()
+    this.categories$ = this.getProductsService.getCategories();
   }
- 
+
+
+  public getProductsInCategory(categorySlug: string): Observable<Product[]> {
+  if (!this.productsCache.has(categorySlug)) {
+    this.productsCache.set(categorySlug, this.getProductsService.getProductsByCategory(categorySlug));
+  }
+  return this.productsCache.get(categorySlug)!;
+}
 
   public onCategorySelectedChange(categoryName:string) {
 this.categorySelectedName = categoryName
   }
-
-  public isCategory(obj: Category | Product): obj is Category {
-  return (obj as Category).products !== undefined;
-}
 
 }

@@ -16,40 +16,38 @@ export class GetProductsService {
 
 
   public getCategories(): Observable<Category[]>{
-    return this.http.get<Category[]>( `${this.API_URL}categories`, {
-      headers: { 'Content-Type': 'application/json' },
-    });   
+    return this.http.get<Category[]>( `${this.API_URL}categories`);   
   }
 
 
   public getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>( `${this.API_URL}products`, {
-      headers: { 'Content-Type': 'application/json' },
-    });   
-   
+    return this.http.get<Product[]>( `${this.API_URL}products`);   
   } 
 
   public getCategoryBySlug(slug: string): Observable<Category> {
-    return this.http.get<Category>( `${this.API_URL}categories/${slug}`, {
-      headers: { 'Content-Type': 'application/json' },
-    });   
+    return this.http.get<Category>( `${this.API_URL}categories/${slug}`);   
   }
 
   public getProductBySlug(slug: string): Observable<Product> {
-    return this.http.get<Product>( `${this.API_URL}products/${slug}`, {
-      headers: { 'Content-Type': 'application/json' },
-    });   
+    return this.http.get<Product>( `${this.API_URL}products/${slug}`);   
   }
 
+  
 public getCategoryWithProductSlug(slug: string): Observable<Category | null> {
-  return this.getCategories().pipe(
-    map(categories => {
-      const category = categories.find(category =>
-        category.products.some(product => product.slug === slug)
-      );
-      return category ? category : null;
-    })
-  );
+ return this.http.get<Product>( `${this.API_URL}products/${slug}`).pipe(
+  map(product => product.categories[0])
+ )
 }
+
+public getProductsByCategory(slug:string): Observable<Product[]> {
+  return this.http.get<Product[]>( `${this.API_URL}products`).pipe(
+     map(
+          (products) => products.filter((product) => 
+            product.categories.some((category) =>
+             category.slug === slug
+            ))
+             )
+        ); 
+} 
 
 }

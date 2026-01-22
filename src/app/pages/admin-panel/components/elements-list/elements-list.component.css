@@ -1,0 +1,44 @@
+.elements-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 48px;
+}
+
+.list-element {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid var(--color-grey);
+    max-width: 180px;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.list-element-image {
+    width: 100%;
+}
+
+.list-element-name {
+    padding: 0 12px
+}
+
+.edit-delete-buttons {
+    display: flex;
+width: 100%;
+justify-content: space-between;
+padding: 10px
+}
+
+.edit-delete-button {
+background-color: var(--color-blue);
+color: var(--color-white);
+opacity: 0.7;
+padding: 4px 12px;
+border-radius: 10px;
+}
+
+.edit-delete-button:hover {
+   opacity: 1
+  }
+

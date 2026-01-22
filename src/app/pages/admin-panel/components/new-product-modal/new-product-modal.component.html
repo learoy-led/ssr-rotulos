@@ -1,0 +1,172 @@
+<form  #newProductForm="ngForm"  (submit)="onSubmit(); newProductForm.resetForm()"> 
+ 
+    <input
+      placeholder="Nombre del nuevo producto"
+      class="form-field"
+      type="text"
+      id="name"
+      name="name"
+      required
+      [(ngModel)]="newProductData.name"
+      #nameField="ngModel"
+    />
+    <p
+      *ngIf="nameField.touched && nameField.errors?.['required']"
+      class="error-message"
+    >
+      Por favor, introduce un nombre para el nuevo producto.
+    </p>
+    <p
+      *ngIf="nameField.invalid && nameField.dirty && nameField.errors?.['existingName']"
+      class="error-message"
+    >
+      Ya existe un producto con este nombre. Por favor, introduce un nombre distinto.
+    </p>
+
+  
+
+    <input
+    placeholder="slug-nuevo-producto"
+    class="form-field"
+    type="text"
+    id="slug"
+    name="slug"
+    required
+    [(ngModel)]="newProductData.slug"
+    #slugField="ngModel"
+  />
+  <p
+    *ngIf="slugField.touched && slugField.errors?.['required']"
+    class="error-message"
+  >
+    Por favor, introduce un slug para el nuevo producto. Puedes utilizar el nombre del producto reemplazando los espacios por guiones.
+  </p>
+  <p
+    *ngIf="slugField.invalid && slugField.dirty && slugField.errors?.['existingSlug']"
+    class="error-message"
+  >
+    Ya existe un producto con este slug. Por favor, introduce un slug distinto.
+  </p>
+
+ 
+  <!-- images: [{ type: String, required: true, trim: true }], -->
+
+
+     <input
+  placeholder="Descripción del nuevo producto."
+  class="form-field"
+  type="text"
+  id="description"
+  name="description"
+  required
+  [(ngModel)]="newProductData.description"
+  #descriptionField="ngModel"
+/>
+<p
+  *ngIf="descriptionField.touched && descriptionField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, introduce una descripción para el nuevo producto. 
+</p>
+
+
+
+<input 
+  placeholder="Materiales con los que está fabricado el nuevo producto."
+  class="form-field"
+  type="text"
+  id="material"
+  name="material"
+  required
+  [(ngModel)]="newProductData.material"
+  #materialField="ngModel"
+/>
+<p
+  *ngIf="materialField.touched && materialField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, introduce los materiales con los que está fabricado el nuevo producto. 
+</p>
+
+
+
+<input
+  placeholder="Describe el diseño del nuevo producto."
+  class="form-field"
+  type="text"
+  id="design"
+  name="design"
+  required
+  [(ngModel)]="newProductData.design"
+  #designField="ngModel"
+/>
+<p
+  *ngIf="designField.touched && designField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, describe el diseño del nuevo producto. 
+</p>
+
+
+
+<input
+  placeholder="Describe cómo instalar el nuevo producto."
+  class="form-field"
+  type="text"
+  id="installation"
+  name="installation"
+  required
+  [(ngModel)]="newProductData.installation"
+  #installationField="ngModel"
+/>
+<p
+  *ngIf="installationField.touched && installationField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, describe cómo se instala el nuevo producto. 
+</p>
+
+
+
+<input
+  placeholder="Enumera las aplicaciones del nuevo producto."
+  class="form-field"
+  type="text"
+  id="application"
+  name="application"
+  required
+  [(ngModel)]="newProductData.application"
+  #applicationField="ngModel"
+/>
+<p
+  *ngIf="applicationField.touched && applicationField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, enumera las aplicaciones del nuevo producto. 
+</p>
+<label for="images">Selecciona imágenes en formato webp de menos de 2MB:</label>
+<input
+  type="file"
+  class="form-field"
+   accept="image/webp"
+  multiple
+  id="images"
+  name="images"
+  required
+  (change)="onFilesSelected($event)"
+  
+/>
+<p
+  *ngIf="errorMessage "
+  class="error-message"
+>
+    {{ errorMessage }}
+</p>
+
+
+
+<div class="buttons-container">
+  <button class="button"  (click)="closeNewProductModal()" type="submit" [disabled]="newProductForm.invalid">Añadir</button>
+  <button class="button"  type="button" (click)="closeNewProductModal()">Cancelar</button>
+  </div>
+</form>

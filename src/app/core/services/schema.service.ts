@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { contactDetails } from '../../data/data';
 import { ContactDetails } from '../../models/data.models';
+import { PlatformService } from './platform.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,19 +10,23 @@ export class SchemaService {
 
   private contactDetails: ContactDetails = contactDetails
 
+  constructor(private platformService: PlatformService) {}
+
  
   public insertSchema(jsonLD: object, scriptId: string): void {
+    if (this.platformService.isBrowser()) {
     const existing = document.getElementById(scriptId);
+    
     if (existing) {
       existing.remove();
     }
-
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.id = scriptId;
     script.text = JSON.stringify(jsonLD);
 
     document.head.appendChild(script);
+  }
   }
 
   

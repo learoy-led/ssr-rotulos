@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --color-black: rgb(2, 21, 38);
   --color-blue: #059fec;
@@ -29,7 +33,7 @@
   font-optical-sizing: auto;
   /* font-weight: 400; */
   font-style: normal;
-    font-size: 14px; 
+    font-size: 16px; 
     line-height: 1.5em;
 }
 

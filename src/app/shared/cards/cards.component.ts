@@ -32,10 +32,12 @@ export class CardsComponent {
 categorySlug$.subscribe((category => element.type === 'category' ? this.router.navigateByUrl(`/${element.slug}`) :  this.router.navigateByUrl(  `/${category?.slug}/${element.slug}`))) 
     }
 
-    public getSrcImage(element: Category | Product) { 
-      //if (element.type === 'category' && (element as Category).products.length === 0) { return }
-      element.type === 'category' ? this.srcImage = (element as Category).products[0].images[0] : this.srcImage = (element as Product).images[0]
-      return this.srcImage
+    public getSrcImage(element: Category | Product): string { 
+      if (element.type === 'category') {
+    return (element as Category).image;
+  }
+
+  return (element as Product).images[0];
     }
 
     public getCardClass(element: Category | Product) {

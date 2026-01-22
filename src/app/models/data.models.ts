@@ -27,9 +27,8 @@ export interface Category {
   slug: string;
     order?: number,
   description: CategoryDescription;
-  products: Product[]
+  image: string
   }
-
 
 export interface Product {
   type: string,
@@ -42,7 +41,8 @@ material: string,
 design: string,
 installation: string,
 application: string,
-metaDescription: string
+metaDescription: string,
+categories: Category[]
 }
 
 

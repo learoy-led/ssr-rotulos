@@ -1,0 +1,35 @@
+.admin-panel-main {
+position: relative;
+z-index: 0;
+}
+
+.title-and-add-button {
+    display: flex;
+    gap: 30px;
+    align-items: center
+}
+
+
+.button-icon {
+    background-color: var(--color-blue); 
+       padding: 12px;
+      font-size: 20px;
+       border-radius: 150px;
+      color: var(--color-white);
+      cursor: pointer;
+      opacity: 0.7
+    }
+
+    .button-icon:hover {
+     opacity: 1
+    } 
+
+    .modal-section {
+      position: fixed;
+      top: 23%;
+      z-index: 1;
+      background-color: var(--color-white);
+      border-radius: 10px;
+      padding: 0;
+      width: 70%
+    }

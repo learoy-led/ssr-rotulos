@@ -10,7 +10,7 @@ import { TextsSectionComponent } from '../../shared/texts-section/texts-section.
 import { ContactBannerComponent } from '../../shared/contact-banner/contact-banner.component';
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
 import { CategoryCardsComponent } from '../../shared/category-cards/category-cards.component';
-import { SocialMediaComponent } from '../../core/components/social-media/social-media.component';
+import { PlatformService } from '../../core/services/platform.service';
 
 
 @Component({
@@ -31,7 +31,7 @@ import { SocialMediaComponent } from '../../core/components/social-media/social-
 export class HomeComponent implements OnInit, AfterViewInit {
   public categories$?: Observable<Category[]>;
 
-  constructor(private getProductsService: GetProductsService, private schemaService: SchemaService) {}
+  constructor(private getProductsService: GetProductsService, private schemaService: SchemaService, private platformService: PlatformService) {}
 
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
@@ -39,8 +39,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.schemaService.insertSchema(this.schemaService.getWebSiteSchema(), 'schema-website')
   }
 
+  //ver si esto va en otraa pág
   public ngAfterViewInit() {
-  const instagramScript = document.createElement('script');
+    if(this.platformService.isBrowser()){
+const instagramScript = document.createElement('script');
   instagramScript.src = "https://www.instagram.com/embed.js";
   instagramScript.async = true;
   document.body.appendChild(instagramScript);
@@ -49,5 +51,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
    tiktokScript.src = "https://www.tiktok.com/embed.js";
   tiktokScript.async = true;
   document.body.appendChild(tiktokScript);
+    }
 }
 }

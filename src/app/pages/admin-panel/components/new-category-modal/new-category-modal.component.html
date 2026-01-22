@@ -1,0 +1,123 @@
+<form  #newCategoryForm="ngForm"  (submit)="onSubmit(); newCategoryForm.resetForm()"> 
+   
+    <input
+    class="form-field"
+      placeholder="Nombre de la nueva categoría"
+      type="text"
+      id="name"
+      name="name"
+      required
+      [(ngModel)]="newCategoryData.name"
+      #nameField="ngModel"
+    />
+    <p
+      *ngIf="nameField.touched && nameField.errors?.['required']"
+      class="error-message"
+    >
+      Por favor, introduce un nombre para el nuevo elemento.
+    </p>
+    <p
+      *ngIf="nameField.invalid && nameField.dirty && nameField.errors?.['existingName']"
+      class="error-message"
+    >
+      Ya existe un elemento con este nombre. Por favor, introduce un nombre distinto.
+    </p>
+
+  
+
+    <input
+    class="form-field"
+    placeholder="slug-nueva-categoría"
+    type="text"
+    id="slug"
+    name="slug"
+    required
+    [(ngModel)]="newCategoryData.slug"
+    #slugField="ngModel"
+  />
+  <p
+    *ngIf="slugField.touched && slugField.errors?.['required']"
+    class="error-message"
+  >
+    Por favor, introduce un slug para el nuevo elemento. Puedes utilizar el nombre del elemento reemplazando los espacios por guiones.
+  </p>
+  <p
+    *ngIf="slugField.invalid && slugField.dirty && slugField.errors?.['existingSlug']"
+    class="error-message"
+  >
+    Ya existe un elemento con este slug. Por favor, introduce un slug distinto.
+  </p>
+
+ 
+    <input
+    class="form-field"
+  placeholder="¿Cuándo elegir este nuevo tipo de rótulo?"
+  type="text"
+  id="application"
+  name="application"
+  required
+  [(ngModel)]="newCategoryData.description.application"
+  #applicationField="ngModel"
+/>
+<p
+  *ngIf="applicationField.touched && applicationField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, describe cuándo elegir la nueva categoría. 
+</p>
+
+<input
+class="form-field"
+  placeholder="Enumera los tipos de producto que incluye la nueva categoría."
+  type="text"
+  id="products"
+  name="products"
+  required
+  [(ngModel)]="newCategoryData.description.products"
+  #productsField="ngModel"
+/>
+<p
+  *ngIf="productsField.touched && productsField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, enumera los tipos de producto que incluye la nueva categoría. 
+</p>
+
+<input
+class="form-field"
+  placeholder="¿Se pueden personalizar los rótulos de la nueva categoría?"
+  type="text"
+  id="custom"
+  name="custom"
+  required
+  [(ngModel)]="newCategoryData.description.custom"
+  #customField="ngModel"
+/>
+<p
+  *ngIf="customField.touched && customField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, explica qué opciones de personalización permiten los rótulos de la nueva categoría. 
+</p>
+
+<input
+class="form-field"
+  placeholder="¿Cuánto cuesta este nuevo tipo de rótulos?"
+  type="text"
+  id="cost"
+  name="cost"
+  required
+  [(ngModel)]="newCategoryData.description.cost"
+  #costField="ngModel"
+/>
+<p
+  *ngIf="costField.touched && costField.errors?.['required']"
+  class="error-message"
+>
+  Por favor, da una orientación descriptiva (no numérica) sobre la inversión necesaria para este tipo de rótulos. 
+</p>
+<div class="buttons-container">
+<button class="button"  (click)="closeNewCategoryModal()" type="submit" [disabled]="newCategoryForm.invalid">Añadir</button>
+<button class="button"  type="button" (click)="closeNewCategoryModal()">Cancelar</button>
+</div>
+</form>

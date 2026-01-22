@@ -20,9 +20,4 @@ public selectElement(category: Category ) {
       this.router.navigateByUrl(`/${category.slug}`) 
     }
 
-public getSrcImage(category: Category) { 
-      if (category.products.length === 0) { return }
-      this.srcImage = category.products[0].images[0]
-      return this.srcImage
-    }
 }

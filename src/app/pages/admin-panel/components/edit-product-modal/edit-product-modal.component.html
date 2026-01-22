@@ -1,0 +1,79 @@
+<form 
+*ngIf="productElement"
+ #editProductForm="ngForm"  (submit)="onSubmit(); editProductForm.resetForm()"> 
+    
+    <input
+    class="form-field"
+    [placeholder]="productElement.name"
+    [value]="productElement.name"
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="updateProductData.name"
+      #nameField="ngModel"
+    />
+    
+
+    <input
+    class="form-field"
+    [placeholder]="productElement.description"
+  [value]="productElement.description"
+  type="text"
+  id="description"
+  name="description"
+  [(ngModel)]="updateProductData.description"
+  #descriptionField="ngModel"
+/>
+
+
+
+<input
+class="form-field"
+[placeholder]="productElement.material"
+[value]="productElement.material"
+  type="text"
+  id="material"
+  name="material"
+  
+  [(ngModel)]="updateProductData.material"
+  #materialField="ngModel"
+/>
+
+<input
+class="form-field" 
+[placeholder]="productElement.design"
+[value]="productElement.design"
+  type="text"
+  id="design"
+  name="design"
+  [(ngModel)]="updateProductData.design"
+  #designField="ngModel"
+/> 
+
+<input
+class="form-field" 
+[placeholder]="productElement.installation"
+[value]="productElement.installation"
+  type="text"
+  id="installation"
+  name="installation"
+  [(ngModel)]="updateProductData.installation"
+  #installationField="ngModel"
+/> 
+
+<input
+class="form-field" 
+[placeholder]="productElement.application"
+[value]="productElement.application"
+  type="text"
+  id="application"
+  name="application"
+  [(ngModel)]="updateProductData.application"
+  #applicationField="ngModel"
+/> 
+
+<div class="buttons-container">
+<button class="button"  (click)="closeUpdateProductModal()" type="submit" [disabled]="editProductForm.invalid">Actaulizar</button>
+<button class="button"  type="button" (click)="closeUpdateProductModal()">Cancelar</button>
+</div> 
+</form>
