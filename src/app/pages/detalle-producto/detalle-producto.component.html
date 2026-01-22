@@ -5,7 +5,7 @@
       <figure class="product-images">
         <img
           class="main-image"
-          [src]="imagePrefix + productSelectedData.images[mainImageIndex]"
+          [src]="productSelectedData.images[mainImageIndex]"
           [alt]="imageAlts[mainImageIndex]"
         />
 
@@ -17,7 +17,7 @@
               class="product-image"
               [class.active]="i === mainImageIndex"
               (click)="updateProductDetails(i)"
-              [src]="imagePrefix + imageUrl"
+              [src]="imageUrl"
               [alt]="imageAlts[i]"
             />
           </li>

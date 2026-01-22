@@ -48,20 +48,25 @@
     Ya existe un producto con este slug. Por favor, introduce un slug distinto.
   </p>
 
- 
-  <!-- images: [{ type: String, required: true, trim: true }], -->
+ <label for="category">Selecciona una o varias categorías</label> 
+<select  class="form-field" name="category" id="category" multiple
+ [(ngModel)]="newProductData.categories"
+   #categoriesField="ngModel"
+ required
+>
+        @for(category of categories$ | async; track category._id) {
+        <option [value]="category._id">{{ category.name }}</option>
+        }
+</select>
 
-
-     <input
-  placeholder="Descripción del nuevo producto."
-  class="form-field"
-  type="text"
-  id="description"
-  name="description"
-  required
+<textarea 
+placeholder="Descripción del nuevo producto."
+name="description" id="description" 
+ class="form-field"
+required
   [(ngModel)]="newProductData.description"
   #descriptionField="ngModel"
-/>
+></textarea>
 <p
   *ngIf="descriptionField.touched && descriptionField.errors?.['required']"
   class="error-message"
@@ -70,17 +75,16 @@
 </p>
 
 
-
-<input 
-  placeholder="Materiales con los que está fabricado el nuevo producto."
+<textarea
+ placeholder="Materiales con los que está fabricado el nuevo producto."
   class="form-field"
-  type="text"
   id="material"
   name="material"
   required
   [(ngModel)]="newProductData.material"
   #materialField="ngModel"
-/>
+></textarea>
+
 <p
   *ngIf="materialField.touched && materialField.errors?.['required']"
   class="error-message"
@@ -89,17 +93,16 @@
 </p>
 
 
-
-<input
-  placeholder="Describe el diseño del nuevo producto."
+<textarea
+ placeholder="Describe el diseño del nuevo producto."
   class="form-field"
-  type="text"
   id="design"
   name="design"
   required
   [(ngModel)]="newProductData.design"
   #designField="ngModel"
-/>
+></textarea>
+
 <p
   *ngIf="designField.touched && designField.errors?.['required']"
   class="error-message"
@@ -108,17 +111,15 @@
 </p>
 
 
-
-<input
-  placeholder="Describe cómo instalar el nuevo producto."
+<textarea
+ placeholder="Describe cómo instalar el nuevo producto."
   class="form-field"
-  type="text"
   id="installation"
   name="installation"
   required
   [(ngModel)]="newProductData.installation"
   #installationField="ngModel"
-/>
+></textarea>
 <p
   *ngIf="installationField.touched && installationField.errors?.['required']"
   class="error-message"
@@ -127,27 +128,26 @@
 </p>
 
 
-
-<input
-  placeholder="Enumera las aplicaciones del nuevo producto."
+<textarea
+ placeholder="Enumera las aplicaciones del nuevo producto."
   class="form-field"
-  type="text"
   id="application"
   name="application"
   required
   [(ngModel)]="newProductData.application"
   #applicationField="ngModel"
-/>
+></textarea>
+
 <p
   *ngIf="applicationField.touched && applicationField.errors?.['required']"
   class="error-message"
 >
   Por favor, enumera las aplicaciones del nuevo producto. 
 </p>
-<label for="images">Selecciona imágenes en formato webp de menos de 2MB:</label>
+<label class="label" for="images">Selecciona imágenes en formato webp de menos de 2MB:</label>
 <input
   type="file"
-  class="form-field"
+  style="align-self: flex-start; padding-left: 12px"
    accept="image/webp"
   multiple
   id="images"

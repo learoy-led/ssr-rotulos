@@ -1,6 +1,6 @@
 <ul class="elements-list">
     <li class="list-element" *ngFor="let element of elements" >
-        <img class="list-element-image" [src]="imagePrefix+getSrcImage(element)" [alt]="getSrcImage(element) | alt" />
+        <img class="list-element-image" [src]="getSrcImage(element)" [alt]="getSrcImage(element) | alt" />
          <h3 class="list-element-name" >{{ element.name }}</h3>        
           <div class="edit-delete-buttons">
          <button class="edit-delete-button" (click)="openEditElementModal(element)">

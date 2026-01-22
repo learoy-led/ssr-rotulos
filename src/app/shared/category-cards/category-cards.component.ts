@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Category } from '../../models/data.models';
-import { IMAGEPREURL } from '../../data/data';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +11,6 @@ import { Router } from '@angular/router';
 export class CategoryCardsComponent {
  @Input() cardElements: (Category)[] | null = [];
  public srcImage: string = ''
-public imagePrefix: string = IMAGEPREURL
 
 constructor(private router: Router) {}
 

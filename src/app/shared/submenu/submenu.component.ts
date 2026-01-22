@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Category } from '../../models/data.models';
-import { IMAGEPREURL } from '../../data/data';
 import { GetProductsService } from '../../core/services/get-products.service';
 
 @Component({
@@ -16,7 +15,6 @@ import { GetProductsService } from '../../core/services/get-products.service';
 export class SubmenuComponent implements OnInit {
 
    public categories$?: Observable<Category[]>
-  public imagePrefix: string = IMAGEPREURL
   @Input() submenuVisible: boolean = false
 
   constructor( private getProductsService: GetProductsService ){}

@@ -178,6 +178,11 @@ form {
   width: 100%;
 }
 
+.label {
+  align-self: flex-start;
+  padding: 12px  0 0 22px;
+}
+
 .error-message {
   color: var(--color-red);
   text-align: left;

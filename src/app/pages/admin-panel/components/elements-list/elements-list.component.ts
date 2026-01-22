@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Category, Product } from '../../../../models/data.models';
 import { AdminProductsService } from '../../../../services/admin-products.service';
-import { iconPaths, IMAGEPREURL } from '../../../../data/data';
+import { iconPaths } from '../../../../data/data';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from '../../../../shared/icon/icon.component';
 import { AltPipe } from '../../../../pipes/alt.pipe';
@@ -18,7 +18,6 @@ export class ElementsListComponent {
   displayedElements: (Category | Product)[] = [];
 
   public srcImage: string = ''
-  public imagePrefix: string = IMAGEPREURL
   public binPath = iconPaths.bin
   public pencilPath = iconPaths.pencil
   

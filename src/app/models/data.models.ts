@@ -27,7 +27,8 @@ export interface Category {
   slug: string;
     order?: number,
   description: CategoryDescription;
-  image: string
+  image: string,
+  _id?: string
   }
 
 export interface Product {

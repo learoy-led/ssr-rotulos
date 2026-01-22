@@ -13,8 +13,6 @@ export const carouselImages: string[] = [
   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736352182/frame_61_jw9dfc.webp',
 ];
 
-export const IMAGEPREURL = 'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto'
-
 export const contactDetails: ContactDetails = {
   url: 'https://www.rotuloslesaroy.com',
   longName: 'Learoy LED Tecnology, S.L.',

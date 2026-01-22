@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
-import { IMAGEPREURL } from '../../data/data';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OrderPipe } from '../../pipes/order.pipe';
@@ -21,7 +20,6 @@ export class CardsComponent {
    @Input() cardsClass?: string = ''
 
   public srcImage: string = ''
-  public imagePrefix: string = IMAGEPREURL
   public cardClass: string = ''
 
   constructor(private router: Router, private getProductsService: GetProductsService) {}

@@ -1,8 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../../../../models/data.models';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Category, Product } from '../../../../models/data.models';
 import { AdminProductsService } from '../../../../services/admin-products.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { GetProductsService } from '../../../../core/services/get-products.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-new-product-modal',
@@ -10,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './new-product-modal.component.html',
   styleUrl: './new-product-modal.component.css'
 })
-export class NewProductModalComponent {
+export class NewProductModalComponent implements OnInit {
 
     public newProductData: Product = {
     type: 'product',
@@ -26,6 +28,9 @@ export class NewProductModalComponent {
     categories: [],
   }
   public selectedFiles: File[] = [];
+  public categories$?: Observable <Category[]>;
+
+
   @Input() newProductModalIsOpen = true
   @Output() newProductModalIsOpenState = new EventEmitter<boolean>()
   @Output() productAdded = new EventEmitter<void>(); 
@@ -34,7 +39,13 @@ export class NewProductModalComponent {
   private allowedTypes:string[] = ['image/webp']
   private maxSize:number = 2 * 1024 * 1024 //2MB
 
-  constructor(private adminProductsService: AdminProductsService) {}
+  constructor(private adminProductsService: AdminProductsService, private getProductsService: GetProductsService) {}
+
+  ngOnInit() {
+this.categories$ = this.getProductsService.getCategories()
+  }
+  
+  
 
   public onSubmit() {
      if (this.errorMessage) return;
@@ -42,17 +53,28 @@ export class NewProductModalComponent {
       const formData = new FormData();
 
 
-  Object.entries(this.newProductData).forEach(([key, value]) => {
-    formData.append(key, value as string);
-  });
+ Object.entries(this.newProductData).forEach(([key, value]) => {
+  if(key ==='categories') {
+    value.forEach((v: string)=> {
+formData.append('categories', v as string);
+    })
+  } else {
+  formData.append(key, value as string);
+  }
+});
+
 
   this.selectedFiles.forEach(file => {
     formData.append('image', file);
   });
 
+
+
   this.adminProductsService.addElement(formData, 'products');
     this.productAdded.emit()
   }
+
+
 
   public closeNewProductModal() {
     this.newProductModalIsOpen = false

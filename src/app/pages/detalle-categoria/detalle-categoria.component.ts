@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
-import { IMAGEPREURL } from '../../data/data';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
 import { CardsComponent } from '../../shared/cards/cards.component';
@@ -37,7 +36,6 @@ export class DetalleCategoriaComponent implements OnInit {
       metaDescription: '',
     },
   };
-  public imagePrefix: string = IMAGEPREURL;
   public pdfCatalogueVisible = false;
   public isLoading: boolean = true;
   public products$?: Observable <Product[]>;
@@ -57,8 +55,7 @@ export class DetalleCategoriaComponent implements OnInit {
           const title = `${this.categorySelectedData?.name} · Rótulos Learoy`;
           const description =
             this.categorySelectedData?.description.metaDescription;
-          const image =
-            this.imagePrefix + this.categorySelectedData?.image;
+          const image = this.categorySelectedData?.image;
           const slug = this.categorySelectedData?.slug ?? '';
 
            this.products$ = this.getProductsService.getProductsByCategory(slug)
@@ -66,10 +63,10 @@ export class DetalleCategoriaComponent implements OnInit {
           this.seoService.updateSeoDynamicTags(
             title,
             description ?? '',
-            image,
+            image ?? '',
             slug
           );
-          this.schemaService.insertSchema(this.schemaService.getServiceSchema(title, description ?? '', slug, image), 'schema-service')
+          this.schemaService.insertSchema(this.schemaService.getServiceSchema(title, description ?? '', slug, image ?? ''), 'schema-service')
           this.pdfCatalogueVisible =
             this.categorySelectedData?.slug === 'letras-corporeas';
         });

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/data.models';
-import { IMAGEPREURL } from '../../data/data';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
 import { ItemsCarouselComponent } from '../../shared/items-carousel/items-carousel.component';
@@ -35,7 +34,6 @@ export class DetalleProductoComponent implements OnInit {
   };
   public mainImageIndex = 0;
   public productDetailsIndex = 0;
-  public imagePrefix: string = IMAGEPREURL;
   public imageAlts: string[] = [];
   private currentRoute = '';
   public isLoading: boolean = true;
@@ -81,7 +79,7 @@ export class DetalleProductoComponent implements OnInit {
           const capitalizedTitle =
             title.charAt(0).toUpperCase() + title.slice(1);
           const description = this.productSelectedData.metaDescription;
-          const image = this.imagePrefix + this.productSelectedData.images[0];
+          const image = this.productSelectedData.images[0];
           this.seoService.updateSeoDynamicTags(
             capitalizedTitle,
             description,

@@ -4,7 +4,7 @@
 @for(category of categories$ | async; track category.slug) {
 <li>
         <a class="submenu-text" [routerLink]="[category.slug]"> 
-        <img [src]="imagePrefix+category.image" [alt]="category.name" class="submenu-image">{{category.name}}
+        <img [src]="category.image" [alt]="category.name" class="submenu-image">{{category.name}}
     </a>
 </li>
 } 
