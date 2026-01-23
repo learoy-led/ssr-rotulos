@@ -37,12 +37,12 @@ export class AdminProductsService {
      );
   }
 
-  public updateElement(element: Product | Category) {
-    let typeSlug = ''
-    if (element.type === 'category') {typeSlug = 'categories'} else if (element.type === 'product') {typeSlug = 'products'}
-      return this.http.put(`${this.API_URL}${typeSlug}/${element.slug}`, element, {
-        headers: { 'Content-Type': 'application/json' },
-      }).subscribe( response => {
+
+  public updateElement(element: FormData | Category, typeSlug:string) {
+   let slug
+   element instanceof FormData ? slug = element.get('slug') as string : slug = element.slug;
+      return this.http.put(`${this.API_URL}${typeSlug}/${slug}`, element
+      ).subscribe( response => {
         alert('El elemento se ha actualizado correctamente.')
     },
        error => {

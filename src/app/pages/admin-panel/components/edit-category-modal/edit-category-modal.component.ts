@@ -46,7 +46,7 @@ ngOnInit() {
 }
 
   public onSubmit() {
-    this.updateCategoryData && this.adminProductsService.updateElement(this.updateCategoryData);
+    this.updateCategoryData && this.adminProductsService.updateElement(this.updateCategoryData, 'categories');
     this.categoryUpdated.emit()
   }
 

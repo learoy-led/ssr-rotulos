@@ -12,65 +12,89 @@
       [(ngModel)]="updateProductData.name"
       #nameField="ngModel"
     />
+
+     <label for="category">Selecciona una o varias categorías</label> 
+<select  class="form-field" name="category" id="category" multiple
+ [(ngModel)]="updateProductData.categories"
+   #categoriesField="ngModel"
+ required
+>
+        @for(category of categories$ | async; track category._id) {
+        <option [value]="category._id">{{ category.name }}</option>
+        }
+</select>
     
 
-    <input
+<textarea 
     class="form-field"
     [placeholder]="productElement.description"
   [value]="productElement.description"
-  type="text"
   id="description"
   name="description"
   [(ngModel)]="updateProductData.description"
   #descriptionField="ngModel"
-/>
+></textarea>
 
 
 
-<input
+<textarea 
 class="form-field"
 [placeholder]="productElement.material"
 [value]="productElement.material"
-  type="text"
   id="material"
   name="material"
-  
   [(ngModel)]="updateProductData.material"
   #materialField="ngModel"
-/>
+></textarea>
 
-<input
+<textarea 
 class="form-field" 
 [placeholder]="productElement.design"
 [value]="productElement.design"
-  type="text"
   id="design"
   name="design"
   [(ngModel)]="updateProductData.design"
   #designField="ngModel"
-/> 
+></textarea>
 
-<input
+<textarea 
 class="form-field" 
 [placeholder]="productElement.installation"
 [value]="productElement.installation"
-  type="text"
   id="installation"
   name="installation"
   [(ngModel)]="updateProductData.installation"
   #installationField="ngModel"
-/> 
+></textarea>
 
-<input
+<textarea 
 class="form-field" 
 [placeholder]="productElement.application"
 [value]="productElement.application"
-  type="text"
   id="application"
   name="application"
   [(ngModel)]="updateProductData.application"
   #applicationField="ngModel"
-/> 
+></textarea>
+
+<label class="label" for="images">Añade una o varias imágenes en formato webp de menos de 2MB:</label>
+<input
+  type="file"
+  style="align-self: flex-start; padding-left: 12px"
+   accept="image/webp"
+  multiple
+  id="images"
+  name="images"
+  (change)="onFilesSelected($event)"
+  
+/>
+<p
+  *ngIf="errorMessage "
+  class="error-message"
+>
+    {{ errorMessage }}
+</p>
+
 
 <div class="buttons-container">
 <button class="button"  (click)="closeUpdateProductModal()" type="submit" [disabled]="editProductForm.invalid">Actaulizar</button>
