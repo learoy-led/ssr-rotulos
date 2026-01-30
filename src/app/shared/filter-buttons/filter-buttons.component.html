@@ -1,15 +1,19 @@
-<ul class="category-buttons">
+<ul class="filter-buttons">
     <li>
-        <button class="category-button" [class.active]="selectedCategoryIndex === null" (click)="updateFilterCategory('', null)">Todos</button>
+        <button class="filter-button" [class.active]="selectedItemIndex === null" (click)="updateFilterCategory('', null)">Todos</button>
     </li>
 
-@for(category of categories$ | async; track category.name ; let i = $index) {
+@for(item of items;  track i ; let i = $index) {
     <li>
-        <button class="category-button" [class.active]="i === selectedCategoryIndex" (click)="updateFilterCategory(category.name, i)">{{category.name}}
+        <button class="filter-button" [class.active]="i === selectedItemIndex" (click)="updateFilterCategory(item, i)">{{item}}
         </button>
     </li>
 }
 
 
 </ul>
+
+
+
+
 

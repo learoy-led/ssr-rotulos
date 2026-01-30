@@ -33,6 +33,7 @@ export class EditProductModalComponent {
     design: '',
     installation: '',
     application: '',
+    light: false,
     metaDescription: '',
     categories: []
   }

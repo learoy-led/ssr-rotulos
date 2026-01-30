@@ -2,8 +2,11 @@
   @if (categorySelectedData) {
   <section class="centered-section">
     <h1 class="page-title centered-text">{{ categorySelectedData.name }}</h1>
+      @if (pdfCatalogueVisible) {
+<app-filter-buttons [filterParam]="'light'" [itemSelected]="itemSelected" (itemSelectedUpdate)="onItemSelectedChange($event)"></app-filter-buttons>
+        }
     <app-cards
-      [cardElements]="products$ | async"
+      [cardElements]="productsShown$ | async"
       [cardsClass]="'cards-grid'"
     ></app-cards>
   </section>

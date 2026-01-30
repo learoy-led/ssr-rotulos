@@ -1,11 +1,11 @@
-.category-buttons {
+.filter-buttons {
 display: flex;
 flex-wrap: wrap;
 gap: 18px;
 justify-content: center;
 }
 
-.category-button {
+.filter-button {
     background-color: var(--color-blue);
     color: var(--color-white);
     transition: transform 0.3s ease;
@@ -15,21 +15,21 @@ justify-content: center;
     opacity: 0.7
  }
 
-  .category-button:hover {
+  .filter-button:hover {
     box-shadow: var(--black-shadow);
     opacity: 1
   }
 
-  .category-button.active {
+  .filter-button.active {
     opacity: 1
   }
   
   @media screen and (max-width: 766px) {
-    .category-buttons {
+    .filter-buttons {
         gap: 8px;
         }
 
-        .category-button {
+        .filter-button {
             font-size: 16px;
             padding: 3px 6px
          }

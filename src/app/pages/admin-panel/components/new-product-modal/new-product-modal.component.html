@@ -48,8 +48,15 @@
     Ya existe un producto con este slug. Por favor, introduce un slug distinto.
   </p>
 
- <label for="category">Selecciona una o varias categorías</label> 
-<select  class="form-field" name="category" id="category" multiple
+     
+   <label class="label" for="light">
+<input  type="checkbox" [(ngModel)]="newProductData.light" name="light" id="light">
+Luminoso
+   </label>
+
+ <label for="category" class="label">Selecciona una o varias categorías:</label> 
+ 
+<select  class="form-field" [size]="(categories$| async)?.length" name="category" id="category" multiple
  [(ngModel)]="newProductData.categories"
    #categoriesField="ngModel"
  required

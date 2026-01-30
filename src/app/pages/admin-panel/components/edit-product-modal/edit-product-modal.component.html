@@ -13,8 +13,14 @@
       #nameField="ngModel"
     />
 
-     <label for="category">Selecciona una o varias categorías</label> 
-<select  class="form-field" name="category" id="category" multiple
+        
+   <label class="label" for="light">
+<input type="checkbox" [(ngModel)]="updateProductData.light" name="light" id="light" [value]="productElement.light">
+Luminoso
+   </label>
+
+     <label class="label" for="category">Selecciona una o varias categorías</label> 
+<select class="form-field" name="category" id="category" multiple [size]="(categories$| async)?.length"
  [(ngModel)]="updateProductData.categories"
    #categoriesField="ngModel"
  required

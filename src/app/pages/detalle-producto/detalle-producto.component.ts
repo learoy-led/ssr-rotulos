@@ -29,6 +29,7 @@ export class DetalleProductoComponent implements OnInit {
     design: '',
     installation: '',
     application: '',
+    light: false,
     metaDescription: '',
     categories: []
   };

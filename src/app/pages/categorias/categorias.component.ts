@@ -17,9 +17,11 @@ import { GetProductsService } from '../../core/services/get-products.service';
 export class CategoriasComponent implements OnInit {
 
 public categories$?: Observable <Category[]>;
-  public categorySelectedName: string = ''
+  public categorySelected: string = ''
+    
 public productsInCategory$?: Observable <Product[]>
 private productsCache = new Map<string, Observable<Product[]>>();
+
 
   constructor(private getProductsService: GetProductsService  ){} 
 
@@ -35,8 +37,7 @@ private productsCache = new Map<string, Observable<Product[]>>();
   return this.productsCache.get(categorySlug)!;
 }
 
-  public onCategorySelectedChange(categoryName:string) {
-this.categorySelectedName = categoryName
+  public onCategorySelectedChange(categoryName: string) {
+this.categorySelected = categoryName
   }
-
 }

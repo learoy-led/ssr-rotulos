@@ -8,8 +8,8 @@
 
     <section class="centered-section">
     <h1 class="page-title">Modelos de rotulación</h1>
-<app-filter-buttons [categorySelectedName]="categorySelectedName" (categorySelected)="onCategorySelectedChange($event)"></app-filter-buttons>
-@for(category of categories$ | async | filter: categorySelectedName; track category.name; let i = $index) {
+<app-filter-buttons [filterParam]="'categories'" [itemSelected]="categorySelected" (itemSelectedUpdate)="onCategorySelectedChange($event)"></app-filter-buttons>
+@for(category of categories$ | async | filter: categorySelected; track category.name; let i = $index) {
   <div>
       <h2 class="subtitle centered-text">{{category.name}}</h2>
 <app-cards [cardElements]="getProductsInCategory(category.slug) | async" [cardsClass]="'cards-grid'"></app-cards>

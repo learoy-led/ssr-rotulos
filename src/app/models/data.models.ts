@@ -42,6 +42,7 @@ material: string,
 design: string,
 installation: string,
 application: string,
+light: boolean,
 metaDescription: string,
 categories: Category[]
 }

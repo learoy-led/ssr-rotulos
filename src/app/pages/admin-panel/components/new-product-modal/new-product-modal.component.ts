@@ -24,6 +24,7 @@ export class NewProductModalComponent implements OnInit {
     design: '',
     installation: '',
     application: '',
+    light: false,
     metaDescription: '',
     categories: [],
   }

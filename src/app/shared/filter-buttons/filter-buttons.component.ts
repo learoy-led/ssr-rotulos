@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Category } from '../../models/data.models';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { CommonModule } from '@angular/common';
 
@@ -14,22 +13,39 @@ import { CommonModule } from '@angular/common';
 
 export class FilterButtonsComponent implements OnInit {
 
-  public categories$?: Observable<Category[]>;
-@Input() categorySelectedName: string = ''
-@Output() categorySelected = new EventEmitter<string>()
-public selectedCategoryIndex: number | null = null
+public items: string[] = [];
+
+@Input() filterParam: string = '';
+@Input() itemSelected: string = '';
+
+
+
+@Output() itemSelectedUpdate = new EventEmitter<string>()
+public selectedItemIndex: number | null = null
 
 constructor( private getProductsService: GetProductsService ){}
 
 ngOnInit() {
-  this.categories$ = this.getProductsService.getCategories();
+ 
+  if (this.filterParam === 'light') {
+  this.items = ["Letras luminosas", "Letras sin luz"]
+  } 
+
+   if (this.filterParam === 'categories') {
+   this.getProductsService.getCategories().subscribe(categories => {
+    this.items = categories.map(cat => cat.name);
+  }
+)
+     
+  } 
+  
 }
 
 
-public updateFilterCategory(categoryName: string, index: number | null) {
-  this.categorySelectedName = categoryName
-  this.categorySelected.emit(this.categorySelectedName)
-  this.selectedCategoryIndex = index
+public updateFilterCategory(itemName: string, index: number | null) {
+  this.itemSelected = itemName
+  this.itemSelectedUpdate.emit(this.itemSelected)
+  this.selectedItemIndex = index
 };
 
 }
