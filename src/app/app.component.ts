@@ -66,37 +66,14 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.platformService.isBrowser() &&
-      this.getCookie('cookieconsent_status') === 'allow' &&
-      this.addAnalyticsScript();
 
-    this.routerSubscription = this.router.events.subscribe((event) => {
-      const staticRoutes = [
-        '/',
-        '/catalogo',
-        '/nosotros',
-        '/casos-de-exito',
-        '/contacto',
-      ];
+     if (this.platformService.isBrowser()) {
 
-      if (event instanceof NavigationEnd) {
-        if (staticRoutes.includes(event.urlAfterRedirects)) {
-          this.seoService.updateSeoStaticTags();
-        }
-        //const url = 'https://www.rotuloslearoy.com' + this.router.url;
-        //this.setCanonicalTag(url);
+          //this.listenLoading();
 
-        if (this.platformService.isBrowser() && typeof gtag === 'function') {
-          gtag('event', 'page_view', {
-            page_path: event.urlAfterRedirects,
-          });
-        }
-      }
-    });
+      this.getCookie('cookieconsent_status') === 'allow' && this.addAnalyticsScript();
 
-    if (this.platformService.isBrowser()) {
-      //this.listenLoading();
-
+      
       this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
         () => {}
       );
@@ -145,8 +122,43 @@ export class AppComponent implements OnInit, OnDestroy {
           console.log('nolow', event);
         }
       );
+
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      const staticRoutes = [
+        '/',
+        '/catalogo',
+        '/nosotros',
+        '/casos-de-exito',
+        '/contacto',
+      ];
+
+      if (event instanceof NavigationEnd) {
+        if (staticRoutes.includes(event.urlAfterRedirects)) {
+          this.seoService.updateSeoStaticTags();
+        }
+
+  const url = 'https://www.rotuloslearoy.com' + event.urlAfterRedirects;
+  this.setCanonicalTag(url);        
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'page_view', {
+            page_path: event.urlAfterRedirects,
+          });
+        }
+      }
+    });
+
+   
+  
+
     }
   }
+
+    // public listenLoading() {
+  //   this.loadingService.getLoadingStatus().subscribe((isLoading) => {
+  //     this.isLoading = isLoading;
+  //   });
+  // }
 
   public getCookie(name: string): string | null {
     return (
@@ -157,14 +169,8 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  // public listenLoading() {
-  //   this.loadingService.getLoadingStatus().subscribe((isLoading) => {
-  //     this.isLoading = isLoading;
-  //   });
-  // }
 
   private addAnalyticsScript() {
-    console.log('ejecuta añadir script');
     if (!document.getElementById('google-analytics-script')) {
       const script = document.createElement('script');
       script.id = 'google-analytics-script';
@@ -202,8 +208,17 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  private setCanonicalTag(url: string) {
+  const link: HTMLLinkElement = document.querySelector("link[rel='canonical']") || document.createElement('link');
+  link.setAttribute('rel', 'canonical');
+  link.setAttribute('href', url);
+  if (!link.parentElement) {
+    document.head.appendChild(link);
+  }
+}
+
+
   ngOnDestroy() {
-    this.routerSubscription?.unsubscribe();
     this.popupOpenSubscription?.unsubscribe();
     this.popupCloseSubscription?.unsubscribe();
     this.initializingSubscription?.unsubscribe();
@@ -212,5 +227,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.statusChangeSubscription?.unsubscribe();
     this.revokeChoiceSubscription?.unsubscribe();
     this.noCookieLawSubscription?.unsubscribe();
+    this.routerSubscription?.unsubscribe();
   }
 }

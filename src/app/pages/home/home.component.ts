@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Category } from '../../models/data.models';
@@ -28,7 +28,7 @@ import { PlatformService } from '../../core/services/platform.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   public categories$?: Observable<Category[]>;
 
   constructor(private getProductsService: GetProductsService, private schemaService: SchemaService, private platformService: PlatformService) {}
@@ -38,19 +38,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.schemaService.insertSchema(this.schemaService.getLocalBusinessSchema(),'schema-localbusiness')
     this.schemaService.insertSchema(this.schemaService.getWebSiteSchema(), 'schema-website')
   }
-
-  //ver si esto va en otraa pág
-  public ngAfterViewInit() {
-    if(this.platformService.isBrowser()){
-const instagramScript = document.createElement('script');
-  instagramScript.src = "https://www.instagram.com/embed.js";
-  instagramScript.async = true;
-  document.body.appendChild(instagramScript);
-  
-  const tiktokScript = document.createElement('script');
-   tiktokScript.src = "https://www.tiktok.com/embed.js";
-  tiktokScript.async = true;
-  document.body.appendChild(tiktokScript);
-    }
-}
 }
