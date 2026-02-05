@@ -121,6 +121,16 @@ export const routes: Routes = [
     title: 'Panel administración | Rótulos Learoy',
   },
   {
+  path: 'rotulos-luminosos/cartel-luminoso-con-metacrilato-incrustado',
+  redirectTo: '/rotulos-luminosos',
+  pathMatch: 'full'
+},
+{
+  path: 'rotulos-luminosos/letras-metacrilato-grueso-con-fondo-metalico',
+  redirectTo: '/rotulos-luminosos',
+  pathMatch: 'full'
+},
+  {
     path: 'pagina-no-encontrada',
     loadComponent: () =>
       import(
