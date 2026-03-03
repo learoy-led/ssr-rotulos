@@ -1,0 +1,88 @@
+:host {
+    display: flex;
+    gap: 35px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.fa-regular {
+height: 150px;
+color: var(--color-grey);
+margin-bottom: 35px;
+}
+
+.preview-figure {
+height: 550px;
+width: 650px; 
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
+box-shadow: var(--blue-shadow);
+}
+
+.no-preview {
+padding: 72px 52px;
+box-shadow: var(--black-shadow);
+}
+
+.ia-image {
+    height: 512px;
+    width: 650px; 
+    object-fit: cover; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.preview-form {
+    height: 550px;
+    width: 650px; 
+    padding: 32px;
+}
+
+.color-picker, .font-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.color-circle {
+box-shadow: var(--black-shadow);
+border-radius: 50%;
+width: 35px;
+height: 35px;
+}
+
+.background-square {
+box-shadow: var(--black-shadow);
+border-radius: 8px;
+width: 100px;
+height: 50px;
+background-size: cover; 
+}
+
+.font-preview {
+box-shadow: var(--black-shadow);
+border: 1px solid var(--color-grey);
+padding: 4px 8px;
+text-align: center;
+white-space: nowrap
+}
+
+.color-circle:hover, .background-square:hover, .font-preview:hover {
+box-shadow: var(--blue-shadow);
+cursor: pointer ;
+}
+
+input[type="radio"]:checked + .color-circle, input[type="radio"]:checked + .background-square {
+box-shadow: var(--blue-shadow);
+transform: scale(1.25);
+}
+
+input[type="radio"]:checked + .font-preview {
+box-shadow: var(--blue-shadow);
+transform: scale(1.25);
+}

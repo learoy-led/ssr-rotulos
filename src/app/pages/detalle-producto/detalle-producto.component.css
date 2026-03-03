@@ -1,4 +1,4 @@
-.product-details {
+.product-details  {
   margin: auto;
 }
 
@@ -55,10 +55,6 @@
     opacity: 100%;
   }
 
-  .products-details {
-   margin: auto;
-  }
-
   .product-types {
     display: flex;
     gap:12px;
@@ -81,12 +77,17 @@
   font-weight: 600;
   font-size: 18px;
 }
-  .related-products {
+
+  .related-products, .personalizador-section  {
     display: flex;
     flex-direction: column;
     margin: auto; 
     align-items: center
   }
+
+  
+
+
 
   @media screen and (max-width: 766px) {
   .main-product-details {

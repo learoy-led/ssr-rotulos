@@ -66,6 +66,13 @@
       </ul>
     </div>
   </section>
+  @if(productSelectedData.renderKey) {
+<section class="personalizador-section">
+  <h2 class="subtitle">Personaliza tu rótulo</h2>
+  <app-personalizdor [renderKey]="productSelectedData.renderKey"></app-personalizdor>
+  </section>
+  }
+
 
   <section class="related-products">
     <h2 class="subtitle">

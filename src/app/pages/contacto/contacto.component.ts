@@ -5,7 +5,7 @@ import { SchemaService } from '../../core/services/schema.service';
 @Component({
     selector: 'app-contacto',
       standalone: true,
-    imports: [ContactFormComponent],
+    imports: [ContactFormComponent, ],
     templateUrl: './contacto.component.html',
     styleUrl: './contacto.component.css'
 })

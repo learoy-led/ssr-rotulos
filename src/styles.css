@@ -145,6 +145,7 @@ button:disabled {
   font-size: 18px;
   font-weight: 500;
   width: fit-content;
+  margin-top: 10px
 }
 
 .button:hover {
@@ -166,6 +167,7 @@ form {
   background-color: rgba(1, 90, 164, 0.1);
   border-radius: 10px;
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex-direction: column;
 }
@@ -180,7 +182,6 @@ form {
 
 .label {
   align-self: flex-start;
-  padding: 12px  0 0 22px;
 }
 
 .buttons-container {

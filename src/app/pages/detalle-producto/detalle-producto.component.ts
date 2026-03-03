@@ -9,11 +9,12 @@ import { GetProductsService } from '../../core/services/get-products.service';
 import { LoadingService } from '../../core/services/loading.service';
 import { PlatformService } from '../../core/services/platform.service';
 import { SchemaService } from '../../core/services/schema.service';
+import { PersonalizdorComponent } from '../../personalizdor/personalizdor.component';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent],
+  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })
@@ -31,6 +32,7 @@ export class DetalleProductoComponent implements OnInit {
     application: '',
     light: false,
     metaDescription: '',
+    renderKey: '',
     categories: []
   };
   public mainImageIndex = 0;
@@ -61,10 +63,7 @@ export class DetalleProductoComponent implements OnInit {
       const productSlug = params.get('product') ?? '';
       this.currentRoute = `${categorySlug}/${productSlug}`;
 
-      //this.getProductsService
-       // .getProductBySlug(productSlug)
-        //.subscribe((product) => {
-          //this.productSelectedData = product;
+  
           this.imageAlts = this.productSelectedData.images.map((img) =>
             this.getImageAlt(img)
           );
@@ -89,7 +88,7 @@ export class DetalleProductoComponent implements OnInit {
           );
           this.schemaService.insertSchema(this.schemaService.getServiceSchema(capitalizedTitle, description, this.currentRoute, image), 'schema-service')
         });
-   // });
+  
     if (this.platformService.isBrowser()) {
       this.listenLoading();
     }
