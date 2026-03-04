@@ -85,8 +85,6 @@
     align-items: center
   }
 
-  
-
 
 
   @media screen and (max-width: 766px) {
@@ -98,5 +96,8 @@
   .product-images, .product-texts {
   width: 100%
 }
- 
+
+.personalizador-section  {
+ padding: 15px 0;
+}
 }
