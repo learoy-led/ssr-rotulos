@@ -25,7 +25,6 @@ align-items: center;
 
 
 .ia-image {
-    object-fit: cover;
     width: 100%;
 }
 
