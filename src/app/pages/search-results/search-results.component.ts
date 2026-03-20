@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { CommonModule } from '@angular/common';
 import { GetProductsService } from '../../core/services/get-products.service';
-import { Product } from '../../models/data.models';
+import { Category, Product } from '../../models/data.models';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
@@ -36,7 +36,7 @@ constructor(private getProductsService: GetProductsService, private route: Activ
 
   }
 
-  public selectProduct(element: Product ) {
+  public selectProduct(element: Product | Category) {
    const categorySlug$ = this.getProductsService.getCategoryWithProductSlug(element.slug)
 categorySlug$.subscribe((category => this.router.navigateByUrl(`/${category?.slug}/${element.slug}`))) 
      }
