@@ -1,27 +1,25 @@
 .filter-buttons {
 display: flex;
 flex-wrap: wrap;
-gap: 18px;
 justify-content: center;
+gap: 18px
 }
 
 .filter-button {
-    background-color: var(--color-blue);
-    color: var(--color-white);
-    transition: transform 0.3s ease;
+    border: 1px solid var(--color-blue);
+    background-color: transparent;
     border-radius: 6px;
+    transition: border 0.3s ease;
     font-size: 18px;
-    padding: 3px 8px;
-    opacity: 0.7
+    padding: 6px 12px;;
  }
 
   .filter-button:hover {
-    box-shadow: var(--black-shadow);
-    opacity: 1
+   border: 1px solid var(--color-fuchsia);
   }
 
   .filter-button.active {
-    opacity: 1
+    border: 1px solid var(--color-fuchsia);
   }
   
   @media screen and (max-width: 766px) {

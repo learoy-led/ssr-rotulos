@@ -1,69 +1,72 @@
 header {
   position: fixed;
   z-index: 1000;
-  box-shadow:  2px 2px 4px lightgrey;
-  background-color: white;
+  background-color: var(--color-white);
 }
 
-.main-header {
+ .keywords-banner {
+    height: 4vh;
+    width: 100vw;
+ white-space: nowrap; 
+   overflow: hidden;
+   background-color: var(--color-lima);
+  }
+
+  @keyframes moveWords {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+    .keywords {
+    display: flex;
+    align-items: center;
+     max-width: 100%;
+  color: var(--color-black);
+  animation: moveWords 20s linear infinite; 
+height: 4vh
+}
+
+.keywords > li {
+  display: flex;
+  gap: 24px;
+  padding: 0 12px;
+  
+ } 
+
+ .keywords > li > p, .keywords > li > span {
+ font-size: 14px;
+ } 
+
+ .keywords > li > p  {
+ white-space: nowrap;
+ } 
+
+  .main-header {
   display: flex;
   align-items: center;
    justify-content: space-between; 
   height: 9vh;
   width: 100vw; 
   padding: 12px 76px;
-  background-color: var(--color-black);
 }
-
-  .secondary-header .fa-solid {
-    height: 18px;
-  }
-
-  .contact-buttons .fa-solid {
-    height: 20px;
-  }
-
-  .secondary-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    height: 4vh;
-    font-size: 16px;
-  }
-
-   .secondary-header > li {
-     display: flex;
-      gap: 6px;
-  }
-
    .logo, .logo > img {
     height: 100%;
   } 
-  
 
 .contact-buttons {
 display: flex;
-gap: 10px;
+gap: 18px;
 }
 
-.contact-buttons > li {
-  background-color: rgb(226, 226, 226, 0.1);
-    border-radius: 50%;
-    height: 48px;
-    width: 48px;
-    display: flex;
-}
-
-  .call-button, .contact-button {
-       color: var(--color-white); 
+  .call-button, .contact-button {    
        margin: auto;
         display: flex;
   } 
 
-  .contact-buttons > li:hover {
- box-shadow: var(--white-shadow); 
-}
 
   .burguer {
     display: none;

@@ -5,10 +5,19 @@
       @if (pdfCatalogueVisible) {
 <app-filter-buttons [filterParam]="'light'" [itemSelected]="itemSelected" (itemSelectedUpdate)="onItemSelectedChange($event)"></app-filter-buttons>
         }
-    <app-cards
-      [cardElements]="productsShown$ | async"
-      [cardsClass]="'cards-grid'"
-    ></app-cards>
+
+<ul class="products-list">
+
+        @for (product of productsShown$ | async ; track product._id) {
+        
+  <li class="product-card">
+      <a [routerLink]="[`/${categorySelectedData.slug}/${product.slug}`]">
+    <app-card [product]="product"></app-card>
+</a>
+</li>
+}
+      </ul>
+
   </section>
 
   <section>

@@ -33,7 +33,7 @@
         @for(category of categories$ | async; track category.slug) {
  <ul>
           <li class="footer-nav-element">
-            <a class="category-links" [routerLink]="[category.slug]">{{ category.name }}</a>
+            <a class="footer-link" [routerLink]="[category.slug]">{{ category.name }}</a>
           </li>
         </ul>
         }
@@ -46,7 +46,7 @@
         @for(keyword of keywords; track keyword.text) {
 <ul>
           <li class="footer-nav-element">
-            <a class="category-links" [routerLink]="[keyword.link]">{{ keyword.text }}</a>
+            <a class="footer-link" [routerLink]="[keyword.link]">{{ keyword.text }}</a>
           </li>
         </ul>
         }
@@ -59,16 +59,16 @@
         <h2 class="footer-nav-title">Rótulos Learoy</h2>
         <ul>
           <li class="footer-nav-element">
-            <a class="category-links" [routerLink]="['/nosotros']">Nosotros</a>
+            <a class="footer-link" [routerLink]="['/nosotros']">Nosotros</a>
           </li>
           <li class="footer-nav-element">
-            <a class="category-links" [routerLink]="['/aviso-legal']">Aviso legal</a>
+            <a class="footer-link" [routerLink]="['/aviso-legal']">Aviso legal</a>
           </li>
           <li class="footer-nav-element">
-            <a class="category-links" [routerLink]="['/politica-de-cookies']">Política de cookies</a>
+            <a class="footer-link" [routerLink]="['/politica-de-cookies']">Política de cookies</a>
           </li>
           <li class="footer-nav-element">
-            <a class="category-links" [routerLink]="['/politica-de-privacidad']">Política de privacidad</a>
+            <a class="footer-link" [routerLink]="['/politica-de-privacidad']">Política de privacidad</a>
           </li>
       
         </ul>

@@ -1,4 +1,21 @@
-  .icon-svg {
-     height: 22px;
+:host {
+     color: var(--color-blue);
+      transition: color 0.3s ease;
+} 
+
+:host:hover {
+   color: var(--color-fuchsia)
+}
+
+ .icon-svg {
+     height: 28px;
      display: flex;
+     fill: currentColor;
        }
+
+    
+         path {
+  stroke: currentColor;
+  stroke-width: 20;
+  fill: none;
+}

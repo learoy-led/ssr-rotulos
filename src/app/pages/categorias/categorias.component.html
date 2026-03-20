@@ -12,7 +12,17 @@
 @for(category of categories$ | async | filter: categorySelected; track category.name; let i = $index) {
   <div>
       <h2 class="subtitle centered-text">{{category.name}}</h2>
-<app-cards [cardElements]="getProductsInCategory(category.slug) | async" [cardsClass]="'cards-grid'"></app-cards>
+      <ul class="products-list">
+
+        @for (product of getProductsInCategory(category.slug) | async ; track product._id) {
+        
+  <li class="product-card">
+      <a [routerLink]="[`/${category?.slug}/${product.slug}`]">
+    <app-card [product]="product"></app-card>
+</a>
+</li>
+}
+      </ul>
   </div>
 }
   

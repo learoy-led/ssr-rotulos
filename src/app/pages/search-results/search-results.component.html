@@ -4,8 +4,19 @@
     
      <ng-container *ngIf="products$ | async as products">   
     @if(products.length > 0) {
- <app-cards [cardElements]="products | filter: productSearch" [cardsClass]="'cards-grid'"></app-cards>
-    } @else {
+
+<ul class="products-list">
+  @for (product of products | filter: productSearch; track product._id) {
+  <li class="product-card" (click)="selectProduct(product) ">
+      
+    <app-card [product]="product"></app-card>
+ 
+</li>
+}
+</ul>
+
+
+} @else {
   <p>No hay productos con este nombre.</p>
     } 
      </ng-container> 

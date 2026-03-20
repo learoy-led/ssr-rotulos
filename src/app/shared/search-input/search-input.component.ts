@@ -1,16 +1,19 @@
 import {  Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {  NavigationEnd, Router } from '@angular/router';
 import {  Subscription } from 'rxjs';
+import { iconPaths } from '../../data/data';
+import { IconComponent } from '../icon/icon.component';
 
 
 @Component({
   selector: 'app-search-input',
-  imports: [],
+  imports: [IconComponent],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.css'
 })
 export class SearchInputComponent implements OnInit, OnDestroy {
  
+  public searchPath = iconPaths.search
   query: string = '';
 public routeSubscription: Subscription | null = null;
 @ViewChild('search', { static: false }) searchInput!: ElementRef<HTMLInputElement>;

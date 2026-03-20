@@ -37,7 +37,6 @@ export class DetalleProductoComponent implements OnInit {
   };
   public mainImageIndex = 0;
   public productDetailsIndex = 0;
-  public imageAlts: string[] = [];
   private currentRoute = '';
   public isLoading: boolean = true;
 
@@ -62,11 +61,6 @@ export class DetalleProductoComponent implements OnInit {
       const categorySlug = params.get('category') ?? '';
       const productSlug = params.get('product') ?? '';
       this.currentRoute = `${categorySlug}/${productSlug}`;
-
-  
-          this.imageAlts = this.productSelectedData.images.map((img) =>
-            this.getImageAlt(img)
-          );
 
           const category$ = this.getProductsService.getCategoryWithProductSlug(
             this.productSelectedData.slug
@@ -96,12 +90,6 @@ export class DetalleProductoComponent implements OnInit {
 
   public updateProductDetails(index: number) {
     this.mainImageIndex = index;
-  }
-
-  public getImageAlt(img: string) {
-    return (
-      img.split('/').pop()?.split('.')[0].split('_')[0] || 'Rótulo publicitario'
-    );
   }
 
   public listenLoading() {

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Category, Product } from '../models/data.models';
+import { Product } from '../models/data.models';
 
 @Pipe({
   name: 'filter',
@@ -8,9 +8,9 @@ import { Category, Product } from '../models/data.models';
 export class FilterPipe implements PipeTransform {
 
    transform(
-    elements: (Category | Product )[] | null,
+    elements: (Product)[] | null,
     elementSelected: string
-  ): (Category | Product )[] | null | undefined {
+  ): (Product )[] | null | undefined {
     const elementFiltered = elements?.filter((el) =>
       el.name.toLowerCase().includes(elementSelected.toLowerCase())  || el.slug.toLowerCase().includes(elementSelected.toLowerCase()));
     return elements && elementSelected ? elementFiltered : elements;

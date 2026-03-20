@@ -85,6 +85,17 @@
     align-items: center
   }
 
+  .personalizador-section  {
+    width: 100%;
+      background: linear-gradient(180deg,
+   #02a9ea 0%, 
+   #140018 70%, 
+  #000300 100%); 
+  }
+
+.white-shubtitle {
+  color: var(--color-white)
+}
 
 
   @media screen and (max-width: 766px) {

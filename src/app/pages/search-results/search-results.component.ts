@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { Product } from '../../models/data.models';
 import { Observable } from 'rxjs';
-import { CardsComponent } from '../../shared/cards/cards.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
+import { CardComponent } from '../../shared/card/card.component';
 
 @Component({
   selector: 'app-search-results',
-  imports: [CommonModule, FilterPipe, CardsComponent],
+  imports: [CommonModule, FilterPipe, CardComponent],
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.css'
 })
@@ -19,7 +19,9 @@ export class SearchResultsComponent implements OnInit{
 public products$?: Observable <Product[]>;
 public productSearch: string = ''
 
-constructor(private getProductsService: GetProductsService, private route: ActivatedRoute, private seoService: SeoService){} 
+constructor(private getProductsService: GetProductsService, private route: ActivatedRoute, private seoService: SeoService,
+  private router: Router
+){} 
 
   ngOnInit() {    
     
@@ -33,5 +35,10 @@ constructor(private getProductsService: GetProductsService, private route: Activ
   });
 
   }
+
+  public selectProduct(element: Product ) {
+   const categorySlug$ = this.getProductsService.getCategoryWithProductSlug(element.slug)
+categorySlug$.subscribe((category => this.router.navigateByUrl(`/${category?.slug}/${element.slug}`))) 
+     }
  
 }

@@ -1,11 +1,15 @@
 :host {
 display: grid;
 grid-template-columns: 50% 50%;
-    gap: 35px;
-    width: 100%;
-    justify-items: center;
+width: 80%;
+justify-items: center;
+min-height: 70vh;
 }
 
+.preview-container {
+    width:100%;
+    min-height: 100%
+}
 
 .fa-regular {
 height: 150px;
@@ -13,92 +17,75 @@ color: var(--color-grey);
 margin-bottom: 35px;
 }
 
-.preview-container  {
- max-width: 100%; 
-}
-
 .preview-figure {
-height: 550px;
-width: 650px; 
-max-height: fit-content; 
-max-width: 100%; 
-border-radius: 10px;
 display: flex;
 flex-direction: column;
 align-items: center;
-box-shadow: var(--blue-shadow);
 }
 
-.no-preview {
-padding: 72px 52px;
-box-shadow: var(--black-shadow);
-height: 100%  
-}
 
 .ia-image {
-    height: 512px;
-    width: 650px; 
-    max-height: fit-content;
-    max-width: 100%; 
     object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    width: 100%;
 }
 
 .ia-advice {
 padding: 6px;
 text-align: center;
+background-color: var(--color-black);
+color: var(--color-white);
+width: 100%;
 }
 
 .preview-form {
-    min-height: 550px;
-    width: 650px; 
     padding: 32px;
-    max-height: fit-content; 
-    max-width: 100%; 
+    width:100%;
+    min-height: 100%;
+    border-radius: 0;
+    background: var(--color-white);
 }
 
-.color-picker, .font-picker {
+.preview-form .form-field {
+  border: 0.5px solid  var(--color-blue);
+}
+
+.color-picker, .font-picker, .background-picker {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
 }
 
+.color-picker label, .font-picker label, .background-picker label {
+ border: 1px solid var(--color-grey);
+ border-radius: 6px;
+ }
+
 .color-circle {
-box-shadow: var(--black-shadow);
-border-radius: 50%;
 width: 35px;
 height: 35px;
 }
 
 .background-square {
-box-shadow: var(--black-shadow);
-border-radius: 8px;
-width: 100px;
-height: 50px;
-background-size: cover; 
+width: 75px;
+height: 60px;
+background-size: 250%; 
 }
 
 .font-preview {
-box-shadow: var(--black-shadow);
-border: 1px solid var(--color-grey);
 padding: 4px 8px;
 text-align: center;
 white-space: nowrap
 }
 
 .color-circle:hover, .background-square:hover, .font-preview:hover {
-box-shadow: var(--blue-shadow);
 cursor: pointer ;
 }
 
 input[type="radio"]:checked + .color-circle, input[type="radio"]:checked + .background-square {
-box-shadow: var(--blue-shadow);
 transform: scale(1.25);
 }
 
 input[type="radio"]:checked + .font-preview {
-box-shadow: var(--blue-shadow);
 transform: scale(1.25);
 }
 

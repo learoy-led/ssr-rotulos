@@ -17,17 +17,21 @@
         }
       
     .fa-arrow-up {
+      display: block;
       background-color: var(--color-blue);
-        padding: 12px;
-        height: 52px;
-        border-radius: 150px;
+        padding: 10px;
+        height: 50px;
+        border-radius: 10px;
         color: var(--color-white);
-        transition: transform 0.3s ease;
+        transition: background-color 0.3s ease;
       }
 
+       path {
+         stroke-width: 20;
+        }
+
       .fa-arrow-up:hover {
-        box-shadow: var(--white-shadow);
-        transform: var(--hover-scale)
+       background-color: var(--color-fuchsia);
       }
 
       @media screen and (max-width: 524px) {

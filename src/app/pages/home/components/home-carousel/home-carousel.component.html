@@ -1,16 +1,39 @@
-<div class="banner-text-and-button centered-text">
-    <h2 class="banner-text">Atrapa todas las miradas</h2>
-    <h1 class="banner-secondary-text">Todo tipo de rótulos personalizados al mejor precio</h1>
-    <app-button
-      [buttonText]="'información'"
-      [buttonLink]="'/contacto'"
-    ></app-button>
- 
+    <div class="home-image-container">
+    @for(img of imagesSelected; track $index) {
+    <img
+      class="home-banner-image"
+      [src]="img"
+      alt="rotulos-personalizados"
+      
+    />
+    }
   </div>
 
-        <video  #videoEl width="600" src="https://res.cloudinary.com/dxuseyfxa/video/upload/v1752507839/fabricacion-rotulos-learoy_bmcnke.mp4" type="video/mp4" 
+   <div class="home-banner-text">
+    <h1 class="home-banner-title">Rótulos personalizados online</h1>
+        <h2 class="home-banner-subtitle">
+          Letras de
+          <span class="word-wrapper">
+            @for (word of letras; track $index) {
+            <span class="word">
+              {{ word }}
+            </span>
+            }
+          </span>
+        </h2>
+        <p class="home-banner-cta">Encuentra tus letras y personaliza tu rótulo a tu gusto con nuestro simulador. </p>
+      
+        <app-button
+      [buttonText]="'Catálogo'"
+      [buttonLink]="'/contacto'"
+        [mainButton]="true"
+    ></app-button>
+  </div>
+
+
+        <!-- <video  #videoEl width="600" src="https://res.cloudinary.com/dxuseyfxa/video/upload/v1752507839/fabricacion-rotulos-learoy_bmcnke.mp4" type="video/mp4" 
         class="banner-img" autoplay loop muted playsinline>
-    </video> 
+    </video>  -->
         
   
         <!-- <img fetchpriority="high" class="banner-img" [src]="carouselImages[imageIndex]" 
@@ -19,5 +42,9 @@
 
         <ul class="carousel-dots">
             <li class="carousel-dot" [class.active]="i === imageIndex" *ngFor="let carouselImage of carouselImages; let i = index" (click)="carouselImageChange(i)"></li>
-        </ul>
-      -->
+        </ul> -->
+
+
+ 
+   
+     

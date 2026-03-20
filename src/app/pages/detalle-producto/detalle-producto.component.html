@@ -6,7 +6,7 @@
         <img
           class="main-image"
           [src]="productSelectedData.images[mainImageIndex]"
-          [alt]="imageAlts[mainImageIndex]"
+          [alt]="productSelectedData.slug"
         />
 
         <ul class="secondary-images">
@@ -18,7 +18,7 @@
               [class.active]="i === mainImageIndex"
               (click)="updateProductDetails(i)"
               [src]="imageUrl"
-              [alt]="imageAlts[i]"
+              [alt]="productSelectedData.slug+'-'+i"
             />
           </li>
         </ul>
@@ -68,7 +68,7 @@
   </section>
   @if(productSelectedData.renderKey) {
 <section class="personalizador-section">
-  <h2 class="subtitle">Personaliza tu rótulo</h2>
+  <h2 class="subtitle white-shubtitle">Personaliza tu rótulo</h2>
   <app-personalizdor [renderKey]="productSelectedData.renderKey"></app-personalizdor>
   </section>
   }

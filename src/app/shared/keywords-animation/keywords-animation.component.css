@@ -8,7 +8,10 @@
   }
 
 .keywords-banner {
-background-image: url(/frame_80\ \(1\).webp);
+  background: linear-gradient(180deg,
+   #000300 0%, 
+   #140018 30%, 
+     #02a9ea 100%); 
  padding: 52px 0;
  white-space: nowrap; 
  width: 100vw;
@@ -20,7 +23,6 @@ background-image: url(/frame_80\ \(1\).webp);
      max-width: 100%;
   color: var(--color-white);
   animation: moveWords 20s linear infinite; 
-  text-transform: uppercase;
 }
 
 .keywords > li {
@@ -31,7 +33,7 @@ background-image: url(/frame_80\ \(1\).webp);
  } 
 
  .keywords > li > p, .keywords > li > span {
- font-size: 18px;
+ font-size: 14px;
  } 
 
  .keywords > li > p  {

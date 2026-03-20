@@ -3,15 +3,28 @@ html {
 }
 
 :root {
-  --color-black: rgb(2, 21, 38);
-  --color-blue: #059fec;
+  --color-black: #000300;
+  --color-blue: #02a9ea;
+  --color-fuchsia: #ff01fb;
+  --color-lima: #FAFF00;
   --color-grey: #e2e2e2;
   --color-white: #ffffff;
-  --color-red: #ca0035;
+  --color-red: #ff3b3b;;
+  --gradient-blue: radial-gradient(1400px circle at 90% 50%, #02A9EA 0%, transparent 65%),
+#000300;
+--gradient-fuchsia: linear-gradient(
+  180deg,
+ #000300 0%,
+  #140018 30%,
+  #3a003f 55%,
+  #7a0080 75%,
+  #c000c0 90%,
+  #ff01fb 100%
+);
   --white-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); 
   --black-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-  --blue-shadow: 2px 2px 4px rgba(5, 159, 236, 0.5); 
-  --hover-scale: scale(1.025);
+  --blue-shadow: 2px 2px 4px rgba(2, 169, 234, 0.5); 
+   --hover-scale: scale(1.01); 
   --smooth-scale: transform 0.3s ease;
 
 
@@ -28,7 +41,6 @@ html {
   border: none;
   outline: none;
   text-decoration: none;
-
   font-family: "Figtree", serif;
   font-optical-sizing: auto;
   /* font-weight: 400; */
@@ -37,8 +49,13 @@ html {
     line-height: 1.5em;
 }
 
+body {
+background-color: var(--color-white);
+color: var(--color-black)
+}
+
 main {
-  padding-top: 17vh;
+  padding-top: 19vh;
   min-height: 70vh;
 }
 
@@ -69,6 +86,7 @@ section {
 
 a {
     text-decoration: none;
+    color: inherit;
   }
   
   ul {
@@ -82,16 +100,15 @@ a {
   /* h1 y h2 */
   .page-title {
     font-size: 36px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
    }
    .title {
     font-size: 34px;
-    text-transform: uppercase;
   }
   .subtitle {
     padding: 22px 0;
     font-size: 26px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
   }
   .element-title {
     font-size: 20px;
@@ -137,21 +154,27 @@ button:disabled {
 }
 
 .button {
-  padding: 16px 35px;
-  background-color: var(--color-blue);
+  padding: 15px 35px; 
   color: var(--color-white);
-  border-radius: 150px;
+  border-radius: 10px;
   text-transform: uppercase;
+  transition: 0.5s;
+  transition: background-color 0.3s ease;
   font-size: 18px;
   font-weight: 500;
   width: fit-content;
-  margin-top: 10px
+   text-transform: uppercase;
+  background-size: 200% auto;
+   background-color: var(--color-blue);
+    display: block;
+  margin-top: 10px;
 }
 
 .button:hover {
-  box-shadow: var(--white-shadow);
+   background-color: var(--color-fuchsia);
+    background-position: right center;
+  text-decoration: none;
 }
-
 
 .button:disabled {
   background-color: var(--color-grey);
@@ -159,40 +182,46 @@ button:disabled {
 
 .button:disabled:hover {
   transform: none;
-  box-shadow: none;
 }
 
 form {
   padding: 72px 52px;
-  background-color: rgba(1, 90, 164, 0.1);
   border-radius: 10px;
   display: flex;
   justify-content: center;
   gap: 12px;
   flex-direction: column;
+   background: linear-gradient(180deg,
+   #02a9ea 0%, 
+   #140018 70%, 
+  #000300 100%); 
 }
 
 
 .form-field {
   padding: 12px 22px;
-  background-color: rgba(1, 90, 164, 0.1) !important;
-  border-radius: 39px;
+  background: var(--color-white);
+  border-radius: 10px;
   width: 100%;
+  margin-top: 6px;
 }
 
-.label {
-  align-self: flex-start;
+.contact-label {
+  margin-bottom: 6px;
+  color: var(--color-white)
 }
 
 .buttons-container {
   align-self: center;
+   display: flex;
+    gap: 12px
 }
 
 .error-message {
   color: var(--color-red);
   text-align: left;
   padding: 6px 22px 12px 22px;
-  font-size: 14px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 .submitted-message {
@@ -201,13 +230,34 @@ form {
   font-size: 18px;
 }
 
-  .buttons-container {
-    display: flex;
-    gap: 12px
-  }
+  .products-list {
+   display: flex;
+   flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    }
 
+  .product-card {
+  border-radius: 10px;
+  border: 1px solid var(--color-blue);
+  transition: border 0.3s ease;
+  max-width: 250px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
 
-  @media screen and (max-width: 766px) {
+ .product-card:hover {
+  border: 1px solid var(--color-fuchsia);
+  cursor: pointer;
+}
+
+.product-card a {
+  height: 100%;
+}
+
+  
+ @media screen and (max-width: 766px) {
     main {
   padding-top: 21vh;
 }

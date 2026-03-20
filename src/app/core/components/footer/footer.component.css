@@ -1,6 +1,6 @@
   .main-footer-container {
     display: flex;
-    background-color: var(--color-black);
+background: var(--gradient-fuchsia);
     color: var(--color-white);
     padding: 58px;
     justify-content: space-between
@@ -35,10 +35,15 @@
     padding: 6px 0;
   }
   
-  a {
+  .footer-link {
     color: var(--color-white);
     display: block;
     font-size: 16px;
+    transition: color 0.3s ease;
+      }
+
+        .footer-link:hover {
+    color: var(--color-fuchsia);
       }
 
   a::first-letter {
@@ -49,12 +54,9 @@
   font-size: 14px;
 }
 
-.fa-brands {
-   height: 22px;
-}
   .footer-social-media-icons {
 display: flex;
-gap: 6px
+gap: 18px
   }
 
   @media screen and (max-width: 766px) {

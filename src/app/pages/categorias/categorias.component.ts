@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { CardsComponent } from '../../shared/cards/cards.component';
 import { FilterButtonsComponent } from '../../shared/filter-buttons/filter-buttons.component';
 import { FilterPipe } from '../../pipes/filter.pipe';
 import { GetProductsService } from '../../core/services/get-products.service';
+import { CardComponent } from '../../shared/card/card.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-categorias',
       standalone: true,
-    imports: [CardsComponent, CommonModule, FilterButtonsComponent, FilterPipe],
+    imports: [CommonModule, FilterButtonsComponent, FilterPipe, CardComponent, RouterModule],
     templateUrl: './categorias.component.html',
     styleUrl: './categorias.component.css'
 })
@@ -40,4 +41,5 @@ private productsCache = new Map<string, Observable<Product[]>>();
   public onCategorySelectedChange(categoryName: string) {
 this.categorySelected = categoryName
   }
+
 }

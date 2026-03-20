@@ -45,6 +45,13 @@ export interface Product {
   metaDescription: string;
   categories: Category[];
   renderKey?: string;
+  variants?: Variant[];
+  _id?: string;
+}
+
+interface Variant {
+  size: string,
+  price: number
 }
 
 export interface FormData {

@@ -2,7 +2,7 @@ export const materials = [
      {
         name: "neon",
 colors: [
-    'rgb(239 68 68)', 
+    '#ef4444', 
     '#ff791a',
     '#ffd500',
     '#00e600',
@@ -14,13 +14,18 @@ colors: [
     '#FFDFAF'
   ], 
   fonts: [
-    'Lucida Handwriting',
-    'Segoe Script',
-    'Brush Script MT',
-    'Freestyle Script',
-    'Comic Sans MS',
-    'Open Sans',
+    'Audiowide',
+    'Comfortaa',
+    'GreatVibes',
+    'KaushanScript',
+    'Orbitron',
+    'Pacifico',
+    'Quicksand',
+    'Sacramento',
+    'Satisfy',
+    'Yellowtail'
 ],
+
 backgrounds: [
     '/ladrillo.webp',
     '/madera.webp',

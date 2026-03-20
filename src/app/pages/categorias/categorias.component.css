@@ -1,0 +1,14 @@
+      .product-card {
+  border-radius: 10px;
+  border: 1px solid var(--color-blue);
+  transition: border 0.3s ease;
+ max-width: 250px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+ .product-card:hover {
+  border: 1px solid var(--color-fuchsia);
+  cursor: pointer;
+}

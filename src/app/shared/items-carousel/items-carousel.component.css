@@ -14,7 +14,7 @@ margin: auto
    filter: drop-shadow(var(--black-shadow));
  }
 
- [hidden] {
+ [hidden], .mobile-carousel {
   display: none !important;
 } 
 
@@ -35,18 +35,21 @@ margin: auto
     box-shadow: var(--white-shadow)
   }
   
-  .mobile-items-carousel  {
-   display: none;
+
+    .cards-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
   }
 
   @media screen and (max-width: 966px) {
-     .fa-solid, .desktop-items-carousel {
+     .fa-solid, .desktop-carousel {
       display: none;
     } 
 
-     .mobile-items-carousel  {
-   display: flex;
-  }
+    .mobile-carousel {
+      display: flex!important
+    }
     
     :host {
        width: 90vw; 

@@ -22,8 +22,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     domain: environment.cookieDomain,
   },
   palette: {
-    popup: { background: '#021526' },
-    button: { background: '#059fec' },
+    popup: { background: '#02a9ea' },
+    button: { background: '#ff01fb' },
   },
   theme: 'classic',
   type: 'opt-in',

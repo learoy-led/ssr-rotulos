@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
-import { CardsComponent } from '../../shared/cards/cards.component';
 import { CommonModule } from '@angular/common';
 import { GenderPipe } from '../../pipes/gender.pipe';
 import { DownloadCatalogueComponent } from '../../shared/download-catalogue/download-catalogue.component';
@@ -10,17 +9,19 @@ import { SchemaService } from '../../core/services/schema.service';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { map, Observable } from 'rxjs';
 import { FilterButtonsComponent } from '../../shared/filter-buttons/filter-buttons.component';
+import { CardComponent } from '../../shared/card/card.component';
 
 
 @Component({
   selector: 'app-detalle-categoria',
   standalone: true,
   imports: [
-    CardsComponent,
+    CardComponent,
     CommonModule,
     GenderPipe,
     DownloadCatalogueComponent,
-    FilterButtonsComponent
+    FilterButtonsComponent,
+    RouterModule
   ],
   templateUrl: './detalle-categoria.component.html',
   styleUrl: './detalle-categoria.component.css',

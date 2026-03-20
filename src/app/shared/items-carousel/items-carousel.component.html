@@ -12,17 +12,28 @@
   />
 </svg>
 }
-  
-<app-cards
-  [cardsClass]="'cards-list '"
-  class="desktop-items-carousel"
-  [cardElements]="productsShown"
-></app-cards>
-<app-cards
-  [cardsClass]="'cards-list'"
-  class="mobile-items-carousel"
-  [cardElements]="products"
-></app-cards>
+
+<ul class="cards-list desktop-carousel">
+        @for (product of productsShown; track product._id) {       
+  <li class="product-card">
+      <a [routerLink]="[`/${categorySlug}/${product.slug}`]">
+    <app-card [product]="product"></app-card>
+</a>
+</li>
+}
+</ul>
+
+<ul class="cards-list mobile-carousel">
+        @for (product of products; track product._id) {       
+  <li class="product-card">
+      <a [routerLink]="[`/${categorySlug}/${product.slug}`]">
+    <app-card [product]="product"></app-card>
+</a>
+</li>
+}
+</ul>
+
+
 
 @if (products.length > 5 && !hideCarouselNextArrow) {
 <svg

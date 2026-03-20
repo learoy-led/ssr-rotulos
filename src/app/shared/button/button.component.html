@@ -1,1 +1,1 @@
-<a class="button" [routerLink]="buttonLink">{{ buttonText }}</a>
+<a [ngClass]="mainButton ? 'button main-button': 'button secondary-button'" [routerLink]="buttonLink">{{ buttonText }}</a>

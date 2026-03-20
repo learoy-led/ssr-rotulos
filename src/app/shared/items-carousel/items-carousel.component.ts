@@ -2,13 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/data.models';
 import { Subscription } from 'rxjs';
 import { GetProductsService } from '../../core/services/get-products.service';
-import { ActivatedRoute } from '@angular/router';
-import { CardsComponent } from '../cards/cards.component';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { CardComponent } from '../card/card.component';
 
 @Component({
     selector: 'app-items-carousel',
       standalone: true,
-    imports: [CardsComponent],
+    imports: [CardComponent, RouterModule],
     templateUrl: './items-carousel.component.html',
     styleUrl: './items-carousel.component.css'
 })
