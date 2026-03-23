@@ -1,8 +1,8 @@
-  <div class="preview-container">
+<div class="preview-container">
 <figure class="preview-figure">
 
 
- <svg
+ <svg 
  class="ia-image"
     #svgEl
     [attr.width]="width"
@@ -10,10 +10,15 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="8" result="blur1" />
-        <feGaussianBlur stdDeviation="20" result="blur2" />
+      <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur2" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur3"/>
+          <feComponentTransfer in="blur3" result="blur3soft">
+    <feFuncA type="linear" slope="0.4"/>
+  </feComponentTransfer>
         <feMerge>
+           <feMergeNode in="blur3soft"/>
           <feMergeNode in="blur2" />
           <feMergeNode in="blur1" />
           <feMergeNode in="SourceGraphic" />
@@ -28,63 +33,65 @@
       preserveAspectRatio="xMidYMid slice"
     />
 
-   <rect width="100%" height="100%" fill="black" opacity="0.6"></rect>
+   <rect x="0" y="0" width="100%" height="100%" fill="black" opacity="0.6"></rect>
+  
+<radialGradient id="wallGlow"> <stop offset="0%" [attr.stop-color]="color" stop-opacity="0.25"/> 
+  <stop offset="100%" [attr.stop-color]="color" stop-opacity="0"/> 
+</radialGradient> 
 
-       <text
+<ellipse cx="50%" cy="50%" rx="35%" ry="25%" fill="url(#wallGlow)" />
+       
+<text
+    #textEl
       x="50%"
       y="50%"
       text-anchor="middle"
-      dominant-baseline="middle"
-      [attr.font-size]="fontSize"
-      [attr.font-family]="font"
+     dominant-baseline="middle"
       [attr.fill]="color"
       filter="url(#glow)"
     >
-      <tspan
-        *ngFor="let line of lines; let i = index"
+     @for(line of lines; track i; let i = $index) {
+      <tspan   [ngStyle]="{'font-family': font, 'font-size': fontSize}"
         x="50%"
-        [attr.dy]="i === 0 ? firstDy : lineHeight"
+        [attr.dy]="i === 0 ? firstDy : fontSize*1.2 + 'px'"
+       
       >
         {{ line }}
       </tspan>
+      }
     </text>
-
+ 
     <text
       x="50%"
       y="50%"
       text-anchor="middle"
       dominant-baseline="middle"
-      [attr.font-size]="fontSize"
-      [attr.font-family]="font"
       [attr.fill]="innerColor"
     >
-      <tspan
-        *ngFor="let line of lines; let i = index"
-        x="50%"
-        [attr.dy]="i === 0 ? firstDy : lineHeight"
+
+    @for(line of lines; track i; let i = $index) {
+      <tspan  [ngStyle]="{'font-family': font, 'font-size': fontSize}"     x="50%"
+       [attr.dy]="i === 0 ? firstDy : fontSize*1.2 + 'px'"
       >
         {{ line }}
       </tspan>
+      }
     </text>
   </svg>
 
 <p class="ia-advice">Esta imagen ha sido generada por IA. El producto real puede variar ligeramente.</p>
 </figure>    
 </div>
+
 <form  [formGroup]="form"  class="preview-form"> 
-  <label for="text">Texto del rótulo:</label> 
-     <input
-      placeholder="Escribe aquí tu texto"
-      class="form-field"
-      type="text"
-      id="text"
-      formControlName="text"
-      required
-    />
+  
+      <label for="text">Texto del rótulo:</label> 
+      <small>Pulsa Enter si quieres añadir una línea</small>
+      <textarea  class="form-field" placeholder="Escribe aquí tu texto" formControlName="text" id="text" required></textarea>
     
     <label for="font">Elige el diseño de letras:</label> 
      <div class="font-picker">
-@for(font of materials[0].fonts; track font; let i = $index) {
+@for(font of materials[0].fonts; track i; let i = $index) {
     <input
       type="radio"
       [id]="'font-' + i"
@@ -104,7 +111,7 @@
   <label for="color">Selecciona un color:</label> 
 
   <div class="color-picker">
-  @for(color of materials[0].colors; track color; let i = $index) {
+  @for(color of materials[0].colors; track i; let i = $index) {
     <input
       type="radio"
       [id]="'color-' + i"
@@ -123,7 +130,7 @@
 <label for="background" class="label">Elige un fondo:</label> 
 
   <div class="background-picker">
-  @for(background of materials[0].backgrounds; track background; let i = $index) {
+  @for(background of materials[0].backgrounds; track i; let i = $index) {
     <input
       type="radio"
       [id]="'background-' + i"

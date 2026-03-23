@@ -16,8 +16,8 @@ colors: [
   fonts: [
     'Audiowide',
     'Comfortaa',
-    'GreatVibes',
-    'KaushanScript',
+    'Great Vibes',
+    'Kaushan Script',
     'Orbitron',
     'Pacifico',
     'Quicksand',

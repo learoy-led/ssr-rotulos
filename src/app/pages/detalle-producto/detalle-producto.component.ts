@@ -9,7 +9,7 @@ import { GetProductsService } from '../../core/services/get-products.service';
 import { LoadingService } from '../../core/services/loading.service';
 import { PlatformService } from '../../core/services/platform.service';
 import { SchemaService } from '../../core/services/schema.service';
-import { PersonalizdorComponent } from '../../personalizdor/personalizdor.component';
+import { PersonalizdorComponent } from '../../shared/personalizdor/personalizdor.component';
 
 @Component({
   selector: 'app-detalle-producto',
