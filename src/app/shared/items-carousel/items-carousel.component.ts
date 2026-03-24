@@ -4,11 +4,13 @@ import { Subscription } from 'rxjs';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardComponent } from '../card/card.component';
+import { IconComponent } from '../icon/icon.component';
+import { iconPaths } from '../../data/data';
 
 @Component({
     selector: 'app-items-carousel',
       standalone: true,
-    imports: [CardComponent, RouterModule],
+    imports: [CardComponent, RouterModule, IconComponent],
     templateUrl: './items-carousel.component.html',
     styleUrl: './items-carousel.component.css'
 })
@@ -17,6 +19,8 @@ export class ItemsCarouselComponent implements OnInit, OnDestroy {
   public products: Product[] = [];
   public productsShown: Product[] = []
   public categorySlug: string = '';
+  public leftArrow: string = iconPaths.leftArrow
+  public rightArrow: string = iconPaths.rightArrow
  
   public currentIndex:number = 0
   public hideCarouselNextArrow: boolean = false

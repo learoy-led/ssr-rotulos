@@ -31,15 +31,14 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   public categories$?: Observable<Category[]>;
   public products$?: Observable<Product[]>;
+  
 
 
   constructor(private router: Router, private getProductsService: GetProductsService, private schemaService: SchemaService, private platformService: PlatformService) {}
 
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
-    this.products$ =this.getProductsService.getAllProducts().pipe(
-       map(products => products.filter(prod => prod.variants && prod.variants.length > 0))
-    )
+    this.products$ =this.getProductsService.getFeaturedProducts()
     this.schemaService.insertSchema(this.schemaService.getLocalBusinessSchema(),'schema-localbusiness')
     this.schemaService.insertSchema(this.schemaService.getWebSiteSchema(), 'schema-website')
   }

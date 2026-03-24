@@ -1,12 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './icon.component.html',
   styleUrl: './icon.component.css'
 })
 export class IconComponent {
-
   @Input() iconPath: string = ''
+  @Input() buttonStyle?: boolean = false
 }

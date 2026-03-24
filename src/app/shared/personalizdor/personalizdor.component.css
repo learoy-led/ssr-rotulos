@@ -26,6 +26,10 @@ align-items: center;
     width: 100%;
 }
 
+tspan {
+  transition: font-size 0.2s ease;
+}
+
 .ia-advice {
 padding: 6px;
 text-align: center;

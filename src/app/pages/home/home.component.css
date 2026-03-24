@@ -2,6 +2,10 @@
 padding: 100px 0
 } 
 
+.featured {
+   flex-wrap: nowrap;
+    }
+
 .vertical-carousel-section {
   width: 100%;
 background: var(--gradient-blue);

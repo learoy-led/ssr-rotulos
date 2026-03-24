@@ -3,6 +3,9 @@
 </div>
 <h3 class="product-title centered-text">{{ product.name }}</h3>
  @if(mainVariant) {
+   <div>
     <p class="price">{{ mainVariant.price | price }}</p>
+    <p class="price-unit">precio por letra y cm de alto</p>
+    </div>
     }
-    <p class="product-button">personalizar</p>
+    <!-- <p class="product-button">personalizar</p> -->

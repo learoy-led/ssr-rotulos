@@ -3,6 +3,7 @@ import { Category, Product } from '../../models/data.models';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { featuredIds } from '../../data/data';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class GetProductsService {
 
   public getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>( `${this.API_URL}products`);   
+  } 
+
+  public  getFeaturedProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>( `${this.API_URL}products/featured?ids=${featuredIds.join(',')}`);   
   } 
 
   public getCategoryBySlug(slug: string): Observable<Category> {

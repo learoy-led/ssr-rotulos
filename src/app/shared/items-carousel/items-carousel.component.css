@@ -4,16 +4,6 @@ align-items: center;
 margin: auto
 }
 
-.fa-solid {
- width: 52px;
-  color: var(--color-blue);
-
-}
-
-.fa-solid:hover {
-   filter: drop-shadow(var(--black-shadow));
- }
-
  [hidden], .mobile-carousel {
   display: none !important;
 } 
@@ -42,8 +32,9 @@ margin: auto
     gap: 10px;
   }
 
+
   @media screen and (max-width: 966px) {
-     .fa-solid, .desktop-carousel {
+     app-icon, .desktop-carousel {
       display: none;
     } 
 

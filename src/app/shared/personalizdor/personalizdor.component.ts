@@ -65,6 +65,7 @@ public previewImage = ''
   private updateText() {
       this.innerColor = this.tintColor(this.color, 0.9);
     this.lines = this.text.split('\n');
+
  this.recalcLayout()  
    setTimeout(() => {
     this.autoFitText();
@@ -93,27 +94,24 @@ async autoFitText() {
   const maxWidth = this.width * 0.9;
   const maxHeight = this.height * 0.9;
 
-    let size = this.fontSize;
-  
-    while (size > 10) {
-    this.fontSize = size;
-     this.recalcLayout()
+  let size = this.fontSize;
 
-  await new Promise(requestAnimationFrame);
+   while (size > 18) {
+     this.fontSize = size;
+     this.recalcLayout();
+
+    await new Promise(requestAnimationFrame);
     const box = el.getBBox();
 
-    console.log('size', size, box);
+   if (box.width <= maxWidth && box.height <= maxHeight) {
+     break;
+   }
 
-    if (box.width <= maxWidth && box.height <= maxHeight) {
-      break;
-    }
+ size -= 2;
+ }
 
-    size -= 2;
-  }
-
-  this.fontSize = size;
+this.fontSize = size;
   this.recalcLayout()
-
 }
 
  private recalcLayout() {
