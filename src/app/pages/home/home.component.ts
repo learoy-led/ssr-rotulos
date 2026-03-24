@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Category, Product } from '../../models/data.models';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { SchemaService } from '../../core/services/schema.service';
@@ -11,6 +11,7 @@ import { CategoryCardsComponent } from '../../shared/category-cards/category-car
 import { PlatformService } from '../../core/services/platform.service';
 import { CardComponent } from '../../shared/card/card.component';
 import { Router } from '@angular/router';
+import { BannerPersonalizarComponent } from '../../shared/banner-personalizar/banner-personalizar.component';
 
 
 
@@ -23,7 +24,8 @@ import { Router } from '@angular/router';
     HomeCarouselComponent,
     CommonModule,
     AnimatedVerticalCarouselComponent,
-    CardComponent
+    CardComponent,
+    BannerPersonalizarComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

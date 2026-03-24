@@ -75,9 +75,6 @@ color: var(--color-fuchsia);
   .case-container, .case-image {
     max-width: 100%; 
 } 
-.page-title {
-    text-align: center
-}
  .case-container {
   pointer-events: none;
   }

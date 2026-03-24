@@ -118,6 +118,7 @@ this.fontSize = size;
  this.lineHeight = this.fontSize * 1.2;
   const totalHeight = (this.lines.length - 1) * this.lineHeight;
   this.firstDy = -totalHeight / 2;
+
  }
 
    //onsubmit añadir al carrito genera archivo
