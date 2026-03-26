@@ -11,6 +11,9 @@ export const notFoundInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.status === 404) {
         router.navigateByUrl('/pagina-no-encontrada');
       }
+     if (error.status === 410) {
+      router.navigateByUrl('/catalogo', { replaceUrl: true });
+     }
       return throwError(() => error);
     })
   );
