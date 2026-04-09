@@ -1,11 +1,30 @@
 :host {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
     height: 600px;
     width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  :host::before {
+      content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: #0009; */
+background: linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 0;
+}
+
+  .banner-img {
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
- .home-image-container {
+ /* .home-image-container {
    background: #000; 
     position: relative;
   }
@@ -19,62 +38,48 @@ inset: 0;
   opacity: 0;
   animation: rotateImages 8s infinite;
   will-change: opacity;
-  } 
+  }  */
 
   .home-banner-text {
-    padding: 66px;
-  background: var(--gradient-blue);   
-    color: var(--color-white);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 16px;
-  }
-
-  @keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    width: 80%;
+    color: var(--color-white);
 }
-  
-  .home-banner-title {
-    font-size: 52px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .home-banner-subtitle {
-    font-size: 38px;
-    font-weight: 500;
-    display: flex;
-    gap: 8px
-  }
 
     .home-banner-cta {
- font-size: 22px;
-  }
+ font-size: 17px;
+ line-height: 22px;
+ font-weight: 300
+  } 
   
   .word-wrapper {
   position: relative;
   font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-weight: inherit;
   min-width: 120px;
   vertical-align: baseline;
   align-items: baseline;
+   color: var(--color-green);
 }
 
 .word {
-  color: var(--color-lima);
-   font-size: inherit;
-  line-height: inherit;
    position: absolute;
-     inset: 0;
   opacity: 0;
-  animation: rotateWords 8s infinite;
+  left: 10px;
+     animation: rotateWords 8s infinite;
+       font-size: inherit;
+  line-height: inherit;
+   font-family: inherit; 
+  font-weight: inherit;
 }
 
 
@@ -91,13 +96,13 @@ inset: 0;
   100% { opacity: 0;   transform: translateY(8px);}
 }
 
-@keyframes rotateImages {
+/* @keyframes rotateImages {
   0% { opacity: 0; }
   8% { opacity: 1; }
   25% { opacity: 1; }
   33% { opacity: 0; }
   100% { opacity: 0; }
-}
+} */
   
   @media screen and (max-width: 766px) {
 

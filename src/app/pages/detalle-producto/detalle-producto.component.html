@@ -1,9 +1,9 @@
 <main>
 
-  @if(productSelectedData.renderKey) {
+  @if(productSelectedData.renderKey && productSelectedData.variants) {
 <section class="personalizador-section">
   <h2 class="subtitle white-shubtitle">Personaliza tu rótulo</h2>
-  <app-personalizdor [renderKey]="productSelectedData.renderKey"></app-personalizdor>
+  <app-personalizdor [renderKey]="productSelectedData.renderKey" [variantes]="productSelectedData.variants"></app-personalizdor>
   </section>
   }
 
@@ -46,7 +46,7 @@
     </div>
 
     <div class="secondary-product-details">
-      <h2 class="text-title">
+      <h2 class="subtitle">
         Más información sobre
         {{
           productSelectedData.name.charAt(0).toUpperCase() +

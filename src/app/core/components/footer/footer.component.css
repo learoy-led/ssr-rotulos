@@ -1,12 +1,14 @@
   .main-footer-container {
     display: flex;
-background: var(--gradient-fuchsia);
+background: var(--gradient-new);
     color: var(--color-white);
     padding: 58px;
     justify-content: space-between
   }
 
   .secondary-footer-container {
+    background-color: var(--color-black);
+    color: var(--color-white);
     text-align: center;
     padding: 8px;
   }
@@ -25,12 +27,6 @@ background: var(--gradient-fuchsia);
     display: flex;
   }
   
-  .footer-nav-title {
-    text-transform: uppercase;
-    padding-bottom: 10px;
-    color: var(--color-blue);
-  }
-  
   .footer-nav-element {
     padding: 6px 0;
   }
@@ -43,7 +39,7 @@ background: var(--gradient-fuchsia);
       }
 
         .footer-link:hover {
-    color: var(--color-fuchsia);
+    color: var(--color-black);
       }
 
   a::first-letter {

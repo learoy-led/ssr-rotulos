@@ -1,10 +1,10 @@
 :host {
-     color: var(--color-blue);
+     color: var(--color-white);
       transition: color 0.3s ease;
 } 
 
 :host:hover {
-   color: var(--color-fuchsia)
+   color: var(--color-black)
 }
 
  .icon-svg {
@@ -15,7 +15,7 @@
 
   .icon-svg path {
   stroke: currentColor;
-  stroke-width: 20;
+  stroke-width: 40;
   fill: none;
 }
 

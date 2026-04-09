@@ -1,7 +1,7 @@
 header {
   position: fixed;
   z-index: 1000;
-  background-color: var(--color-white);
+  background-color: var(--color-purple);
 }
 
  .keywords-banner {
@@ -9,8 +9,7 @@ header {
     width: 100vw;
  white-space: nowrap; 
    overflow: hidden;
-   background-color: var(--color-lima);
-
+   background-color: var(--color-green);
    display: flex;
    align-items: center;
    justify-content: center;

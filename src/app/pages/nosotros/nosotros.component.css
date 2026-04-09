@@ -28,10 +28,7 @@
 .social-media-section {
   width: 100%;
   color: var(--color-white);
-  background: linear-gradient(180deg,
-   #02a9ea 0%, 
-   #140018 70%, 
-     #000300 100%); 
+  background-color: var(--color-black);
 }
 
 @media screen and (max-width: 766px) {

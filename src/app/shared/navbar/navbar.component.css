@@ -1,11 +1,7 @@
-nav {
-    background-color: var(--color-blue);
-}
-
 .nav-links {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     width: 80%;
     height: 6vh;
     margin: auto;
@@ -13,7 +9,13 @@ nav {
   
   a {
     font-size: 20px;
+      font-family: "Montserrat", sans-serif; 
+      letter-spacing: 1px;
+      font-weight: 800;
+      text-transform: uppercase;
    color: var(--color-white);
+   margin: auto;
+ 
   }
 
 
@@ -23,10 +25,11 @@ nav {
      display: flex;
      align-items: center;
      transition: background-color 0.3s ease;
+     width:100%;
   }
 
   li:hover {
-    background-color: var(--color-fuchsia);
+    background-color: var(--color-green);
 }
 
 .submenu {

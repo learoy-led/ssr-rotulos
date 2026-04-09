@@ -17,8 +17,8 @@ import { IconComponent } from '../../../shared/icon/icon.component';
 export class HeaderComponent {
 
    public contactDetails: ContactDetails = contactDetails
-     public phonePath = iconPaths.phone
-     public envelopePath = iconPaths.envelope
+     public phonePath:string = iconPaths.phone
+     public envelopePath:string = iconPaths.envelope
   
 
   public burguerIsOpen: boolean = false;

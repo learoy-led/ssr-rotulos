@@ -1,0 +1,13 @@
+<main>
+    
+    <p>checkout test</p>
+
+<form #redsysForm="ngForm" [action]="redirectUrl" method="'POST'">
+        <input name="Ds_SignatureVersion" [value]="signatureVersion" />
+        <input name="Ds_MerchantParameters" [value]="merchantParameters" />
+        <input name="Ds_Signature" [value]="signature" />
+
+</form>
+
+<button (click)="onSubmit(redsysForm)">Pagar test</button>
+</main>

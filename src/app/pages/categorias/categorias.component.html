@@ -7,11 +7,12 @@
   ></app-banner> -->
 
     <section class="centered-section">
-    <h1 class="page-title">Modelos de rotulación</h1>
+    <h1>Modelos de rotulación</h1>
 <app-filter-buttons [filterParam]="'categories'" [itemSelected]="categorySelected" (itemSelectedUpdate)="onCategorySelectedChange($event)"></app-filter-buttons>
 @for(category of categories$ | async | filter: categorySelected; track category.name; let i = $index) {
   <div>
-      <h2 class="subtitle centered-text">{{category.name}}</h2>
+      <h2 class="title centered-text">{{category.name}}</h2>
+
       <ul class="products-list">
 
         @for (product of getProductsInCategory(category.slug) | async ; track product._id) {
@@ -23,7 +24,7 @@
 </li>
 }
       </ul>
-  </div>
+      </div>
 }
   
 

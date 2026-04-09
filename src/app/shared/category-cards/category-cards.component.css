@@ -6,7 +6,6 @@
   }
 
 .card-figure {
-  border-radius: 10px;
   height: 300px;
   position: relative;
 }
@@ -22,42 +21,45 @@ transform: scale(1.02);
 .card-figure:hover .image-container::after {
      background: linear-gradient(
   180deg,
-   #ff01fb 0%,
-  #000300 50%
-);
+   rgba(155, 81, 224, 1) 0%,
+  rgba(0, 0, 0, 1) 50%
+); 
+opacity: 0.9
 }
 
 .image-container {
    overflow: hidden;
-       border-radius: 10px;
       height: 100%;
       background-color: var(--color-black);
 }
 
 .image-container::after {
    position: absolute;
-     border-radius: 10px;
   content: '';
    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000300be;
+background: linear-gradient(180deg,rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 1) 95%);
     transition: background 0.3s ease;
     z-index: 1;
-    opacity: 0.7
   }
 
    .card-image {
     object-fit: cover;
    width: 100%; 
+      height: 100%; 
    display: block;
    transition: scale 0.3s ease;
   }
 
   .card-title {
-    font-size: 24px;
-    font-weight: 600;
+    font-family: "Montserrat", sans-serif; 
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
   }
 
 .category-card-description-container {

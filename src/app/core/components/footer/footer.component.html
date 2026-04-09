@@ -1,7 +1,7 @@
 <footer>
   <div class="main-footer-container">
     <div class="contact-details">
-      <h2 class="footer-nav-title">Contacto</h2>
+      <h4>Contacto</h4>
       <p class="footer-nav-element">
         Dirección:<br />
         {{ contact.address1 }}<br />{{ contact.address2 }}
@@ -29,7 +29,7 @@
   
     <nav>
       <div>
-        <h2 class="footer-nav-title">Tipos de rótulos</h2>
+        <h4>Tipos de rótulos</h4>
         @for(category of categories$ | async; track category.slug) {
  <ul>
           <li class="footer-nav-element">
@@ -42,7 +42,7 @@
 
     <nav>
       <div>
-        <h2 class="footer-nav-title">Elige tu letrero</h2>
+        <h4>Elige tu letrero</h4>
         @for(keyword of keywords; track keyword.text) {
 <ul>
           <li class="footer-nav-element">
@@ -56,7 +56,7 @@
 
     <nav>
       <div>
-        <h2 class="footer-nav-title">Rótulos Learoy</h2>
+        <h4>Rótulos Learoy</h4>
         <ul>
           <li class="footer-nav-element">
             <a class="footer-link" [routerLink]="['/nosotros']">Nosotros</a>

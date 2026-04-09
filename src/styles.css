@@ -3,13 +3,22 @@ html {
 }
 
 :root {
-  --color-black: #000300;
+  /* --color-black: #000300;
   --color-blue: #02a9ea;
   --color-fuchsia: #ff01fb;
-  --color-lima: #FAFF00;
+  --color-lima: #FAFF00; */
+  
+  --color-black: #000300;
+  --color-purple: rgba(155, 81, 224, 1);
+  --color-green: rgb(153, 253, 132);  
+  /* --gradient-new:  linear-gradient(-180deg, rgba(155, 81, 224, 1) 0%, rgba(0, 208, 132, 1) 100%); */
+  --gradient-new:  linear-gradient(-180deg, rgba(155, 81, 224, 1) 0%, rgb(153, 253, 132) 100%);
+  --gradient-left:  linear-gradient(90deg,rgba(155, 81, 224, 1) 0%, rgba(0, 208, 132, 1) 100%);
+
   --color-grey: #e2e2e2;
   --color-white: #ffffff;
-  --color-red: #ff3b3b;;
+  --color-red: #ff3b3b;
+  
   --gradient-blue: radial-gradient(1400px circle at 90% 50%, #02A9EA 0%, transparent 65%),
 #000300;
 --gradient-fuchsia: linear-gradient(
@@ -41,16 +50,16 @@ html {
   border: none;
   outline: none;
   text-decoration: none;
-  font-family: "Figtree", serif;
+     font-family: "Roboto Mono", sans-serif;
   font-optical-sizing: auto;
-  /* font-weight: 400; */
+  font-weight: 400;
   font-style: normal;
     font-size: 16px; 
-    line-height: 1.5em;
+    line-height: 22px;
 }
 
 body {
-background-color: var(--color-white);
+background: var(--color-white);
 color: var(--color-black)
 }
 
@@ -97,19 +106,42 @@ a {
     list-style-type: none;
   }
 
-  /* h1 y h2 */
-  .page-title {
-    font-size: 36px;
-    /* text-transform: uppercase; */
+  
+  /* h1 debería ser page-title
+  h2 title
+  h3 subtitle
+  h4
+  */
+
+   h1, .page-title, .title, .subtitle, h4 {
+     font-family: "Montserrat", sans-serif; 
+    text-transform: uppercase; 
+     letter-spacing: 1px;
+    }
+   h1, .page-title, .title {
+      font-weight: 900;  
+    }
+  h1, .page-title {
+    font-size: 50px;
+    line-height: 60px
    }
    .title {
-    font-size: 34px;
+    font-size: 30px;
+    line-height: 40px
   }
   .subtitle {
     padding: 22px 0;
-    font-size: 26px;
-    /* text-transform: uppercase; */
+    font-size: 20px;
+       line-height: 30px;
+       font-weight: 800; 
   }
+
+  h4 {
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 800;
+      }
+
   .element-title {
     font-size: 20px;
     padding: 20px;
@@ -133,11 +165,6 @@ a {
   margin: auto;
   }
   
-  .text-title {
-    padding: 12px 0;
-  font-size: 22px;
-  }
-
   .texts-policy-page {
     display: flex;
     flex-direction: column;
@@ -147,6 +174,7 @@ a {
 
 button {
   cursor: pointer;
+  font-family: "Montserrat", sans-serif; 
 } 
 
 button:disabled {
@@ -154,26 +182,23 @@ button:disabled {
 }
 
 .button {
-  padding: 15px 35px; 
+  padding: 19px 31px; 
   color: var(--color-white);
-  border-radius: 10px;
-  text-transform: uppercase;
-  transition: 0.5s;
-  transition: background-color 0.3s ease;
-  font-size: 18px;
-  font-weight: 500;
-  width: fit-content;
+  border: 2px solid var(--color-white);
    text-transform: uppercase;
-  background-size: 200% auto;
-   background-color: var(--color-blue);
-    display: block;
+width: fit-content;
+display: block; 
   margin-top: 10px;
+    font-family: "Montserrat", sans-serif; 
+    font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 3.5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .button:hover {
-   background-color: var(--color-fuchsia);
-    background-position: right center;
-  text-decoration: none;
+   color: var(--color-black);
+background-color: var(--color-white);
 }
 
 .button:disabled {
@@ -231,24 +256,22 @@ form {
 }
 
   .products-list {
-   display: flex;
-   flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  justify-content: center;
+  gap: 10px;
+  padding: 30px 0;
+  width:90vw
     }
 
   .product-card {
-  border-radius: 10px;
-  border: 1px solid var(--color-blue);
-  transition: border 0.3s ease;
-  max-width: 250px;
+  /* max-width: 250px; */
   margin: 10px;
   display: flex;
   flex-direction: column;
 }
 
  .product-card:hover {
-  border: 1px solid var(--color-fuchsia);
   cursor: pointer;
 }
 
@@ -256,6 +279,12 @@ form {
   height: 100%;
 }
 
+
+ @media screen and (max-width: 1300px) {
+    section {
+      width: 90%
+    }
+     }
   
  @media screen and (max-width: 766px) {
     main {
@@ -264,7 +293,6 @@ form {
 
     section {
       padding: 15px 0;
-      width: 90%
     }
     
     .page-title {

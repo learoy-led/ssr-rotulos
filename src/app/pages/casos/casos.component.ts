@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { cases } from '../../data/data';
+import { cases, iconPaths } from '../../data/data';
 import { AltPipe } from '../../pipes/alt.pipe';
 import { KeywordsAnimationComponent } from '../../shared/keywords-animation/keywords-animation.component';
+
 
 @Component({
     selector: 'app-casos',
@@ -12,8 +13,9 @@ import { KeywordsAnimationComponent } from '../../shared/keywords-animation/keyw
 })
 export class CasosComponent {
 
-public cases = cases
+public cases: string[] = cases
 public selectedCase: string | null = null
+public xmarkPath = iconPaths.xmark
 
 
 public selectCase(i:number) {

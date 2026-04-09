@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { carouselImages } from '../../../../data/data';
 import { ButtonComponent } from '../../../../shared/button/button.component';
 import { CommonModule } from '@angular/common';
+import { PlatformService } from '../../../../core/services/platform.service';
 
 
 @Component({
@@ -24,24 +25,25 @@ public imagesSelected: string[] = [
 'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167179/rotulo-luminoso-metacrilato-learoy_eeuwtu.webp'
 ]
 
-//@ViewChild('videoEl') videoEl!: ElementRef<HTMLVideoElement>;
-//constructor(private platformService: PlatformService) {}
+@ViewChild('videoEl') videoEl!: ElementRef<HTMLVideoElement>;
+constructor(private platformService: PlatformService) {}
  
 
   carouselImageChange(index:number) {
     this.imageIndex = index
   }
 
-   //public ngAfterViewInit() {
-    //if (this.platformService.isBrowser()) {
-      //    const video = this.videoEl.nativeElement;
-  //   video.muted = true;
-  //   video.play().catch(err => {
-  //     console.warn('Autoplay bloqueado por el navegador:', err);
-  //   });
-//    }
+   public ngAfterViewInit() {
+    if (this.platformService.isBrowser()) {
+         const video = this.videoEl.nativeElement;
+    video.muted = true;
+    video.play().catch(err => {
+      console.warn('Autoplay bloqueado por el navegador:', err);
+    });
+   }
   
   }
+}
 
 
 

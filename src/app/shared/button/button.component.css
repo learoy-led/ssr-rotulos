@@ -1,7 +1,1 @@
-  .main-button, .secondary-button:hover {
-    background-color: var(--color-fuchsia);
-  }
 
-  .main-button:hover, .secondary-button {
-    background-color: var(--color-blue);
-  } 

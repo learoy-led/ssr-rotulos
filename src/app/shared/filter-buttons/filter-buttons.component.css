@@ -6,20 +6,17 @@ gap: 18px
 }
 
 .filter-button {
-    border: 1px solid var(--color-blue);
-    background-color: transparent;
-    border-radius: 6px;
-    transition: border 0.3s ease;
+    border: 1px solid var(--color-black);
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-size: 18px;
-    padding: 6px 12px;;
+    padding: 6px 12px;
+    background: transparent;
+    font-family: 'Roboto Mono', sans-serif
  }
 
-  .filter-button:hover {
-   border: 1px solid var(--color-fuchsia);
-  }
-
-  .filter-button.active {
-    border: 1px solid var(--color-fuchsia);
+  .filter-button:hover, .filter-button.active {
+   color: var(--color-white);
+   background-color: var(--color-black);
   }
   
   @media screen and (max-width: 766px) {

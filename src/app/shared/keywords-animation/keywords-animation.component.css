@@ -8,10 +8,7 @@
   }
 
 .keywords-banner {
-  background: linear-gradient(180deg,
-   #000300 0%, 
-   #140018 30%, 
-     #02a9ea 100%); 
+  background-color: var(--color-white);
  padding: 52px 0;
  white-space: nowrap; 
  width: 100vw;
@@ -21,7 +18,7 @@
   .keywords {
     display: flex;
      max-width: 100%;
-  color: var(--color-white);
+  color: var(--color-black);
   animation: moveWords 20s linear infinite; 
 }
 
@@ -32,9 +29,6 @@
   
  } 
 
- .keywords > li > p, .keywords > li > span {
- font-size: 14px;
- } 
 
  .keywords > li > p  {
  white-space: nowrap;

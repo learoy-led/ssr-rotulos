@@ -4,7 +4,7 @@
     z-index: 0;
     min-height: 60vh;
     padding: 38px;
-    background-image: url('https://res.cloudinary.com/dxuseyfxa/image/upload/v1742551840/rotulos-personalizados-learoy-_oz05xj.webp');
+    background-color: var(--color-black);
     background-size: cover;
     background-position: center;
   }

@@ -120,6 +120,17 @@ export const routes: Routes = [
     canActivate: [authGuard],
     title: 'Panel administración | Rótulos Learoy',
   },
+
+
+   {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./pages/checkout/checkout.component').then(
+        (c) => c.CheckoutComponent
+      ),
+    title: 'Tu orden de compra | Rótulos Learoy',
+  },
+
   {
   path: 'rotulos-luminosos/cartel-luminoso-con-metacrilato-incrustado',
   redirectTo: '/rotulos-luminosos',

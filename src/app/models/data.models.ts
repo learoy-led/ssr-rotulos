@@ -96,3 +96,16 @@ export interface Preview {
   font: string;
   background: string
 }
+
+export interface Material {
+  name: string;
+  light: boolean;
+  colors: string[];
+  fonts: string[];
+  backgrounds: string[]
+}
+
+export interface Variante {
+  size: string;
+  price: number;
+}

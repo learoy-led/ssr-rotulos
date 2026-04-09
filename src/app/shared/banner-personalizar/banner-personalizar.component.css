@@ -11,8 +11,6 @@
 
 .image-container, .banner-image {
 max-width: 100%;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
    overflow: hidden;
 }
 
@@ -26,7 +24,5 @@ object-fit: cover;
     justify-content: space-evenly;
     color: var(--color-white);
     padding: 35px;
-    background: var(--gradient-blue);
-     border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+    background: var(--gradient-new);
 }

@@ -9,8 +9,9 @@
     [attr.height]="height"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <defs>
-      <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+   @if (renderKey === 'neon') {
+    <defs>     
+       <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
         <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur2" />
         <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur3"/>
@@ -23,8 +24,9 @@
           <feMergeNode in="blur1" />
           <feMergeNode in="SourceGraphic" />
         </feMerge>
-      </filter>
+      </filter>    
     </defs>
+  } 
 
     <image
       [attr.href]="background"
@@ -35,7 +37,7 @@
 
    <rect x="0" y="0" width="100%" height="100%" fill="black" opacity="0.6"></rect>
   
-   @if(text.length !== 0) {
+    @if(text.length !== 0 && material?.light) {
 <radialGradient id="wallGlow"> <stop offset="0%" [attr.stop-color]="color" stop-opacity="0.25"/> 
   <stop offset="100%" [attr.stop-color]="color" stop-opacity="0"/> 
 </radialGradient> 
@@ -63,7 +65,9 @@
       }
     </text>
  
-    <text
+    
+     @if(material?.light) {
+     <text
       x="50%"
       y="50%"
       text-anchor="middle"
@@ -78,7 +82,9 @@
         {{ line }}
       </tspan>
       }
-    </text>
+    </text> 
+    }
+  
   </svg>
 
 <p class="ia-advice">Esta imagen ha sido generada por IA. El producto real puede variar ligeramente.</p>
@@ -93,7 +99,7 @@
     
     <label for="font">Elige el diseño de letras:</label> 
      <div class="font-picker">
-@for(font of materials[0].fonts; track i; let i = $index) {
+@for(font of material?.fonts; track i; let i = $index) {
     <input
       type="radio"
       [id]="'font-' + i"
@@ -113,7 +119,7 @@
   <label for="color">Selecciona un color:</label> 
 
   <div class="color-picker">
-  @for(color of materials[0].colors; track i; let i = $index) {
+  @for(color of material?.colors; track i; let i = $index) {
     <input
       type="radio"
       [id]="'color-' + i"
@@ -132,7 +138,7 @@
 <label for="background" class="label">Elige un fondo:</label> 
 
   <div class="background-picker">
-  @for(background of materials[0].backgrounds; track i; let i = $index) {
+  @for(background of material?.backgrounds; track i; let i = $index) {
     <input
       type="radio"
       [id]="'background-' + i"
@@ -148,5 +154,12 @@
   }
 </div>
 
+@if(variantes.length !== 0) {
+<label for="size">Elige la altura de las letras:</label>
+<input type="range" min="10" max="150" value="10" formControlName="size" id="size">
+<p>Precio   {{ getPrice () }} € IVA Incl.</p>
+}
+
 <!-- <button class="button secondary-button" type="submit" [disabled]="form.invalid">Añadir al carrito</button> -->
 </form>
+
