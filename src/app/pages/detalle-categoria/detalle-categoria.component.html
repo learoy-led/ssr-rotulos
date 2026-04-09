@@ -34,15 +34,13 @@
       </li>
       <li>
         <h2 class="subtitle">
-          ¿Se pueden personalizar {{ categorySelectedData.name | gender }}
-          {{ categorySelectedData.name }}?
+          ¿Se puede personalizar?
         </h2>
         <p>{{ categorySelectedData.description.custom }}</p>
       </li>
       <li>
         <h2 class="subtitle">
-          ¿Cuánto cuestan {{ categorySelectedData.name | gender }}
-          {{ categorySelectedData.name }}?
+          ¿Cuánto cuesta?
         </h2>
         <p>{{ categorySelectedData.description.cost }}</p>
       </li>
@@ -50,7 +48,7 @@
   </section>
 
   @if (pdfCatalogueVisible) {
-  <section>
+  <section class="catalogue-section">
     <app-download-catalogue></app-download-catalogue>
   </section>
   } }

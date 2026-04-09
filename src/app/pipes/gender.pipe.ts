@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class GenderPipe implements PipeTransform {
 
    transform(name: string): string {
- return name === 'Tiras y módulos LED' ?  'las' :  'los'
+ return name === 'Neón personalizado' ?  'el' :  'las'
   }
 
 }

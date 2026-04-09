@@ -2,10 +2,6 @@
     display: flex;
  width: 80%;
   margin: auto; 
-gap: 52px;
-background-image: url(/frame_80\ \(1\).webp);
-border-radius: 10px;
-padding: 0 52px;
 }
 
 .download-catalogue-texts {
@@ -14,7 +10,8 @@ padding: 0 52px;
   justify-content: center;
   gap: 30px;
   color: var(--color-white);
-  padding: 52px 0;
+  padding: 52px;
+  background: var(--gradient-new);
   }
 
   .download-catalogue-image {
@@ -33,7 +30,7 @@ width: 100%
 
    @media screen and (max-width: 931px) {
  :host {
-        flex-direction: column;
+        flex-direction: column-reverse;
         width: 100%;
         padding: 0;
         gap: 0;
@@ -43,8 +40,6 @@ width: 100%
   .download-catalogue-image {
     align-self: center;
     justify-self: center;
-    border-top-left-radius: 10px;
-border-top-right-radius: 10px;
 overflow: hidden;
 max-width: 100%;
   }

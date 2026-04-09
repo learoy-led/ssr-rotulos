@@ -8,3 +8,11 @@
 .category-text-section {
 padding-top: 0;
 }
+
+
+ @media screen and (max-width: 931px) {
+.catalogue-section {
+    width: 100%;
+          padding-bottom: 0;
+}
+}

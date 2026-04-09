@@ -41,6 +41,15 @@ gap: 52px;
 
 
   @media screen and (max-width: 766px) {
+
+    .home-section {
+       padding: 15px 0;
+    }
+    
+    .personalizar-section {
+      width: 100%;
+    }
+
  .vertical-carousel-container {
         flex-direction: column;
   }

@@ -12,5 +12,5 @@ import { RouterModule } from '@angular/router';
 export class ButtonComponent {
  @Input() buttonText: string = '';
   @Input() buttonLink: string = '';
-  @Input() mainButton?: boolean = false;
+  @Input() whiteButton?: boolean = false;
 }

@@ -3,7 +3,6 @@ import { Category, Product } from '../../models/data.models';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
 import { CommonModule } from '@angular/common';
-import { GenderPipe } from '../../pipes/gender.pipe';
 import { DownloadCatalogueComponent } from '../../shared/download-catalogue/download-catalogue.component';
 import { SchemaService } from '../../core/services/schema.service';
 import { GetProductsService } from '../../core/services/get-products.service';
@@ -18,7 +17,6 @@ import { CardComponent } from '../../shared/card/card.component';
   imports: [
     CardComponent,
     CommonModule,
-    GenderPipe,
     DownloadCatalogueComponent,
     FilterButtonsComponent,
     RouterModule

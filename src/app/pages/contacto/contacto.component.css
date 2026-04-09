@@ -9,8 +9,8 @@
     flex-direction: column;
     gap: 12px;
     min-height: 100%;
-    justify-content: space-between;
      width: 50%;
+       padding: 22px;
   }
 
  app-contact-form {
@@ -18,12 +18,7 @@
 }
 
 
-  .contact-phone-email {
-   color: var(--color-blue)
-  }
-
 iframe {
-    border-radius: 10px;
     max-width: 100%;
   } 
   
@@ -44,4 +39,10 @@ text-align: center;
 .form {
   order: -1
 }
+}
+
+ @media screen and (min-width: 1610px) {
+    .contact-options {
+      width: 80%;
+  }
 }

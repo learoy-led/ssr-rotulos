@@ -66,13 +66,14 @@ inset: 0;
   font-family: inherit;
   font-weight: inherit;
   min-width: 120px;
+   display: inline-grid;
   vertical-align: baseline;
   align-items: baseline;
    color: var(--color-green);
 }
 
 .word {
-   position: absolute;
+    grid-area: 1 / 1;
   opacity: 0;
   left: 10px;
      animation: rotateWords 8s infinite;

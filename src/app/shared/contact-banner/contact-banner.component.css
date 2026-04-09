@@ -8,7 +8,6 @@
     align-items: center;
     color: var(--color-white);
     background-color: var(--color-black);
-    box-shadow: var(--white-shadow)
   }
   
   .banner-title {

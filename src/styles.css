@@ -201,39 +201,41 @@ display: block;
 background-color: var(--color-white);
 }
 
-.button:disabled {
-  background-color: var(--color-grey);
+.button:disabled, .button:disabled:hover {
+  color: var(--color-grey);
+  border: 2px solid var(--color-grey);
+  background-color: var(--color-white)
 }
 
-.button:disabled:hover {
-  transform: none;
+.white-button {
+    color: var(--color-black);
+    border: 2px solid var(--color-black);
+    background-color: var(--color-white)
+}
+
+.white-button:hover {
+    background-color: var(--color-black);
+     color: var(--color-white);
 }
 
 form {
-  padding: 72px 52px;
-  border-radius: 10px;
+  padding: 22px;
   display: flex;
   justify-content: center;
   gap: 12px;
   flex-direction: column;
-   background: linear-gradient(180deg,
-   #02a9ea 0%, 
-   #140018 70%, 
-  #000300 100%); 
 }
 
 
 .form-field {
   padding: 12px 22px;
-  background: var(--color-white);
-  border-radius: 10px;
   width: 100%;
   margin-top: 6px;
+  border: 1px solid var(--color-black)
 }
 
 .contact-label {
   margin-bottom: 6px;
-  color: var(--color-white)
 }
 
 .buttons-container {
@@ -246,7 +248,6 @@ form {
   color: var(--color-red);
   text-align: left;
   padding: 6px 22px 12px 22px;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 .submitted-message {
@@ -288,22 +289,29 @@ form {
   
  @media screen and (max-width: 766px) {
     main {
-  padding-top: 21vh;
+  padding-top: 21.9vh;
 }
 
     section {
       padding: 15px 0;
     }
     
-    .page-title {
+    h1, .page-title {
       font-size: 34px;
+      line-height: 44px;
     } 
   .title {
-    font-size: 30px
+    font-size: 30px;
+    line-height: 40px;
   } 
   .element-title {
     font-size: 18px;
+    line-height: 28px;
   } 
+
+  .products-list {
+    padding: 0
+  }
 
   .advantages-list {
     width:80%

@@ -34,8 +34,9 @@
 
       <div class="product-texts">
         <h1 class="title">{{ productSelectedData.name }}</h1>
-        <p *ngFor="let paragraph of productSelectedData.description.split('.')">
-          {{ paragraph }}.
+        <p *ngFor="let paragraph of productSelectedData.description.split('.'); let last = last">
+          {{ paragraph }}
+<span *ngIf="!last">.</span>
         </p>
 
         <app-button

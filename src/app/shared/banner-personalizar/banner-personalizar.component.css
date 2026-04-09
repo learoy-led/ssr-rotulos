@@ -26,3 +26,11 @@ object-fit: cover;
     padding: 35px;
     background: var(--gradient-new);
 }
+
+  @media screen and (max-width: 374px) {
+    :host {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+}

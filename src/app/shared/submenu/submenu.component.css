@@ -1,7 +1,6 @@
 .submenu-navbar {
 background-color: var(--color-white);
 padding: 10px 76px;
-box-shadow:  2px 2px 4px lightgrey
 }
 
 .submenu-links {
@@ -21,7 +20,6 @@ gap: 40px
 
   .submenu-links > li > a:hover {
     transform: var(--hover-scale);
-    text-shadow: var(--blue-shadow);
   } 
 
 
@@ -31,8 +29,6 @@ gap: 40px
 
 .submenu-image {
     width: 100px;  
-    border-radius: 10px;
-    box-shadow: var(--black-shadow);
   } 
 
   @media screen and (max-width: 766px) {
