@@ -14,7 +14,7 @@ export class CardComponent {
 @Input() product!: Product
 
 get mainVariant() {
-  return this.product?.variants?.[0]
+  return this.product?.variants?.[0] 
 }
  
 }

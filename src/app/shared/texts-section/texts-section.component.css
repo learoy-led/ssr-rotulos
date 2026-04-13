@@ -9,17 +9,6 @@
     background-position: center;
   }
 
-  :host::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(2, 21,38, 0.55);
-   z-index: -1; 
-  }
-
 
 .main-advantages-list {
     display: grid;

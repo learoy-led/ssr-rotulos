@@ -1,0 +1,21 @@
+.product-miniature {
+    height: 50px
+}
+
+table {
+width: 100%;
+padding: 32px
+}
+
+.product-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center
+}
+
+.subtotal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end
+}

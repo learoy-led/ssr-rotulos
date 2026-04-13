@@ -1,57 +1,23 @@
 header {
   position: fixed;
   z-index: 1000;
-  background-color: var(--color-purple);
+  background-color: var(--color-black);
 }
 
- .keywords-banner {
+ .secondary-header {
     height: 4vh;
     width: 100vw;
- white-space: nowrap; 
-   overflow: hidden;
-   background-color: var(--color-green);
-   display: flex;
-   align-items: center;
-   justify-content: center;
+   background-color: var(--color-purple);
+   color: var(--color-white);
+     display: flex;
+     align-items: center;
+     justify-content: center;
   }
 
-  .keywords-banner p {
+  .secondary-header p {
     text-align: center;
      font-size: 14px;
 }
-
-  @keyframes moveWords {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-    .keywords {
-    display: flex;
-    align-items: center;
-     max-width: 100%;
-  color: var(--color-black);
-  animation: moveWords 20s linear infinite; 
-height: 4vh
-}
-
-.keywords > li {
-  display: flex;
-  gap: 24px;
-  padding: 0 12px;
-  
- } 
-
- .keywords > li > p, .keywords > li > span {
- font-size: 14px;
- } 
-
- .keywords > li > p  {
- white-space: nowrap;
- } 
 
   .main-header {
   display: flex;

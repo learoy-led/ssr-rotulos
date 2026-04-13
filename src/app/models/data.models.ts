@@ -49,7 +49,15 @@ export interface Product {
   _id?: string;
 }
 
-interface Variant {
+export interface ProductPurchased {
+  id: string ;
+  name: string;
+  image: string;
+  price: number;
+  qty: number;
+}
+
+export interface Variant {
   size: string,
   price: number
 }
@@ -59,6 +67,17 @@ export interface FormData {
   email: string;
   phone: string;
   message: string;
+}
+
+export interface CheckOutFormData {
+  name: string;
+  email: string;
+  phone: string;
+  empresa: string;
+  address: string,
+    cp: string,
+     ciudad: string,
+     provincia: string
 }
 
 export interface AdminFormData {
@@ -105,7 +124,3 @@ export interface Material {
   backgrounds: string[]
 }
 
-export interface Variante {
-  size: string;
-  price: number;
-}

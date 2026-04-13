@@ -4,18 +4,20 @@ import { materials } from '../../data/personalizador.data';
 import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
 import { PlatformService } from '../../core/services/platform.service';
-import { Material, Variante } from '../../models/data.models';
+import { Material, Product } from '../../models/data.models';
+import { CartService } from '../../core/services/cart.service';
+import { PricePipe } from '../../pipes/price.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personalizdor',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, PricePipe],
   templateUrl: './personalizdor.component.html',
   styleUrl: './personalizdor.component.css'
 })
 export class PersonalizdorComponent implements OnInit {
 
-  @Input() renderKey!: string;
-  @Input() variantes!: Variante[];
+  @Input() product!: Product;
   public material?: Material | undefined;
 
 
@@ -26,7 +28,7 @@ export class PersonalizdorComponent implements OnInit {
   font: string = '';
   background: string = '/negro.webp';
 
-  variante: string = 'S';
+  variantSize: string = 'S';
   size: number = 10;
   
   width: number = 650;
@@ -38,16 +40,20 @@ export class PersonalizdorComponent implements OnInit {
   firstDy = 0;
   innerColor = '';
 
+  finalPrice = 0
+
 
 
 @ViewChild('textEl') textEl!: ElementRef<SVGTextElement>;
 public previewImage = ''
 
-  constructor(private fb: FormBuilder, private platformService: PlatformService ) {}
+  constructor(private fb: FormBuilder, private platformService: PlatformService,
+     private cartService: CartService, private router: Router
+   ) {}
 
  public ngOnInit() {
 
-  this.material  = materials.find((material) => material.name === this.renderKey);
+  this.material  = materials.find((material) => material.name === this.product.renderKey);
 
       this.form = this.fb.group({
       text: ['Tu texto aquí'],
@@ -71,15 +77,24 @@ public previewImage = ''
     this.color = values.color;
     this.font = values.font;
     this.background = values.background;
-    this.variante = values.size > 74 ? 'L' : 'S'
+    this.size = values.size;
+
+  if (this.product.name.includes('3D')) {
+this.variantSize = values.size >= 50 ? 'L' : 'S'
+  } else {
+this.variantSize = values.size >= 75 ? 'L' : 'S'
+  }
+    
     this.updateText(); 
   }
 
-  public getPrice () {
-  if (this.text === 'Tu texto aquí') return 0
-  const variantSelected = this.variantes.find((vari) => vari.size === this.variante)
-  const finalPrice = variantSelected && (variantSelected.price/100) * this.text.length * this.size 
-  return finalPrice ? Math.round(finalPrice * 100) / 100 : 0;
+  public getPrice() {
+  if (!this.product?.variants) return 0;
+  const variantSelected = this.product.variants.find((v) => v.size === this.variantSize)
+   if (!variantSelected || this.text === 'Tu texto aquí') return 0;
+  this.finalPrice = variantSelected && (variantSelected.price) * this.text.replace(/\s/g, '').length * this.size 
+  this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
+  return this.finalPrice
   }
 
   private updateText() {
@@ -142,6 +157,26 @@ this.fontSize = size;
 
  }
 
-   //onsubmit añadir al carrito genera archivo
-}      
+   public onSubmit() { 
+     if (this.form.invalid) return;
+  const variantSelected = this.product.variants && this.product.variants.find((v) => v.size === this.variantSize);
+  if (!this.product?._id || !variantSelected) return;
+  const productPurchased = {
+     id: this.product._id,
+    name: this.product.name,
+    image: this.product.images[0],
+    price: this.finalPrice,
+    qty: 1
+  }
+  this.form.reset();
+  this.cartService.addToCart(productPurchased)
+  console.log(productPurchased)
+  this.router.navigate(['/cart']);
+
+    
+  
+   //generar archivo para Alex
+    } 
+
+  }      
 

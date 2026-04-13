@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/data.models';
+import { Product, Variant } from '../../models/data.models';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
 import { ItemsCarouselComponent } from '../../shared/items-carousel/items-carousel.component';
@@ -10,6 +10,7 @@ import { LoadingService } from '../../core/services/loading.service';
 import { PlatformService } from '../../core/services/platform.service';
 import { SchemaService } from '../../core/services/schema.service';
 import { PersonalizdorComponent } from '../../shared/personalizdor/personalizdor.component';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -33,12 +34,18 @@ export class DetalleProductoComponent implements OnInit {
     light: false,
     metaDescription: '',
     renderKey: '',
-    categories: []
+    categories: [],
+    _id: '',
   };
   public mainImageIndex = 0;
   public productDetailsIndex = 0;
   private currentRoute = '';
   public isLoading: boolean = true;
+  public variantSelected: Variant = {
+    size: '',
+    price: 0 
+  }
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +53,8 @@ export class DetalleProductoComponent implements OnInit {
     private getProductsService: GetProductsService,
     private loadingService: LoadingService,
     private platformService: PlatformService,
-    private schemaService: SchemaService
+    private schemaService: SchemaService,
+    private cartService: CartService
   ) {}
 
   public ngOnInit() {
@@ -97,4 +105,15 @@ export class DetalleProductoComponent implements OnInit {
       this.isLoading = isLoading;
     });
   }
+
+//  ver si se añade al botón
+//  public onAddToCart() {
+// this.productSelectedData._id && this.cartService.addToCart({
+//     id: this.productSelectedData._id,
+//     name: this.productSelectedData.name,
+//     image: this.productSelectedData.images[0],
+//     variant: this.variantSelected,
+//     qty: 1
+//   });
+//   }
 }

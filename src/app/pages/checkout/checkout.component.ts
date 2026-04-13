@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CheckoutService } from '../../core/services/checkout.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { emailValidator } from '../../core/components/contact-form/validator';
+import { CheckOutFormData } from '../../models/data.models';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +12,21 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class CheckoutComponent {
 
-  constructor(private checkoutService: CheckoutService) {}
+public checkoutFormData: CheckOutFormData = {
+    name: '',
+    email: '',
+    phone: '',
+    empresa: '',
+      address: '',
+    cp: '',
+     ciudad: '',
+     provincia: ''
+  };
+
+   constructor(private checkoutService: CheckoutService) {}
+
+   
+  public emailValidator = emailValidator;
 
   public signature!: string;
   public signatureVersion!: string;
@@ -18,6 +34,7 @@ export class CheckoutComponent {
   public redirectUrl: string = ''
 
   public onSubmit(form: NgForm) {
+//this.SendEmailService.sendEmail(this.formData);
 this.checkoutService.pagar().subscribe((data: any) => {
 this.signatureVersion = data.signatureVersion
 this.merchantParameters = data.merchantParameters

@@ -9,7 +9,7 @@
     [attr.height]="height"
     xmlns="http://www.w3.org/2000/svg"
   >
-   @if (renderKey === 'neon') {
+   @if (product.renderKey === 'neon') {
     <defs>     
        <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
@@ -91,10 +91,9 @@
 </figure>    
 </div>
 
-<form  [formGroup]="form"  class="preview-form"> 
+<form [formGroup]="form"  class="preview-form" (ngSubmit)="onSubmit()"> 
   
-      <label for="text">Texto del rótulo:</label> 
-      <small>Pulsa Enter si quieres añadir una línea</small>
+      <label for="text">Texto del rótulo (añade líneas pulsando Enter):</label> 
       <textarea  class="form-field" placeholder="Escribe aquí tu texto" formControlName="text" id="text" required></textarea>
     
     <label for="font">Elige el diseño de letras:</label> 
@@ -154,12 +153,14 @@
   }
 </div>
 
-@if(variantes.length !== 0) {
-<label for="size">Elige la altura de las letras:</label>
-<input type="range" min="10" max="150" value="10" formControlName="size" id="size">
-<p>Precio   {{ getPrice () }} € IVA Incl.</p>
+@if(product.variants?.length!== 0) {
+<label for="size">Elige la altura de las letras: {{ form.get('size')?.value }} cm</label>
+<input type="range" min="10" max="200" value="10" formControlName="size" id="size">
+<p>Precio   {{ getPrice() | price }} IVA Incl.</p>
+<button type="submit" class="button white-button" [disabled]="form.invalid">Añadir al carrito</button> 
 }
 
-<!-- <button class="button secondary-button" type="submit" [disabled]="form.invalid">Añadir al carrito</button> -->
+
+
 </form>
 

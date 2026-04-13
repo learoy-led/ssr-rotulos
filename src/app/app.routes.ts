@@ -121,14 +121,21 @@ export const routes: Routes = [
     title: 'Panel administración | Rótulos Learoy',
   },
 
-
+{
+    path: 'cart',
+    loadComponent: () =>
+      import('./pages/cart/cart.component').then(
+        (c) => c.CartComponent
+      ),
+    title: 'Tu pedido | Rótulos Learoy',
+  },
    {
     path: 'checkout',
     loadComponent: () =>
       import('./pages/checkout/checkout.component').then(
         (c) => c.CheckoutComponent
       ),
-    title: 'Tu orden de compra | Rótulos Learoy',
+    title: 'Pago | Rótulos Learoy',
   },
 
   {

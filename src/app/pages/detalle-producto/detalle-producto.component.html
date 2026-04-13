@@ -3,7 +3,7 @@
   @if(productSelectedData.renderKey && productSelectedData.variants) {
 <section class="personalizador-section">
   <h2 class="subtitle white-shubtitle">Personaliza tu rótulo</h2>
-  <app-personalizdor [renderKey]="productSelectedData.renderKey" [variantes]="productSelectedData.variants"></app-personalizdor>
+  <app-personalizdor [product]="productSelectedData" ></app-personalizdor>
   </section>
   }
 
@@ -38,11 +38,18 @@
           {{ paragraph }}
 <span *ngIf="!last">.</span>
         </p>
-
-        <app-button
-          [buttonText]="'contacto'"
+@if(productSelectedData.variants && productSelectedData.variants.length === 0) {
+      <app-button
+          [buttonText]="'Pedir presupuesto'"
           [buttonLink]="'/contacto'"
-        ></app-button>
+          [whiteButton]="true"
+        ></app-button> }
+        @else {
+          <p>Aquí tiene que elegir variante/size</p>
+           <button class="button white-button">Añadir al carrito</button>
+        }
+
+  
       </div>
     </div>
 

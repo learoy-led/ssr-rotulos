@@ -27,11 +27,11 @@
   }
 
   li:hover {
-    background-color: var(--color-green);
+    background-color: var(--color-purple);
 }
 
 .active {
-background-color: var(--color-green);
+background-color: var(--color-purple);
 }
 
 .submenu {
