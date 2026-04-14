@@ -1,0 +1,15 @@
+:host {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 30px
+}
+
+.items-list {
+width: 100%
+}
+
+.item-row {
+    display: flex;
+    justify-content: space-between
+}

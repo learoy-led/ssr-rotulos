@@ -1,0 +1,6 @@
+  <ul class="items-list">
+    @for(item of cartService.items(); track item.id) {
+    <li class="item-row"><span>{{ item.name.charAt(0).toUpperCase() }}{{ item.name.slice(1) }}</span> <span>{{item.qty}}</span></li>
+    }
+  </ul>
+  <p>Total {{ cartService.totalPrice() | price }}</p>

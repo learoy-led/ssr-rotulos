@@ -2,7 +2,7 @@
 <img class="card-image" [src]="product.images[0]" [alt]="product.images[0] | alt" />
 </div>
 <div class="texts-container">
-<h3 class="centered-text">{{ product.name }}</h3>
+<h4 class="product-name">{{ product.name }}</h4>
  @if(mainVariant) {
     <p class="price">{{ mainVariant.price | price }}</p>
     }

@@ -18,11 +18,11 @@
     <ul class="contact-buttons">
       
       <li><a class="call-button" aria-label="Llamar por teléfono" [href]="'tel:+34'+contactDetails.phone">
-<app-icon [iconPath]="phonePath"></app-icon>
+<app-icon [iconPath]="phonePath" [ngClass]="'small-icon green'"></app-icon>
      
       </a>
       <li><a class="contact-button" aria-label="Ir a formulario de contacto" [routerLink]="['/contacto']">
-<app-icon [iconPath]="envelopePath"></app-icon>
+<app-icon [iconPath]="envelopePath" [ngClass]="'small-icon fuchsia'"></app-icon>
               </a></li>
 
    

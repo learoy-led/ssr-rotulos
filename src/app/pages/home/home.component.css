@@ -7,13 +7,8 @@ padding: 100px 16px 62px 16px;
    flex-wrap: nowrap;
     }
 
-    .personalizar-section {
-      padding-bottom: 100px;
-    }
-
 .vertical-carousel-section {
   width: 100%;
-background: var(--gradient-left);
 padding: 0 52px;
 overflow: hidden;
 background-size: cover;
@@ -30,14 +25,18 @@ gap: 52px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 30px;
-  color: var(--color-white);
 }
 
-/* .customers-section {
-  overflow: hidden;
-  max-width: 100%;
-  } */
+.vertical-carousel-section-texts p {
+margin-bottom: 20px
+}
+
+  .black-container {
+  height: 100px;
+  width: 100%;
+  background-color: var(--color-black);
+  z-index: -1;
+}
 
 
   @media screen and (max-width: 766px) {

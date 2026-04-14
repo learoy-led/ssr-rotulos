@@ -8,11 +8,15 @@
 }
 
 :host:hover {
-  border: 0.5px solid  var(--color-purple);
+  border: 0.5px solid  var(--color-blue);
 }
 
 :host(:hover) app-icon {
-color: var(--color-purple);
+color: var(--color-blue);
+}
+
+app-icon {
+  color: var(--color-white)
 }
 
 

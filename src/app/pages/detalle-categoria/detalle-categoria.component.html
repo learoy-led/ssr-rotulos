@@ -1,7 +1,7 @@
 <main class="category-page">
   @if (categorySelectedData) {
   <section class="centered-section">
-    <h1 class="page-title centered-text">{{ categorySelectedData.name }}</h1>
+    <h1 class="title centered-text">{{ categorySelectedData.name }}</h1>
       @if (pdfCatalogueVisible) {
 <app-filter-buttons [filterParam]="'light'" [itemSelected]="itemSelected" (itemSelectedUpdate)="onItemSelectedChange($event)"></app-filter-buttons>
         }
@@ -20,26 +20,32 @@
 
   </section>
 
+   @if (pdfCatalogueVisible) {
+  <section class="catalogue-section dark-section full-width-section">
+    <app-download-catalogue></app-download-catalogue>
+  </section>
+  }
+
   <section class="category-text-section">
     <ul class="advantages-list centered-text">
       <li>
-        <h2 class="subtitle">
+        <h2 class="subtitle orange">
           ¿Cuándo elegir {{ categorySelectedData.name }}?
         </h2>
         <p>{{ categorySelectedData.description.application }}</p>
       </li>
       <li>
-        <h2 class="subtitle">Tipos de {{ categorySelectedData.name }}</h2>
+        <h2 class="subtitle fuchsia">Tipos de {{ categorySelectedData.name }}</h2>
         <p>{{ categorySelectedData.description.products }}</p>
       </li>
       <li>
-        <h2 class="subtitle">
+        <h2 class="subtitle green">
           ¿Se puede personalizar?
         </h2>
         <p>{{ categorySelectedData.description.custom }}</p>
       </li>
       <li>
-        <h2 class="subtitle">
+        <h2 class="subtitle blue">
           ¿Cuánto cuesta?
         </h2>
         <p>{{ categorySelectedData.description.cost }}</p>
@@ -47,9 +53,5 @@
     </ul>
   </section>
 
-  @if (pdfCatalogueVisible) {
-  <section class="catalogue-section">
-    <app-download-catalogue></app-download-catalogue>
-  </section>
-  } }
+  }
 </main>

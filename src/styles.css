@@ -7,11 +7,16 @@ html {
   --color-blue: #02a9ea;
   --color-fuchsia: #ff01fb;
   --color-lima: #FAFF00; */
+
+  --color-blue: #007aff;
+  --color-orange: rgb(242, 102, 47);
+  --color-fuchsia: rgb(250, 43, 126);
+  --color-green: #23ddac;
+  --color-black: #060a0d;
   
-  --color-black: rgb(0, 3, 0);
+
+
   --color-purple: rgba(155, 81, 224, 1);
-  /* --color-green: rgb(153, 253, 132);   */
-  /* --gradient-new:  linear-gradient(-180deg, rgba(155, 81, 224, 1) 0%, rgba(0, 208, 132, 1) 100%); */
   --gradient-new:  linear-gradient(-180deg, rgb(0, 3, 0) 0%, rgba(155, 81, 224, 1) 100%);
   --gradient-left:  linear-gradient(90deg,rgb(0, 3, 0) 0%, rgba(155, 81, 224, 1) 100%);
 
@@ -19,17 +24,7 @@ html {
   --color-white: #ffffff;
   --color-red: #ff3b3b;
   
-  --gradient-blue: radial-gradient(1400px circle at 90% 50%, #02A9EA 0%, transparent 65%),
-#000300;
---gradient-fuchsia: linear-gradient(
-  180deg,
- #000300 0%,
-  #140018 30%,
-  #3a003f 55%,
-  #7a0080 75%,
-  #c000c0 90%,
-  #ff01fb 100%
-);
+ 
   --white-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); 
   --black-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
   --blue-shadow: 2px 2px 4px rgba(2, 169, 234, 0.5); 
@@ -50,17 +45,18 @@ html {
   border: none;
   outline: none;
   text-decoration: none;
-     font-family: "Roboto Mono", sans-serif;
+     font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
     font-size: 16px; 
-    line-height: 22px;
+    line-height: 26px;
 }
+
 
 body {
 background: var(--color-white);
-color: var(--color-black)
+  color: #878787;
 }
 
 main {
@@ -90,7 +86,14 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px
+  }
+
+  .dark-section {
+    background-color: var(--color-black)
+  }
+
+  .full-width-section {
+     width: 100%
   }
 
 a {
@@ -106,40 +109,55 @@ a {
     list-style-type: none;
   }
 
-  
-  /* h1 debería ser page-title
-  h2 title
-  h3 subtitle
-  h4
-  */
+     h1, .page-title, .title, .small-title {
+text-transform: uppercase; 
+color: var(--color-black);
+ }
 
-   h1, .page-title, .title, .subtitle, h4 {
-     font-family: "Montserrat", sans-serif; 
-    text-transform: uppercase; 
-     letter-spacing: 1px;
-    }
-   h1, .page-title, .title {
-      font-weight: 900;  
-    }
-  h1, .page-title {
-    font-size: 50px;
-    line-height: 60px
-   }
-   .title {
-    font-size: 30px;
-    line-height: 40px
+ .blue-line {
+  border-left: 4px solid var(--color-blue);
+padding-left: 56px
+ }
+.left {
+  padding-left: 56px!important
+}
+  
+   h1, .page-title {
+      font-family: "Rubik", sans-serif; 
+      font-weight: 500;  
+      font-size: 80px;
+    line-height: 90px
   }
-  .subtitle {
+
+    .subtitle {
+       text-transform: uppercase; 
+    font-family: "Abel", sans-serif; 
+    font-size: 30px;
+    line-height: 22px;
+    font-weight: 400; 
     padding: 22px 0;
-    font-size: 20px;
-       line-height: 30px;
-       font-weight: 800; 
+  }
+
+  .title {
+     font-family: "Rubik", sans-serif; 
+       font-weight: 500;  
+         font-size: 60px;
+    line-height: 63px
+  }
+
+  .small-title {
+    font-size: 40px;
+        line-height: 40px;
+       font-family: "Rubik", sans-serif; 
+        font-weight: 500;  
   }
 
   h4 {
-    font-size: 15px;
-    line-height: 25px;
-    font-weight: 800;
+    font-family: "Abel", sans-serif; 
+    font-size: 20px;
+    margin: 11px 0 28px 0;
+        letter-spacing: 2px;
+        text-transform: uppercase; 
       }
 
   .element-title {
@@ -173,8 +191,8 @@ a {
 }
 
 button {
+  font-family: "Abel", sans-serif; 
   cursor: pointer;
-  font-family: "Montserrat", sans-serif; 
 } 
 
 button:disabled {
@@ -182,23 +200,30 @@ button:disabled {
 }
 
 .button {
-  padding: 19px 31px; 
+  padding: 0 28px; 
   color: var(--color-white);
-  border: 2px solid var(--color-white);
+  background-color: var(--color-blue);
    text-transform: uppercase;
 width: fit-content;
 display: block; 
   margin-top: 10px;
-    font-family: "Montserrat", sans-serif; 
-    font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 3.5px;
+    font-family: "Abel", sans-serif; 
+    font-size: 12px;
+    line-height: 36px;
+    height: 36px;
+  font-weight: 400;
+  letter-spacing: 3px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 50px;
 }
 
 .button:hover {
-   color: var(--color-black);
-background-color: var(--color-white);
+background-color: var(--color-black);
+}
+
+.dark-button .button:hover  {
+  background-color: var(--color-white);
+  color: var(--color-black)
 }
 
 .button:disabled, .button:disabled:hover {
@@ -258,15 +283,14 @@ form {
 
   .products-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  justify-content: center;
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, 220px);
+  justify-content: space-around;
   padding: 30px 0;
   width:90vw
     }
 
   .product-card {
-  /* max-width: 250px; */
+  max-width: 190px;
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -278,6 +302,61 @@ form {
 
 .product-card a {
   height: 100%;
+}
+
+.white {
+  color: var(--color-white)
+}
+
+.blue {
+  color: var(--color-blue)
+}
+
+.green {
+ color: var(--color-green)
+}
+
+.orange {
+ color: var(--color-orange)
+}
+
+.fuchsia {
+  color: var(--color-fuchsia)
+}
+
+.blue-shadow {
+  box-shadow: 0 10px 60px 0px #4091fb;
+}
+
+.green-shadow {
+  box-shadow: 0 10px 60px 0px #7fe7c6;
+}
+
+.fuchsia-shadow {
+  box-shadow: 0 10px 60px 0px #df8cc4;
+}
+
+.big-icon svg {
+  color: var(--color-black);
+     height: 78px;
+     width: 100px;
+     margin-bottom: 24px
+}
+
+.big-icon svg path {
+   stroke-width: 30;
+}
+
+.small-icon svg {
+     height: 28px;
+}
+
+.small-icon svg path {
+  stroke-width: 40;
+}
+
+.small-icon:hover {
+  color: var(--color-white)
 }
 
 
@@ -322,3 +401,4 @@ form {
     width: 90vw
   }
   }
+

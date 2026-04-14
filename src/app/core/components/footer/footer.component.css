@@ -1,14 +1,12 @@
   .main-footer-container {
     display: flex;
-background: var(--gradient-new);
+background-color: var(--color-black);
     color: var(--color-white);
-    padding: 58px;
+    padding: 100px 58px 58px 58px;
     justify-content: space-between
   }
 
-  .secondary-footer-container {
-    background-color: var(--color-black);
-    color: var(--color-white);
+  .secondary-footer-container {   
     text-align: center;
     padding: 8px;
   }
@@ -39,7 +37,7 @@ background: var(--gradient-new);
       }
 
         .footer-link:hover {
-    color: var(--color-black);
+    color: var(--color-blue);
       }
 
   a::first-letter {

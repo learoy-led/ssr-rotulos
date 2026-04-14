@@ -5,7 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PricePipe implements PipeTransform {
 
-  transform(price: number): string {
+  transform(price: number | null): string {
+     if (price == null) return '0 €';
     return (price/100).toFixed(2).replace('.', ',') + ' €'
   }
 

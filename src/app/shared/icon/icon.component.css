@@ -1,29 +1,11 @@
-:host {
-     color: var(--color-white);
-      transition: color 0.3s ease;
-} 
-
-:host:hover {
-   color: var(--color-purple)
-}
-
- .icon-svg {
-     height: 28px;
+svg {
      display: flex;
      fill: currentColor;
   }
 
-  .icon-svg path {
+svg path {
   stroke: currentColor;
-  stroke-width: 40;
   fill: none;
 }
 
-.button-svg {
-   height: 48px;
-   display: flex;
-}
 
-.button-svg path {
-  fill: currentColor;
-}

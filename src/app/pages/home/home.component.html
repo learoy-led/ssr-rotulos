@@ -3,7 +3,7 @@
 <app-home-carousel></app-home-carousel>  
 
    <section class="centered-section home-section">
-      <h2 class="page-title centered-text">Luminosos y letreros para tiendas</h2>
+      <h2 class="small-title centered-text">Luminosos y letreros para tiendas</h2>
 <ul class="products-list featured">
   @for (product of products$ | async ; track product._id) {
   <li class="product-card" (click)="selectProduct(product) ">
@@ -17,31 +17,32 @@
 
  
    
-<section class="centered-section">
-      <h2 class="page-title centered-text">Encuentra el estilo de tu rótulo</h2>
+<!-- <section class="centered-section dark-section full-width-section">
+      <h2 class="small-title centered-text">Encuentra el estilo de tu rótulo</h2>
       <app-category-cards [cardElements]="categories$ | async"></app-category-cards>
-    </section> 
+    </section>  -->
 
-    <section class="centered-section personalizar-section">
-<app-banner-personalizar></app-banner-personalizar>
-    </section>
+    
 
-    <section class="vertical-carousel-section">
+    <section class="vertical-carousel-section dark-section">
       <div class="vertical-carousel-container">
       <div class="vertical-carousel-section-texts">
-      <h2 class="title">Amplia gama de letras corpóreas</h2>
-      <p>Desde letras de PVC hasta letras y números luminosos de metacrilato y aluminio, letras de hierro, etc. Diseños minimalistas o personalizados que se integran en cualquier espacio. Solicita tu presupuesto.</p>
-      <a class="button secondary-button" href="https://res.cloudinary.com/dxuseyfxa/image/upload/v1754989219/Cat%C3%A1logo_Letras_Corp%C3%B3reas_R%C3%93TULOS_LEAROY_ijiqne.pdf" 
-      target="_blank" rel="noopener noreferrer"  >Ver todas</a>
+      <h2 class="small-title white">Gran variedad de letras corpóreas</h2>
+      <h3 class="subtitle">Elige tu estilo</h3>
+      <p>Desde letras o números de PVC hasta metacrilato, hierro, etc. Diseños minimalistas o personalizados que se integran en cualquier espacio.</p>
+      <app-button [buttonText]="'Ver todas'" [ngClass]="'dark-button'" [buttonLink]="'/letras-corporeas'"></app-button>
     </div>
     <app-animated-vertical-carousel></app-animated-vertical-carousel> 
     </div>
   </section>
+
+  <section class="centered-section personalizar-section">
+<app-banner-personalizar></app-banner-personalizar>
+    </section>
   
+  <section class="full-width-section">
       <app-texts-section></app-texts-section>
-  
-    <!-- <section class="customers-section">
-      <app-customers></app-customers>
-    </section> -->
+  </section>
+<div class="black-container"></div>
 
   </main>

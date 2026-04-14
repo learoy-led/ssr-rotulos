@@ -4,7 +4,19 @@
 
 table {
 width: 100%;
-padding: 32px
+padding: 32px;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid var(--color-black);
+}
+
+.qty-control {
+    cursor: pointer;
 }
 
 .product-info {

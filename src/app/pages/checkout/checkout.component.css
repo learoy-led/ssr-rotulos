@@ -1,0 +1,15 @@
+.checkout-container {
+    display: flex;
+    gap: 35px;
+}
+
+app-order-summary {
+     width: 50%;
+     min-height: 100%;
+      padding: 22px;
+}
+
+app-user-data-form {
+     width: 50%;
+}
+

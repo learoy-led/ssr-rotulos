@@ -6,16 +6,19 @@
   } 
   
   a {
-    font-size: 16px;
-      font-family: "Montserrat", sans-serif; 
-      letter-spacing: 1px;
-      font-weight: 600;
-      text-transform: uppercase;
+    font-family: "Abel", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+      letter-spacing: 0.5px;
    color: var(--color-white);
+   transition: color 0.3s ease;
    margin: auto;
- 
+   padding: 0 20px;
   }
 
+  a:hover, .active {
+     color: var(--color-blue);
+}
 
   li {
      padding: 0px 14px;
@@ -23,16 +26,7 @@
      text-align: center;
      display: flex;
      align-self: center;
-     transition: background-color 0.3s ease;
   }
-
-  li:hover {
-    background-color: var(--color-purple);
-}
-
-.active {
-background-color: var(--color-purple);
-}
 
 .submenu {
   display: none

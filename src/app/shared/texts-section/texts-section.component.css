@@ -1,30 +1,47 @@
-:host {
+/* :host {
    display: flex;
     position: relative; 
     z-index: 0;
     min-height: 60vh;
     padding: 38px;
-    background-color: var(--color-black);
     background-size: cover;
     background-position: center;
-  }
+  } */
 
 
 .main-advantages-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    align-self: center;
-    gap: 52px; 
-        color: var(--color-white);
-    text-shadow: var(--black-shadow);
+    width: 80%;
+    margin: auto;
+    padding-top:40px;
+    margin-bottom: -150px;
 }
 
-img {
-    width: 100%; 
-    object-fit: cover;
-     height: 100%; 
-    z-index: -2;
+.main-advantage {
+    padding: 0 40px;
 }
+
+.content-wrapper  {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+       height: 100%;
+  background-color: var(--color-white);
+    border-radius: 10px;
+    padding: 40px 34px 38px 34px ;
+}
+
+.advantage-title {  
+  font-family: "Abel", sans-serif; 
+  font-size: 25px;
+  line-height: 40px;
+}
+
+p {
+  color:#878787
+}
+
 
 @media screen and (max-width: 766px) {
 

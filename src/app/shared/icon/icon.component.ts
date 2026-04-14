@@ -9,5 +9,4 @@ import { Component, Input } from '@angular/core';
 })
 export class IconComponent {
   @Input() iconPath: string = ''
-  @Input() buttonStyle?: boolean = false
 }

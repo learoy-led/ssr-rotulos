@@ -7,11 +7,12 @@ import { SchemaService } from '../../core/services/schema.service';
 import { AnimatedVerticalCarouselComponent } from '../../shared/animated-vertical-carousel/animated-vertical-carouesel.component';
 import { TextsSectionComponent } from '../../shared/texts-section/texts-section.component';
 import { HomeCarouselComponent } from './components/home-carousel/home-carousel.component';
-import { CategoryCardsComponent } from '../../shared/category-cards/category-cards.component';
+//import { CategoryCardsComponent } from '../../shared/category-cards/category-cards.component';
 import { PlatformService } from '../../core/services/platform.service';
 import { CardComponent } from '../../shared/card/card.component';
 import { Router } from '@angular/router';
 import { BannerPersonalizarComponent } from '../../shared/banner-personalizar/banner-personalizar.component';
+import { ButtonComponent } from '../../shared/button/button.component';
 
 
 
@@ -19,13 +20,13 @@ import { BannerPersonalizarComponent } from '../../shared/banner-personalizar/ba
   selector: 'app-home',
   standalone: true,
   imports: [
-    CategoryCardsComponent,
     TextsSectionComponent,
     HomeCarouselComponent,
     CommonModule,
     AnimatedVerticalCarouselComponent,
     CardComponent,
-    BannerPersonalizarComponent
+    BannerPersonalizarComponent,
+    ButtonComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

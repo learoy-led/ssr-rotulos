@@ -99,6 +99,7 @@ interface userDB {
 
 export interface AboutParagraph {
   title: string;
+  subtitle: string;
   text: string[];
   image: string;
 }
@@ -124,3 +125,9 @@ export interface Material {
   backgrounds: string[]
 }
 
+export interface RedsysResponse {
+signatureVersion: string;
+  merchantParameters: string;
+  signature: string;
+  redirectUrl: string;
+}

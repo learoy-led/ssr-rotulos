@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ButtonComponent } from '../../shared/button/button.component';
 import { ProductPurchased } from '../../models/data.models';
 import { CartService } from '../../core/services/cart.service';
@@ -12,13 +12,31 @@ import { PricePipe } from '../../pipes/price.pipe';
 })
 export class CartComponent {
 
-  public productsPurchaded: ProductPurchased[] = []
-  public totalPrice: number = 0
+  public isEmpty = computed(() => this.cartService.items().length === 0);
 
-  constructor(private cartService: CartService) {}
+  constructor(public cartService: CartService) {}  
 
-  public ngOnInit() {
-  this.productsPurchaded = this.cartService.getCart()
+
+public onIncreaseQty(product: ProductPurchased) {
+ this.cartService.addToCart({
+    ...product,
+    qty: 1 
+  });
 }
 
+public onReduceQty(product: ProductPurchased) {
+   if (product.qty > 1) {
+    this.cartService.addToCart({
+      ...product,
+      qty: -1 // restas 1
+    });
+  } else {
+    this.onRemoveItem(product.id);
+  }
 }
+
+public onRemoveItem(id: string) {
+  this.cartService.removeFromCart(id);
+}
+}
+

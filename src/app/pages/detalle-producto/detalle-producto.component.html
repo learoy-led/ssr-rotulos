@@ -2,7 +2,8 @@
 
   @if(productSelectedData.renderKey && productSelectedData.variants) {
 <section class="personalizador-section">
-  <h2 class="subtitle white-shubtitle">Personaliza tu rótulo</h2>
+  <h1 class="title"> {{ productSelectedData.name }}</h1>
+  <h2 class="subtitle blue"> Haz tu pedido online</h2>
   <app-personalizdor [product]="productSelectedData" ></app-personalizdor>
   </section>
   }
@@ -42,7 +43,6 @@
       <app-button
           [buttonText]="'Pedir presupuesto'"
           [buttonLink]="'/contacto'"
-          [whiteButton]="true"
         ></app-button> }
         @else {
           <p>Aquí tiene que elegir variante/size</p>

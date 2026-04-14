@@ -3,11 +3,12 @@ import {  NavigationEnd, Router } from '@angular/router';
 import {  Subscription } from 'rxjs';
 import { iconPaths } from '../../data/data';
 import { IconComponent } from '../icon/icon.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-search-input',
-  imports: [IconComponent],
+  imports: [IconComponent, CommonModule],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.css'
 })

@@ -1,13 +1,14 @@
 <main class="centered-main">
     
 <section>
-    <h1 class="centered-text">Learoy, especialistas en rotulación</h1>
+    <h1 class="title centered-text">Learoy, especialistas en rotulación</h1>
 @for(paragraph of paragraphs; track paragraph.title) {
 <div class="about-paragraph">
 <div class="paragraph-text">
-<h2 class="subtitle">{{paragraph.title}}</h2>
+<h2 class="small-title blue-line">{{paragraph.title}}</h2>
+<h4 class="left blue">{{paragraph.subtitle}}</h4>
 @for(text of paragraph.text; track text) {
-<p>{{text}}</p>
+<p class="left">{{text}}</p>
 }
 
 </div>
@@ -18,8 +19,9 @@
 
            
         </section>
-        <section class="social-media-section">
-             <h2 class="title centered-text">Sigue &#64;rotuloslearoy en Tik Tok </h2>
+        <section class="social-media-section full-width-section dark-section">
+             <h2 class="small-title centered-text white">Síguenos en Tik Tok</h2>
+             <h3 class="subtitle centered-text">&#64;rotuloslearoy</h3>
          <app-social-media></app-social-media>
          </section>
 

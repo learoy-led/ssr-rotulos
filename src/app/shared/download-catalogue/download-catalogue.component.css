@@ -1,50 +1,48 @@
 :host {
     display: flex;
- width: 80%;
-  margin: auto; 
+    padding: 52px 0;
+    width: 80%;
+    margin: auto
 }
 
-.download-catalogue-texts {
+.image-container {
+ display: flex;
+ align-items: center;
+ border-radius: 10px;
+}
+
+  .image-container, .banner-image {
+max-width: 100%;
+   overflow: hidden;
+
+}
+
+.banner-image {
+object-fit: cover;
+}
+  
+  .download-catalogue-texts {
  display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-  color: var(--color-white);
-  padding: 52px;
-  background: var(--gradient-new);
+   padding: 35px;
   }
 
-  .download-catalogue-image {
-    max-width: 40%; 
-  object-fit: cover;
-  }
+  .text {
+    margin-bottom: 20px
+}
 
-   @media screen and (min-width: 391px) and (max-width: 1200px) {
+.anchor-button {
+margin-left: 52px;
+} 
+
+.anchor-button:hover {
+background-color: var(--color-white);
+color: var(--color-black)
+}
+  
+     @media screen and (max-width: 374px) {
     :host {
-width: 100%
-    }
-    .download-catalogue-image {
-    max-width: 70%; 
-  }
-   }
-
-   @media screen and (max-width: 931px) {
- :host {
-        flex-direction: column-reverse;
-        width: 100%;
-        padding: 0;
-        gap: 0;
-        background-size: cover;
-  }
-
-  .download-catalogue-image {
-    align-self: center;
-    justify-self: center;
-overflow: hidden;
-max-width: 100%;
-  }
-
- .download-catalogue-texts {
-    padding: 32px;
-}  
+    display: flex;
+    flex-direction: column-reverse;
+}
 }

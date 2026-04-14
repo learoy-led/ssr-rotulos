@@ -58,6 +58,23 @@ backgrounds: [
     '/madera.webp',
     '/negro.webp',
 ]
+    },
+    {
+        name: "acero",
+        light: false,
+colors: [
+     '#5a5a5a',
+  ], 
+  fonts: [
+    'Open Sans',
+    'Bebas Neue'
+],
+
+backgrounds: [
+    '/ladrillo.webp',
+    '/madera.webp',
+    '/negro.webp',
+]
     }
     
 ]

@@ -1,17 +1,18 @@
 :host {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
+    display: flex;
+    padding: 52px 0
 }
 
 .image-container {
- max-height: 300px;
  display: flex;
  align-items: center;
+ border-radius: 10px;
 }
 
 .image-container, .banner-image {
 max-width: 100%;
    overflow: hidden;
+
 }
 
 .banner-image {
@@ -21,10 +22,11 @@ object-fit: cover;
 .text-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    color: var(--color-white);
     padding: 35px;
-    background: var(--gradient-new);
+}
+
+.text {
+    margin-bottom: 20px
 }
 
   @media screen and (max-width: 374px) {

@@ -1,6 +1,14 @@
-<main>
+<main class="centered-main">
     
-    <section>
+@if(isEmpty()) {
+    <section class="centered-section">
+<h2 class="subtitle">Tu carrito está vacío</h2>
+<app-button [buttonText]="'Seguir comprando'" [buttonLink]="'/catalogo'" [whiteButton]="true"></app-button>
+</section>
+
+} @else {
+
+<section class="centered-section">
         <h1 class="centered-text">Tu pedido</h1>
 <table>
      <tr>
@@ -8,10 +16,19 @@
 <th class="subtitle">Cantidad</th>
 <th class="subtitle">Importe</th>
      </tr>
-    @for(product of productsPurchaded; track product.id) {
+    @for(product of cartService.items(); track product.id) {
 <tr> 
-        <td class="product-info"><img class="product-miniature" [src]="product.image" [alt]="product.name"> <span class="product-name">{{ product.name.charAt(0).toUpperCase() }}{{ product.name.slice(1) }}</span></td>
-    <td>+ {{product.qty}} - Icono Bin</td>    
+        <td class="product-info">
+            <img class="product-miniature" [src]="product.image" [alt]="product.name"> 
+            <span class="product-name">{{ product.name.charAt(0).toUpperCase() }}{{ product.name.slice(1) }}</span>
+        </td>
+    <td>
+        <span class="qty-control" role="button" (click)="onIncreaseQty(product)">+</span> 
+        {{product.qty}} 
+        <span class="qty-control" role="button" (click)="onReduceQty(product)" >-</span>
+         <span role="button" (click)="onRemoveItem(product.id)"> Icono Bin</span>
+
+         </td>    
    <td>{{product.price*product.qty | price}}  </td>
       </tr>
     }
@@ -19,7 +36,10 @@
 </section>
 
 <section class="subtotal-container">
-<p>Total {{totalPrice}} €</p>
+<p>Total {{ cartService.totalPrice() | price }}</p>
 <app-button [whiteButton]="true" [buttonText]="'Pagar pedido'" [buttonLink]="'/checkout'"></app-button>
 </section>
+}
+
+
 </main>

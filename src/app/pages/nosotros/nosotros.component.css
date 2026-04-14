@@ -5,6 +5,15 @@
   padding: 30px 0;
 }
 
+.about-paragraph:last-child {
+   padding-bottom: 120px;
+}
+
+.about-paragraph:first-of-type {
+   padding-top: 120px;
+}
+
+
 .paragraph-image {
   object-fit: cover;
   max-width: 40%;
@@ -14,7 +23,10 @@
 .paragraph-text {
   display: flex;
   flex-direction: column;
-  gap: 12px
+}
+
+.paragraph-text p {
+margin-bottom: 20px;
 }
 
 .about-paragraph:nth-child(odd) {
@@ -25,11 +37,6 @@
   flex-direction: row-reverse;
 }
 
-.social-media-section {
-  width: 100%;
-  color: var(--color-white);
-  background-color: var(--color-black);
-}
 
 @media screen and (max-width: 766px) {
   .about-paragraph {
