@@ -1,5 +1,6 @@
 .product-miniature {
-    height: 50px
+    height: 50px;
+    border-radius: 3px;
 }
 
 table {
@@ -9,15 +10,51 @@ padding: 32px;
 
 th {
     text-align: left;
+      font-family: "Abel", sans-serif; 
+    font-size: 20px;
+    padding-bottom: 28px;
+        letter-spacing: 2px;
+        text-transform: uppercase; 
+}
+
+.product-name {
+    text-transform: uppercase;
 }
 
 td {
     border-bottom: 1px solid var(--color-black);
+    padding: 9px 2px;
+}
+
+td:last-child {
+text-align: right;
+}
+
+.qty-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .qty-control {
     cursor: pointer;
+      font-size: 26px;
+      color: var(--color-black)
 }
+
+svg {
+     display: flex;
+     fill: currentColor;
+      height: 20px;
+      cursor: pointer
+  }
+
+svg path {
+  stroke: currentColor;
+  fill: none;
+    stroke-width: 40;
+}
+
 
 .product-info {
     display: flex;
@@ -31,3 +68,4 @@ td {
     flex-direction: column;
     align-items: flex-end
 }
+

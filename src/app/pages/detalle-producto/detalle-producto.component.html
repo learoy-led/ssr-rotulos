@@ -2,7 +2,7 @@
 
   @if(productSelectedData.renderKey && productSelectedData.variants) {
 <section class="personalizador-section full-width-section">
-  <h1 class="title"> {{ productSelectedData.name }}</h1>
+  <h1 class="centered-text"> {{ productSelectedData.name }}</h1>
   <h2 class="subtitle blue"> Haz tu pedido online</h2>
   <app-personalizdor [product]="productSelectedData" ></app-personalizdor>
   </section>
@@ -34,49 +34,56 @@
       </figure>
 
       <div class="product-texts">
-        <h1 class="title">{{ productSelectedData.name }}</h1>
-        <p *ngFor="let paragraph of productSelectedData.description.split('.'); let last = last">
+        <h1 class="small-title blue-line">{{ productSelectedData.name }}</h1>
+        <p class="left" *ngFor="let paragraph of productSelectedData.description.split('.'); let last = last">
           {{ paragraph }}
 <span *ngIf="!last">.</span>
         </p>
-@if(productSelectedData.variants && productSelectedData.variants.length === 0) {
-      <app-button
+
+         @if(!productSelectedData.renderKey) {
+
+          @if(productSelectedData.variants && productSelectedData.variants.length === 0) {
+      <app-button class="left"
           [buttonText]="'Pedir presupuesto'"
           [buttonLink]="'/contacto'"
         ></app-button> }
         @else {
-          <p>Aquí tiene que elegir variante/size</p>
-           <button class="button white-button">Añadir al carrito</button>
+          <!-- <p>Aquí tiene que elegir variante/size</p>
+          <p class="price">Aquí precio del variante</p> -->
+
+           <button class="button">Añadir al carrito</button>
         }
+
+         }
 
   
       </div>
     </div>
 
     <div class="secondary-product-details">
-      <h2 class="subtitle">
-        Más información sobre
+      <h2 class="small-title blue-line">Más información</h2>
+      <h4 class="left blue">
         {{
           productSelectedData.name.charAt(0).toUpperCase() +
             productSelectedData.name.slice(1)
         }}
-      </h2>
+      </h4>
 
-      <ul class="selected-product-details">
+      <ul class="selected-product-details left">
         <li>
-          <p class="description-title">Material</p>
+          <h4 class="orange">Material</h4>
           <p>{{ productSelectedData.material }}</p>
         </li>
         <li>
-          <p class="description-title">Diseño</p>
+          <h4 class="fuchsia">Diseño</h4>
           <p>{{ productSelectedData.design }}</p>
         </li>
         <li>
-          <p class="description-title">Instalación</p>
+          <h4 class="green">Instalación</h4>
           <p>{{ productSelectedData.installation }}</p>
         </li>
         <li>
-          <p class="description-title">Aplicación</p>
+          <h4 class="blue">Aplicación</h4>
           <p>{{ productSelectedData.application }}</p>
         </li>
       </ul>
@@ -84,8 +91,8 @@
   </section>
   
 
-  <section class="related-products">
-    <h2 class="subtitle">
+  <section class="related-products full-width-section dark-section">
+    <h2 class="subtitle centered-text">
       Más {{ this.categoryName }} que te pueden interesar
     </h2>
     <app-items-carousel></app-items-carousel>

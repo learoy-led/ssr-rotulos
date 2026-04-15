@@ -7,16 +7,19 @@
   ></app-banner> -->
 
     <section class="centered-section">
-    <h1 class="title">Modelos de rotulación</h1>
+    <h1 class="centered-text">Modelos de rotulación</h1>
     <h3 class="subtitle blue">Escoge tu estilo</h3>
-<app-filter-buttons [filterParam]="'categories'" [itemSelected]="categorySelected" (itemSelectedUpdate)="onCategorySelectedChange($event)"></app-filter-buttons>
-@for(category of categories$ | async | filter: categorySelected; track category.name; let i = $index) {
+<app-filter-buttons [filterParam]="'light'" [itemSelected]="itemSelected" (itemSelectedUpdate)="onFilterChange($event)"></app-filter-buttons>
+@for(category of categories$ | async ; track category.name; let i = $index) {
+  
+  @if(getProductsInCategory(category.slug) | async | filter:itemSelected; as products) {
+    @if(products.length) {
   <div class="category">
       <h2 class="small-title centered-text">{{category.name}}</h2>
 
       <ul class="products-list">
 
-        @for (product of getProductsInCategory(category.slug) | async ; track product._id) {
+        @for (product of products; track product._id) {
         
   <li class="product-card">
       <a [routerLink]="[`/${category?.slug}/${product.slug}`]">
@@ -26,6 +29,8 @@
 }
       </ul>
       </div>
+      }
+      }
 }
   
 

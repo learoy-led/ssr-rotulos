@@ -155,9 +155,9 @@
 
 @if(product.variants?.length!== 0) {
 <label for="size">Elige la altura de las letras: {{ form.get('size')?.value }} cm</label>
-<input type="range" min="10" max="200" value="10" formControlName="size" id="size">
-<p>Precio   {{ getPrice() | price }} IVA Incl.</p>
-<button type="submit" class="button white-button" [disabled]="form.invalid">Añadir al carrito</button> 
+<input #rangeEl type="range" min="10" max="200" value="10" formControlName="size" id="size">
+<p>Precio   <span class="price">{{ getPrice() | price }}</span> IVA Incl.</p>
+<button type="submit" class="button" [disabled]="form.invalid">Añadir al carrito</button> 
 }
 
 

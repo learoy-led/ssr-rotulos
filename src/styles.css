@@ -109,7 +109,7 @@ a {
     list-style-type: none;
   }
 
-     h1, .page-title, .title, .small-title {
+     h1, .home-title, .title, .small-title {
 text-transform: uppercase; 
 color: var(--color-black);
  }
@@ -119,30 +119,29 @@ color: var(--color-black);
 padding-left: 56px
  }
 .left {
-  padding-left: 56px!important
+  padding-left: 60px!important
 }
   
-   h1, .page-title {
+   .home-title {
       font-family: "Rubik", sans-serif; 
       font-weight: 500;  
       font-size: 80px;
     line-height: 90px
   }
 
-    .subtitle {
-       text-transform: uppercase; 
-    font-family: "Abel", sans-serif; 
-    font-size: 30px;
-    line-height: 22px;
-    font-weight: 400; 
-    padding: 22px 0;
-  }
-
-  .title {
+    h1 {
      font-family: "Rubik", sans-serif; 
        font-weight: 500;  
          font-size: 60px;
     line-height: 63px
+  }
+
+    .subtitle {
+       text-transform: uppercase; 
+    font-family: "Abel", sans-serif; 
+    font-size: 30px;
+    font-weight: 400; 
+    padding: 22px 0;
   }
 
   .small-title {
@@ -309,6 +308,10 @@ form {
   color: var(--color-white)
 }
 
+.black {
+    color: var(--color-black)
+}
+
 .blue {
   color: var(--color-blue)
 }
@@ -360,6 +363,13 @@ form {
   color: var(--color-white)
 }
 
+.price {
+    font-family: "Abel", sans-serif; 
+        font-size: 24px;
+       padding: 6px;
+       color: var(--color-black);
+}
+
 
  @media screen and (max-width: 1300px) {
     section {
@@ -376,7 +386,7 @@ form {
       padding: 15px 0;
     }
     
-    h1, .page-title {
+    h1, .home-title {
       font-size: 34px;
       line-height: 44px;
     } 

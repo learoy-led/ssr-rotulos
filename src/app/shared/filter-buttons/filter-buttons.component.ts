@@ -28,7 +28,7 @@ constructor( private getProductsService: GetProductsService ){}
 ngOnInit() {
  
   if (this.filterParam === 'light') {
-  this.items = ["Letras luminosas", "Letras sin luz"]
+  this.items = ["Rótulos luminosos", "Rótulos sin luz"]
   } 
 
    if (this.filterParam === 'categories') {

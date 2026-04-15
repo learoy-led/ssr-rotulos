@@ -1,7 +1,7 @@
 <main class="category-page">
   @if (categorySelectedData) {
   <section class="centered-section">
-    <h1 class="title centered-text">{{ categorySelectedData.name }}</h1>
+    <h1 class="centered-text">{{ categorySelectedData.name }}</h1>
       @if (pdfCatalogueVisible) {
 <app-filter-buttons [filterParam]="'light'" [itemSelected]="itemSelected" (itemSelectedUpdate)="onItemSelectedChange($event)"></app-filter-buttons>
         }

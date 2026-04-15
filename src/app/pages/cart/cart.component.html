@@ -3,7 +3,7 @@
 @if(isEmpty()) {
     <section class="centered-section">
 <h2 class="subtitle">Tu carrito está vacío</h2>
-<app-button [buttonText]="'Seguir comprando'" [buttonLink]="'/catalogo'" [whiteButton]="true"></app-button>
+<app-button [buttonText]="'Seguir comprando'" [buttonLink]="'/catalogo'"></app-button>
 </section>
 
 } @else {
@@ -12,32 +12,53 @@
         <h1 class="centered-text">Tu pedido</h1>
 <table>
      <tr>
-<th class="subtitle">Producto</th>
-<th class="subtitle">Cantidad</th>
-<th class="subtitle">Importe</th>
+<th class="orange">Producto</th>
+<th></th>
+<th class="fuchsia">Cantidad</th>
+<th class="green">Importe</th>
      </tr>
     @for(product of cartService.items(); track product.id) {
 <tr> 
         <td class="product-info">
             <img class="product-miniature" [src]="product.image" [alt]="product.name"> 
-            <span class="product-name">{{ product.name.charAt(0).toUpperCase() }}{{ product.name.slice(1) }}</span>
+            <span class="product-name">{{ product.name }}</span>
+          
         </td>
-    <td>
-        <span class="qty-control" role="button" (click)="onIncreaseQty(product)">+</span> 
-        {{product.qty}} 
-        <span class="qty-control" role="button" (click)="onReduceQty(product)" >-</span>
-         <span role="button" (click)="onRemoveItem(product.id)"> Icono Bin</span>
 
+
+
+      @if(product.customDetails) {
+        <td>
+            <span>Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color: <span [style.color]="product.customDetails.color">{{product.customDetails.color}}</span>, Altura de las letras: {{product.customDetails.size}} cm    
+            </span>
+            </td>
+            }
+
+
+    <td>
+         <div class="qty-wrapper">
+       <span class="qty-control" role="button" (click)="onReduceQty(product)" >-</span>
+     <span>   {{product.qty}} </span>
+      <span class="qty-control" role="button" (click)="onIncreaseQty(product)">+</span> 
+        
+        <svg role="button" (click)="onRemoveItem(product.id)" xmlns="http://www.w3.org/2000/svg"  aria-hidden="true" 
+  viewBox="0 0 640 640">
+    <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path [attr.d]="binPath"/>
+            </svg>
+
+
+</div>
          </td>    
-   <td>{{product.price*product.qty | price}}  </td>
+   <td class="black">{{product.price*product.qty | price}}  </td>
       </tr>
     }
 </table>
 </section>
 
 <section class="subtotal-container">
-<p>Total {{ cartService.totalPrice() | price }}</p>
-<app-button [whiteButton]="true" [buttonText]="'Pagar pedido'" [buttonLink]="'/checkout'"></app-button>
+<p class="subtitle">Total <span class="subtitle black left"> {{ cartService.totalPrice() | price }}</span></p>
+<app-button  [buttonText]="'Pagar pedido'" [buttonLink]="'/checkout'"></app-button>
 </section>
 }
 

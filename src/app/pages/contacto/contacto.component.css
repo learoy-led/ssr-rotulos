@@ -32,13 +32,19 @@ iframe {
 
   .contact-details {
 text-align: center;
+width:100%
   }
+
+   app-contact-form {
+    width: 100%;
+}
 
   iframe {
     max-width:90vw
   }
 .form {
-  order: -1
+  order: -1;
+  margin: auto;
 }
 }
 
@@ -47,3 +53,5 @@ text-align: center;
       width: 80%;
   }
 }
+
+ 

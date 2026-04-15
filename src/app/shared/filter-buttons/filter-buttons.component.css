@@ -1,5 +1,5 @@
 .filter-buttons {
-    margin: 32px;
+    margin: 32px 0;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
@@ -26,11 +26,11 @@ gap: 18px
   
   @media screen and (max-width: 766px) {
     .filter-buttons {
-        gap: 8px;
+        gap: 10px;
         }
 
         .filter-button {
-            font-size: 16px;
-            padding: 3px 6px
+              border-radius: 20px;
+               padding: 0px 14px;
          }
   }

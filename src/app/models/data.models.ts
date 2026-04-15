@@ -55,6 +55,13 @@ export interface ProductPurchased {
   image: string;
   price: number;
   qty: number;
+  customDetails?: customDetails
+}
+interface customDetails {
+  text: string;
+  font: string,
+  color: string,
+  size: number
 }
 
 export interface Variant {

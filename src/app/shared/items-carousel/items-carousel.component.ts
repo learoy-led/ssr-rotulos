@@ -4,13 +4,14 @@ import { Subscription } from 'rxjs';
 import { GetProductsService } from '../../core/services/get-products.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardComponent } from '../card/card.component';
-import { IconComponent } from '../icon/icon.component';
 import { iconPaths } from '../../data/data';
+import { CommonModule } from '@angular/common';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
     selector: 'app-items-carousel',
       standalone: true,
-    imports: [CardComponent, RouterModule, IconComponent],
+    imports: [CardComponent, RouterModule, CommonModule, IconComponent],
     templateUrl: './items-carousel.component.html',
     styleUrl: './items-carousel.component.css'
 })

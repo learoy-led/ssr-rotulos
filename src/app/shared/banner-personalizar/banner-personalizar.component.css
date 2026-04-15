@@ -12,7 +12,6 @@
 .image-container, .banner-image {
 max-width: 100%;
    overflow: hidden;
-
 }
 
 .banner-image {
@@ -33,6 +32,10 @@ object-fit: cover;
     :host {
     display: flex;
     flex-direction: column-reverse;
+     padding: 12px 0
 }
 
+.image-container {
+    border-radius:0px
+}
 }

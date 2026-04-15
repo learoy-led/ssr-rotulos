@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
-import { Observable } from 'rxjs';
+import { forkJoin, map, Observable, switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FilterButtonsComponent } from '../../shared/filter-buttons/filter-buttons.component';
 import { FilterPipe } from '../../pipes/filter.pipe';
@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
 export class CategoriasComponent implements OnInit {
 
 public categories$?: Observable <Category[]>;
-  public categorySelected: string = ''
+public itemSelected: string = ''
     
 public productsInCategory$?: Observable <Product[]>
 private productsCache = new Map<string, Observable<Product[]>>();
@@ -27,7 +27,25 @@ private productsCache = new Map<string, Observable<Product[]>>();
   constructor(private getProductsService: GetProductsService  ){} 
 
   ngOnInit() {
-    this.categories$ = this.getProductsService.getCategories();
+    //this.categories$ = this.getProductsService.getCategories();
+
+     this.categories$ = this.getProductsService.getCategories().pipe(
+    switchMap(categories =>
+      forkJoin(
+        categories.map(category =>
+          this.getProductsInCategory(category.slug).pipe(
+            map(products => ({
+              ...category,
+              products
+            }))
+          )
+        )
+      )
+    ),
+    map(categories =>
+      categories.filter(category => category.products.length > 0)
+    )
+  );
   }
 
 
@@ -38,8 +56,7 @@ private productsCache = new Map<string, Observable<Product[]>>();
   return this.productsCache.get(categorySlug)!;
 }
 
-  public onCategorySelectedChange(categoryName: string) {
-this.categorySelected = categoryName
-  }
-
-}
+  public onFilterChange(item: string) {
+this.itemSelected = item;
+ }
+ }

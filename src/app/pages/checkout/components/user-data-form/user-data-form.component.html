@@ -1,5 +1,6 @@
 <form #redsysForm="ngForm" #formEl [action]="redirectUrl" method="POST">
-  <label class="contact-label">Datos de contacto</label>
+    <h2>Datos de contacto</h2>
+ 
 <div>
         <input
         class="form-field"
@@ -70,8 +71,7 @@
         
         </div>
 
-
-      <label class="contact-label">Dirección de envío</label>
+   <h2>Dirección de envío</h2>
       <input
         class="form-field"
         placeholder="Dirección"
@@ -139,7 +139,7 @@
         <input type="hidden" name="Ds_SignatureVersion" [value]="signatureVersion" />
         <input type="hidden" name="Ds_MerchantParameters" [value]="merchantParameters" />
         <input type="hidden" name="Ds_Signature" [value]="signature" />
-<button type="button" class="button white-button" (click)="onSubmit(redsysForm)">Pagar ahora</button>
+<button type="button" class="button" (click)="onSubmit(redsysForm)">Pagar ahora</button>
 </form>
 
 

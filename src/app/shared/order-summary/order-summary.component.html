@@ -1,6 +1,12 @@
+  <h2>Resumen</h2>
   <ul class="items-list">
     @for(item of cartService.items(); track item.id) {
-    <li class="item-row"><span>{{ item.name.charAt(0).toUpperCase() }}{{ item.name.slice(1) }}</span> <span>{{item.qty}}</span></li>
+    <li class="item-row">
+      <h4 class="item">{{item.qty}} {{ item.name }}</h4>
+      @if(item.customDetails) {
+      <p>Texto: {{item.customDetails.text}}, Fuente: {{item.customDetails.font}}, Color: {{item.customDetails.color}}, Altura de las letras: {{item.customDetails.size}} cm</p>
+      }
+    </li>
     }
   </ul>
-  <p>Total {{ cartService.totalPrice() | price }}</p>
+  <p>TOTAL <span class="price">{{ cartService.totalPrice() | price }}</span></p>

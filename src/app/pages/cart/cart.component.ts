@@ -3,16 +3,19 @@ import { ButtonComponent } from '../../shared/button/button.component';
 import { ProductPurchased } from '../../models/data.models';
 import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
+import { iconPaths } from '../../data/data';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  imports: [ButtonComponent, PricePipe],
+  imports: [ButtonComponent, PricePipe, CommonModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
 
   public isEmpty = computed(() => this.cartService.items().length === 0);
+  public binPath = iconPaths.bin
 
   constructor(public cartService: CartService) {}  
 

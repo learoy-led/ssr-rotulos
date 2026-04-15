@@ -45,6 +45,8 @@ export class PersonalizdorComponent implements OnInit {
 
 
 @ViewChild('textEl') textEl!: ElementRef<SVGTextElement>;
+@ViewChild('rangeEl') rangeEl!: ElementRef<HTMLInputElement>;
+
 public previewImage = ''
 
   constructor(private fb: FormBuilder, private platformService: PlatformService,
@@ -86,6 +88,7 @@ this.variantSize = values.size >= 75 ? 'L' : 'S'
   }
     
     this.updateText(); 
+    this.updateRange()
   }
 
   public getPrice() {
@@ -106,6 +109,13 @@ this.variantSize = values.size >= 75 ? 'L' : 'S'
     this.autoFitText();
   }, 0);
   }
+
+  private updateRange() {
+if (!this.platformService.isBrowser() || !this.rangeEl) return;
+  const value = (Number(this.rangeEl.nativeElement.value) - 10) / (200 - 10) * 100 + "%";
+  this.rangeEl.nativeElement.style.setProperty("--value", value);  
+}
+
 
  private  tintColor(hex: string, amount = 0.9) {
 
@@ -166,7 +176,13 @@ this.fontSize = size;
     name: this.product.name,
     image: this.product.images[0],
     price: this.finalPrice,
-    qty: 1
+    qty: 1,
+    customDetails: {
+      text: this.text,
+      font: this.font,
+      color: this.color,
+      size: this.size
+    }
   }
   this.form.reset();
   this.cartService.addToCart(productPurchased)
