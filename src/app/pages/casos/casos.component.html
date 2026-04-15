@@ -1,5 +1,5 @@
 <main class="centered-main">
-      <section class="centered-section cases">
+      <section class="centered-section cases full-width-section">
       <h1 class="title centered-text">Trabajos realizados</h1>
       <ul class="cases-grid">
         @for(case of cases; track case; let i = $index) {
@@ -10,8 +10,8 @@
       @if(selectedCase) {
 <figure class="image-zoom-container">
         <img 
-      loading="lazy" decoding="async" class="case-image-zoom" [src]="selectedCase" [alt]="selectedCase | alt">
-      <span role="button" class="title xmark" (click)="closeImageZoom()">X</span>
+      loading="lazy" decoding="async" class="case-image-zoom blue-shadow" [src]="selectedCase" [alt]="selectedCase | alt">
+      <span role="button" class="button xmark" (click)="closeImageZoom()">X</span>
       <!-- <app-icon [iconPath]="xmarkPath"></app-icon> -->
         
 </figure>
