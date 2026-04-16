@@ -9,22 +9,30 @@
     [attr.height]="height"
     xmlns="http://www.w3.org/2000/svg"
   >
-   @if (product.renderKey === 'neon') {
-    <defs>     
-       <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
+  <!-- aquí antes tenía que el renderKye era neon -->
+   @if (product.light) {
+    <defs>    
+      <!-- en este filter glow es donde debo cmabiar algo para que el glow sea de otro color distinto al de la letra glowColor -->
+       
+      <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+ 
+     <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
         <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur2" />
         <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur3"/>
+
           <feComponentTransfer in="blur3" result="blur3soft">
     <feFuncA type="linear" slope="0.4"/>
-  </feComponentTransfer>
-        <feMerge>
-           <feMergeNode in="blur3soft"/>
+  </feComponentTransfer>    
+       
+  <feMerge>
+  <feMergeNode in="blur3soft"/>
           <feMergeNode in="blur2" />
           <feMergeNode in="blur1" />
           <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>    
+  </feMerge>
+</filter>
+
+      
     </defs>
   } 
 
@@ -34,10 +42,12 @@
       height="100%"
       preserveAspectRatio="xMidYMid slice"
     />
-
+@if(product.light && product.renderKey !== 'acero') {
    <rect x="0" y="0" width="100%" height="100%" fill="black" opacity="0.6"></rect>
-  
-    @if(text.length !== 0 && material?.light) {
+   }
+
+   <!-- aquí antes tenía material en vez de product -->
+    @if(text.length !== 0 && product.renderKey === 'neon') {
 <radialGradient id="wallGlow"> <stop offset="0%" [attr.stop-color]="color" stop-opacity="0.25"/> 
   <stop offset="100%" [attr.stop-color]="color" stop-opacity="0"/> 
 </radialGradient> 
@@ -66,7 +76,7 @@
     </text>
  
     
-     @if(material?.light) {
+     @if(product.renderKey === 'neon') {
      <text
       x="50%"
       y="50%"
@@ -87,7 +97,7 @@
   
   </svg>
 
-<p class="ia-advice">Esta imagen ha sido generada por IA. El producto real puede variar ligeramente.</p>
+<p class="ia-advice">Esta imagen es una simulación. <br>El producto real puede variar ligeramente.</p>
 </figure>    
 </div>
 
@@ -103,14 +113,14 @@
       type="radio"
       [id]="'font-' + i"
       formControlName="font"
-      [value]="font"
+      [value]="font.name"
       hidden>
 
     <label
       [for]="'font-' + i"
       class="font-preview"
-      [ngStyle]="{'font-family': font}"
-       >{{font}}</label>
+      [ngStyle]="{'font-family': font.name}"
+       >{{font.name.split(' ')[0]}}</label>
   }
 
      </div>

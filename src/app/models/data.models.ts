@@ -126,10 +126,14 @@ export interface Preview {
 
 export interface Material {
   name: string;
-  light: boolean;
   colors: string[];
-  fonts: string[];
+  fonts: Font[];
   backgrounds: string[]
+}
+
+interface Font {
+  name: string;
+  url: string;
 }
 
 export interface RedsysResponse {

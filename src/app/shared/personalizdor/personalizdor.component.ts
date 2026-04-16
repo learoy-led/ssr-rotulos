@@ -8,6 +8,7 @@ import { Material, Product } from '../../models/data.models';
 import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
 import { Router } from '@angular/router';
+import { FontsService } from '../../services/fonts.service';
 
 @Component({
   selector: 'app-personalizdor',
@@ -19,7 +20,7 @@ export class PersonalizdorComponent implements OnInit {
 
   @Input() product!: Product;
   public material?: Material | undefined;
-
+  
 
   form!: FormGroup;
 
@@ -42,7 +43,15 @@ export class PersonalizdorComponent implements OnInit {
 
   finalPrice = 0
 
-
+  get glowColor(): string {
+  if (this.product.renderKey === 'acero') {
+    return '#fff5cc'; // blanco cálido
+  }
+  if (this.product.renderKey === 'pvc') {
+    return '#ffffff'; // blanco frío
+  }
+  return this.color; // neón usa el mismo color
+}
 
 @ViewChild('textEl') textEl!: ElementRef<SVGTextElement>;
 @ViewChild('rangeEl') rangeEl!: ElementRef<HTMLInputElement>;
@@ -50,17 +59,19 @@ export class PersonalizdorComponent implements OnInit {
 public previewImage = ''
 
   constructor(private fb: FormBuilder, private platformService: PlatformService,
-     private cartService: CartService, private router: Router
+     private cartService: CartService, private router: Router,
+     private fontsService: FontsService
    ) {}
 
  public ngOnInit() {
 
   this.material  = materials.find((material) => material.name === this.product.renderKey);
+  this.preloadTopFonts();
 
       this.form = this.fb.group({
       text: ['Tu texto aquí'],
       color: [this.material?.colors[0] || this.color],
-      font: [this.material?.fonts[0] || this.font],
+      font: [this.material?.fonts[0].name || this.font],
       background: [this.background],
       size: this.size
     });
@@ -72,7 +83,20 @@ public previewImage = ''
   .subscribe(values => {
     this.applyFormValues(values)
   });
-  } 
+
+} 
+
+
+
+  async preloadTopFonts() {
+    if (!this.material || !this.platformService.isBrowser()) return    
+     //const topFonts = this.material.fonts.slice(0, 3);
+      const topFonts = this.material.fonts;
+       await Promise.allSettled(
+  topFonts.map(font => this.fontsService.loadFont(font.name, font.url))
+);
+
+  }
 
   private applyFormValues(values: any) {
     this.text = values.text;

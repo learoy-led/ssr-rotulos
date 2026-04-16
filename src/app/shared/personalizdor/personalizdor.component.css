@@ -8,7 +8,10 @@ padding-top: 52px
 
 .preview-container {
     width:100%;
-    min-height: 100%
+    min-height: 100%;
+    background-color: #f7f7f7;
+    align-items: center;
+    display: flex;
 }
 
 .fa-regular {
@@ -18,6 +21,7 @@ margin-bottom: 35px;
 }
 
 .preview-figure {
+  height: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -25,6 +29,7 @@ align-items: center;
 
 .ia-image {
     width: 100%;
+    height: 100%
 }
 
 tspan {
@@ -80,7 +85,8 @@ background-size: 250%;
 .font-preview {
 padding: 4px 8px;
 text-align: center;
-white-space: nowrap
+white-space: nowrap;
+ text-transform: capitalize;
 }
 
 input[type="range"] {
