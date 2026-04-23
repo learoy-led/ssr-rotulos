@@ -1,11 +1,32 @@
-.cookies-policy-texts > ul {
-    padding-left: 40px
+.main-policy-page {
+  width: 90%;
+  margin: auto
 }
 
-.cookies-policy-texts > ul > li {
+.texts-policy-page {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 52px;
+    margin-bottom: 52px
+}
+
+h1 {
+    padding: 20px;
+  }
+
+h2 {
+       font-size: 20px
+}
+
+ul {
+   padding-left: 40px
+}
+
+li {
     list-style-type:circle;
 }
 
-.cookies-policy-texts > ul > li > a {
+a {
     text-decoration: underline;
   }

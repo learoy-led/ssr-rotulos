@@ -1,75 +1,90 @@
 import { Material } from "../models/data.models";
 
-const fonts = [
+export const fonts = [
     {
     name: 'Agency FB',
-    url: 'agency'
+    url: 'agency',
+    minHeight: 10
     },
       {
     name: 'Arial',
-    url: 'arial'
+    url: 'arial',
+    minHeight: 10
     },
     {
     name: 'BankGothic Md BT',
-    url: 'bankgothic'
+    url: 'bankgothic',
+    minHeight: 10
     },
     {
     name: 'Berlin Sans FB Demi',
-    url: 'berlin'
+    url: 'berlin',
+    minHeight: 10
     },
 {
     name: 'ChunkFive Print',
-    url: 'chunkfive'
+    url: 'chunkfive',
+    minHeight: 10
     },
      {
     name: 'Comic Sans MS',
-    url: 'comic'
+    url: 'comic',
+    minHeight: 10
     },
        {
     name: 'Forte',
-    url: 'forte'
+    url: 'forte',
+    minHeight: 10
     },
      {
     name: 'Futura Now Headline ExtraBlack',
-    url: 'futura'
+    url: 'futura',
+    minHeight: 10
     },    
         {
     name: 'Geometr415 Blk BT',
-    url: 'geometric'
+    url: 'geometric',
+    minHeight: 10
     },
        {
     name: 'Gobold Bold',
-    url: 'gobold'
+    url: 'gobold',
+    minHeight: 10
     },
          {
     name: 'Hakgyoansim Dunggeunmiso OTF B',
-    url: 'hakgyo'
+    url: 'hakgyo',
+    minHeight: 10
     },
-
-     //desde 18 cm
+      {
+    name: 'MV Boli',
+    url: 'boli',
+    minHeight: 10
+    },
        {
     name: 'Freehand521 BT',
-    url: 'freehand'
+    url: 'freehand',
+    minHeight: 18
     },
        {
     name: 'Freestyle Script',
-    url: 'freestyle'
+    url: 'freestyle',
+    minHeight: 18
     },
        {
     name: 'Handelson Three',
-    url: 'handelson'
-    },
-     {
-    name: 'MV Boli',
-    url: 'boli'
+    url: 'handelson',
+    minHeight: 18
     },
       {
     name: 'Perpetua',
-    url: 'perpetua'
+    url: 'perpetua',
+    minHeight: 18
     },
        {
     name: 'Questrial',
-    url: 'questrial'
+    url: 'questrial',
+    minHeight: 18
     },
 
 ]
@@ -81,7 +96,27 @@ const backgrounds = [
       '/blanco.webp',
 ]
 
+const colors = [
+         '#ffffff',
+     '#000000',
+     '#f80000',
+      '#f88d00',
+     '#ffff00',
+     '#00bb2d',
+      '#038622',
+    '#3b83bd',
+    '#1e2460',
+'#cf3476'    
+]
+
 export const materials: Material[] = [
+    {
+        name: "acero",
+colors: ['#5a5a5a', ...colors ], 
+  fonts: fonts,
+backgrounds: backgrounds,
+grosor: [2,3,5,6,8]
+    },
  {
         name: "neon",
 colors: [
@@ -97,32 +132,50 @@ colors: [
     '#FFDFAF'
   ], 
   fonts: fonts,
-backgrounds: backgrounds
+backgrounds: backgrounds,
     },
     {
         name: "pvc",
         
-colors: [
-     '#ffffff',
-     '#0a0a0a',
-     '#f80000',
-     '#ffff00',
-     '#00bb2d',
-    '#3b83bd',
-    '#1e2460',
-'#cf3476'
-  ], 
+colors: colors, 
   fonts: fonts,
 backgrounds: backgrounds
     },
-    {
-        name: "acero",
-colors: [
-     '#5a5a5a',
-  ], 
+  
+  {
+        name: "hierro",
+colors: colors, 
   fonts: fonts,
-backgrounds: backgrounds
-    }
+backgrounds: backgrounds,
+grosor: [2,4,6,8,10,13]
+    },
+      {
+        name: "aluminio",      
+colors: [
+    '#ffffff',
+     '#000000',
+  '#ed1c24',
+  '#f26322',
+  '#ffdd00',
+  '#003e69',
+  '#059448',
+  '#ba8e05',
+  //oro rosa
+  '#DEA193',
+  '#848688',
+], 
+  fonts: fonts,
+backgrounds: backgrounds,
+grosor: [4,6,8,10,13]
+    },
+
+    {
+      name: "mini",
+      colors: colors, 
+   fonts: fonts,
+backgrounds: backgrounds,
+maxHeight: 49
+}
     
 ]
 

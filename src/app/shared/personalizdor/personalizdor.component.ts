@@ -1,10 +1,10 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { materials } from '../../data/personalizador.data';
 import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
 import { PlatformService } from '../../core/services/platform.service';
-import { Material, Product } from '../../models/data.models';
+import { Font, Material, Product } from '../../models/data.models';
 import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { FontsService } from '../../services/fonts.service';
   templateUrl: './personalizdor.component.html',
   styleUrl: './personalizdor.component.css'
 })
-export class PersonalizdorComponent implements OnInit {
+export class PersonalizdorComponent implements OnInit, AfterViewInit {
 
   @Input() product!: Product;
   public material?: Material | undefined;
@@ -26,12 +26,17 @@ export class PersonalizdorComponent implements OnInit {
 
   text: string = 'Tu texto aquí';
   color: string = '';
-  font: string = '';
+  font: Font = {
+    name: '',
+    url: '',
+    minHeight: 10
+  };
   background: string = '/negro.webp';
 
   variantSize: string = 'S';
-  size: number = 10;
-  
+  size: number = this.font.minHeight;
+  proportionalWidth: number  = 0
+
   width: number = 650;
   height: number = 550;
   fontSize: number = 80
@@ -43,6 +48,20 @@ export class PersonalizdorComponent implements OnInit {
 
   finalPrice = 0
 
+private fitTimeout: any;
+public previewImage = ''
+
+textRect!:DOMRect
+svgRect!:DOMRect
+
+overlay = {
+  left: 0,
+  top: 0,
+  width: 0,
+  height: 0
+};
+
+
   get glowColor(): string {
   if (this.product.renderKey === 'acero') {
     return '#fff5cc'; // blanco cálido
@@ -50,17 +69,17 @@ export class PersonalizdorComponent implements OnInit {
   if (this.product.renderKey === 'pvc') {
     return '#ffffff'; // blanco frío
   }
-  return this.color; // neón usa el mismo color
+  return this.color; 
 }
 
 @ViewChild('textEl') textEl!: ElementRef<SVGTextElement>;
+@ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
 @ViewChild('rangeEl') rangeEl!: ElementRef<HTMLInputElement>;
 
-public previewImage = ''
 
   constructor(private fb: FormBuilder, private platformService: PlatformService,
      private cartService: CartService, private router: Router,
-     private fontsService: FontsService
+     private fontsService: FontsService,
    ) {}
 
  public ngOnInit() {
@@ -71,9 +90,9 @@ public previewImage = ''
       this.form = this.fb.group({
       text: ['Tu texto aquí'],
       color: [this.material?.colors[0] || this.color],
-      font: [this.material?.fonts[0].name || this.font],
+      font: [this.material?.fonts[0] || this.font],
       background: [this.background],
-      size: this.size
+      size: this.size,
     });
 
     this.applyFormValues(this.form.value);
@@ -91,19 +110,17 @@ public previewImage = ''
   async preloadTopFonts() {
     if (!this.material || !this.platformService.isBrowser()) return    
      //const topFonts = this.material.fonts.slice(0, 3);
-      const topFonts = this.material.fonts;
        await Promise.allSettled(
-  topFonts.map(font => this.fontsService.loadFont(font.name, font.url))
+  this.material.fonts.map(font => this.fontsService.loadFont(font.name, font.url))
 );
-
-  }
+}
 
   private applyFormValues(values: any) {
     this.text = values.text;
     this.color = values.color;
     this.font = values.font;
     this.background = values.background;
-    this.size = values.size;
+    this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
 
   if (this.product.name.includes('3D')) {
 this.variantSize = values.size >= 50 ? 'L' : 'S'
@@ -129,15 +146,33 @@ this.variantSize = values.size >= 75 ? 'L' : 'S'
     this.lines = this.text.split('\n');
 
  this.recalcLayout()  
-   setTimeout(() => {
+
+
+  clearTimeout(this.fitTimeout);
+  
+    this.fitTimeout = setTimeout(() => {
     this.autoFitText();
-  }, 0);
+  }, 50); 
+
+  //  setTimeout(() => {
+  //   this.autoFitText();
+  // }, 0);
   }
 
   private updateRange() {
-if (!this.platformService.isBrowser() || !this.rangeEl) return;
-  const value = (Number(this.rangeEl.nativeElement.value) - 10) / (200 - 10) * 100 + "%";
-  this.rangeEl.nativeElement.style.setProperty("--value", value);  
+if (!this.platformService.isBrowser() || !this.rangeEl || !this.material) return
+const maxHeight = this.material.maxHeight || 200;
+const currentSize = this.size < this.font.minHeight ? this.font.minHeight : this.size
+  const value = (currentSize - this.font.minHeight) / (maxHeight - this.font.minHeight) * 100 + "%";
+  
+ 
+
+requestAnimationFrame(() => {
+ const el = this.rangeEl.nativeElement;
+ el.value = String(currentSize);
+el.style.setProperty("--value", value);  
+});
+
 }
 
 
@@ -159,20 +194,24 @@ if (!this.platformService.isBrowser() || !this.rangeEl) return;
 async autoFitText() {
   if (!this.platformService.isBrowser() || !this.textEl) return;
 
-  const el = this.textEl.nativeElement;
+      const el = this.textEl.nativeElement;
 
   const maxWidth = this.width * 0.9;
   const maxHeight = this.height * 0.9;
 
-  let size = this.fontSize;
+let size = this.fontSize;
 
    while (size > 18) {
      this.fontSize = size;
      this.recalcLayout();
 
     await new Promise(requestAnimationFrame);
-    const box = el.getBBox();
+    
+  
 
+    const box = el.getBBox();
+    this.proportionalWidth = (this.size * box.width)/box.height
+    console.log('caja', this.proportionalWidth)
    if (box.width <= maxWidth && box.height <= maxHeight) {
      break;
    }
@@ -180,7 +219,11 @@ async autoFitText() {
  size -= 2;
  }
 
+
 this.fontSize = size;
+
+
+
   this.recalcLayout()
 }
 
@@ -188,6 +231,7 @@ this.fontSize = size;
  this.lineHeight = this.fontSize * 1.2;
   const totalHeight = (this.lines.length - 1) * this.lineHeight;
   this.firstDy = -totalHeight / 2;
+
 
  }
 
@@ -212,11 +256,27 @@ this.fontSize = size;
   this.cartService.addToCart(productPurchased)
   console.log(productPurchased)
   this.router.navigate(['/cart']);
-
-    
   
    //generar archivo para Alex
     } 
 
+
+   public ngAfterViewInit() {
+  this.updateOverlay();
+}
+
+public updateOverlay(){
+  if (!this.platformService.isBrowser() || !this.textEl || !this.svgEl) return
+this.textRect = this.textEl.nativeElement.getBoundingClientRect();
+this.svgRect = this.svgEl.nativeElement.getBoundingClientRect();
+
+this.overlay = {
+  left: this.textRect.left - this.svgRect.left,
+  top: this.textRect.top - this.svgRect.top,
+  width: this.textRect.width,
+  height: this.textRect.height
+};
+console.log(this.overlay)
+}
   }      
 

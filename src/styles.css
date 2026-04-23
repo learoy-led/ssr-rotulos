@@ -47,7 +47,6 @@ html {
   text-decoration: none;
      font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
   font-style: normal;
     font-size: 16px; 
     line-height: 26px;
@@ -63,12 +62,6 @@ main {
   padding-top: 19vh;
   min-height: 70vh;
 }
-
-.main-policy-page {
-  width: 90%;
-  margin: auto
-}
-
 
 .centered-main {
   display: flex;
@@ -108,6 +101,11 @@ a {
   li {
     list-style-type: none;
   }
+
+  .title {
+    font-weight: 400;
+      }
+
 
      h1, .home-title, .title, .small-title {
 text-transform: uppercase; 
@@ -167,9 +165,7 @@ padding-left: 56px
   .element-title::first-letter {
     text-transform: uppercase;
    }
-   .policy-title {
-    padding: 0
-}
+  
    .centered-text {
     text-align: center;
    }
@@ -182,14 +178,7 @@ padding-left: 56px
   margin: auto;
   }
   
-  .texts-policy-page {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 52px;
-}
-
-button {
+  button {
   font-family: "Abel", sans-serif; 
   cursor: pointer;
 } 

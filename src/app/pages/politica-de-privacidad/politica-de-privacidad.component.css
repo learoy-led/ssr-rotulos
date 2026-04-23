@@ -1,0 +1,32 @@
+.main-policy-page {
+  width: 90%;
+  margin: auto
+}
+
+.texts-policy-page {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 52px;
+    margin-bottom: 52px
+}
+
+h1 {
+    padding: 20px;
+  }
+
+h2 {
+       font-size: 20px
+}
+
+ul {
+   padding-left: 40px
+}
+
+li {
+    list-style-type:circle;
+}
+
+a {
+    text-decoration: underline;
+  }

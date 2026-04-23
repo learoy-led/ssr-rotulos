@@ -59,7 +59,7 @@ export interface ProductPurchased {
 }
 interface customDetails {
   text: string;
-  font: string,
+  font: Font,
   color: string,
   size: number
 }
@@ -128,12 +128,16 @@ export interface Material {
   name: string;
   colors: string[];
   fonts: Font[];
-  backgrounds: string[]
+  backgrounds: string[],
+ minHeight?: number,
+maxHeight?: number,
+grosor?: number[]
 }
 
-interface Font {
+export interface Font {
   name: string;
   url: string;
+  minHeight: number
 }
 
 export interface RedsysResponse {
