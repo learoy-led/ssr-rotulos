@@ -1,9 +1,12 @@
 :host {
+  width: 80%;
+  padding-top: 52px
+}
+
+.container {
 display: grid;
 grid-template-columns: 50% 50%;
-width: 80%;
 justify-items: center;
-padding-top: 52px
 }
 
 .preview-container {

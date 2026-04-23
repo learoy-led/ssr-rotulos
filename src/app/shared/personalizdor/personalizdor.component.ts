@@ -211,7 +211,6 @@ let size = this.fontSize;
 
     const box = el.getBBox();
     this.proportionalWidth = (this.size * box.width)/box.height
-    console.log('caja', this.proportionalWidth)
    if (box.width <= maxWidth && box.height <= maxHeight) {
      break;
    }
@@ -231,8 +230,7 @@ this.fontSize = size;
  this.lineHeight = this.fontSize * 1.2;
   const totalHeight = (this.lines.length - 1) * this.lineHeight;
   this.firstDy = -totalHeight / 2;
-
-
+this.updateOverlay()
  }
 
    public onSubmit() { 
@@ -276,7 +274,10 @@ this.overlay = {
   width: this.textRect.width,
   height: this.textRect.height
 };
-console.log(this.overlay)
+
+
 }
+
+
   }      
 

@@ -1,3 +1,4 @@
+<div class="container">
 <div class="preview-container">
 <figure class="preview-figure">
 
@@ -108,7 +109,7 @@
        [style.top.px]="overlay.top"
        [style.height.px]="overlay.height"
        [style.left.px]="overlay.left - 15"
-      ><span>{{ size }} cm</span></div>
+      ><span>{{ size * 1.1 * this.lines.length }} cm</span></div>
 
   </div>
 
@@ -196,4 +197,5 @@ id="size">
 
 
 </form>
-
+</div>
+<p class="ia-advice">Esta imagen es una simulación. El producto real puede variar ligeramente.</p>
