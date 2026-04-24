@@ -11,11 +11,12 @@ import { PlatformService } from '../../core/services/platform.service';
 import { SchemaService } from '../../core/services/schema.service';
 import { PersonalizdorComponent } from '../../shared/personalizdor/personalizdor.component';
 import { CartService } from '../../core/services/cart.service';
+import { ImageCompareComponent } from './components/image-compare/image-compare.component';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent],
+  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })
@@ -61,7 +62,7 @@ export class DetalleProductoComponent implements OnInit {
 
     this.route.data.subscribe(data => {
     this.productSelectedData = data['product'];
-
+console.log('imagenes array', this.productSelectedData.images.length)
 });
 
 

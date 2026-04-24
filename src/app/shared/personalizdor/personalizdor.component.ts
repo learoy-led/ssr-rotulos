@@ -4,7 +4,7 @@ import { materials } from '../../data/personalizador.data';
 import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
 import { PlatformService } from '../../core/services/platform.service';
-import { Font, Material, Product } from '../../models/data.models';
+import { Color, Font, Material, Product } from '../../models/data.models';
 import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
 import { Router } from '@angular/router';
@@ -25,7 +25,20 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
   form!: FormGroup;
 
   text: string = 'Tu texto aquí';
-  color: string = '';
+  
+  color: Color = {
+    name: '',
+    hex: ''
+  };
+  frontColor: Color = {
+    name: '',
+    hex: ''
+  };
+  baseColor: Color = {
+    name: '',
+    hex: ''
+  };
+
   font: Font = {
     name: '',
     url: '',
@@ -69,7 +82,7 @@ overlay = {
   if (this.product.renderKey === 'pvc') {
     return '#ffffff'; // blanco frío
   }
-  return this.color; 
+  return this.color.hex; 
 }
 
 @ViewChild('textEl') textEl!: ElementRef<SVGTextElement>;
@@ -89,7 +102,9 @@ overlay = {
 
       this.form = this.fb.group({
       text: ['Tu texto aquí'],
-      color: [this.material?.colors[0] || this.color],
+      color: [ this.material?.colors.filter(color => color.uses?.includes('letra'))[0] || this.color],
+      frontColor: [ this.material?.colors.filter(color => color.uses?.includes('vinilo') || color.uses?.includes('metacrilato'))[0] || this.frontColor],
+      baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font],
       background: [this.background],
       size: this.size,
@@ -118,6 +133,8 @@ overlay = {
   private applyFormValues(values: any) {
     this.text = values.text;
     this.color = values.color;
+     this.frontColor = values.frontColor;
+     this.baseColor = values.baseColor;
     this.font = values.font;
     this.background = values.background;
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
@@ -142,7 +159,7 @@ this.variantSize = values.size >= 75 ? 'L' : 'S'
   }
 
   private updateText() {
-      this.innerColor = this.tintColor(this.color, 0.9);
+      this.innerColor = this.tintColor(this.color.hex, 0.9);
     this.lines = this.text.split('\n');
 
  this.recalcLayout()  
@@ -247,6 +264,8 @@ this.updateOverlay()
       text: this.text,
       font: this.font,
       color: this.color,
+        frontColor: this.frontColor,
+         baseColor: this.baseColor,
       size: this.size
     }
   }

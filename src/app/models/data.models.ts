@@ -60,7 +60,9 @@ export interface ProductPurchased {
 interface customDetails {
   text: string;
   font: Font,
-  color: string,
+  color: Color,
+  frontColor?: Color,
+  baseColor?: Color
   size: number
 }
 
@@ -124,9 +126,16 @@ export interface Preview {
   background: string
 }
 
+export interface Color {
+  name: string;
+  hex: string;
+  uses?: string[];
+  materials?: string[]
+}
+
 export interface Material {
   name: string;
-  colors: string[];
+  colors:  Color[];
   fonts: Font[];
   backgrounds: string[],
  minHeight?: number,

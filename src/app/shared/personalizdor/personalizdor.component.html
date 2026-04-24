@@ -52,7 +52,7 @@
     
    @if(product.light) {
 <radialGradient id="wallGlow"> <stop offset="0%" [attr.stop-color]="glowColor" stop-opacity="0.25"/> 
-  <stop offset="100%" [attr.stop-color]="color" stop-opacity="0"/> 
+  <stop offset="100%" [attr.stop-color]="color.hex" stop-opacity="0"/> 
 </radialGradient> 
 <ellipse cx="50%" cy="50%" rx="35%" ry="25%" fill="url(#wallGlow)" />
  }
@@ -63,7 +63,7 @@
       y="50%"
       text-anchor="middle"
      dominant-baseline="middle"
-      [attr.fill]="color"
+      [attr.fill]="color.hex"
       [attr.filter]="product.light ? 'url(#glow)' : null"
     >
      @for(line of lines; track i; let i = $index) {
@@ -84,7 +84,7 @@
       y="50%"
       text-anchor="middle"
       dominant-baseline="middle"
-      [attr.fill]="product.renderKey === 'neon' ? innerColor : color"
+      [attr.fill]="product.renderKey === 'neon' ? innerColor : color.hex"
     >
 
     @for(line of lines; track i; let i = $index) {
@@ -142,11 +142,15 @@
 
      </div>
   
-  <label for="color">Selecciona un color:</label> 
-
+  <label for="color">Selecciona un color {{product.renderKey === 'neon' ? '': 'para las letras'}}:
+   @if(product.light && product.renderKey !== 'neon') {
+<span>(el color de la luz será el mismo)</span>
+ }
+ </label> 
   <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
-    <input
+    @if(color.uses?.includes('letra')) {
+      <input
       type="radio"
       [id]="'color-' + i"
       formControlName="color"
@@ -156,10 +160,57 @@
     <label
       [for]="'color-' + i"
       class="color-circle"
-      [style.background]="color"
+      [style.background]="color.hex"
        ></label>
+
+    }
   }
 </div>
+
+@if(product.light && product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio') {
+  <label for="frontColor">Selecciona un color para el  {{ product.renderKey === 'aluminio' ? 'metacrilato' : 'vinilo' }} frontal:</label> 
+<div class="color-picker">
+  @for(color of material?.colors; track i; let i = $index) {
+      @if(color.uses?.includes('vinilo') || color.uses?.includes('metacrilato') ) {
+    <input
+      type="radio"
+      [id]="'base-color-' + i"
+      formControlName="frontColor"
+      [value]="color"
+      hidden>
+
+    <label
+      [for]="'base-color-' + i"
+      class="color-circle"
+      [style.background]="color.hex"
+       ></label>
+  }
+   }
+</div>
+}
+  
+@if(product.renderKey !== 'neon') {
+  <label for="baseColor">Selecciona un color para la base de aluminio:</label> 
+
+  <div class="color-picker">
+  @for(color of material?.colors; track i; let i = $index) {
+     @if(color.uses?.includes('base')) {
+    <input
+      type="radio"
+      [id]="'base-color-' + i"
+      formControlName="baseColor"
+      [value]="color"
+      hidden>
+
+    <label
+      [for]="'base-color-' + i"
+      class="color-circle"
+      [style.background]="color.hex"
+       ></label>
+  }
+    }
+</div>
+}
 
 <label for="background" class="label">Elige un fondo:</label> 
 

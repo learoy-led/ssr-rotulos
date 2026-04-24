@@ -11,13 +11,18 @@
   @if (productSelectedData) {
   <section class="product-details">
     <div class="main-product-details">
-      <figure class="product-images">
+      @if(productSelectedData.light && productSelectedData.renderKey !== 'neon') {
+           <figure class="product-images">
+         <app-image-compare [images]="productSelectedData.images"></app-image-compare>
+         </figure>
+         } @else {
+       <figure class="product-images">
         <img
           class="main-image"
           [src]="productSelectedData.images[mainImageIndex]"
           [alt]="productSelectedData.slug"
         />
-
+@if(productSelectedData.images.length > 1) {
         <ul class="secondary-images">
           <li
             *ngFor="let imageUrl of productSelectedData.images; let i = index"
@@ -31,7 +36,9 @@
             />
           </li>
         </ul>
-      </figure>
+        }
+      </figure> 
+   }
 
       <div class="product-texts">
         <h1 class="small-title blue-line">{{ productSelectedData.name }}</h1>
