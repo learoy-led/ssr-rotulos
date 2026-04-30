@@ -46,7 +46,7 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
   };
   background: string = '/negro.webp';
 
-  variantSize: string = 'S';
+  variantSize: number = 0;
   size: number = this.font.minHeight;
   proportionalWidth: number  = 0
 
@@ -62,12 +62,11 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
   finalPrice = 0
 
 private fitTimeout: any;
-public previewImage = ''
 
-textRect!:DOMRect
-svgRect!:DOMRect
+private textRect!:DOMRect
+private svgRect!:DOMRect
 
-overlay = {
+public overlay = {
   left: 0,
   top: 0,
   width: 0,
@@ -75,17 +74,21 @@ overlay = {
 };
 
 
-  get glowColor(): string {
-  if (this.product.renderKey === 'acero') {
-    return '#fff5cc'; // blanco cálido
-  }
-  if (this.product.renderKey === 'pvc') {
-    return '#ffffff'; // blanco frío
-  }
-  return this.color.hex; 
+private visibleFontsCount = 5;
+
+get visibleFonts() {
+  return this.material?.fonts?.slice(0, this.visibleFontsCount);
 }
 
-@ViewChild('textEl') textEl!: ElementRef<SVGTextElement>;
+loadMoreFonts() {
+  this.visibleFontsCount += 5;
+}
+
+  get glowColor(): string {
+    return this.product.renderKey === 'neon' ? this.color.hex : '#fff5cc';
+}
+
+@ViewChild('textGroup') textGroup!: ElementRef<SVGElement>;
 @ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
 @ViewChild('rangeEl') rangeEl!: ElementRef<HTMLInputElement>;
 
@@ -120,11 +123,9 @@ overlay = {
 
 } 
 
-
-
-  async preloadTopFonts() {
+ async preloadTopFonts() {
     if (!this.material || !this.platformService.isBrowser()) return    
-     //const topFonts = this.material.fonts.slice(0, 3);
+     const topFonts = this.material.fonts.slice(0, 4);
        await Promise.allSettled(
   this.material.fonts.map(font => this.fontsService.loadFont(font.name, font.url))
 );
@@ -138,12 +139,6 @@ overlay = {
     this.font = values.font;
     this.background = values.background;
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
-
-  if (this.product.name.includes('3D')) {
-this.variantSize = values.size >= 50 ? 'L' : 'S'
-  } else {
-this.variantSize = values.size >= 75 ? 'L' : 'S'
-  }
     
     this.updateText(); 
     this.updateRange()
@@ -151,10 +146,24 @@ this.variantSize = values.size >= 75 ? 'L' : 'S'
 
   public getPrice() {
   if (!this.product?.variants) return 0;
-  const variantSelected = this.product.variants.find((v) => v.size === this.variantSize)
+  let variantSelected = null
+
+  for (const v of this.product.variants) {
+  if (v.size >= this.size) {
+    variantSelected = v;
+    break;
+  }
+}
+
    if (!variantSelected || this.text === 'Tu texto aquí') return 0;
-  this.finalPrice = variantSelected && (variantSelected.price) * this.text.replace(/\s/g, '').length * this.size 
+   if(this.product.renderKey !== 'neon') {
+this.finalPrice = variantSelected && (variantSelected.price) * this.text.replace(/\s/g, '').length * this.size 
   this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
+   } else {
+    // calcular área
+    this.finalPrice = variantSelected.price
+   }
+  
   return this.finalPrice
   }
 
@@ -176,6 +185,61 @@ this.variantSize = values.size >= 75 ? 'L' : 'S'
   // }, 0);
   }
 
+  private  tintColor(hex: string, amount = 0.9) {
+
+    const num = parseInt(hex.replace('#', ''), 16);
+
+    let r = (num >> 16) & 255;
+    let g = (num >> 8) & 255;
+    let b = num & 255;
+
+    r = Math.round(r + (255 - r) * amount);
+    g = Math.round(g + (255 - g) * amount);
+    b = Math.round(b + (255 - b) * amount);
+
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
+async autoFitText() {
+  if (!this.platformService.isBrowser() || !this.textGroup) return;
+
+      const el = this.textGroup.nativeElement;
+
+  const maxWidth = this.width * 0.9;
+  const maxHeight = this.height * 0.9;
+
+let size = this.fontSize;
+
+   while (size > 18) {
+     this.fontSize = size;
+     this.recalcLayout();
+
+    await new Promise(requestAnimationFrame);
+    
+  
+
+    const box = (el as SVGGElement).getBBox();
+
+    
+    this.proportionalWidth = (this.size * box.width)/this.lineHeight
+   if (box.width <= maxWidth && box.height <= maxHeight) {
+     break;
+   }
+
+ size -= 2;
+ }
+
+this.fontSize = size;
+  this.recalcLayout()
+}
+
+ private recalcLayout() {
+ this.lineHeight = this.fontSize * 1.2;
+  const totalHeight = (this.lines.length - 1) * this.lineHeight;
+  this.firstDy = -totalHeight / 2;
+this.updateOverlay()
+ }
+
   private updateRange() {
 if (!this.platformService.isBrowser() || !this.rangeEl || !this.material) return
 const maxHeight = this.material.maxHeight || 200;
@@ -192,63 +256,6 @@ el.style.setProperty("--value", value);
 
 }
 
-
- private  tintColor(hex: string, amount = 0.9) {
-
-    const num = parseInt(hex.replace('#', ''), 16);
-
-    let r = (num >> 16) & 255;
-    let g = (num >> 8) & 255;
-    let b = num & 255;
-
-    r = Math.round(r + (255 - r) * amount);
-    g = Math.round(g + (255 - g) * amount);
-    b = Math.round(b + (255 - b) * amount);
-
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-
-async autoFitText() {
-  if (!this.platformService.isBrowser() || !this.textEl) return;
-
-      const el = this.textEl.nativeElement;
-
-  const maxWidth = this.width * 0.9;
-  const maxHeight = this.height * 0.9;
-
-let size = this.fontSize;
-
-   while (size > 18) {
-     this.fontSize = size;
-     this.recalcLayout();
-
-    await new Promise(requestAnimationFrame);
-    
-  
-
-    const box = el.getBBox();
-    this.proportionalWidth = (this.size * box.width)/box.height
-   if (box.width <= maxWidth && box.height <= maxHeight) {
-     break;
-   }
-
- size -= 2;
- }
-
-
-this.fontSize = size;
-
-
-
-  this.recalcLayout()
-}
-
- private recalcLayout() {
- this.lineHeight = this.fontSize * 1.2;
-  const totalHeight = (this.lines.length - 1) * this.lineHeight;
-  this.firstDy = -totalHeight / 2;
-this.updateOverlay()
- }
 
    public onSubmit() { 
      if (this.form.invalid) return;
@@ -278,13 +285,13 @@ this.updateOverlay()
     } 
 
 
-   public ngAfterViewInit() {
+public ngAfterViewInit() {
   this.updateOverlay();
 }
 
 public updateOverlay(){
-  if (!this.platformService.isBrowser() || !this.textEl || !this.svgEl) return
-this.textRect = this.textEl.nativeElement.getBoundingClientRect();
+  if (!this.platformService.isBrowser() || !this.textGroup || !this.svgEl) return
+this.textRect = this.textGroup.nativeElement.getBoundingClientRect();
 this.svgRect = this.svgEl.nativeElement.getBoundingClientRect();
 
 this.overlay = {

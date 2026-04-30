@@ -1,6 +1,7 @@
 :host {
   width: 80%;
-  padding-top: 52px
+  padding-top: 52px;
+
 }
 
 .container {
@@ -35,9 +36,8 @@ position: relative
     height: 100%
 }
 
-tspan {
+text {
   transition: font-size 0.2s ease;
-  font-weight: 700
 }
 
 .ia-advice {
@@ -50,10 +50,17 @@ width: 100%;
 
 .preview-form {
     padding: 32px;
-    width:100%;
-    min-height: 100%;
+    /* width:100%; */
+    /* min-height: 100%; */
      background: #f7f7f7; 
+      max-height: 65vh;
+    overflow-y: auto;
 }
+
+textarea {
+ min-height: 120px; 
+}
+
 
 .color-picker, .font-picker, .background-picker {
   display: flex;
@@ -71,14 +78,29 @@ width: 100%;
  cursor: pointer;
  }
 
- input[type="radio"]:checked + .color-circle, input[type="radio"]:checked + .background-square, input[type="radio"]:checked + .font-preview {
+ input[type="radio"]:checked + .color-square, input[type="radio"]:checked + .background-square, input[type="radio"]:checked + .font-preview{
 border: 1px solid var(--color-black);
 }
 
-.color-circle {
+
+.color-square {
 width: 35px;
 height: 35px;
 }
+
+.no-selection {
+    position: relative;
+}
+  .no-selection::after {
+  content: "X";
+  font-size: 34px;
+   /* color: var(--color-red);  */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 .background-square {
 width: 75px;
@@ -114,7 +136,7 @@ input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 16px;
   width: 16px;
-  background: #007aff;
+  background: var(--color-blue);
   border-radius: 50%;
   cursor: pointer;
   margin-top: -5px; /* centrar */
@@ -149,7 +171,7 @@ input[type="range"]::-webkit-slider-thumb {
   position: absolute;
   color: var(--color-blue);
   padding: 2px 6px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .measure-line.horizontal span  {

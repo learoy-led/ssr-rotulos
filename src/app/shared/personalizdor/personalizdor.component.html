@@ -12,8 +12,7 @@
   >
   <!-- aquí antes tenía que el renderKye era neon -->
   
-    <defs>    
-      <!-- en este filter glow es donde debo cmabiar algo para que el glow sea de otro color distinto al de la letra glowColor -->
+    <defs>  
        
       <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
  
@@ -38,65 +37,67 @@
   
 
     <image
-      [attr.href]="background"
+      [attr.href]="background === '/negro.webp' && (frontColor.dark || (frontColor.hex === 'transparent' && color.dark)) ? '/blanco.webp': background"
       width="100%"
       height="100%"
       preserveAspectRatio="xMidYMid slice"
     />
 
-@if(product.light && product.renderKey !== 'acero') {
-   <rect x="0" y="0" width="100%" height="100%" fill="black" opacity="0.6"></rect>
+@if(product.light) {
+   <rect x="0" y="0" width="100%" height="100%" fill="black" opacity="0.4"></rect>
    }
 
    <!-- aquí antes tenía material en vez de product -->
     
    @if(product.light) {
 <radialGradient id="wallGlow"> <stop offset="0%" [attr.stop-color]="glowColor" stop-opacity="0.25"/> 
-  <stop offset="100%" [attr.stop-color]="color.hex" stop-opacity="0"/> 
+  <stop offset="100%" [attr.stop-color]="glowColor" stop-opacity="0"/> 
 </radialGradient> 
 <ellipse cx="50%" cy="50%" rx="35%" ry="25%" fill="url(#wallGlow)" />
  }
+ 
+@if(product.light && product.renderKey !== 'neon') {
+      <rect
+    [attr.x]="overlay.left - 40"
+    [attr.y]="overlay.top - 20"
+    [attr.width]="overlay.width + 40 * 2"
+    [attr.height]="overlay.height + 20 * 2"
+    [attr.fill]="product.renderKey === 'aluminio' && frontColor.hex === '#ffffff' ? '#383E42' : baseColor.hex"
+    rx="4">
+  </rect>
+   }
 
-<text
-    #textEl
-      x="50%"
-      y="50%"
+<g #textGroup>
+   @for(line of lines; track i; let i = $index) {
+   <text
+     [attr.x]="width/2"    [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
       text-anchor="middle"
      dominant-baseline="middle"
-      [attr.fill]="color.hex"
-      [attr.filter]="product.light ? 'url(#glow)' : null"
-    >
-     @for(line of lines; track i; let i = $index) {
-      <tspan   [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
-        x="50%"
-        [attr.dy]="i === 0 ? firstDy : fontSize*1.2 + 'px'"
-       
+      [attr.fill]="frontColor.hex !== 'transparent' && frontColor.hex || color.hex"
+       [attr.filter]="product.light ? 'url(#glow)' : null"    
+       [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
+         [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
       >
         {{ line }}
-      </tspan>
-      }
     </text>
-  
+     }
+  </g>
     
-    
+     @for(line of lines; track i; let i = $index) {
      <text
-      x="50%"
-      y="50%"
+     [attr.x]="width/2"   [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
       text-anchor="middle"
       dominant-baseline="middle"
-      [attr.fill]="product.renderKey === 'neon' ? innerColor : color.hex"
-    >
-
-    @for(line of lines; track i; let i = $index) {
-      <tspan  [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"     x="50%"
-       [attr.dy]="i === 0 ? firstDy : fontSize*1.2 + 'px'"
+      [attr.fontWeight]="product.renderKey !== 'neon' ? 700 : null"
+       [attr.fill]="product.renderKey === 'neon' ? innerColor : frontColor.hex || color.hex"
+        [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
+      
       >
         {{ line }}
-      </tspan>
-      }
     </text> 
-    
-  
+      }
+
+
   </svg>
 
   <div class="measure-overlay">
@@ -104,12 +105,12 @@
        [style.left.px]="overlay.left"
        [style.width.px]="overlay.width"
        [style.top.px]="overlay.top + overlay.height + 15"
-       ><span>{{ proportionalWidth | number:'1.0-1' }} cm</span></div>
+       ><span>{{ proportionalWidth | number:'1.0-2' }} cm</span></div>
       <div class="measure-line vertical"
        [style.top.px]="overlay.top"
        [style.height.px]="overlay.height"
        [style.left.px]="overlay.left - 15"
-      ><span>{{ size * 1.1 * this.lines.length }} cm</span></div>
+      ><span>{{ size * this.lines.length }} cm</span></div>
 
   </div>
 
@@ -125,7 +126,8 @@
     
     <label for="font">Elige el diseño de letras:</label> 
      <div class="font-picker">
-@for(font of material?.fonts; track i; let i = $index) {
+
+ @for(font of visibleFonts; track i; let i = $index) {
     <input
       type="radio"
       [id]="'font-' + i"
@@ -140,12 +142,13 @@
        >{{font.name.split(' ')[0]}}</label>
   }
 
+  <span role="button" class="font-preview more" (click)="loadMoreFonts()">
+  + Ver más
+  </span>
+
      </div>
   
-  <label for="color">Selecciona un color {{product.renderKey === 'neon' ? '': 'para las letras'}}:
-   @if(product.light && product.renderKey !== 'neon') {
-<span>(el color de la luz será el mismo)</span>
- }
+  <label for="color">Selecciona un color {{product.renderKey === 'neon' ? '': 'para las letras'}}*:
  </label> 
   <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
@@ -159,7 +162,7 @@
 
     <label
       [for]="'color-' + i"
-      class="color-circle"
+      class="color-square"
       [style.background]="color.hex"
        ></label>
 
@@ -167,11 +170,13 @@
   }
 </div>
 
-@if(product.light && product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio') {
-  <label for="frontColor">Selecciona un color para el  {{ product.renderKey === 'aluminio' ? 'metacrilato' : 'vinilo' }} frontal:</label> 
+
+<!-- esto es solo si la luz es frontal -->
+@if(!product.name.includes('retro') && product.light && product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio') {
+  <label for="frontColor"> {{ product.renderKey === 'aluminio' ? 'Elige el color del metacrilato frontal' : '¿Quieres mantener el frontal de metacrilato blanco o añadirle color mediante un vinilo?' }}*:</label> 
 <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
-      @if(color.uses?.includes('vinilo') || color.uses?.includes('metacrilato') ) {
+      @if(color.uses?.includes('vinilo') && product.renderKey !== 'aluminio' || color.uses?.includes('metacrilato') ) {
     <input
       type="radio"
       [id]="'base-color-' + i"
@@ -181,13 +186,21 @@
 
     <label
       [for]="'base-color-' + i"
-      class="color-circle"
+      class="color-square"
+      [ngClass]="{ 'no-selection' : color.hex === 'transparent' }"
       [style.background]="color.hex"
        ></label>
   }
    }
 </div>
+
+<p>*El color de la luz será como el del vinilo. En caso de no llevar vinilo, será como el color de las letras.</p>
+
 }
+
+
+
+
   
 @if(product.renderKey !== 'neon') {
   <label for="baseColor">Selecciona un color para la base de aluminio:</label> 
@@ -204,7 +217,7 @@
 
     <label
       [for]="'base-color-' + i"
-      class="color-circle"
+      class="color-square"
       [style.background]="color.hex"
        ></label>
   }
@@ -212,7 +225,7 @@
 </div>
 }
 
-<label for="background" class="label">Elige un fondo:</label> 
+<label for="background" class="label">Puedes cambiar el fondo de tu imagen previa:</label> 
 
   <div class="background-picker">
   @for(background of material?.backgrounds; track i; let i = $index) {
@@ -236,6 +249,7 @@
  
 <input #rangeEl 
 type="range" 
+  step="1"
 [min]="this.font.minHeight" 
 [max]="material?.maxHeight || 200" 
 formControlName="size" 

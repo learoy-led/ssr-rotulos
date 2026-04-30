@@ -67,7 +67,7 @@ interface customDetails {
 }
 
 export interface Variant {
-  size: string,
+  size: number,
   price: number
 }
 
@@ -130,7 +130,8 @@ export interface Color {
   name: string;
   hex: string;
   uses?: string[];
-  materials?: string[]
+  materials?: string[];
+  dark?: boolean;
 }
 
 export interface Material {

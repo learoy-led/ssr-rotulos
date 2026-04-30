@@ -43,7 +43,7 @@ export class DetalleProductoComponent implements OnInit {
   private currentRoute = '';
   public isLoading: boolean = true;
   public variantSelected: Variant = {
-    size: '',
+    size: 0,
     price: 0 
   }
   
