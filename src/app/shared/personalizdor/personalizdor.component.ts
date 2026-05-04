@@ -44,7 +44,10 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
     url: '',
     minHeight: 10
   };
-  background: string = '/negro.webp';
+  background: string = 'default';
+
+  frontCover: boolean = false;
+  base: boolean = false;
 
   variantSize: number = 0;
   size: number = this.font.minHeight;
@@ -74,15 +77,21 @@ public overlay = {
 };
 
 
-private visibleFontsCount = 5;
+public visibleFontsCount = 5;
 
 get visibleFonts() {
-  return this.material?.fonts?.slice(0, this.visibleFontsCount);
+   return this.material?.fonts?.slice(0, this.visibleFontsCount);
+  }
+
+toggleFonts() {
+  if (!this.material?.fonts) return
+   if (this.visibleFontsCount < this.material?.fonts?.length) {
+    this.visibleFontsCount = this.material?.fonts?.length;
+  } else {
+    this.visibleFontsCount = 5;
+  }
 }
 
-loadMoreFonts() {
-  this.visibleFontsCount += 5;
-}
 
   get glowColor(): string {
     return this.product.renderKey === 'neon' ? this.color.hex : '#fff5cc';
@@ -109,9 +118,10 @@ loadMoreFonts() {
       frontColor: [ this.material?.colors.filter(color => color.uses?.includes('vinilo') || color.uses?.includes('metacrilato'))[0] || this.frontColor],
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font],
-      background: [this.background],
       size: this.size,
+      frontCover: this.frontCover
     });
+
 
     this.applyFormValues(this.form.value);
 
@@ -134,37 +144,44 @@ loadMoreFonts() {
   private applyFormValues(values: any) {
     this.text = values.text;
     this.color = values.color;
+    console.log(this.color)
      this.frontColor = values.frontColor;
      this.baseColor = values.baseColor;
     this.font = values.font;
-    this.background = values.background;
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
     
     this.updateText(); 
-    this.updateRange()
+    this.updateRange();
+    
   }
 
-  public getPrice() {
-  if (!this.product?.variants) return 0;
-  let variantSelected = null
-
-  for (const v of this.product.variants) {
-  if (v.size >= this.size) {
-    variantSelected = v;
-    break;
-  }
-}
-
-   if (!variantSelected || this.text === 'Tu texto aquí') return 0;
+  public updatePrice() {
+     if (!this.product?.variants || this.text === 'Tu texto aquí') {
+    this.finalPrice = 0;
+    return;
+  } 
    if(this.product.renderKey !== 'neon') {
-this.finalPrice = variantSelected && (variantSelected.price) * this.text.replace(/\s/g, '').length * this.size 
+     let variantSelected = this.product.variants.find(v => v.size >= this.size);
+   if (!variantSelected) {
+  variantSelected = this.product.variants[this.product.variants.length - 1];
+} 
+this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * this.size 
   this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
    } else {
-    // calcular área
-    this.finalPrice = variantSelected.price
+    if (!this.overlay) {
+      this.finalPrice = 0;
+      return;
+    }
+     const area = (this.size * this.lines.length * this.proportionalWidth)/10000
+     console.log(area)
+   let variantSelected = this.product.variants.find(v => v.size >= area);
+        console.log(variantSelected)
+   if (!variantSelected) {
+  variantSelected = this.product.variants[this.product.variants.length - 1];
+} 
+    this.finalPrice = (variantSelected.price * area)
+      this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
    }
-  
-  return this.finalPrice
   }
 
   private updateText() {
@@ -227,10 +244,12 @@ let size = this.fontSize;
    }
 
  size -= 2;
+
  }
 
 this.fontSize = size;
   this.recalcLayout()
+   this.updatePrice()
 }
 
  private recalcLayout() {
@@ -304,6 +323,18 @@ this.overlay = {
 
 }
 
+
+public selectBackground(image: string){
+this.background = image
+}
+
+public frontCoverToggle() {
+  this.frontCover = !this.frontCover
+}
+
+public baseToggle() {
+  this.base = !this.base
+}
 
   }      
 

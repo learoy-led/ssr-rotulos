@@ -19,12 +19,6 @@ justify-items: center;
      flex-direction: column;
 }
 
-.fa-regular {
-height: 150px;
-color: var(--color-grey);
-margin-bottom: 35px;
-}
-
 .preview-figure {
   height: 100%;
   display: inline-block;
@@ -58,7 +52,12 @@ width: 100%;
 }
 
 textarea {
- min-height: 120px; 
+ min-height: 100px; 
+ border: none
+}
+
+textarea:focus-visible {
+ border: 1px solid #e2e2e2;
 }
 
 
@@ -68,37 +67,57 @@ textarea {
   gap: 14px;
 }
 
-.color-picker label, .font-picker label, .background-picker label {
- border: 2px solid #e8e8e8;
+.background-picker {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  justify-content: center;
+}
+
+.black-background {
+  background-color: black;
+}
+
+.color-picker label, .font-picker label, .background-picker li, .selector-button {
+ border: 1px solid #e2e2e2;
    border-radius: 5px
  }
 
- .color-picker label:hover, .font-picker label:hover, .background-picker label:hover {
- border: 1px solid var(--color-black);
+.selector-button {
+ padding: 4px 8px;
+text-align: center;
+width: fit-content
+ }
+
+.fonts-expand {
+border: 1px solid var(--color-black);
+border-radius: 5px;
+padding: 4px 8px;
+color: var(--color-black)
+}
+
+.fonts-expand:hover {
+  color: var(--color-blue);
+border: 1px solid  var(--color-blue);
+cursor: pointer;
+}
+
+ .color-picker label:hover, .font-picker label:hover, .background-picker li:hover, .selector-button:hover  {
+ border: 1px solid var(--color-grey);
  cursor: pointer;
  }
 
- input[type="radio"]:checked + .color-square, input[type="radio"]:checked + .background-square, input[type="radio"]:checked + .font-preview{
-border: 1px solid var(--color-black);
+ input[type="radio"]:checked + .color-square, input[type="radio"]:checked + .background-square, input[type="radio"]:checked + .font-preview,
+ .selector-button.selected {
+border: 1px solid var(--color-grey);
 }
 
 
 .color-square {
 width: 35px;
 height: 35px;
-}
-
-.no-selection {
-    position: relative;
-}
-  .no-selection::after {
-  content: "X";
-  font-size: 34px;
-   /* color: var(--color-red);  */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 
@@ -113,7 +132,9 @@ padding: 4px 8px;
 text-align: center;
 white-space: nowrap;
  text-transform: capitalize;
+ width:30%;
 }
+
 
 input[type="range"] {
   -webkit-appearance: none;

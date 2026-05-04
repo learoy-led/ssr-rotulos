@@ -13,6 +13,7 @@ html {
   --color-fuchsia: rgb(250, 43, 126);
   --color-green: #23ddac;
   --color-black: #060a0d;
+  --color-grey: #878787;
   
 
 
@@ -20,7 +21,7 @@ html {
   --gradient-new:  linear-gradient(-180deg, rgb(0, 3, 0) 0%, rgba(155, 81, 224, 1) 100%);
   --gradient-left:  linear-gradient(90deg,rgb(0, 3, 0) 0%, rgba(155, 81, 224, 1) 100%);
 
-  --color-grey: #e2e2e2;
+  --color-light-grey: #e2e2e2;
   --color-white: #ffffff;
   --color-red: #ff3b3b;
   
@@ -55,7 +56,7 @@ html {
 
 body {
 background: var(--color-white);
-  color: #878787;
+  color: var(--color-grey);
 }
 
 main {
@@ -215,8 +216,8 @@ background-color: var(--color-black);
 }
 
 .button:disabled, .button:disabled:hover {
-  color: var(--color-grey);
-  border: 2px solid var(--color-grey);
+  color: var(--color-light-grey);
+  border: 2px solid var(--color-light-grey);
   background-color: var(--color-white)
 }
 
@@ -243,7 +244,7 @@ form {
   padding: 12px 22px;
   width: 100%;
   margin-top: 6px;
-  border: 1px solid #878787;
+  border: 1px solid var(--color-grey);
   border-radius: 10px
 }
 

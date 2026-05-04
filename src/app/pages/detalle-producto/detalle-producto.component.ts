@@ -62,7 +62,6 @@ export class DetalleProductoComponent implements OnInit {
 
     this.route.data.subscribe(data => {
     this.productSelectedData = data['product'];
-console.log('imagenes array', this.productSelectedData.images.length)
 });
 
 

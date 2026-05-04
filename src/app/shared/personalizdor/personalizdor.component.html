@@ -35,13 +35,16 @@
       
     </defs>
   
-
+@if(background !== 'default') {
     <image
-      [attr.href]="background === '/negro.webp' && (frontColor.dark || (frontColor.hex === 'transparent' && color.dark)) ? '/blanco.webp': background"
+      [attr.href]="background === 'default' && (frontColor.dark || (frontColor.hex === 'transparent' && color.dark)) ? '/blanco.webp': background"
       width="100%"
       height="100%"
       preserveAspectRatio="xMidYMid slice"
     />
+ } @else {
+ <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
+ }
 
 @if(product.light) {
    <rect x="0" y="0" width="100%" height="100%" fill="black" opacity="0.4"></rect>
@@ -56,7 +59,7 @@
 <ellipse cx="50%" cy="50%" rx="35%" ry="25%" fill="url(#wallGlow)" />
  }
  
-@if(product.light && product.renderKey !== 'neon') {
+@if(product.light && product.renderKey !== 'neon' && base) {
       <rect
     [attr.x]="overlay.left - 40"
     [attr.y]="overlay.top - 20"
@@ -73,7 +76,7 @@
      [attr.x]="width/2"    [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
       text-anchor="middle"
      dominant-baseline="middle"
-      [attr.fill]="frontColor.hex !== 'transparent' && frontColor.hex || color.hex"
+      [attr.fill]="frontColor.hex !== 'transparent' && frontColor.hex || color.hex"   
        [attr.filter]="product.light ? 'url(#glow)' : null"    
        [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
          [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
@@ -88,8 +91,8 @@
      [attr.x]="width/2"   [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
       text-anchor="middle"
       dominant-baseline="middle"
-      [attr.fontWeight]="product.renderKey !== 'neon' ? 700 : null"
-       [attr.fill]="product.renderKey === 'neon' ? innerColor : frontColor.hex || color.hex"
+      [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
+     [attr.fill]="product.renderKey === 'neon' ? innerColor : frontColor.hex || color.hex"
         [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
       
       >
@@ -113,6 +116,22 @@
       ><span>{{ size * this.lines.length }} cm</span></div>
 
   </div>
+
+
+
+  <ul role="listbox" class="background-picker">
+     <li role="option" class="background-square" (click)="selectBackground('default')"></li>
+
+  @for(background of material?.backgrounds; track i; let i = $index) {
+      <li role="option"
+      class="background-square black-background"
+      [style.background-image]="'url(' + background + ')'"
+       (click)="selectBackground(background)"
+       ></li>
+  }
+ 
+</ul>
+
 
 
 
@@ -142,8 +161,8 @@
        >{{font.name.split(' ')[0]}}</label>
   }
 
-  <span role="button" class="font-preview more" (click)="loadMoreFonts()">
-  + Ver más
+  <span role="button" class="fonts-expand more" (click)="toggleFonts()"> 
+    {{visibleFontsCount < (material?.fonts?.length || 0) ? '&#9660;' : '&#9650;'}}  
   </span>
 
      </div>
@@ -171,9 +190,15 @@
 </div>
 
 
-<!-- esto es solo si la luz es frontal -->
-@if(!product.name.includes('retro') && product.light && product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio') {
-  <label for="frontColor"> {{ product.renderKey === 'aluminio' ? 'Elige el color del metacrilato frontal' : '¿Quieres mantener el frontal de metacrilato blanco o añadirle color mediante un vinilo?' }}*:</label> 
+
+@if(!product.name.includes('retro') && product.light && (product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio')) {
+  
+   <div role="option" class="selector-button" (click)="frontCoverToggle()" [class.selected]="frontCover">
+    {{ product.renderKey === 'aluminio' ? 'Metacrilato' : 'Vinilo' }} frontal</div>
+ }  
+
+@if(frontCover) {
+  <label for="frontColor">Elige el color del {{ product.renderKey === 'aluminio' ? 'metacrilato' : 'vinilo' }}:</label> 
 <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
       @if(color.uses?.includes('vinilo') && product.renderKey !== 'aluminio' || color.uses?.includes('metacrilato') ) {
@@ -187,14 +212,11 @@
     <label
       [for]="'base-color-' + i"
       class="color-square"
-      [ngClass]="{ 'no-selection' : color.hex === 'transparent' }"
       [style.background]="color.hex"
        ></label>
   }
    }
 </div>
-
-<p>*El color de la luz será como el del vinilo. En caso de no llevar vinilo, será como el color de las letras.</p>
 
 }
 
@@ -203,7 +225,12 @@
 
   
 @if(product.renderKey !== 'neon') {
-  <label for="baseColor">Selecciona un color para la base de aluminio:</label> 
+  <div role="option" class="selector-button" (click)="baseToggle()" [class.selected]="base">
+   Base de aluminio</div>
+ }
+
+   @if(base) {
+<label for="baseColor">Elige el color de la base:</label> 
 
   <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
@@ -223,26 +250,12 @@
   }
     }
 </div>
+  
+
+  
 }
 
-<label for="background" class="label">Puedes cambiar el fondo de tu imagen previa:</label> 
 
-  <div class="background-picker">
-  @for(background of material?.backgrounds; track i; let i = $index) {
-    <input
-      type="radio"
-      [id]="'background-' + i"
-      formControlName="background"
-      [value]="background"
-      hidden>
-
-    <label
-      [for]="'background-' + i"
-      class="background-square"
-      [style.background-image]="'url(' + background + ')'"
-       ></label>
-  }
-</div>
 
 @if(product.variants?.length!== 0) {
 <label for="size">Elige la altura de las letras: {{ form.get('size')?.value < font.minHeight ? font.minHeight : form.get('size')?.value}} cm</label>
@@ -255,7 +268,7 @@ type="range"
 formControlName="size" 
 id="size">
  
-<p>Precio   <span class="price">{{ getPrice() | price }}</span> IVA Incl.</p>
+<p>Precio <span class="price">{{ finalPrice | price }}</span> IVA Incl.</p>
 <button type="submit" class="button" [disabled]="form.invalid">Añadir al carrito</button> 
 }
 

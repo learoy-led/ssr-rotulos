@@ -29,7 +29,7 @@ app-icon {
 }
 
 .search-input::placeholder {
-  color: var(--color-grey); 
+  color: var(--color-light-grey); 
   opacity: 0.7; 
 }
 

@@ -90,7 +90,6 @@ export const fonts = [
 ]
 
 const backgrounds = [
-   '/negro.webp',
       '/blanco.webp',
         '/ladrillo.webp',
     '/madera.webp',
@@ -101,7 +100,7 @@ const colors = [
 name: 'sin vinilo',
  hex: 'transparent',
  uses: ['vinilo'],
-  materials: ['acero', 'hierro']
+  materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
   {
 name: 'acero sin pintar',
@@ -132,63 +131,63 @@ name: 'oro rosa',
     name: 'blanco',
     hex: '#ffffff',
     uses: ['letra', 'vinilo', 'metacrilato'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini']
+    materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
     },
   {
     name: 'negro',
     hex: '#000000',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini'],
+    materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d'],
     dark: true
     },
       {
     name: 'rojo',
     hex: '#f80000',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini']
+    materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
     },
        {
     name: 'naranja',
     hex: '#f88d00',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini']
+    materials: ['acero', 'hierro', 'mini', 'pvc', '3d']
     },
       {
     name: 'amarillo',
     hex: '#ffff00',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini']
+    materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
     },
          {
     name: 'verde claro',
     hex: '#00bb2d',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini']
+    materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
     },
          {
     name: 'verde oscuro',
     hex: '#038622',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini']
+    materials: ['acero', 'hierro', 'mini',  'pvc', '3d']
     },
     {
     name: 'azul claro',
     hex: '#3b83bd',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro','aluminio', 'mini']
+    materials: ['acero', 'hierro','aluminio', 'mini', 'pvc', '3d']
     },
    {
     name: 'azul oscuro',
     'hex': '#1e2460',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini'],
+    materials: ['acero', 'hierro', 'mini', 'pvc','3d'],
     dark: true
     },
    {
     name: 'rosa',
     hex: '#cf3476',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini']
+    materials: ['acero', 'hierro', 'mini', 'pvc', '3d']
     },
 
  
@@ -229,13 +228,13 @@ name: 'azul',
     name: 'RAL9016',
     hex: '#F6F6F6',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
           {
     name: 'RAL9005',
     hex: '#0A0A0A',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
 
 
@@ -243,68 +242,68 @@ name: 'azul',
     name: 'RAL3020',
     hex: '#CC0605',
     uses: ['base'],
-      materials: ['acero', 'hierro', 'aluminio', 'mini']
+      materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   
   },
    {
     name: 'RAL3004',
     hex:'#6D1A21',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
  {
     name: 'RAL2004',
     hex: '#F44611',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
    {
     name: 'RAL1023',
     hex: '#F7B500',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
      {
     name: 'RAL6024',
     hex: '#308446',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
      {
     name: 'RAL6005',
     hex: '#0F4336',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc','3d']
   },
      {
     name: 'RAL5002',
     hex: '#00387B',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc','3d']
   },
      {
     name: 'RAL5022',
     hex: '#1A2B44',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc','3d']
   },
      {
     name: 'RAL9006',
     hex: '#A5A5A5',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc','3d']
   },
        {
     name: 'RAL7042',
     hex: '#8D948D',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
         {
     name: 'RAL7016',
     hex: '#383E42',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
 
 
@@ -312,7 +311,7 @@ name: 'azul',
     name: 'RAL1015',
     hex: '#E6D2B5',
         uses: ['base'],
-          materials: ['acero', 'hierro', 'aluminio', 'mini']
+          materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
    {
     name: 'amarillo',
@@ -377,64 +376,6 @@ name: 'azul',
 
 ]
 
-const baseColors = [
-  {
-    name: 'RAL3020',
-    hex: '#CC0605'
-  },
-   {
-    name: 'RAL3004',
-    hex:'#6D1A21'
-  },
- {
-    name: 'RAL2004',
-    hex: '#F44611'
-  },
-   {
-    name: 'RAL1023',
-    hex: '#F7B500'
-  },
-     {
-    name: 'RAL6024',
-    hex: '#308446'
-  },
-     {
-    name: 'RAL6005',
-    hex: '#0F4336'
-  },
-     {
-    name: 'RAL5002',
-    hex: '#00387B'
-  },
-     {
-    name: 'RAL5022',
-    hex: '#1A2B44'
-  },
-     {
-    name: 'RAL9006',
-    hex: '#A5A5A5'
-  },
-       {
-    name: 'RAL7042',
-    hex: '#8D948D'
-  },
-        {
-    name: 'RAL7016',
-    hex: '#383E42'
-  },
-          {
-    name: 'RAL9005',
-    hex: '#0A0A0A'
-  },
-          {
-    name: 'RAL9016',
-    hex: '#F6F6F6'
-  },
-          {
-    name: 'RAL1015',
-    hex: '#E6D2B5'
-  } 
-  ]
 
 export const materials: Material[] = [
     {
@@ -478,6 +419,12 @@ grosor: [4,6,8,10,13]
    fonts: fonts,
 backgrounds: backgrounds,
 maxHeight: 49
+},
+  {
+      name: "3d",
+ colors: colors.filter((color)=> color.materials?.includes('3d')), 
+   fonts: fonts,
+backgrounds: backgrounds,
 }
     
 ]
