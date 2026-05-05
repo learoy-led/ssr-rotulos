@@ -330,6 +330,9 @@ this.background = image
 
 public frontCoverToggle() {
   this.frontCover = !this.frontCover
+  if (!this.frontCover) {
+this.frontColor = this.color
+  }
 }
 
 public baseToggle() {

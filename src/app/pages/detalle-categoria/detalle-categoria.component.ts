@@ -9,6 +9,7 @@ import { GetProductsService } from '../../core/services/get-products.service';
 import { map, Observable } from 'rxjs';
 import { FilterButtonsComponent } from '../../shared/filter-buttons/filter-buttons.component';
 import { CardComponent } from '../../shared/card/card.component';
+import { FilterPipe } from '../../pipes/filter.pipe';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { CardComponent } from '../../shared/card/card.component';
     CommonModule,
     DownloadCatalogueComponent,
     FilterButtonsComponent,
-    RouterModule
+    RouterModule,
+    FilterPipe
   ],
   templateUrl: './detalle-categoria.component.html',
   styleUrl: './detalle-categoria.component.css',
@@ -92,16 +94,16 @@ public productsShown$!: Observable<Product[]>;
   //   });
   // }
 
-  public onItemSelectedChange(itemName: string) {
-this.itemSelected = itemName;
-if (itemName === '') {
+  public onItemSelectedChange(item: string) {
+this.itemSelected = item;
+if (item === '') {
   this.productsShown$ = this.allProducts$
   return
 }
 
 this.productsShown$ = this.allProducts$?.pipe(
   map(products => 
-  itemName === 'Letras luminosas' ? products.filter(product => product.light) : products.filter(product => !product.light)
+  item === 'Rótulos luminosos' ? products.filter(product => product.light) : products.filter(product => !product.light)
 ))
   
 }

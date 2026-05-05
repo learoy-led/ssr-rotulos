@@ -11,7 +11,7 @@
   @if (productSelectedData) {
   <section class="product-details">
     <div class="main-product-details">
-      @if(productSelectedData.light && productSelectedData.renderKey !== 'neon') {
+      @if(productSelectedData.light && productSelectedData.renderKey && productSelectedData.renderKey !== 'neon') {
            <figure class="product-images">
          <app-image-compare [images]="productSelectedData.images"></app-image-compare>
          </figure>

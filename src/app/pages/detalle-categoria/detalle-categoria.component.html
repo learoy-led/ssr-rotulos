@@ -8,7 +8,7 @@
 
 <ul class="products-list">
 
-        @for (product of productsShown$ | async ; track product._id) {
+        @for (product of productsShown$ | async | filter:itemSelected; track product._id) {
         
   <li class="product-card">
       <a [routerLink]="[`/${categorySelectedData.slug}/${product.slug}`]">

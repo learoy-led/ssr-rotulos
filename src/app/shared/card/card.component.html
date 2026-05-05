@@ -4,7 +4,7 @@
 <div class="texts-container">
 <h4 class="product-name">{{ product.name }}</h4>
  @if(mainVariant) {
-    <p class="price">{{ mainVariant.price*10 | price }}</p>
+    <p class="price">{{ (product.renderKey === 'neon' ? mainVariant.price : mainVariant.price*10) | price }}</p>
     }
     </div>
   
