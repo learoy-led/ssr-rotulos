@@ -9,10 +9,12 @@ import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
 import { Router } from '@angular/router';
 import { FontsService } from '../../services/fonts.service';
+import { iconPaths } from '../../data/data';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-personalizdor',
-  imports: [ReactiveFormsModule, CommonModule, PricePipe],
+  imports: [ReactiveFormsModule, CommonModule, PricePipe, IconComponent],
   templateUrl: './personalizdor.component.html',
   styleUrl: './personalizdor.component.css'
 })
@@ -21,6 +23,7 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
   @Input() product!: Product;
   public material?: Material | undefined;
   
+ public xmarkPath:string = iconPaths.xmark
 
   form!: FormGroup;
 
@@ -97,6 +100,8 @@ toggleFonts() {
     return this.product.renderKey === 'neon' ? this.color.hex : '#fff5cc';
 }
 
+public activeModal : 'frontCover' | 'base' | null = null
+
 @ViewChild('textGroup') textGroup!: ElementRef<SVGElement>;
 @ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
 @ViewChild('rangeEl') rangeEl!: ElementRef<HTMLInputElement>;
@@ -144,7 +149,6 @@ toggleFonts() {
   private applyFormValues(values: any) {
     this.text = values.text;
     this.color = values.color;
-    console.log(this.color)
      this.frontColor = values.frontColor;
      this.baseColor = values.baseColor;
     this.font = values.font;
@@ -173,9 +177,9 @@ this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * 
       return;
     }
      const area = (this.size * this.lines.length * this.proportionalWidth)/10000
-     console.log(area)
+
    let variantSelected = this.product.variants.find(v => v.size >= area);
-        console.log(variantSelected)
+        
    if (!variantSelected) {
   variantSelected = this.product.variants[this.product.variants.length - 1];
 } 
@@ -277,8 +281,12 @@ el.style.setProperty("--value", value);
 
 
    public onSubmit() { 
-     if (this.form.invalid) return;
-  const variantSelected = this.product.variants && this.product.variants.find((v) => v.size === this.variantSize);
+     if (this.form.invalid || !this.product.variants) return;
+   
+  
+        const variantSelected = this.product.variants.find(v => v.size >= this.variantSize);
+  
+   
   if (!this.product?._id || !variantSelected) return;
   const productPurchased = {
      id: this.product._id,
@@ -290,11 +298,17 @@ el.style.setProperty("--value", value);
       text: this.text,
       font: this.font,
       color: this.color,
-        frontColor: this.frontColor,
-         baseColor: this.baseColor,
-      size: this.size
+      frontColor: this.frontColor,
+      baseColor: this.baseColor,
+      size: this.size,
+      lines: this.lines,
+      proportionalWidth: this.proportionalWidth,
+      frontCover: this.frontCover,
+      base: this.base,
     }
   }
+
+   
   this.form.reset();
   this.cartService.addToCart(productPurchased)
   console.log(productPurchased)
@@ -328,16 +342,23 @@ public selectBackground(image: string){
 this.background = image
 }
 
-public frontCoverToggle() {
-  this.frontCover = !this.frontCover
-  if (!this.frontCover) {
-this.frontColor = this.color
+
+
+public openModal(type: 'frontCover' | 'base' | null) {
+  this.activeModal = type
+  
+  if (type === 'frontCover') {
+this.frontCover = true
   }
-}
+   if (type === 'base') {
+this.base = true
+  }
+  }
 
-public baseToggle() {
-  this.base = !this.base
-}
 
-  }      
+public closeModal() {
+this.activeModal = null;
+  }
+
+}      
 

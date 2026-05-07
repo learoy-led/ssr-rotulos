@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { CheckOutFormData, RedsysResponse } from '../../models/data.models';
+import { PaymentData, RedsysResponse } from '../../models/data.models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class CheckoutService {
 
      constructor(private http: HttpClient) {}
 
- public pagar(data: CheckOutFormData) {
-  return this.http.post<RedsysResponse>(`${this.API_URL}redsys/create-payment`, {})
+ public pagar(data: PaymentData) {
+  return this.http.post<RedsysResponse>(`${this.API_URL}redsys/create-payment`, data)
 }
 }

@@ -32,6 +32,8 @@
   </feMerge>
 </filter>
 
+
+
       
     </defs>
   
@@ -59,7 +61,7 @@
 <ellipse cx="50%" cy="50%" rx="35%" ry="25%" fill="url(#wallGlow)" />
  }
  
-@if(product.light && product.renderKey !== 'neon' && base) {
+@if(base) {
       <rect
     [attr.x]="overlay.left - 40"
     [attr.y]="overlay.top - 20"
@@ -80,7 +82,11 @@
        [attr.filter]="product.light ? 'url(#glow)' : null"    
        [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
          [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
-      >
+          [attr.stroke]="frontColor.hex !== 'transparent' ? color.hex : null"
+  [attr.stroke-width]="frontColor.hex !== 'transparent' ? 1.5 : 0"
+  paint-order="stroke"
+
+  >
         {{ line }}
     </text>
      }
@@ -94,7 +100,7 @@
       [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
      [attr.fill]="product.renderKey === 'neon' ? innerColor : frontColor.hex || color.hex"
         [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
-      
+
       >
         {{ line }}
     </text> 
@@ -167,7 +173,7 @@
 
      </div>
   
-  <label for="color">Selecciona un color {{product.renderKey === 'neon' ? '': 'para las letras'}}*:
+  <label for="color">Selecciona un color {{product.renderKey === 'neon' ? '': 'para las letras'}}:
  </label> 
   <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
@@ -191,21 +197,45 @@
 
 
 
-@if(!product.name.includes('retro') && product.light && (product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio')) {
+@if(product.renderKey !== 'neon') {
   
-   <div role="option" class="selector-button" (click)="frontCoverToggle()" [class.selected]="frontCover">
-    {{ product.renderKey === 'aluminio' ? 'Metacrilato' : 'Vinilo' }} frontal</div>
+  <p>OPCIONAL:</p>
+  <div class="options-container">
+  @if(!product.name.includes('retro') && product.light && (product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio')) {
+     <div class="selector-button color-selector" (click)="openModal('frontCover')" [class.selected]="frontCover">
+    {{ product.renderKey === 'aluminio' ? 'Metacrilato' : 'Vinilo' }} frontal
+     @if(frontCover) {
+      <span class="color-square selector-button" [style.background]="frontColor.hex"></span>
+      }
+    </div>
  }  
+ <div class="selector-button color-selector" (click)="openModal('base')" [class.selected]="base">
+  Base de aluminio
+ @if(base) {
+      <span class="color-square selector-button" [style.background]="baseColor.hex"></span>
+      }
+    </div>
+  </div>
+}
 
-@if(frontCover) {
-  <label for="frontColor">Elige el color del {{ product.renderKey === 'aluminio' ? 'metacrilato' : 'vinilo' }}:</label> 
+    @if(activeModal) {
+      <div  class="modal-overlay">
+      <div class="modal">
+         <app-icon role="button" [iconPath]="xmarkPath" [ngClass]="'small-icon blue'" (click)="closeModal()"></app-icon>
+
+      
+  <label [for]="activeModal === 'frontCover' ? 'frontColor': 'baseColor'">Elige el color 
+    {{ activeModal === 'frontCover' ? (product.renderKey === 'del aluminio' ? 'del metacrilato' : 'del vinilo') : 'de la base'  }}:
+  </label>
+ 
+
 <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
-      @if(color.uses?.includes('vinilo') && product.renderKey !== 'aluminio' || color.uses?.includes('metacrilato') ) {
+      @if(activeModal === 'frontCover'  && color.uses?.includes('vinilo') && product.renderKey !== 'aluminio' || color.uses?.includes('metacrilato') || activeModal === 'base' && color.uses?.includes('base')) {
     <input
       type="radio"
       [id]="'base-color-' + i"
-      formControlName="frontColor"
+      [formControlName]="activeModal === 'base' ? 'baseColor' : 'frontColor'"
       [value]="color"
       hidden>
 
@@ -217,45 +247,16 @@
   }
    }
 </div>
-
-}
-
-
-
-
-  
-@if(product.renderKey !== 'neon') {
-  <div role="option" class="selector-button" (click)="baseToggle()" [class.selected]="base">
-   Base de aluminio</div>
- }
-
-   @if(base) {
-<label for="baseColor">Elige el color de la base:</label> 
-
-  <div class="color-picker">
-  @for(color of material?.colors; track i; let i = $index) {
-     @if(color.uses?.includes('base')) {
-    <input
-      type="radio"
-      [id]="'base-color-' + i"
-      formControlName="baseColor"
-      [value]="color"
-      hidden>
-
-    <label
-      [for]="'base-color-' + i"
-      class="color-square"
-      [style.background]="color.hex"
-       ></label>
-  }
-    }
 </div>
-  
+</div>
 
-  
 }
 
+ 
+      
+  
 
+  
 
 @if(product.variants?.length!== 0) {
 <label for="size">Elige la altura de las letras: {{ form.get('size')?.value < font.minHeight ? font.minHeight : form.get('size')?.value}} cm</label>

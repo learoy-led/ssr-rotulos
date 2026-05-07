@@ -19,6 +19,7 @@ export class HeaderComponent {
    public contactDetails: ContactDetails = contactDetails
      public phonePath:string = iconPaths.phone
      public envelopePath:string = iconPaths.envelope
+      public cartPath:string = iconPaths.cart
   
 
   public burguerIsOpen: boolean = false;

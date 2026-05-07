@@ -29,8 +29,11 @@
 
       @if(product.customDetails) {
         <td>
-            <span>Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color: <span [style.color]="product.customDetails.color">{{product.customDetails.color}}</span>, Altura de las letras: {{product.customDetails.size}} cm    
-            </span>
+            <span>Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font.name}}, Color letras: <span [style.color]="product.customDetails.color.hex">{{product.customDetails.color.name}}</span>, Altura de las letras: {{product.customDetails.size}} cm    
+            </span><br>
+            @if(!product.name.includes('neón')) {
+            <span>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? 'sí' : 'no'}}, Base de aluminio: {{ product.customDetails.base ? 'sí' : 'no' }}</span>
+            }
             </td>
             }
 

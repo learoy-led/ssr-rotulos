@@ -63,7 +63,11 @@ interface customDetails {
   color: Color,
   frontColor?: Color,
   baseColor?: Color
-  size: number
+  size: number,
+  lines?: string[],
+  proportionalWidth?: number,
+  frontCover?: boolean,
+  base?: boolean
 }
 
 export interface Variant {
@@ -87,6 +91,10 @@ export interface CheckOutFormData {
     cp: string,
      ciudad: string,
      provincia: string
+}
+export interface PaymentData {
+customer: CheckOutFormData,
+items: ProductPurchased[]
 }
 
 export interface AdminFormData {

@@ -4,7 +4,9 @@
     <li class="item-row">
       <h4 class="item">{{item.qty}} {{ item.name }}</h4>
       @if(item.customDetails) {
-      <p>Texto: {{item.customDetails.text}}, Fuente: {{item.customDetails.font}}, Color: {{item.customDetails.color.name}}, Altura de las letras: {{item.customDetails.size}} cm</p>
+      <p>Texto: {{item.customDetails.text}}, Fuente: {{item.customDetails.font.name}}, Color: {{item.customDetails.color.name}}, Altura de las letras: {{item.customDetails.size}} cm</p>
+      <p>Opciones: Frontal vinilo/metacrilato: {{ item.customDetails.frontCover ? 'sí' : 'no'}}, Base de aluminio: {{ item.customDetails.base ? 'sí' : 'no' }}
+      </p>
       }
     </li>
     }
