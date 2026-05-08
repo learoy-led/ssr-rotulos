@@ -30,6 +30,7 @@ public loadCart() {
 
 
   public addToCart(product: ProductPurchased) {
+    console.log('lo q se manda en la peticion', product);
    const current = this.items();
     const items = [...current];
 
