@@ -57,12 +57,13 @@ export interface ProductPurchased {
   qty: number;
   customDetails?: customDetails
 }
+
 interface customDetails {
   text: string;
-  font: Font,
-  color: Color,
-  frontColor?: Color,
-  baseColor?: Color
+  font: string,
+  color: string,
+  frontColor?: string,
+  baseColor?: string,
   size: number,
   lines?: string[],
   proportionalWidth?: number,
