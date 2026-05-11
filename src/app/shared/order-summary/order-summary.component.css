@@ -10,7 +10,11 @@ h2 {
     font-size: 20px;
         letter-spacing: 2px;
         text-transform: uppercase; 
-        color: var(--color-black)
+       
+}
+
+ h4 {
+    color: var(--color-black)
 }
 
 .item {
@@ -21,7 +25,7 @@ h2 {
     display: flex;
     flex-direction: column;
 width: 100%;
-gap: 10px;
+gap: 24px;
 }
 
 

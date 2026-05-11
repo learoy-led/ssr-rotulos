@@ -26,6 +26,7 @@ app-icon {
     width: 95%;
     max-width: 70vw;
     background-color: transparent;
+      color: var(--color-white)
 }
 
 .search-input::placeholder {

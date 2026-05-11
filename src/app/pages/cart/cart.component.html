@@ -32,7 +32,7 @@
             <span>Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color letras: {{product.customDetails.color}}, Altura de las letras: {{product.customDetails.size}} cm    
             </span><br>
             @if(!product.name.includes('neón')) {
-            <span>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? 'sí' : 'no'}}, Base de aluminio: {{ product.customDetails.base ? 'sí' : 'no' }}</span>
+            <span>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? product.customDetails.frontColor : 'no'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</span>
             }
             </td>
             }
