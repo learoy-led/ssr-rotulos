@@ -8,11 +8,11 @@
          <li routerLinkActive="active"><a  (click)="closeBurguer()"  (mouseenter)="onCatalogoMouseEnter()" [routerLink]="['/catalogo']" >Catálogo</a>
       </li>
       
-    <ul class="submenu">
+    <!-- <ul class="submenu">
       @for(category of categories$ | async; track category.slug) {
  <li><a (click)="closeBurguer()" [routerLink]="[category.slug]">{{category.name}}</a></li>
       }
-    </ul>
+    </ul> -->
 
       <li routerLinkActive="active"><a (click)="closeBurguer()" [routerLink]="['/nosotros']" >Nosotros</a></li>
       <li routerLinkActive="active"><a  (click)="closeBurguer()" [routerLink]="['/casos-de-exito']" >Casos</a></li>

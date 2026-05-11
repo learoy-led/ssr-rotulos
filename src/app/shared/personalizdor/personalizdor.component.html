@@ -6,9 +6,11 @@
  <svg 
  class="ia-image"
     #svgEl
-    [attr.width]="width"
-    [attr.height]="height"
-    xmlns="http://www.w3.org/2000/svg"
+  [attr.viewBox]="'0 0 ' + width + ' ' + height"
+  preserveAspectRatio="xMidYMid slice"
+  width="100%"
+  height="100%"
+   xmlns="http://www.w3.org/2000/svg"
   >
   <!-- aquí antes tenía que el renderKye era neon -->
   
@@ -40,17 +42,27 @@
 @if(background !== 'default') {
     <image
       [attr.href]="background === 'default' && (frontColor.dark || (frontColor.hex === 'transparent' && color.dark)) ? '/blanco.webp': background"
-      width="100%"
-      height="100%"
+     x="0"
+y="0"
+width="100%"
+height="100%"
       preserveAspectRatio="xMidYMid slice"
     />
+     <rect x="0" y="0"  
+     x="0"
+y="0"
+width="100%"
+height="100%"
+fill="black"  opacity="0.4"></rect>
  } @else {
- <rect x="0" y="0" width="100%" height="100%" fill="black"></rect>
+ <rect x="0" y="0"  
+ x="0"
+y="0"
+width="100%"
+height="100%"
+fill="black"></rect>
  }
 
-@if(product.light) {
-   <rect x="0" y="0" width="100%" height="100%" fill="black" opacity="0.4"></rect>
-   }
 
    <!-- aquí antes tenía material en vez de product -->
     
@@ -74,7 +86,7 @@
 
 <g #textGroup>
    @for(line of lines; track i; let i = $index) {
-   <text
+   <text 
      [attr.x]="width/2"    [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
       text-anchor="middle"
      dominant-baseline="middle"
@@ -82,15 +94,17 @@
        [attr.filter]="product.light ? 'url(#glow)' : null"    
        [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
          [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
-          [attr.stroke]="frontColor.hex !== 'transparent' ? color.hex : null"
-  [attr.stroke-width]="frontColor.hex !== 'transparent' ? 1.5 : 0"
+    
+      [attr.stroke]="frontColor.hex !== 'transparent' && product.renderKey !== 'neon' ? color.hex : null"
+  [attr.stroke-width]="frontColor.hex !== 'transparent' && product.renderKey !== 'neon' ? 1.5 : 0"
   paint-order="stroke"
+
 
   >
         {{ line }}
     </text>
      }
-  </g>
+
     
      @for(line of lines; track i; let i = $index) {
      <text
@@ -98,14 +112,14 @@
       text-anchor="middle"
       dominant-baseline="middle"
       [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
-     [attr.fill]="product.renderKey === 'neon' ? innerColor : frontColor.hex || color.hex"
+      [attr.fill]="product.renderKey === 'neon' ? innerColor : frontColor.hex || color.hex"
         [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
 
       >
         {{ line }}
     </text> 
       }
-
+  </g>
 
   </svg>
 
@@ -126,12 +140,12 @@
 
 
   <ul role="listbox" class="background-picker">
-     <li role="option" class="background-square" (click)="selectBackground('default')"></li>
+     <li role="option" class="background-square black-background" (click)="selectBackground('default')"></li>
 
   @for(background of material?.backgrounds; track i; let i = $index) {
       <li role="option"
-      class="background-square black-background"
-      [style.background-image]="'url(' + background + ')'"
+      class="background-square"
+      [style.background-image]="background==='default' ? null : 'url(' + background + ')'"
        (click)="selectBackground(background)"
        ></li>
   }
@@ -147,7 +161,7 @@
 <form [formGroup]="form"  class="preview-form" (ngSubmit)="onSubmit()"> 
   
       <label for="text">Texto del rótulo (añade líneas pulsando Enter):</label> 
-      <textarea  class="form-field" placeholder="Escribe aquí tu texto" formControlName="text" id="text" required></textarea>
+      <textarea  class="form-field" placeholder="Tu texto aquí" formControlName="text" id="text" required></textarea>
     
     <label for="font">Elige el diseño de letras:</label> 
      <div class="font-picker">

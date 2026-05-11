@@ -278,7 +278,7 @@ cart: 'M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8
 export const featuredIds = [
   '67a4d5b038f607a040cdfc32',
     '688b3debc14555b074733914',
-    '69735ced19f8410368f16abb',
+    '67a4d5b038f607a040cdfc29',
     '67a4d5b038f607a040cdfc2b',
     '697b93da0fe0c578eb3f1e54',
 ]

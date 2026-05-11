@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { FontsService } from '../../services/fonts.service';
 import { iconPaths } from '../../data/data';
 import { IconComponent } from '../icon/icon.component';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personalizdor',
@@ -118,11 +119,14 @@ public activeModal : 'frontCover' | 'base' | null = null
   this.preloadTopFonts();
 
       this.form = this.fb.group({
-      text: ['Tu texto aquí'],
-      color: [ this.material?.colors.filter(color => color.uses?.includes('letra'))[0] || this.color],
+      text: ['',  [
+    Validators.required,
+    Validators.pattern(/^(?!Tu texto aquí$).+/)
+  ]], 
+      color: [ this.material?.colors.filter(color => color.uses?.includes('letra'))[0] || this.color, Validators.required],
       frontColor: [ this.material?.colors.filter(color => color.uses?.includes('vinilo') || color.uses?.includes('metacrilato'))[0] || this.frontColor],
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
-      font: [this.material?.fonts[0] || this.font],
+      font: [this.material?.fonts[0] || this.font, Validators.required],
       size: this.size,
       frontCover: this.frontCover
     });
@@ -147,7 +151,7 @@ public activeModal : 'frontCover' | 'base' | null = null
 }
 
   private applyFormValues(values: any) {
-    this.text = values.text;
+    this.text = values.text || 'Tu texto aquí';
     this.color = values.color;
      this.frontColor = values.frontColor;
      this.baseColor = values.baseColor;

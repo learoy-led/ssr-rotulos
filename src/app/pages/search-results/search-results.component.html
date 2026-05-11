@@ -1,6 +1,6 @@
 <main class="centered-main">
     <section class="centered-section">
-    <h1 class="element-title">{{productSearch === ''? 'Todos los prodcutos' : `Has buscado "${productSearch}"`}}</h1>
+    <h1>{{productSearch === ''? 'Todos los prodcutos' : `Has buscado "${productSearch}"`}}</h1>
     
      <ng-container *ngIf="products$ | async as products">   
     @if(products.length > 0) {

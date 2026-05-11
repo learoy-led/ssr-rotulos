@@ -34,7 +34,8 @@
 </div>
   <app-navbar 
     [ngClass]="{ 'header-navbar': true, active: burguerIsOpen }"
-    [burguerIsOpen]="burguerIsOpen" (burguerIsClose)="onBurguerStateChanged($event)" (showSubmenu)="showSubmenu()" 
+    [burguerIsOpen]="burguerIsOpen" (burguerIsClose)="onBurguerStateChanged($event)" 
+    (showSubmenu)="showSubmenu()" 
     (hideSubmenu)="hideSubmenu()" 
     ></app-navbar>
 
