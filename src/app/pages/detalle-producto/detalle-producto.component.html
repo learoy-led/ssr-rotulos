@@ -100,9 +100,9 @@
 
   <section class="related-products full-width-section dark-section">
     <h2 class="subtitle centered-text">
-      Más {{ this.categoryName }} que te pueden interesar
+      Más {{ categoryLength < 2 ? (productSelectedData.light ? 'rótulos luminosos' : 'rótulos sin luz') : this.categoryName }} que te pueden interesar
     </h2>
-    <app-items-carousel></app-items-carousel>
+    <app-items-carousel [productLight]="productSelectedData.light"></app-items-carousel>
   </section>
   }
 </main>

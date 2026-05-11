@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, Variant } from '../../models/data.models';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
 import { ItemsCarouselComponent } from '../../shared/items-carousel/items-carousel.component';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { SchemaService } from '../../core/services/schema.service';
 import { PersonalizdorComponent } from '../../shared/personalizdor/personalizdor.component';
 import { CartService } from '../../core/services/cart.service';
 import { ImageCompareComponent } from './components/image-compare/image-compare.component';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -22,6 +23,7 @@ import { ImageCompareComponent } from './components/image-compare/image-compare.
 })
 export class DetalleProductoComponent implements OnInit {
   public categoryName = '';
+  public categoryLength = 0;
   public productSelectedData: Product = {
     type: '',
     name: '',
@@ -50,6 +52,7 @@ export class DetalleProductoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router, 
     private seoService: SeoService,
     private getProductsService: GetProductsService,
     private loadingService: LoadingService,
@@ -62,34 +65,34 @@ export class DetalleProductoComponent implements OnInit {
 
     this.route.data.subscribe(data => {
     this.productSelectedData = data['product'];
-});
-
-
-    this.route.paramMap.subscribe((params) => {
-      const categorySlug = params.get('category') ?? '';
-      const productSlug = params.get('product') ?? '';
-      this.currentRoute = `${categorySlug}/${productSlug}`;
-
-          const category$ = this.getProductsService.getCategoryWithProductSlug(
-            this.productSelectedData.slug
-          );
-          category$.subscribe(
-            (category) => (this.categoryName = category ? category.name : '')
-          );
-
-          const title = `${this.productSelectedData.name} · Rótulos Learoy`;
-          const capitalizedTitle =
-            title.charAt(0).toUpperCase() + title.slice(1);
-          const description = this.productSelectedData.metaDescription;
+const title = `${this.productSelectedData.name} · Rótulos Learoy`;
+const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+ const description = this.productSelectedData.metaDescription;
           const image = this.productSelectedData.images[0];
-          this.seoService.updateSeoDynamicTags(
+          this.currentRoute = this.router.url;
+  this.seoService.updateSeoDynamicTags(
             capitalizedTitle,
             description,
             image,
             this.currentRoute
           );
-          this.schemaService.insertSchema(this.schemaService.getServiceSchema(capitalizedTitle, description, this.currentRoute, image), 'schema-service')
-        });
+    this.schemaService.insertSchema(this.schemaService.getServiceSchema(capitalizedTitle, description, this.currentRoute, image), 'schema-service')
+
+   this.getProductsService.getCategoryWithProductSlug(
+            this.productSelectedData.slug).subscribe(
+            (category) => {
+              this.categoryName = category?.name ?? ''
+            this.getProductsService.getProductsByCategory(category?.slug ?? '').pipe(
+    map(products => products.length)
+  )
+  .subscribe(length => {
+    this.categoryLength = length;
+  });
+
+            }
+          );
+}); 
+
   
     if (this.platformService.isBrowser()) {
       this.listenLoading();

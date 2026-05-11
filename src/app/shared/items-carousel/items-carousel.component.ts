@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/data.models';
 import { Subscription } from 'rxjs';
 import { GetProductsService } from '../../core/services/get-products.service';
@@ -20,6 +20,7 @@ export class ItemsCarouselComponent implements OnInit, OnDestroy {
   public products: Product[] = [];
   public productsShown: Product[] = []
   public categorySlug: string = '';
+  private productSlug = ''
   public leftArrow: string = iconPaths.leftArrow
   public rightArrow: string = iconPaths.rightArrow
  
@@ -29,6 +30,10 @@ export class ItemsCarouselComponent implements OnInit, OnDestroy {
 
   private categorySub: Subscription = new Subscription();
   public productsSub: Subscription = new Subscription();
+  public currentProductSuub: Subscription = new Subscription();
+
+  @Input() productLight = false
+  
 
   constructor(private route: ActivatedRoute, private getProductsService: GetProductsService) {}
 
@@ -57,12 +62,21 @@ carouselNextElements() {
       params => { 
         
         this.categorySlug = params.get('category') ?? ''
+        this.productSlug = params.get('product') ?? ''
 
         if (this.categorySlug !== '') {
           this.productsSub = this.getProductsService.getProductsByCategory(this.categorySlug).subscribe(
        (products) => { 
-        this.products = products   
+        this.products = products.filter(prod => prod.slug !== this.productSlug)
         this.productsShown = this.products.slice(this.currentIndex,this.currentIndex + 5)
+        if ( this.products.length < 2) {
+           this.productsSub = this.getProductsService.getAllProducts().subscribe(
+             (products) => {
+              this.products = products.filter(prod => prod.light ===  this.productLight && prod.slug !== this.productSlug)
+              this.productsShown = this.products.slice(this.currentIndex,this.currentIndex + 5)
+              }
+            )
+                    }
        }
      )
           } else {
