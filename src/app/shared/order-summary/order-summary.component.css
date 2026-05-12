@@ -35,3 +35,11 @@ gap: 24px;
     justify-content: space-between
 }
 
+.price-shipment {
+  color: #878787;
+   font-family: "Open Sans", sans-serif;
+    font-size: 16px; 
+    line-height: 26px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}

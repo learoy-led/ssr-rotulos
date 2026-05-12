@@ -6,7 +6,7 @@ import { SeoService } from '../../core/services/seo.service';
       standalone: true,
     imports: [],
     templateUrl: './politica-cookies.component.html',
-    styleUrl: './politica-cookies.component.css'
+     styleUrl: '../../shared/styles/legal.css'
 })
 export class PoliticaCookiesComponent implements OnInit {
  constructor(private seoService: SeoService) {}

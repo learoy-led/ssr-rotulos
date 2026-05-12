@@ -23,19 +23,19 @@ export class FooterComponent implements OnInit {
   public tiktokPath = iconPaths.tiktok
   public keywords = [
     {
-    link: '/rotulos-luminosos/cartel-luminoso-con-metacrilato-incrustado',
+    link: '/catalogo',
     text: 'rótulos publicitarios'
   },
   {
-    link: '/rotulos-luminosos/metacrilato-con-contorno-de-aluminio',
+    link: '/letras-corporeas/letras-luminosas-acero-inoxidable',
     text: 'carteles luminosos llamativos'
   },
   {
-    link: '/rotulos-sin-luz/rotulo-aluminio',
+    link: 'letras-corporeas/letras-corporeas-hierro',
     text: 'rótulos para exterior'
   },
   {
-    link: '/rotulos-luminosos/letras-y-figuras-de-neon-flexible',
+    link: '/letreros-neon/frases-neon',
     text: 'carteles neón'
   },
   ]

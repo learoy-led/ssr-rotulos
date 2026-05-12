@@ -8,7 +8,7 @@ import { SeoService } from '../../core/services/seo.service';
       standalone: true,
     imports: [],
     templateUrl: './politica-de-privacidad.component.html',
-    styleUrl: './politica-de-privacidad.component.css'
+     styleUrl: '../../shared/styles/legal.css'
 })
 export class PoliticaDePrivacidadComponent implements OnInit {
  public contactDetails: ContactDetails = contactDetails

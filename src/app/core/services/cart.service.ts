@@ -30,7 +30,7 @@ public loadCart() {
 
 
   public addToCart(product: ProductPurchased) {
-    console.log('lo q se manda en la peticion', product);
+    
    const current = this.items();
     const items = [...current];
 
@@ -38,7 +38,8 @@ public loadCart() {
 
     existing ? existing.qty += product.qty : items.push(product);
      this.items.set(items);
-    this.saveCart();
+    this.saveCart();    
+    
   }
 
   public removeFromCart(id: string) {
@@ -54,4 +55,5 @@ public loadCart() {
       localStorage.removeItem('cart');
     }
   }
+ 
 }

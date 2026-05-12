@@ -1,34 +1,34 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CheckOutFormData } from '../../../../models/data.models';
 import { CheckoutService } from '../../../../core/services/checkout.service';
-import { emailValidator } from '../../../../core/components/contact-form/validator';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../../core/services/cart.service';
+import { emailValidator } from '../../../../core/components/contact-form/validator';
 
 @Component({
   selector: 'app-user-data-form',
-  imports: [FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './user-data-form.component.html',
   styleUrl: './user-data-form.component.css'
 })
 export class UserDataFormComponent {
+    
+  form: FormGroup = new FormGroup({
+      name:  new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, emailValidator]),
+      phone: new FormControl('', Validators.required),
+      empresa: new FormControl(''),
+      address:  new FormControl('', Validators.required),
+      cp: new FormControl('', Validators.required),
+      ciudad: new FormControl('', Validators.required),
+      provincia: new FormControl('', Validators.required),
+    });
 
-  public checkoutFormData: CheckOutFormData = {
-    name: '',
-    email: '',
-    phone: '',
-    empresa: '',
-      address: '',
-    cp: '',
-     ciudad: '',
-     provincia: ''
-  };
+  @ViewChild('redsysForm') formEl!: ElementRef<HTMLFormElement>;
 
-   constructor(private checkoutService: CheckoutService, private cartService: CartService) {}
+   constructor(private fb: FormBuilder,
+    private checkoutService: CheckoutService, private cartService: CartService) {}
 
-   
-  public emailValidator = emailValidator;
 
   public signature!: string;
   public signatureVersion!: string;
@@ -36,38 +36,19 @@ export class UserDataFormComponent {
   public redirectUrl: string = ''
 
 
-  
-  @ViewChild('redsysForm') formEl!: ElementRef<HTMLFormElement>;
-
-  get isFormValid(): boolean {
-  const f = this.checkoutFormData;
-
-  return!! (
-    f.name &&
-    f.email &&
-    f.phone &&
-    f.address &&
-    f.cp &&
-    f.ciudad &&
-    f.provincia
-  );
-}
-
   public onSubmit() {
-   if (!this.isFormValid) return;
+   if (this.form.invalid) return;
   
 
     const payload = {
-  customer: this.checkoutFormData,
+  customer: this.form.value,
   items: [...this.cartService.items()]
   }
 
-   console.log('PAYLOAD 1', payload)
-
-//this.SendEmailService.sendEmail(this.checkoutFormData);
+   
 this.checkoutService.pagar(payload).subscribe({
   next: (data: any) => {
-    console.log('PAYLOAD 2', payload)
+   
     this.signatureVersion = data.signatureVersion;
     this.merchantParameters = data.merchantParameters;
     this.signature = data.signature;
@@ -81,8 +62,6 @@ this.checkoutService.pagar(payload).subscribe({
   error: (err) => {
     console.error('Error en pago:', err);
 //    window.location.href = '/checkout/error';
-    
-console.error('Checkout error:', err);
 console.log('Payload en error:', payload);
   }
 });

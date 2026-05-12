@@ -84,7 +84,7 @@ fill="black"></rect>
   </rect>
    }
 
-<g #textGroup>
+
    @for(line of lines; track i; let i = $index) {
    <text 
      [attr.x]="width/2"    [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
@@ -105,8 +105,9 @@ fill="black"></rect>
     </text>
      }
 
-    
+     <g #textGroup>
      @for(line of lines; track i; let i = $index) {
+     
      <text
      [attr.x]="width/2"   [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
       text-anchor="middle"
@@ -125,15 +126,15 @@ fill="black"></rect>
 
   <div class="measure-overlay">
     <div class="measure-line horizontal"
-       [style.left.px]="overlay.left"
-       [style.width.px]="overlay.width"
-       [style.top.px]="overlay.top + overlay.height + 15"
+       [style.left.px]="overlay.left * scaleX"
+       [style.width.px]="overlay.width * scaleX"
+       [style.top.px]="(overlay.top + overlay.height) * scaleY + 15"
        ><span>{{ proportionalWidth | number:'1.0-2' }} cm</span></div>
       <div class="measure-line vertical"
-       [style.top.px]="overlay.top"
-       [style.height.px]="overlay.height"
-       [style.left.px]="overlay.left - 15"
-      ><span>{{ size * this.lines.length }} cm</span></div>
+       [style.top.px]="overlay.top * scaleY"
+       [style.height.px]="overlay.height * scaleY"
+       [style.left.px]="overlay.left * scaleX - 15"
+      ><span>{{ size * lines.length }} cm</span></div>
 
   </div>
 
@@ -261,6 +262,12 @@ fill="black"></rect>
   }
    }
 </div>
+
+<div class="modal-buttons">
+<button class="button"  type="button" (click)="selectColor()">Aceptar</button>
+<button class="button"  type="button" (click)="unselectColor(activeModal)">Cancelar</button>
+</div>
+
 </div>
 </div>
 
@@ -278,7 +285,7 @@ fill="black"></rect>
 <input #rangeEl 
 type="range" 
   step="1"
-[min]="this.font.minHeight" 
+[min]="font.minHeight" 
 [max]="material?.maxHeight || 200" 
 formControlName="size" 
 id="size">

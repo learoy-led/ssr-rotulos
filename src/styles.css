@@ -15,15 +15,10 @@ html {
   --color-black: #060a0d;
   --color-grey: #878787;
   
-
-
-  --color-purple: rgba(155, 81, 224, 1);
-  --gradient-new:  linear-gradient(-180deg, rgb(0, 3, 0) 0%, rgba(155, 81, 224, 1) 100%);
-  --gradient-left:  linear-gradient(90deg,rgb(0, 3, 0) 0%, rgba(155, 81, 224, 1) 100%);
-
   --color-light-grey: #e2e2e2;
   --color-white: #ffffff;
-  --color-red: #ff3b3b;
+  --color-red: #dc3232;
+  /* --color-red: #ff3b3b; */
   
  
   --white-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); 
@@ -231,17 +226,23 @@ background-color: var(--color-black);
 form {
   padding: 22px;
   display: flex;
-  gap: 12px;
+  gap: 15px;
   flex-direction: column;
 }
 
+ .form-subtitle  {
+  font-family: "Abel", sans-serif; 
+    font-size: 20px;
+    padding: 10px 0;
+        letter-spacing: 2px;
+        text-transform: uppercase; 
+}
 
 .form-field {
-  padding: 12px 22px;
+  padding: 15px;
   width: 100%;
   margin-top: 6px;
-  border: 1px solid var(--color-grey);
-  border-radius: 10px
+  border-bottom: 1px solid var(--color-grey);
 }
 
 .contact-label {
@@ -257,7 +258,7 @@ form {
 .error-message {
   color: var(--color-red);
   text-align: left;
-  padding: 6px 22px 12px 6px;
+  font-size: 1em;
 }
 
 .submitted-message {

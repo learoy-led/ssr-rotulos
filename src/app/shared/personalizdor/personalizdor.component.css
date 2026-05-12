@@ -182,18 +182,14 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .measure-line.horizontal {
-  bottom: -25px;
-  left: 5%;
-  width: 90%;
   border-top: 2px dashed var(--color-blue);
   text-align: center;
+   width: 90%;
 }
 
 .measure-line.vertical {
-  left: -35px;
-  top: 5%;
-  height: 90%;
   border-left: 2px dashed  var(--color-blue);
+   height: 90%;
 }
 
 .measure-line.horizontal span, .measure-line.vertical span  {
@@ -256,6 +252,11 @@ position: absolute;
 
 .small-icon:hover {
   color: var(--color-black);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px
 }
 
 

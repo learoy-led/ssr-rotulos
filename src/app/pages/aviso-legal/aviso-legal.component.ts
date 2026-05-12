@@ -8,7 +8,7 @@ import { SeoService } from '../../core/services/seo.service';
       standalone: true,
     imports: [],
     templateUrl: './aviso-legal.component.html',
-    styleUrl: './aviso-legal.component.css'
+    styleUrl: '../../shared/styles/legal.css'
 })
 export class AvisoLegalComponent implements OnInit {
 public contactDetails: ContactDetails = contactDetails

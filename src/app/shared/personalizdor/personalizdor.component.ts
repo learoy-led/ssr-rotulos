@@ -70,7 +70,6 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
 
 private fitTimeout: any;
 
-private textRect!:DOMRect
 private svgRect!:DOMRect
 
 public overlay = {
@@ -79,6 +78,9 @@ public overlay = {
   width: 0,
   height: 0
 };
+
+public scaleX: number = 1;
+public scaleY: number = 1;
 
 
 public visibleFontsCount = 5;
@@ -106,6 +108,8 @@ public activeModal : 'frontCover' | 'base' | null = null
 @ViewChild('textGroup') textGroup!: ElementRef<SVGElement>;
 @ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
 @ViewChild('rangeEl') rangeEl!: ElementRef<HTMLInputElement>;
+
+
 
 
   constructor(private fb: FormBuilder, private platformService: PlatformService,
@@ -240,8 +244,6 @@ let size = this.fontSize;
      this.recalcLayout();
 
     await new Promise(requestAnimationFrame);
-    
-  
 
     const box = (el as SVGGElement).getBBox();
 
@@ -309,16 +311,19 @@ el.style.setProperty("--value", value);
       proportionalWidth: this.proportionalWidth,
       frontCover: this.frontCover,
       base: this.base,
+      // svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
     }
   }
 
    
+
+   
   this.form.reset();
   this.cartService.addToCart(productPurchased)
-  console.log(productPurchased)
+  //generar archivo svg
   this.router.navigate(['/cart']);
   
-   //generar archivo para Alex
+   
     } 
 
 
@@ -328,14 +333,25 @@ public ngAfterViewInit() {
 
 public updateOverlay(){
   if (!this.platformService.isBrowser() || !this.textGroup || !this.svgEl) return
-this.textRect = this.textGroup.nativeElement.getBoundingClientRect();
-this.svgRect = this.svgEl.nativeElement.getBoundingClientRect();
+
+const el = this.textGroup.nativeElement;
+const svg = this.svgEl.nativeElement;
+
+const box = (el as SVGGElement).getBBox();
+
+this.svgRect = svg.getBoundingClientRect();
+
+const viewBox = svg.viewBox.baseVal;
+
+this.scaleX = this.svgRect.width / viewBox.width;
+this.scaleY = this.svgRect.height / viewBox.height;
+
 
 this.overlay = {
-  left: this.textRect.left - this.svgRect.left,
-  top: this.textRect.top - this.svgRect.top,
-  width: this.textRect.width,
-  height: this.textRect.height
+  left:  box.x,
+  top: box.y,
+  width: box.width,
+  height: box.height
 };
 
 
@@ -362,6 +378,28 @@ this.base = true
 
 public closeModal() {
 this.activeModal = null;
+  }
+
+  public selectColor() {
+this.closeModal()
+  }
+
+  public unselectColor(activeModal: string) {
+    if (activeModal === 'frontCover') {
+      this.frontCover = false
+      this.frontColor = {
+        name: '',
+        hex: ''
+      }
+  }    
+    if (activeModal === 'base') {
+      this.base = false
+        this.baseColor = {
+        name: '',
+        hex: ''
+      }
+      }
+    this.closeModal()
   }
 
 }      

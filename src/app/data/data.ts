@@ -15,7 +15,7 @@ export const carouselImages: string[] = [
 export const contactDetails: ContactDetails = {
   url: 'https://www.rotuloslesaroy.com',
   longName: 'LEAROY LED TECNOLOGY, S.L.',
-  shortName: 'LEAROY LED TECNOLOGY',
+  shortName: 'LEAROY',
   address1: 'C/ Bierzo 22',
   address2: '28947 Fuenlabrada, Madrid',
   phone: '642 678 199',

@@ -1,146 +1,172 @@
-<form #redsysForm  [action]="redirectUrl" method="POST">
-    <h2 class="fuchsia">Datos de contacto</h2>
- 
-<div>
-        <input
-        class="form-field"
-        placeholder="Nombre y apellidos"
-        type="text"
-        id="name"
-        name="name"
-        required
-        [(ngModel)]="checkoutFormData.name"
-        #nameField="ngModel"
-        [attr.aria-describedby]="nameField.invalid && nameField.touched ? 'name-error' : null"
-      />
-      @if (nameField.invalid && nameField.touched) {
-        <p class="error-message" id="name-error"> El nombre es obligatorio.</p>
-      } 
+<form
+  #redsysForm
+  [action]="redirectUrl"
+  method="POST"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
 
-       <input
-        class="form-field"
-        placeholder="Empresa (opcional)"
-        type="text"
-        id="empresa"
-        name="empresa"
-        [(ngModel)]="checkoutFormData.empresa"
-        #empresaField="ngModel"
-        [attr.aria-describedby]="empresaField.invalid && empresaField.touched ? 'empresa-error' : null"
-      />
-    </div>
+  <fieldset>
+  <legend class="form-subtitle fuchsia">Datos de contacto</legend>
 
-    <div>
-          <input
-          class="form-field"
-          placeholder="Correo electrónico"
-          type="email"
-          id="email"
-          name="email"
-          required
-          email
-          [(ngModel)]="checkoutFormData.email"
-          #emailField="ngModel"
-          (ngModelChange)="emailField.control.setErrors(emailValidator(emailField.control))"
-          [attr.aria-describedby]="emailField.invalid && emailField.touched && emailField.errors?.['required'] ? 'email-error' : 
-            emailField.invalid && emailField.dirty && emailField.errors?.['invalidEmail'] ? 'email-invalid' :
-          null"
-        />
-        @if(emailField.invalid && emailField.touched && emailField.errors?.['required']) {
-<p class="error-message" id="email-error">       El correo electrónico es obligatorio.        </p>
-        } @else if (emailField.invalid && emailField.dirty && emailField.errors?.['invalidEmail']) {
-  <p          class="error-message" id="email-invalid"
-        >
-          El correo electrónico no es válido. Por favor, revísalo.
-        </p>
-        }
+  <div>
+    <input
+      class="form-field"
+      placeholder="Nombre y apellidos"
+      type="text"
+      id="name"
+      formControlName="name"
+      [attr.aria-describedby]="
+        form.get('name')?.touched && form.get('name')?.hasError('required')
+          ? 'name-error'
+          : null
+      "
+    />
+    <input
+      class="form-field"
+      placeholder="Empresa (opcional)"
+      type="text"
+      id="empresa"
+      formControlName="empresa"
+    />
+  </div>
+  @if (form.get("name")?.touched && form.get("name")?.hasError("required")) {
+    <p class="error-message" id="name-error">El nombre es obligatorio.</p>
+  }
 
-        <input
-          class="form-field"
-          placeholder="Teléfono"
-          type="text"
-          id="phone"
-          name="phone"
-          required
-          [(ngModel)]="checkoutFormData.phone"
-          #phoneField="ngModel"
-          [attr.aria-describedby]="phoneField.invalid && phoneField.touched ? 'phone-error' : null"
-        />
-        @if (phoneField.invalid && phoneField.touched) {
-<p class="error-message" id="phone-error">El teléfono es obligatorio.</p>
-        }
-        
-        </div>
+  <div>
+    <input
+      class="form-field"
+      placeholder="Correo electrónico"
+      type="email"
+      id="email"
+      formControlName="email"
+      [attr.aria-describedby]="
+        form.get('email')?.touched && form.get('email')?.errors?.['required']
+          ? 'email-error'
+          : form.get('email')?.dirty && form.get('email')?.errors?.['email']
+            ? 'email-invalid'
+            : null
+      "
+    />
+    <input
+      class="form-field"
+      placeholder="Teléfono"
+      type="text"
+      id="phone"
+      formControlName="phone"
+      [attr.aria-describedby]="
+        form.get('phone')?.touched && form.get('phone')?.hasError('required')
+          ? 'phone-error'
+          : null
+      "
+    />
+  </div>
 
-   <h2 class="green">Dirección de envío</h2>
-      <input
-        class="form-field"
-        placeholder="Dirección"
-        type="text"
-        id="address"
-        name="address"
-        required
-        [(ngModel)]="checkoutFormData.address"
-        #addressField="ngModel"
-        [attr.aria-describedby]="addressField.invalid && addressField.touched ? 'address-error' : null"
-      />
-       @if (addressField.invalid && addressField.touched) {
-<p class="error-message" id="address-error">La dirección es obligatoria.</p>
-        }
+  @if (form.get("email")?.touched && form.get("email")?.hasError("required")) {
+    <p class="error-message" id="email-error">
+      El correo electrónico es obligatorio.
+    </p>
+  } @else if (
+    form.get("email")?.dirty && form.get("email")?.errors?.["email"]
+  ) {
+    <p class="error-message" id="email-invalid">
+      El correo electrónico no es válido. Por favor, revísalo.
+    </p>
+  }
+  @if (form.get("phone")?.touched && form.get("phone")?.hasError("required")) {
+    <p class="error-message" id="phone-error">El teléfono es obligatorio.</p>
+  }
+</fieldset>
 
-        <div>
+  <fieldset>
+  <legend class="form-subtitle green">Dirección de envío</legend>
 
-        <input
-        class="form-field"
-        placeholder="Código Postal"
-        type="text"
-        id="cp"
-        name="cp"
-        required
-        [(ngModel)]="checkoutFormData.cp"
-        #cpField="ngModel"
-        [attr.aria-describedby]="cpField.invalid && cpField.touched ? 'cp-error' : null"
-      />
-       @if (cpField.invalid && cpField.touched) {
-<p class="error-message" id="cp-error">El código postal es obligatorio.</p>
-        }
+  <input
+    class="form-field"
+    placeholder="Dirección"
+    type="text"
+    id="address"
+    formControlName="address"
+    [attr.aria-describedby]="
+      form.get('address')?.touched && form.get('address')?.hasError('required')
+        ? 'address-error'
+        : null
+    "
+  />
+  @if (
+    form.get("address")?.touched && form.get("address")?.hasError("required")
+  ) {
+    <p class="error-message" id="address-error">La dirección es obligatoria.</p>
+  }
 
-        <input
-        class="form-field"
-        placeholder="Ciudad"
-        type="text"
-        id="ciudad"
-        name="ciudad"
-        required
-        [(ngModel)]="checkoutFormData.ciudad"
-        #ciudadField="ngModel"
-        [attr.aria-describedby]="ciudadField.invalid && ciudadField.touched ? 'ciudad-error' : null"
-      />
-       @if (ciudadField.invalid && ciudadField.touched) {
-<p class="error-message" id="ciudad-error">La ciudad es obligatoria.</p>
-        }
+  <div>
+    <input
+      class="form-field"
+      placeholder="Código Postal"
+      type="text"
+      id="cp"
+      formControlName="cp"
+      [attr.aria-describedby]="
+        form.get('cp')?.touched && form.get('cp')?.hasError('required')
+          ? 'cp-error'
+          : null
+      "
+    />
+    <input
+      class="form-field"
+      placeholder="Ciudad"
+      type="text"
+      id="ciudad"
+      formControlName="ciudad"
+      [attr.aria-describedby]="
+        form.get('ciudad')?.touched && form.get('ciudad')?.hasError('required')
+          ? 'ciudad-error'
+          : null
+      "
+    />
+    <input
+      class="form-field"
+      placeholder="Provincia"
+      type="text"
+      id="provincia"
+      formControlName="provincia"
+      [attr.aria-describedby]="
+        form.get('provincia')?.touched &&
+        form.get('provincia')?.hasError('required')
+          ? 'provincia-error'
+          : null
+      "
+    />
+  </div>
+  @if (form.get("cp")?.touched && form.get("cp")?.hasError("required")) {
+    <p class="error-message" id="cp-error">El código postal es obligatorio.</p>
+  }
 
+  @if (
+    form.get("ciudad")?.touched && form.get("ciudad")?.hasError("required")
+  ) {
+    <p class="error-message" id="ciudad-error">La ciudad es obligatoria.</p>
+  }
 
-         <input
-        class="form-field"
-        placeholder="Provincia"
-        type="text"
-        id="provincia"
-        name="provincia"
-        required
-        [(ngModel)]="checkoutFormData.provincia"
-        #provinciaField="ngModel"
-        [attr.aria-describedby]="provinciaField.invalid && provinciaField.touched ? 'provincia-error' : null"
-      />
-       @if (provinciaField.invalid && provinciaField.touched) {
-<p class="error-message" id="provincia-error">La provincia es obligatoria.</p>
-        }
-</div>
+  @if (
+    form.get("provincia")?.touched &&
+    form.get("provincia")?.hasError("required")
+  ) {
+    <p class="error-message" id="provincia-error">
+      La provincia es obligatoria.
+    </p>
+  }
+</fieldset>
 
-        <input type="hidden" name="Ds_SignatureVersion" [value]="signatureVersion" />
-        <input type="hidden" name="Ds_MerchantParameters" [value]="merchantParameters" />
-        <input type="hidden" name="Ds_Signature" [value]="signature" />
-<button type="button" class="button" (click)="onSubmit()">Pagar ahora</button>
+  <input type="hidden" name="Ds_SignatureVersion" [value]="signatureVersion" />
+  <input
+    type="hidden"
+    name="Ds_MerchantParameters"
+    [value]="merchantParameters"
+  />
+  <input type="hidden" name="Ds_Signature" [value]="signature" />
+  <button type="submit" class="button" [disabled]="form.invalid">
+    Pagar ahora
+  </button>
 </form>
-
-
-

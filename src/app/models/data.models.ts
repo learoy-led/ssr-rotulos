@@ -68,7 +68,8 @@ interface customDetails {
   lines?: string[],
   proportionalWidth?: number,
   frontCover?: boolean,
-  base?: boolean
+  base?: boolean,
+  // svgString?: string
 }
 
 export interface Variant {

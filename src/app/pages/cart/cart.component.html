@@ -60,8 +60,14 @@
 </section>
 
 <section class="subtotal-container">
+
+<p class="price-shipment">Envío gratis</p>
+
 <p class="subtitle">Total <span class="subtitle black left"> {{ cartService.totalPrice() | price }}</span></p>
+<div class="cart-buttons">
+<app-button class="secondary-button" [buttonText]="'< Seguir comprando'" [buttonLink]="'/catalogo'"></app-button>
 <app-button  [buttonText]="'Pagar pedido'" [buttonLink]="'/checkout'"></app-button>
+</div>
 </section>
 }
 

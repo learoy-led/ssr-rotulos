@@ -22,7 +22,7 @@ export const routes: Routes = [
       import('./pages/categorias/categorias.component').then(
         (c) => c.CategoriasComponent
       ),
-    title: 'Rótulos Learoy · Catálogo de modelos de rotulación',
+    title: 'RÓTULOS LEAROY · Catálogo de modelos de rotulación',
     data: {
       description:
         'Modelos de rótulación y cartelería para tiendas, hoteles, oficinas, etc. Encuentra el modelo de letrero que más se adapte a tus necesidades.',
@@ -36,7 +36,7 @@ export const routes: Routes = [
       import('./pages/search-results/search-results.component').then(
         (c) => c.SearchResultsComponent
       ),
-    title: 'Rótulos Learoy · Resultados de búsqueda',
+    title: 'RÓTULOS LEAROY · Resultados de búsqueda',
   },
   {
     path: 'nosotros',
@@ -44,7 +44,7 @@ export const routes: Routes = [
       import('./pages/nosotros/nosotros.component').then(
         (c) => c.NosotrosComponent
       ),
-    title: 'Rótulos Learoy · Proveedor de rotulación',
+    title: 'RÓTULOS LEAROY · Proveedor de rotulación',
     data: {
       description:
         'Soluciones de señalización para comercios, edificios y eventos de todo tipo, así como letras corpóreas y materiales para rótulos. Conócenos.',
@@ -70,7 +70,7 @@ export const routes: Routes = [
       import('./pages/contacto/contacto.component').then(
         (c) => c.ContactoComponent
       ),
-    title: 'Contacto Rótulos Learoy',
+    title: 'Contacto RÓTULOS LEAROY',
     data: {
       description:
         'Contacto Rótulos Learoy, proveedor de rotulación de confianza. Si buscas un letrero o cartel de cualquier tipo, haz tu consulta.',
@@ -84,7 +84,7 @@ export const routes: Routes = [
       import('./pages/politica-cookies/politica-cookies.component').then(
         (c) => c.PoliticaCookiesComponent
       ),
-    title: 'Política de cookies | Rótulos Learoy',
+    title: 'Política de cookies | RÓTULOS LEAROY',
   },
   {
     path: 'politica-de-privacidad',
@@ -92,7 +92,14 @@ export const routes: Routes = [
       import(
         './pages/politica-de-privacidad/politica-de-privacidad.component'
       ).then((c) => c.PoliticaDePrivacidadComponent),
-    title: 'Política de privacidad | Rótulos Learoy',
+    title: 'Política de privacidad | RÓTULOS LEAROY',
+  },
+   {
+    path: 'terminos',
+    loadComponent: () =>
+      import('./pages/terminos/terminos.component').then(
+        (c) => c.TerminosComponent),
+        title: 'Términos y condiciones | RÓTULOS LEAROY',
   },
   {
     path: 'aviso-legal',
@@ -101,7 +108,7 @@ export const routes: Routes = [
         (c) => c.AvisoLegalComponent
       ),
 
-    title: 'Aviso legal | Rótulos Learoy',
+    title: 'Aviso legal | RÓTULOS LEAROY',
   },
   {
     path: 'admin-login',
@@ -109,7 +116,7 @@ export const routes: Routes = [
       import('./pages/admin-login/admin-login.component').then(
         (c) => c.AdminLoginComponent
       ),
-    title: 'Panel administración | Rótulos Learoy',
+    title: 'Panel administración | RÓTULOS LEAROY',
   },
   {
     path: 'admin-panel',
@@ -118,7 +125,7 @@ export const routes: Routes = [
         (c) => c.AdminPanelComponent
       ),
     canActivate: [authGuard],
-    title: 'Panel administración | Rótulos Learoy',
+    title: 'Panel administración | RÓTULOS LEAROY',
   },
 
 {
@@ -127,7 +134,7 @@ export const routes: Routes = [
       import('./pages/cart/cart.component').then(
         (c) => c.CartComponent
       ),
-    title: 'Tu pedido | Rótulos Learoy',
+    title: 'Tu pedido | RÓTULOS LEAROY',
   },
    {
     path: 'checkout',
@@ -167,7 +174,7 @@ export const routes: Routes = [
       import(
         './pages/pagina-no-encontrada/pagina-no-encontrada.component'
       ).then((c) => c.PaginaNoEncontradaComponent),
-    title: 'Página no encontrada | Rótulos Learoy',
+    title: 'Página no encontrada | RÓTULOS LEAROY',
   },
   {
     path: ':category',
