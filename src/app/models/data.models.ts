@@ -69,7 +69,7 @@ interface customDetails {
   proportionalWidth?: number,
   frontCover?: boolean,
   base?: boolean,
-  // svgString?: string
+  svgString?: string
 }
 
 export interface Variant {

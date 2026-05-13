@@ -294,6 +294,8 @@ el.style.setProperty("--value", value);
   
    
   if (!this.product?._id || !variantSelected) return;
+
+ 
   const productPurchased = {
      id: this.product._id,
     name: this.product.name,
@@ -311,14 +313,12 @@ el.style.setProperty("--value", value);
       proportionalWidth: this.proportionalWidth,
       frontCover: this.frontCover,
       base: this.base,
-      // svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
+      svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
     }
   }
 
-   
-
-   
   this.form.reset();
+  console.log(productPurchased)
   this.cartService.addToCart(productPurchased)
   //generar archivo svg
   this.router.navigate(['/cart']);
