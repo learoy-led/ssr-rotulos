@@ -13,3 +13,12 @@ app-user-data-form {
      width: 50%;
 }
 
+ @media screen and (max-width: 766px) {
+.checkout-container {
+    flex-direction: column;
+}
+    
+app-order-summary {
+width: 100%;
+}
+}

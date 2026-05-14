@@ -13,31 +13,33 @@
 <table>
      <tr>
 <th class="orange">Producto</th>
-<th></th>
 <th class="fuchsia">Cantidad</th>
 <th class="green">Importe</th>
      </tr>
+
     @for(product of cartService.items(); track product.id) {
 <tr> 
-        <td class="product-info">
-            <img class="product-miniature" [src]="product.image" [alt]="product.name"> 
-            <span class="product-name">{{ product.name }}</span>
+        <td class="product-column">
+        
           
-        </td>
+        <img class="product-miniature" [src]="product.customDetails && product.customDetails.svgString ? getSvgSrc(product.customDetails.svgString) : product.image" [alt]="product.name"> 
+          
+            
+        
+         
 
-
-
-      @if(product.customDetails) {
-        <td>
-            <span>Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color letras: {{product.customDetails.color}}, Altura de las letras: {{product.customDetails.size}} cm    
-            </span><br>
+            <div class="product-info desktop">
+            <span class="product-name">{{ product.name }}</span>
+             @if(product.customDetails) {
+            <span  >Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color letras: {{product.customDetails.color}}, Altura de las letras: {{product.customDetails.size}} cm    
+            </span>
             @if(!product.name.includes('neón')) {
             <span>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? product.customDetails.frontColor : 'no'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</span>
             }
-            </td>
             }
-
-
+            </div>
+  </td>
+             
     <td>
          <div class="qty-wrapper">
        <span class="qty-control" role="button" (click)="onReduceQty(product)" >-</span>
@@ -54,8 +56,27 @@
 </div>
          </td>    
    <td class="black">{{product.price*product.qty | price}}  </td>
+
+  
+
       </tr>
+
+  
+         @if(product.customDetails) {
+            <tr class="mobile-tr" >
+<td colspan="3" class="mobile-td">
+   <p class="product-name mobile">{{ product.name }}</p>
+    <p>Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color letras: {{product.customDetails.color}}, Altura de las letras: {{product.customDetails.size}} cm</p>    
+          
+            @if(!product.name.includes('neón')) {
+            <p>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? product.customDetails.frontColor : 'no'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</p>
+            }
+            </td>
+      </tr>
+     } 
+           
     }
+
 </table>
 </section>
 

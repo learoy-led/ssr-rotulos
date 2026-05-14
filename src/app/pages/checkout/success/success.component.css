@@ -1,7 +1,9 @@
 main {
     justify-content: center;
+    padding: 0 16px 0 16px
 }
 
 .success-text {
 margin-bottom: 30px;
+text-align: center;
 }

@@ -20,6 +20,8 @@ header {
      font-size: 14px;
 }
 
+
+
   .main-header {
   display: flex;
   align-items: center;
@@ -102,4 +104,8 @@ app-search-input {
   .contact-button .fuchsia {
 display: none
   }
+
+  .secondary-header-claim {
+  display:none
+}
   } 

@@ -6,3 +6,10 @@ div {
 fieldset, .field-and-error {
   flex-direction: column;
 }
+
+ @media screen and (max-width: 1100px) {
+div {
+  flex-direction: column;
+  gap: 0
+  }
+}

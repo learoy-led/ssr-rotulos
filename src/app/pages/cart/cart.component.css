@@ -1,6 +1,5 @@
-.product-miniature {
-    height: 50px;
-    border-radius: 3px;
+main {
+     justify-content: center;
 }
 
 table {
@@ -17,17 +16,31 @@ th {
         text-transform: uppercase; 
 }
 
+td {
+    border-bottom: 1px solid var(--color-black);
+    padding: 9px;
+}
+
+.product-column {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+}
+
+.product-miniature {
+    height: 76px;
+    border-radius: 3px;
+}
+
+
 .product-name {
     text-transform: uppercase;
 }
 
-td {
-    border-bottom: 1px solid var(--color-black);
-    padding: 9px 2px;
-}
-
-td:last-child {
-text-align: right;
+.product-info {
+display: flex;
+flex-direction: column;
+gap: 3px
 }
 
 .qty-wrapper {
@@ -55,14 +68,6 @@ svg path {
     stroke-width: 40;
 }
 
-
-.product-info {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center
-}
-
 .subtotal-container {
     display: flex;
     flex-direction: column;
@@ -71,7 +76,7 @@ svg path {
 
 .cart-buttons {
     display: flex;
-    gap: 10px
+    gap: 14px
 }
 
 .secondary-button::ng-deep .button {
@@ -79,6 +84,7 @@ background-color: transparent;
 color: var(--color-blue);
 text-decoration: underline;
 text-underline-offset: 4px;
+padding: 0
 }
 
 
@@ -91,7 +97,41 @@ text-underline-offset: 4px;
     font-weight: bold;
 }
 
+.mobile-tr, .mobile {
+    display: none
+}
 
+ @media screen and (max-width: 766px) {
+.product-column {
+ flex-direction: column;
+ align-items: flex-start;
+}
+
+.cart-buttons {
+    flex-direction: column;
+     align-items: flex-end;
+     gap: 0;
+}
+
+td {
+    border-bottom: none;
+    padding: 16px 9px 16px 9px
+}
+
+.mobile-tr, .mobile {
+    display: contents;
+}
+
+.mobile-td {
+     border-bottom: 1px solid var(--color-black);
+     padding: 0 9px 16px 9px;
+}
+
+.desktop {
+    display: none;
+}
+
+}
 
  
 

@@ -5,6 +5,7 @@ import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
 import { iconPaths } from '../../data/data';
 import { CommonModule } from '@angular/common';
+import { SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cart',
@@ -16,6 +17,11 @@ export class CartComponent {
 
   public isEmpty = computed(() => this.cartService.items().length === 0);
   public binPath = iconPaths.bin
+
+  getSvgSrc(svg: string): string {
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
 
   constructor(public cartService: CartService) {}  
 
