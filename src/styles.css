@@ -10,7 +10,7 @@ html {
 
   --color-blue: #007aff;
   --color-orange: rgb(242, 102, 47);
-  --color-fuchsia: rgb(250, 43, 126);
+  --color-fuchsia: #fa2b7e;
   --color-green: #23ddac;
   --color-black: #060a0d;
   --color-grey: #878787;
@@ -266,7 +266,7 @@ form {
   .products-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, 220px);
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 30px 0;
   width:90vw
     }

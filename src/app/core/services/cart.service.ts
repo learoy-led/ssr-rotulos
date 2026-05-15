@@ -1,6 +1,8 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { ProductPurchased } from '../../models/data.models';
+import { CustomDetails, ProductPurchased } from '../../models/data.models';
 import { PlatformService } from './platform.service';
+import _  from 'lodash';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +36,9 @@ public loadCart() {
    const current = this.items();
     const items = [...current];
 
-    const existing = items.find(p => p.id === product.id);
+    const existing  = items.find(p => 
+      p.id === product.id && _.isEqual(this.normalize(p.customDetails), this.normalize(product.customDetails))
+    )
 
     existing ? existing.qty += product.qty : items.push(product);
      this.items.set(items);
@@ -56,4 +60,12 @@ public loadCart() {
     }
   }
  
+
+  private normalize = (details?: CustomDetails) => {
+  if (!details) return details;
+
+  const { svgString, ...rest } = details;
+  return rest;
+};
+
 }

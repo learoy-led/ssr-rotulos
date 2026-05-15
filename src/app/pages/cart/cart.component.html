@@ -17,7 +17,7 @@
 <th class="green">Importe</th>
      </tr>
 
-    @for(product of cartService.items(); track product.id) {
+    @for(product of cartService.items(); track $index) {
 <tr> 
         <td class="product-column">
         

@@ -1,11 +1,11 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, OnInit } from '@angular/core';
 import { ButtonComponent } from '../../shared/button/button.component';
 import { ProductPurchased } from '../../models/data.models';
 import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
 import { iconPaths } from '../../data/data';
 import { CommonModule } from '@angular/common';
-import { SafeHtml } from '@angular/platform-browser';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +13,7 @@ import { SafeHtml } from '@angular/platform-browser';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
 
   public isEmpty = computed(() => this.cartService.items().length === 0);
   public binPath = iconPaths.bin
@@ -23,7 +23,12 @@ export class CartComponent {
 }
 
 
-  constructor(public cartService: CartService) {}  
+  constructor(public cartService: CartService, private seoService: SeoService) {}  
+
+    
+      ngOnInit() {    
+     this.seoService.noRobots();
+    }
 
 
 public onIncreaseQty(product: ProductPurchased) {

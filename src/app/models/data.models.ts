@@ -55,10 +55,10 @@ export interface ProductPurchased {
   image: string;
   price: number;
   qty: number;
-  customDetails?: customDetails
+  customDetails?: CustomDetails
 }
 
-interface customDetails {
+export interface CustomDetails {
   text: string;
   font: string,
   color: string,
@@ -82,21 +82,6 @@ export interface FormData {
   email: string;
   phone: string;
   message: string;
-}
-
-export interface CheckOutFormData {
-  name: string;
-  email: string;
-  phone: string;
-  empresa: string;
-  address: string,
-    cp: string,
-     ciudad: string,
-     provincia: string
-}
-export interface PaymentData {
-customer: CheckOutFormData,
-items: ProductPurchased[]
 }
 
 export interface AdminFormData {
@@ -160,9 +145,34 @@ export interface Font {
   minHeight: number
 }
 
+export interface CheckOutFormData {
+  name: string;
+  email: string;
+  phone: string;
+  empresa: string;
+  address: string,
+    cp: string,
+     ciudad: string,
+     provincia: string
+}
+
+export interface PaymentData {
+customer: CheckOutFormData,
+items: ProductPurchased[]
+}
+
 export interface RedsysResponse {
 signatureVersion: string;
   merchantParameters: string;
   signature: string;
   redirectUrl: string;
 }
+
+export interface Order {
+    redsysOrderId: string,  
+    total: number,
+    status: string,
+    items: ProductPurchased[],  
+    emailSent: boolean,
+    customer: CheckOutFormData
+ }

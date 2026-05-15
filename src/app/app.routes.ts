@@ -136,6 +136,30 @@ export const routes: Routes = [
       ),
     title: 'Tu pedido | RÓTULOS LEAROY',
   },
+  {
+  path: 'rotulos-luminosos/cartel-luminoso-con-metacrilato-incrustado',
+  redirectTo: '/letras-corporeas',
+  pathMatch: 'full'
+},
+{
+  path: 'rotulos-luminosos/letras-metacrilato-grueso-con-fondo-metalico',
+  redirectTo: '/letras-corporeas',
+  pathMatch: 'full'
+},
+{
+  path: 'letreros-neon/letras-y-figuras-de-neon-flexible',
+  redirectTo: '/letreros-neon/frases-neon',
+  pathMatch: 'full'
+},
+
+  {
+    path: 'pagina-no-encontrada',
+    loadComponent: () =>
+      import(
+        './pages/pagina-no-encontrada/pagina-no-encontrada.component'
+      ).then((c) => c.PaginaNoEncontradaComponent),
+    title: 'Página no encontrada | RÓTULOS LEAROY',
+  },
    {
     path: 'checkout',
       children: [
@@ -156,25 +180,6 @@ export const routes: Routes = [
     title: 'Pago erróneo | RÓTULOS LEAROY', },
   ]
     
-  },
-
-  {
-  path: 'rotulos-luminosos/cartel-luminoso-con-metacrilato-incrustado',
-  redirectTo: '/rotulos-luminosos',
-  pathMatch: 'full'
-},
-{
-  path: 'rotulos-luminosos/letras-metacrilato-grueso-con-fondo-metalico',
-  redirectTo: '/rotulos-luminosos',
-  pathMatch: 'full'
-},
-  {
-    path: 'pagina-no-encontrada',
-    loadComponent: () =>
-      import(
-        './pages/pagina-no-encontrada/pagina-no-encontrada.component'
-      ).then((c) => c.PaginaNoEncontradaComponent),
-    title: 'Página no encontrada | RÓTULOS LEAROY',
   },
   {
     path: ':category',

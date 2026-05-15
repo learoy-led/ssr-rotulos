@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
+import { SeoService } from '../../../core/services/seo.service';
 
 @Component({
   selector: 'app-error',
@@ -7,6 +8,12 @@ import { ButtonComponent } from '../../../shared/button/button.component';
   templateUrl: './error.component.html',
   styleUrl: './error.component.css'
 })
-export class ErrorComponent {
+export class ErrorComponent implements OnInit {
+
+  constructor(private seoService: SeoService){} 
+  
+    ngOnInit() {    
+   this.seoService.noRobots();
+  }
 
 }
