@@ -19,6 +19,13 @@ h2 {
        font-size: 20px
 }
 
+.title {
+    font-weight: 400;
+    text-transform: uppercase; 
+color: var(--color-black);
+      }
+      
+
 ul {
    padding-left: 40px
 }
@@ -35,3 +42,10 @@ a {
 #devoluciones {
   scroll-margin-top: 200px;
 }
+
+@media screen and (max-width: 766px) {
+  .title {
+    font-size: 30px;
+    line-height: 40px;
+  } 
+  } 

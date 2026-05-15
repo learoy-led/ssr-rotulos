@@ -97,12 +97,8 @@ a {
     list-style-type: none;
   }
 
-  .title {
-    font-weight: 400;
-      }
-
-
-     h1, .home-title, .title, .small-title {
+  
+     h1, .home-title, .small-title {
 text-transform: uppercase; 
 color: var(--color-black);
  }
@@ -130,7 +126,7 @@ padding-left: 56px
     
   }
 
-  h1.centered-text, .subtitle.centeted-text, .small-title.centered-text, h4.centered-text, .title.centered-text {
+  h1.centered-text, .subtitle.centeted-text, .small-title.centered-text, h4.centered-text {
     padding-right: 10px;
       padding-left: 10px; 
   }
@@ -375,10 +371,11 @@ form {
       font-size: 34px;
       line-height: 44px;
     } 
-  .title {
-    font-size: 30px;
-    line-height: 40px;
-  } 
+
+   .small-title {
+    font-size: 28px;
+    line-height: 30px;
+  }  
 
   .products-list {
     padding: 0
