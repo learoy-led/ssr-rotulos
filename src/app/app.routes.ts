@@ -141,8 +141,28 @@ export const routes: Routes = [
   redirectTo: '/letras-corporeas',
   pathMatch: 'full'
 },
+ {
+  path: 'rotulos-luminosos',
+  redirectTo: '/catalogo',
+  pathMatch: 'full'
+},
 {
   path: 'rotulos-luminosos/letras-metacrilato-grueso-con-fondo-metalico',
+  redirectTo: '/letras-corporeas',
+  pathMatch: 'full'
+},
+{
+  path: 'rotulos-luminosos/rotulo-retroiluminado-acero-inoxidable',
+  redirectTo: '/letras-corporeas',
+  pathMatch: 'full'
+},
+{
+  path: 'rotulos-luminosos/rotulo-metacrilato-con-caja-de-luz-de-aluminio',
+  redirectTo: '/letras-corporeas/letras-de-aluminio-con-luz-frontal',
+  pathMatch: 'full'
+},
+{
+  path: 'rotulos-luminosos/letras-metacrilato-fino-con-fondo-metalico',
   redirectTo: '/letras-corporeas',
   pathMatch: 'full'
 },
@@ -151,6 +171,12 @@ export const routes: Routes = [
   redirectTo: '/letreros-neon/frases-neon',
   pathMatch: 'full'
 },
+{
+  path: 'letreros-gigantes',
+  redirectTo: '/letras-corporeas',
+  pathMatch: 'full'
+},
+
 
   {
     path: 'pagina-no-encontrada',

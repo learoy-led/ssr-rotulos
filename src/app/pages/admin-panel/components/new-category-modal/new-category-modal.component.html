@@ -49,16 +49,15 @@
   </p>
 
  
-    <input
+ <textarea 
     class="form-field"
   placeholder="¿Cuándo elegir este nuevo tipo de rótulo?"
-  type="text"
   id="application"
   name="application"
   required
   [(ngModel)]="newCategoryData.description.application"
   #applicationField="ngModel"
-/>
+></textarea>
 <p
   *ngIf="applicationField.touched && applicationField.errors?.['required']"
   class="error-message"
@@ -66,16 +65,15 @@
   Por favor, describe cuándo elegir la nueva categoría. 
 </p>
 
-<input
+ <textarea 
 class="form-field"
   placeholder="Enumera los tipos de producto que incluye la nueva categoría."
-  type="text"
   id="products"
   name="products"
   required
   [(ngModel)]="newCategoryData.description.products"
   #productsField="ngModel"
-/>
+  ></textarea>
 <p
   *ngIf="productsField.touched && productsField.errors?.['required']"
   class="error-message"
@@ -83,16 +81,15 @@ class="form-field"
   Por favor, enumera los tipos de producto que incluye la nueva categoría. 
 </p>
 
-<input
+<textarea
 class="form-field"
   placeholder="¿Se pueden personalizar los rótulos de la nueva categoría?"
-  type="text"
   id="custom"
   name="custom"
   required
   [(ngModel)]="newCategoryData.description.custom"
   #customField="ngModel"
-/>
+></textarea>
 <p
   *ngIf="customField.touched && customField.errors?.['required']"
   class="error-message"
@@ -100,22 +97,32 @@ class="form-field"
   Por favor, explica qué opciones de personalización permiten los rótulos de la nueva categoría. 
 </p>
 
-<input
+<textarea
 class="form-field"
   placeholder="¿Cuánto cuesta este nuevo tipo de rótulos?"
-  type="text"
   id="cost"
   name="cost"
   required
   [(ngModel)]="newCategoryData.description.cost"
   #costField="ngModel"
-/>
+></textarea>
 <p
   *ngIf="costField.touched && costField.errors?.['required']"
   class="error-message"
 >
   Por favor, da una orientación descriptiva (no numérica) sobre la inversión necesaria para este tipo de rótulos. 
 </p>
+
+<textarea
+class="form-field"
+  placeholder="metaDescription para SEO (106-141 caracteres)"
+  id="cost"
+  name="cost"
+  required
+  [(ngModel)]="newCategoryData.description.metaDescription"
+  #costField="ngModel"
+></textarea>
+
 <div class="buttons-container">
 <button class="button"  (click)="closeNewCategoryModal()" type="submit" [disabled]="newCategoryForm.invalid">Añadir</button>
 <button class="button"  type="button" (click)="closeNewCategoryModal()">Cancelar</button>

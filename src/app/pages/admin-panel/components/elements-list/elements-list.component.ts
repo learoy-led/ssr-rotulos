@@ -3,12 +3,11 @@ import { Category, Product } from '../../../../models/data.models';
 import { AdminProductsService } from '../../../../services/admin-products.service';
 import { iconPaths } from '../../../../data/data';
 import { CommonModule } from '@angular/common';
-import { IconComponent } from '../../../../shared/icon/icon.component';
 import { AltPipe } from '../../../../pipes/alt.pipe';
 
 @Component({
   selector: 'app-elements-list',
-  imports: [CommonModule, IconComponent, AltPipe],
+  imports: [CommonModule, AltPipe],
   templateUrl: './elements-list.component.html',
   styleUrl: './elements-list.component.css'
 })
@@ -43,14 +42,15 @@ export class ElementsListComponent {
     }
 
   public onDeleteElement(element: Category | Product) {
-    const deleteConfirmation = confirm('¿Estás seguro de que quieres eliminar el elemento?');
+  const deleteConfirmation = confirm('¿Estás seguro de que quieres eliminar el elemento?');
    if (deleteConfirmation) {
-   this.adminProductService.deleteElement(element.slug, element.type)
+   this.adminProductService.markAsDeleted(element.slug, element.type)
    this.categoryDeleted.emit()
   } else return
   }
 
   public openEditElementModal(element:  Category | Product) {
+    console.log('abro', element)
     this.editableElement = element
     this.updateEditableElement.emit(this.editableElement)
     if (element.type === 'category') {

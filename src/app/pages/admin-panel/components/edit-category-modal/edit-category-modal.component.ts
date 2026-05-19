@@ -19,6 +19,7 @@ export class EditCategoryModalComponent implements OnInit {
     return this.editableElement?.type === 'category' ? (this.editableElement as Category) : null;
   }
 
+    public originalSlug: string = ''
   
   public updateCategoryData: Category = {
   type: 'category',
@@ -46,7 +47,7 @@ ngOnInit() {
 }
 
   public onSubmit() {
-    this.updateCategoryData && this.adminProductsService.updateElement(this.updateCategoryData, 'categories');
+    this.updateCategoryData && this.adminProductsService.updateElement(this.updateCategoryData, 'categories', this.originalSlug);
     this.categoryUpdated.emit()
   }
 

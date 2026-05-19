@@ -23,6 +23,8 @@ export class EditProductModalComponent {
     return this.editableElement?.type === 'product' ? (this.editableElement as Product) : null;
   }
 
+  public originalSlug: string = ''
+
   public updateProductData: Product = {
     type: 'product',
     name: '',
@@ -51,14 +53,17 @@ export class EditProductModalComponent {
   ngOnInit() {
     if (this.productElement) { 
     this.updateProductData = this.productElement
+    this.originalSlug = this.productElement.slug
   }
   this.categories$ = this.getProductsService.getCategories()
   }
   
     public onSubmit() {
+      
       if (this.errorMessage) return;
 
       const formData = new FormData();
+
 
       Object.entries(this.updateProductData).forEach(([key, value]) => {
   if(key ==='categories') {
@@ -66,15 +71,14 @@ export class EditProductModalComponent {
 formData.append('categories', v._id ?? v);
     })
   } else {
-  formData.append(key, value as string);
-  }
+    formData.append(key, value as string);
+  }  
 });
 
 this.selectedFiles.forEach(file => {
     formData.append('image', file);
   });
-
-      this.adminProductsService.updateElement(formData, 'products');
+      this.adminProductsService.updateElement(formData, 'products', this.originalSlug);
       this.productUpdated.emit()
     }
   

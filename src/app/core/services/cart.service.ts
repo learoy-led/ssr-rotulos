@@ -46,11 +46,21 @@ public loadCart() {
     
   }
 
-  public removeFromCart(id: string) {
-    const filtered  = this.items().filter(p => p.id !== id);
-    this.items.set(filtered);
-    this.saveCart();
-  }
+  public removeFromCart(product: ProductPurchased) {
+
+  const filtered = this.items().filter(p =>
+    !(
+      p.id === product.id &&
+      _.isEqual(
+        this.normalize(p.customDetails),
+        this.normalize(product.customDetails)
+      )
+    )
+  );
+
+  this.items.set(filtered);
+  this.saveCart();
+}
 
   public clearCart() {
     this.items.set([]);

@@ -20,6 +20,10 @@ export class GetProductsService {
     return this.http.get<Category[]>( `${this.API_URL}categories`);   
   }
 
+    public getCategoriesWithProducts(): Observable<Category[]>{
+    return this.http.get<Category[]>( `${this.API_URL}categories/with-products`);   
+  }
+
 
   public getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>( `${this.API_URL}products`);   

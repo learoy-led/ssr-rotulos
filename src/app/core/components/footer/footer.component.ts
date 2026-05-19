@@ -43,7 +43,7 @@ export class FooterComponent implements OnInit {
   constructor( private getProductsService: GetProductsService ){}
 
   ngOnInit() {
-    this.categories$ = this.getProductsService.getCategories();
+    this.categories$ = this.getProductsService.getCategoriesWithProducts();
   }
 
 }

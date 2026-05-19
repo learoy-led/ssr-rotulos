@@ -45,12 +45,12 @@ public onReduceQty(product: ProductPurchased) {
       qty: -1 // restas 1
     });
   } else {
-    this.onRemoveItem(product.id);
+    this.onRemoveItem(product);
   }
 }
 
-public onRemoveItem(id: string) {
-  this.cartService.removeFromCart(id);
+public onRemoveItem(product: ProductPurchased) {
+  this.cartService.removeFromCart(product);
 }
 }
 

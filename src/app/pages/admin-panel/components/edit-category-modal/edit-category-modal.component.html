@@ -2,6 +2,7 @@
 *ngIf="categoryElement"
  #editCategoryForm="ngForm"  (submit)="onSubmit(); editCategoryForm.resetForm()"> 
     
+  <label for="name" class="label blue">Nombre:</label>
     <input
     class="form-field"
     [placeholder]="categoryElement.name"
@@ -12,43 +13,53 @@
       [(ngModel)]="updateCategoryData.name"
       #nameField="ngModel"
     />
-    
 
-    <input
+     <label for="products" class="label blue">Tipos:</label>
+
+    <textarea
+    class="form-field"
+    [placeholder]="categoryElement.description.products"
+  [value]="categoryElement.description.products"
+  id="products"
+  name="products"
+  [(ngModel)]="updateCategoryData.description.products"
+  #productsField="ngModel"
+></textarea>
+    
+ <label for="application" class="label blue">¿Cuándo elegir?:</label>
+    <textarea
     class="form-field"
     [placeholder]="categoryElement.description.application"
   [value]="categoryElement.description.application"
-  type="text"
   id="application"
   name="application"
   [(ngModel)]="updateCategoryData.description.application"
   #applicationField="ngModel"
-/>
+></textarea>
 
 
-
-<input
+<label for="custom" class="label blue">¿Se puede personalizar?</label>
+<textarea
 class="form-field"
 [placeholder]="categoryElement.description.custom"
 [value]="categoryElement.description.custom"
-  type="text"
   id="custom"
   name="custom"
   
   [(ngModel)]="updateCategoryData.description.custom"
   #customField="ngModel"
-/>
+></textarea>
 
-<input
+<label for="cost" class="label blue">¿Cuánto cuesta?</label>
+<textarea
 class="form-field" 
 [placeholder]="categoryElement.description.cost"
 [value]="categoryElement.description.cost"
-  type="text"
   id="cost"
   name="cost"
   [(ngModel)]="updateCategoryData.description.cost"
   #costField="ngModel"
-/> 
+></textarea>
 
 <div class="buttons-container">
 <button class="button"  (click)="closeUpdateCategoryModal()" type="submit" [disabled]="editCategoryForm.invalid">Actaulizar</button>

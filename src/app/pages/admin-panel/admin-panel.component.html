@@ -1,11 +1,13 @@
-<main class="centered-main admin-panel-main">
+<main class="admin-panel-main centered-main">
 
-    <section  class="centered-section">
+    <section>
         <div class="title-and-add-button">
-    <h2>Categorías</h2>
-    <button class="button-icon" (click)="openNewCategoryModal()">
-    <app-icon [iconPath]="plusPath" ></app-icon>
-    </button>
+    <h2 class="subtitle">Categorías</h2>
+
+    <svg role="button" (click)="openNewCategoryModal()"
+              xmlns="http://www.w3.org/2000/svg" 
+              aria-hidden="true" viewBox="0 0 640 640">
+              <path [attr.d]="plusPath"></path></svg>
     </div>
         <app-elements-list [elements]="categories$ | async"
         (updateCategoryModalIsOpenState)="onUpdateModalStateChange($event)"
@@ -14,12 +16,14 @@
     ></app-elements-list>
     </section>
     
-    <section class="centered-section">
+    <section>
         <div class="title-and-add-button">
-    <h2>Productos</h2>
-         <button class="button-icon" (click)="openNewProductModal()">
-    <app-icon [iconPath]="plusPath" ></app-icon>
-    </button>
+    <h2 class="subtitle">Productos</h2>
+
+     <svg role="button" (click)="openNewProductModal()"
+              xmlns="http://www.w3.org/2000/svg" 
+              aria-hidden="true" viewBox="0 0 640 640">
+              <path [attr.d]="plusPath"></path></svg>  
 
     </div>
     <app-elements-list [elements]="products$ | async"
@@ -29,7 +33,8 @@
     ></app-elements-list>
     </section>
 
-    <section *ngIf="newCategoryModalIsOpen || newProductModalIsOpen" class="modal-section">
+    <div *ngIf="newCategoryModalIsOpen || newProductModalIsOpen" class="modal-overlay">
+    <section  class="modal-section">
         @defer(when newCategoryModalIsOpen) {
         <app-new-category-modal 
         [newCategoryModalIsOpen]="newCategoryModalIsOpen" 
@@ -45,9 +50,10 @@
         ></app-new-product-modal>
     }
     </section>
+</div>
 
-
-     <section *ngIf="updateCategoryModalIsOpen || updateProductModalIsOpen" class="modal-section">
+  <div *ngIf="updateCategoryModalIsOpen || updateProductModalIsOpen" class="modal-overlay">
+     <section  class="modal-section">
         @defer(when updateCategoryModalIsOpen) {
          <app-edit-category-modal 
          (updateCategoryModalIsOpenState)="onUpdateModalStateChange($event)"
@@ -66,4 +72,6 @@
              ></app-edit-product-modal>
            }  
     </section> 
+    </div>
+
     </main>

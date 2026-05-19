@@ -64,6 +64,7 @@ color: var(--color-black)
     background-color: rgba(0, 0, 0, 0.253);
     width: 100vw; 
      border-radius: 10px;
+     z-index: 999;
   } 
 
   @media screen and (max-width: 766px) {

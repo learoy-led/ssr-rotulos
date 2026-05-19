@@ -19,15 +19,6 @@
 transform: scale(1.02);
 }
 
-.card-figure:hover .image-container::after {
-     background: linear-gradient(
-  180deg,
-   rgb(0, 122, 255) 0%,
-  rgba(0, 0, 0, 1) 50%
-); 
-opacity: 0.9
-}
-
 .image-container {
    overflow: hidden;
       height: 100%;

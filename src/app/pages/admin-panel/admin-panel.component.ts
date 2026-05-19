@@ -10,12 +10,12 @@ import { EditCategoryModalComponent } from './components/edit-category-modal/edi
 import { NewProductModalComponent } from './components/new-product-modal/new-product-modal.component';
 import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
 import { iconPaths } from '../../data/data';
-import { IconComponent } from '../../shared/icon/icon.component';
+
 
 @Component({
     selector: 'app-admin-panel',
       standalone: true,
-    imports: [CommonModule, ElementsListComponent, NewCategoryModalComponent, EditCategoryModalComponent, NewProductModalComponent, EditProductModalComponent, IconComponent],
+    imports: [CommonModule, ElementsListComponent, NewCategoryModalComponent, EditCategoryModalComponent, NewProductModalComponent, EditProductModalComponent],
     templateUrl: './admin-panel.component.html',
     styleUrl: './admin-panel.component.css'
 })

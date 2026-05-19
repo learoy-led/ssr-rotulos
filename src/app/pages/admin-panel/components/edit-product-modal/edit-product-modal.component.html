@@ -2,6 +2,7 @@
 *ngIf="productElement"
  #editProductForm="ngForm"  (submit)="onSubmit(); editProductForm.resetForm()"> 
     
+ <label for="name" class="label blue">Nombre:</label>
     <input
     class="form-field"
     [placeholder]="productElement.name"
@@ -13,14 +14,26 @@
       #nameField="ngModel"
     />
 
+    <label for="slug" class="label blue">Slug:</label>
+      <input
+    class="form-field"
+    [placeholder]="productElement.slug"
+    [value]="productElement.slug"
+      type="text"
+      id="slug"
+      name="slug"
+      [(ngModel)]="updateProductData.slug"
+      #slugField="ngModel"
+    />
         
+     <label for="light" class="label blue">¿Tiene luz?</label>
    <label class="label" for="light">
 <input type="checkbox" [(ngModel)]="updateProductData.light" name="light" id="light" [value]="productElement.light">
 Luminoso
    </label>
 
-     <label class="label" for="category">Selecciona una o varias categorías</label> 
-<select class="form-field" name="category" id="category" multiple [size]="(categories$| async)?.length"
+     <label class="label blue" for="category">Selecciona una o varias categorías:</label> 
+<select name="category" id="category" multiple [size]="(categories$| async)?.length"
  [(ngModel)]="updateProductData.categories"
    #categoriesField="ngModel"
  required
@@ -30,7 +43,7 @@ Luminoso
         }
 </select>
     
-
+ <label class="label blue" for="description">Descripción:</label> 
 <textarea 
     class="form-field"
     [placeholder]="productElement.description"
@@ -42,7 +55,7 @@ Luminoso
 ></textarea>
 
 
-
+ <label class="label blue" for="material">Material:</label> 
 <textarea 
 class="form-field"
 [placeholder]="productElement.material"
@@ -53,6 +66,7 @@ class="form-field"
   #materialField="ngModel"
 ></textarea>
 
+ <label class="label blue" for="design">Diseño:</label> 
 <textarea 
 class="form-field" 
 [placeholder]="productElement.design"
@@ -63,6 +77,7 @@ class="form-field"
   #designField="ngModel"
 ></textarea>
 
+<label class="label blue" for="installation">Instalación:</label> 
 <textarea 
 class="form-field" 
 [placeholder]="productElement.installation"
@@ -73,6 +88,7 @@ class="form-field"
   #installationField="ngModel"
 ></textarea>
 
+<label class="label blue" for="application">Aplicación:</label> 
 <textarea 
 class="form-field" 
 [placeholder]="productElement.application"
@@ -83,11 +99,11 @@ class="form-field"
   #applicationField="ngModel"
 ></textarea>
 
-<label class="label" for="images">Añade una o varias imágenes en formato webp de menos de 2MB:</label>
+<label class="label blue" for="images">Añade una o varias imágenes de menos de 2MB en formato webp o jpeg:</label>
 <input
   type="file"
   style="align-self: flex-start; padding-left: 12px"
-   accept="image/webp"
+   accept="image/webp, image/jpeg"
   multiple
   id="images"
   name="images"
