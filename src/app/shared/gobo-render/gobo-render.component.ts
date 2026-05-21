@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { PricePipe } from '../../pipes/price.pipe';
 import { IconComponent } from '../icon/icon.component';
 import { iconPaths } from '../../data/data';
+import { PlatformService } from '../../core/services/platform.service';
 
 @Component({
   selector: 'app-gobo-render',
@@ -29,7 +30,12 @@ export class GoboRenderComponent implements OnInit {
   
     public uploadPath: string = iconPaths.upload
 
-   constructor(private cartService: CartService, private router: Router) {}
+  public errorMessage:string = ''
+  private allowedTypes:string[] = ['application/pdf', 'image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml']
+  private maxSize:number = 2 * 1024 * 1024 //2MB
+  
+
+   constructor(private cartService: CartService, private router: Router, private platformService: PlatformService) {}
 
    ngOnInit() {
     if (this.product?.variants?.length) {
@@ -52,7 +58,42 @@ export class GoboRenderComponent implements OnInit {
   this.router.navigate(['/cart']);
   } 
 
+     public onFileSelected(event: Event) {
+    
+    if (!this.platformService.isBrowser()) return;
+    
+
+  const input = event.target as HTMLInputElement;
+  const files = input.files;
+
+  if (!files || files.length === 0) return;
+
+    this.errorMessage = '';
+  
+     const file = files.item(0);
+  if (!file) return;
+
+
+    if (!this.allowedTypes.includes(file.type)) {
+      this.errorMessage = 'Formato no permitido.';
+      return;
+    }
+
+    if (file.size > this.maxSize) {
+      this.errorMessage = 'El archivo no puede superar los 2MB.';
+      return;
+    }
+
+     if (this.goboImage) {
+    URL.revokeObjectURL(this.goboImage);
   }
+
+  this.goboImage =  URL.createObjectURL(file);
+
+}
+
+}
+
   
 
 

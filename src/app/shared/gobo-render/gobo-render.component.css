@@ -26,28 +26,33 @@ position: relative
 .upload-overlay {
   position: absolute;
   inset: 0;
-
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  background: rgba(255,255,255,0.15);
-
+ align-items: flex-end; 
 }
 
-.upload-btn {
+.upload-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-
   padding: 16px 20px;
-
-  border: none;
+  height: fit-content;
+   margin-bottom: 8%; 
   border-radius: 12px;
-
-  background: rgba(255,255,255,0.9);
+background: color-mix(in srgb, var(--color-black) 70%, transparent);
+  color: var(--color-blue);
+  width: 70%;
   cursor: pointer;
+  text-align: center;
+}
+
+.upload-button:hover {
+  color: var(--color-white);
+}
+
+.upload-button:hover app-icon {
+  color: var(--color-white);
 }
 
 .ia-image {

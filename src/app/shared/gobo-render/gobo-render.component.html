@@ -189,14 +189,18 @@
 </g>
 </svg>
 
+@if(goboImage ==='/rotulos-learoy-logo.webp') {
   <div class="upload-overlay">
-   <label class="upload-btn">
-  <input type="file" hidden>
+   <label class="upload-button">
+  <input type="file" accept=".pdf,.png,.jpg,.jpeg,.svg" hidden
+   (change)="onFileSelected($event)">
  <app-icon [iconPath]="uploadPath" [ngClass]="'small-icon blue'"></app-icon>
-  <span>Sube tu logo para previsualizarlo y hacer tu pedido online</span>
+  <span>Sube tu logo* para previsualizarlo y hacer tu pedido online</span>
+   <span style="font-size: 14px;">*pdf, jpg, png, svg</span>
 </label>
+<!-- <p>{{errorMessage}}</p> -->
   </div>
-
+}
 </figure>    
 </div>
 
@@ -227,7 +231,7 @@
 }
 
 <p>Precio <span class="price">{{ selectedVariant.price | price }}</span> IVA Incl.</p>
-<button (click)="onAddToCart()" class="button">Añadir al carrito</button> 
+<button (click)="onAddToCart()" class="button" [disabled]="selectedVariant.name !=='sin lente' && goboImage === '/rotulos-learoy-logo.webp'">Añadir al carrito</button> 
 </div>
 </div>
 <p class="ia-advice">Esta imagen es una simulación. El producto real puede variar ligeramente.</p>
