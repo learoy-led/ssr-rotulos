@@ -13,7 +13,9 @@ import { CommonModule } from '@angular/common';
 export class EditCategoryModalComponent implements OnInit {
 
   @Input() editableElement?: Category | Product
+  @Input() updateCategoryModalIsOpen = true
   @Output() categoryUpdated = new EventEmitter<void>()
+  @Output() updateCategoryModalIsOpenState = new EventEmitter<boolean>()
 
   get categoryElement(): Category | null {
     return this.editableElement?.type === 'category' ? (this.editableElement as Category) : null;
@@ -35,14 +37,13 @@ export class EditCategoryModalComponent implements OnInit {
   image: ''
 }
 
-  @Input() updateCategoryModalIsOpen = true
-  @Output() updateCategoryModalIsOpenState = new EventEmitter<boolean>()
 
   constructor(private adminProductsService: AdminProductsService) {}
 
 ngOnInit() {
   if (this.categoryElement) { 
   this.updateCategoryData = this.categoryElement
+   this.originalSlug = this.categoryElement.slug
 }
 }
 

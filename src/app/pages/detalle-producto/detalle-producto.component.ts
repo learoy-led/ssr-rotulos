@@ -13,11 +13,13 @@ import { PersonalizdorComponent } from '../../shared/personalizdor/personalizdor
 import { CartService } from '../../core/services/cart.service';
 import { ImageCompareComponent } from './components/image-compare/image-compare.component';
 import { map } from 'rxjs';
+import { GoboRenderComponent } from '../../shared/gobo-render/gobo-render.component';
+import { PricePipe } from '../../pipes/price.pipe';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent],
+  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })
@@ -46,9 +48,11 @@ export class DetalleProductoComponent implements OnInit {
   public isLoading: boolean = true;
   public variantSelected: Variant = {
     size: 0,
-    price: 0 
+    price: 0,
+    name: '' 
   }
   
+  finalPrice = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -63,12 +67,17 @@ export class DetalleProductoComponent implements OnInit {
 
   public ngOnInit() {
 
+     
+
     this.route.data.subscribe(data => {
     this.productSelectedData = data['product'];
+
+
 const title = `${this.productSelectedData.name} · Rótulos Learoy`;
 const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
  const description = this.productSelectedData.metaDescription;
           const image = this.productSelectedData.images[0];
+          this.finalPrice = (this.productSelectedData.variants?.[0].price)  || 0 *10
           this.currentRoute = this.router.url;
   this.seoService.updateSeoDynamicTags(
             capitalizedTitle,
@@ -109,8 +118,13 @@ const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
     });
   }
 
-//  ver si se añade al botón
-//  public onAddToCart() {
+  changePrice(event: Event) {
+  const value = (event.target as HTMLSelectElement).value;
+  this.finalPrice = Number(value);
+}
+
+
+// public onAddToCart() {
 // this.productSelectedData._id && this.cartService.addToCart({
 //     id: this.productSelectedData._id,
 //     name: this.productSelectedData.name,

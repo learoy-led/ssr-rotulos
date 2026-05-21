@@ -8,14 +8,13 @@ padding: 100px 16px 62px 16px;
     }
 
 .vertical-carousel-section {
-  width: 100%;
 padding: 0 52px;
 overflow: hidden;
 background-size: cover;
 }
 
 .vertical-carousel-container { 
-  width: 80%;
+  width: 70%; 
   margin: auto; 
 display: flex; 
 gap: 52px;

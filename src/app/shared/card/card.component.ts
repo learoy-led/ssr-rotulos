@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Category, Product } from '../../models/data.models';
 import { AltPipe } from '../../pipes/alt.pipe';
 import { PricePipe } from '../../pipes/price.pipe';

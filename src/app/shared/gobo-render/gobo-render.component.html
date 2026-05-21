@@ -1,0 +1,225 @@
+<div class="container">
+<div class="preview-container">
+<figure class="preview-figure">
+
+    <svg 
+       #svgEl
+    viewBox="0 0 1000 1000" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+    <!-- 🔥 Glow del proyector -->
+    <filter id="goboGlow" x="-50%" y="-50%" width="200%" height="200%">
+
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blurSmall"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blurBig"/>
+
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.8"
+        numOctaves="2"
+        seed="3"
+        result="noise"
+      />
+
+      <feDisplacementMap
+        in="blurBig"
+        in2="noise"
+        scale="8"
+        result="distortedGlow"
+      />
+
+      <feComponentTransfer in="distortedGlow">
+        <feFuncA type="linear" slope="0.35"/>
+      </feComponentTransfer>
+
+      <feMerge>
+        <feMergeNode in="distortedGlow"/>
+        <feMergeNode in="blurSmall"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+
+    </filter>
+
+    <!-- 🎯 máscara circular del haz -->
+    <radialGradient id="beamFalloff">
+      <stop offset="0%" stop-color="white" stop-opacity="1"/>
+      <stop offset="60%" stop-color="white" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+
+     <mask id="goboMask"> 
+      <rect width="1000" height="1000" fill="black"/>
+      <circle cx="500" cy="500" r="320" fill="url(#beamFalloff)"/>
+    </mask> 
+
+    <!-- 🔆 caída física de luz -->
+    <radialGradient id="inverseLight">
+      <stop offset="0%" stop-color="white" stop-opacity="1"/>
+      <stop offset="40%" stop-color="white" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0.05"/>
+    </radialGradient>
+
+    <!-- 🌈 aberración cromática -->
+    <filter id="chromaticAberration">
+
+      <feOffset in="SourceGraphic" dx="-2" dy="0" result="r"/>
+      <feOffset in="SourceGraphic" dx="2" dy="0" result="b"/>
+
+      <feColorMatrix in="r" type="matrix"
+        values="1 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0"/>
+
+      <feColorMatrix in="SourceGraphic" type="matrix"
+        values="0 0 0 0 0
+                0 1 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0"/>
+
+      <feMerge>
+        <feMergeNode in="r"/>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="b"/>
+      </feMerge>
+
+    </filter>
+
+    <!-- 🌫️ polvo volumétrico -->
+    <filter id="dustVolume" x="-50%" y="-50%" width="200%" height="200%">
+
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.9"
+        numOctaves="3"
+        seed="7"
+        result="dustNoise"
+      />
+
+      <feGaussianBlur in="dustNoise" stdDeviation="2.5" result="softDust"/>
+
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.12"/>
+      </feComponentTransfer>
+
+    </filter>
+
+<!-- ⚡ LED flicker (imperceptible realista) -->
+    <filter id="ledFlicker">
+      <feComponentTransfer>
+        <feFuncA type="table" values="
+          0.98 0.99 0.97 1.00 0.98 0.99 0.96 0.98 1.00 0.97
+        "/>
+      </feComponentTransfer>
+
+      <animate
+        attributeName="baseFrequency"
+        dur="0.18s"
+        values="0.98;1.00;0.97;0.99;0.98"
+        repeatCount="indefinite"
+      />
+    </filter>
+
+
+  </defs>
+
+  <!-- 🟦 fondo -->
+  <image
+    href="https://media.adeo.com/media/3791207/media.jpg?width=650&height=650&format=jpg&quality=80&fit=bounds"
+    x="0"
+    y="0"
+    width="100%"
+    height="100%"
+    preserveAspectRatio="xMidYMid slice"
+  />
+
+  <!-- 🔆 luz ambiental (inverse square) -->
+  <circle
+    cx="500"
+    cy="500"
+    r="360"
+    fill="url(#inverseLight)"
+    opacity="0.3"
+  />
+
+  <!-- 🟪 proyección -->
+  <g filter="url(#goboGlow)" mask="url(#goboMask)" opacity="0.95">
+
+     <!-- ⚡ flicker global del haz -->
+    <g opacity="0.98">
+      <animate attributeName="opacity"
+        values="0.94;0.97;0.95;0.96;0.94"
+        dur="0.12s"
+        repeatCount="indefinite"
+      />
+
+    <!-- luz base -->
+    <circle
+      cx="500"
+      cy="500"
+      r="280"
+      fill="#ffffff"
+      opacity="0.9"
+    />
+
+    <!-- 🌫️ polvo en el haz -->
+    <circle
+      cx="500"
+      cy="500"
+      r="330"
+      fill="white"
+      opacity="0.12"
+      filter="url(#dustVolume)"
+    />
+
+    <!-- 🌈 logo con aberración -->
+    <g filter="url(#chromaticAberration)">
+      <image
+        [attr.href]="goboImage"
+        x="250"
+        y="250"
+        width="500"
+        height="500"
+        preserveAspectRatio="xMidYMid meet"
+      />
+    </g>
+
+  </g>
+</g>
+</svg>
+
+</figure>    
+</div>
+
+<div class="preview-texts-container">
+
+<p class="product-intro">{{ product.description.split('.')[0] + '.'}}</p>
+
+
+@if(product.variants?.length) {
+   <div class="variant-picker">
+ @for(variant of product.variants; track i; let i = $index) {
+    <input
+      [(ngModel)]="selectedVariant"
+      [value]="variant"
+      type="radio"
+      [id]="'variant-' + i"
+      name="variant"
+      hidden
+      >
+
+    <label
+      [for]="'variant-' + i"
+      class="variant-preview"
+       >{{variant.name}}</label>
+  }
+     </div>    
+          
+}
+
+<p>Precio <span class="price">{{ selectedVariant.price | price }}</span> IVA Incl.</p>
+<button (click)="onAddToCart()" class="button">Añadir al carrito</button> 
+</div>
+</div>
+<p class="ia-advice">Esta imagen es una simulación. El producto real puede variar ligeramente.</p>

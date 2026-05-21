@@ -37,7 +37,7 @@ export class NewProductModalComponent implements OnInit {
   @Output() productAdded = new EventEmitter<void>(); 
 
   public errorMessage:string = ''
-  private allowedTypes:string[] = ['image/webp']
+  public allowedTypes:string[] = ['image/webp', 'image/jpg', 'image/jpeg']
   private maxSize:number = 2 * 1024 * 1024 //2MB
 
   constructor(private adminProductsService: AdminProductsService, private getProductsService: GetProductsService) {}
@@ -91,6 +91,7 @@ public onFilesSelected(event: Event) {
   const files = Array.from(input.files);
 
    for (const file of files) {
+    console.log(file.type)
     if (!this.allowedTypes.includes(file.type)) {
       this.errorMessage = 'Formato no permitido.';
       return;

@@ -55,8 +55,10 @@ export interface ProductPurchased {
   image: string;
   price: number;
   qty: number;
-  customDetails?: CustomDetails
+  customDetails?: CustomDetails;
+  variantName?: string;
 }
+
 
 export interface CustomDetails {
   text: string;
@@ -74,7 +76,8 @@ export interface CustomDetails {
 
 export interface Variant {
   size: number,
-  price: number
+  price: number,
+  name?: string
 }
 
 export interface FormData {

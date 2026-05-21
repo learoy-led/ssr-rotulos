@@ -36,6 +36,9 @@
             @if(!product.name.includes('neón')) {
             <span>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? product.customDetails.frontColor : 'no'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</span>
             }
+            } @else {
+               <span  > {{ product.variantName}}    
+            </span>
             }
             </div>
   </td>

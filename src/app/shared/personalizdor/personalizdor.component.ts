@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { materials } from '../../data/personalizador.data';
 import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { FontsService } from '../../services/fonts.service';
 import { iconPaths } from '../../data/data';
 import { IconComponent } from '../icon/icon.component';
-import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personalizdor',
@@ -320,7 +319,6 @@ el.style.setProperty("--value", value);
   this.form.reset();
   console.log(productPurchased)
   this.cartService.addToCart(productPurchased)
-  //generar archivo svg
   this.router.navigate(['/cart']);
   
    

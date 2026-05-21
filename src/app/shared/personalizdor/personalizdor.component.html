@@ -3,6 +3,8 @@
 <figure class="preview-figure">
 
 
+
+ 
  <svg 
  class="ia-image"
     #svgEl
@@ -279,7 +281,7 @@ fill="black"></rect>
 
   
 
-@if(product.variants?.length!== 0) {
+@if(product.variants?.length) {
 <label for="size">Elige la altura de las letras: {{ form.get('size')?.value < font.minHeight ? font.minHeight : form.get('size')?.value}} cm</label>
  
 <input #rangeEl 

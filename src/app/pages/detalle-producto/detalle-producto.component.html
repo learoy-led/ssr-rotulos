@@ -4,14 +4,18 @@
 <section class="personalizador-section full-width-section">
   <h1 class="centered-text"> {{ productSelectedData.name }}</h1>
   <h2 class="subtitle blue"> Haz tu pedido online</h2>
-  <app-personalizdor [product]="productSelectedData" ></app-personalizdor>
+  @if(productSelectedData.renderKey ==='proyector') {
+    <app-gobo-render [product]="productSelectedData"></app-gobo-render>
+  }  @else {
+    <app-personalizdor [product]="productSelectedData" ></app-personalizdor>
+  }
   </section>
   }
 
   @if (productSelectedData) {
   <section class="product-details">
     <div class="main-product-details">
-      @if(productSelectedData.light && productSelectedData.renderKey && productSelectedData.renderKey !== 'neon') {
+      @if(productSelectedData.light && productSelectedData.renderKey && productSelectedData.renderKey !== 'neon' && productSelectedData.renderKey !== 'proyector') {
            <figure class="product-images">
          <app-image-compare [images]="productSelectedData.images"></app-image-compare>
          </figure>
@@ -43,8 +47,7 @@
       <div class="product-texts">
         <h1 class="small-title blue-line">{{ productSelectedData.name }}</h1>
         <p class="left" *ngFor="let paragraph of productSelectedData.description.split('.'); let last = last">
-          {{ paragraph }}
-<span *ngIf="!last">.</span>
+          {{ paragraph }}{{ last? '' : '.' }}
         </p>
 
          @if(!productSelectedData.renderKey) {
@@ -54,9 +57,16 @@
           [buttonText]="'Pedir presupuesto'"
           [buttonLink]="'/contacto'"
         ></app-button> }
-        @else {
-          <!-- <p>Aquí tiene que elegir variante/size</p>
-          <p class="price">Aquí precio del variante</p> -->
+        @else {       
+
+          <select name="variant" id="variant" (change)="changePrice($event)">
+            @for(variant of productSelectedData.variants; track i; let i = $index) {
+           <option [value]="variant.price">{{ variant.name }}</option>
+            }
+          </select>
+          
+
+          <p>Precio <span class="price">{{ finalPrice*10 | price }}</span> IVA Incl.</p>
 
            <button class="button">Añadir al carrito</button>
         }

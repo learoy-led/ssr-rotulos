@@ -131,63 +131,63 @@ name: 'oro rosa',
     name: 'blanco',
     hex: '#ffffff',
     uses: ['letra', 'vinilo', 'metacrilato'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+    materials: ['hierro', 'aluminio', 'mini',  'pvc', '3d']
     },
   {
     name: 'negro',
     hex: '#000000',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d'],
+    materials: ['hierro', 'aluminio', 'mini',  'pvc', '3d'],
     dark: true
     },
       {
     name: 'rojo',
     hex: '#f80000',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'aluminio', 'mini', 'pvc', '3d', 'proyector']
     },
        {
     name: 'naranja',
     hex: '#f88d00',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'mini', 'pvc', '3d', 'proyector']
     },
       {
     name: 'amarillo',
     hex: '#ffff00',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'aluminio', 'mini', 'pvc', '3d', 'proyector']
     },
          {
     name: 'verde claro',
     hex: '#00bb2d',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'aluminio', 'mini', 'pvc', '3d', 'proyector']
     },
          {
     name: 'verde oscuro',
     hex: '#038622',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini',  'pvc', '3d']
+    materials: ['hierro', 'mini',  'pvc', '3d', 'proyector']
     },
     {
     name: 'azul claro',
     hex: '#3b83bd',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro','aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro','aluminio', 'mini', 'pvc', '3d', 'proyector']
     },
    {
     name: 'azul oscuro',
     'hex': '#1e2460',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini', 'pvc','3d'],
+    materials: ['hierro', 'mini', 'pvc','3d', 'proyector'],
     dark: true
     },
    {
     name: 'rosa',
     hex: '#cf3476',
     uses: ['letra', 'vinilo'],
-    materials: ['acero', 'hierro', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'mini', 'pvc', '3d', 'proyector']
     },
 
  
