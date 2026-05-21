@@ -1,9 +1,6 @@
 <div class="container">
 <div class="preview-container">
 <figure class="preview-figure">
-
-
-
  
  <svg 
  class="ia-image"
@@ -92,12 +89,16 @@ fill="black"></rect>
      [attr.x]="width/2"    [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
       text-anchor="middle"
      dominant-baseline="middle"
-      [attr.fill]="frontColor.hex !== 'transparent' && frontColor.hex || color.hex"   
+      [attr.fill]="product.renderKey === 'acero' && product.name.includes('retro') && frontColor.hex === 'transparent' ? '#5a5a5a' : (frontColor.hex !== 'transparent' && frontColor.hex || color.hex)"   
        [attr.filter]="product.light ? 'url(#glow)' : null"    
        [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
          [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
     
-      [attr.stroke]="frontColor.hex !== 'transparent' && product.renderKey !== 'neon' ? color.hex : null"
+      [attr.stroke]="
+      frontColor.hex !== 'transparent' && product.renderKey === 'acero' ? '#5a5a5a' :
+      (frontColor.hex !== 'transparent' && product.renderKey !== 'neon' ? color.hex : null)
+      "
+
   [attr.stroke-width]="frontColor.hex !== 'transparent' && product.renderKey !== 'neon' ? 1.5 : 0"
   paint-order="stroke"
 
@@ -115,7 +116,10 @@ fill="black"></rect>
       text-anchor="middle"
       dominant-baseline="middle"
       [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
-      [attr.fill]="product.renderKey === 'neon' ? innerColor : frontColor.hex || color.hex"
+
+      
+      [attr.fill]="product.renderKey === 'neon' ? innerColor : 
+      (product.renderKey === 'acero' && frontColor.hex === 'transparent' ? '#5a5a5a' : (frontColor.hex !== 'transparent' && frontColor.hex || color.hex))"
         [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
 
       >
@@ -190,7 +194,10 @@ fill="black"></rect>
 
      </div>
   
-  <label for="color">Selecciona un color {{product.renderKey === 'neon' ? '': 'para las letras'}}:
+  <label for="color"> {{
+  product.renderKey === 'neon' ? 'Selecciona un color': product.renderKey === 'acero' ? 'Selecciona el color de la luz' : 
+  'Selecciona el color de las letras'
+  }}:
  </label> 
   <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {

@@ -103,10 +103,10 @@ name: 'sin vinilo',
   materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
   {
-name: 'acero sin pintar',
+name: 'acero',
   hex: '#5a5a5a',
   uses: ['letra'],
-   materials: ['acero', 'hierro'],
+   materials: ['hierro'],
    dark: true
 }, 
   {
@@ -143,7 +143,7 @@ name: 'oro rosa',
       {
     name: 'rojo',
     hex: '#f80000',
-    uses: ['letra', 'vinilo'],
+    uses: ['letra', 'vinilo', 'luz'],
     materials: ['hierro', 'aluminio', 'mini', 'pvc', '3d', 'proyector']
     },
        {
@@ -334,7 +334,7 @@ name: 'azul',
     {
     name: 'verde',
     hex: '#00e600',
-         uses: ['letra'],
+         uses: ['luz'],
         materials: ['neon']
   },
       {
@@ -365,13 +365,55 @@ name: 'azul',
     name: 'blanco frío',
     hex: '#ffffff',
          uses: ['letra'],
-        materials: ['neon']
+        materials: ['neon', 'acero']
   },
             {
     name: 'blanco cálido',
     hex: '#FFDFAF',
          uses: ['letra'],
-        materials: ['neon']
+        materials: ['neon', 'acero']
+  },    
+  {
+    name: 'rojo',
+    hex: '#e50015',
+         uses: ['letra'],
+        materials: ['acero']
+  },   
+    {
+    name: 'naranja',
+    hex: '#ec6c00',
+         uses: ['letra'],
+        materials: ['acero']
+  },  
+    {
+    name: 'amarillo',
+    hex: '#fdf105',
+         uses: ['letra'],
+        materials: ['acero']
+  },  
+  {
+    name: 'verde',
+    hex: '#6fb930',
+         uses: ['letra'],
+        materials: ['acero']
+  },  
+    {
+    name: 'azul',
+    hex: '#029fe4',
+         uses: ['letra'],
+        materials: ['acero']
+  }, 
+   {
+    name: 'añil',
+    hex: '#1d2087',
+         uses: ['letra'],
+        materials: ['acero']
+  },   
+  {
+    name: 'rosa',
+    hex: '#c7007e',
+         uses: ['letra'],
+        materials: ['acero']
   },   
 
 ]

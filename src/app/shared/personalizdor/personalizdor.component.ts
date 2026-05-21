@@ -99,7 +99,7 @@ toggleFonts() {
 
 
   get glowColor(): string {
-    return this.product.renderKey === 'neon' ? this.color.hex : '#fff5cc';
+    return this.product.renderKey === 'neon' || (this.product.renderKey === 'acero') ? this.color.hex : '#fff5cc';
 }
 
 public activeModal : 'frontCover' | 'base' | null = null
@@ -190,7 +190,10 @@ this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * 
    if (!variantSelected) {
   variantSelected = this.product.variants[this.product.variants.length - 1];
 } 
-    this.finalPrice = (variantSelected.price * area)
+console.log(variantSelected)
+console.log(area)
+
+    this.finalPrice =  (area / variantSelected.size) * variantSelected.price;
       this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
    }
   }

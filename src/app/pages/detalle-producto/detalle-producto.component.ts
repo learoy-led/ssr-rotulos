@@ -46,10 +46,11 @@ export class DetalleProductoComponent implements OnInit {
   public productDetailsIndex = 0;
   private currentRoute = '';
   public isLoading: boolean = true;
-  public variantSelected: Variant = {
+  public selectedVariant: Variant = {
+      name: '' ,
     size: 0,
     price: 0,
-    name: '' 
+  
   }
   
   finalPrice = 0;
@@ -124,13 +125,19 @@ const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
 }
 
 
-// public onAddToCart() {
-// this.productSelectedData._id && this.cartService.addToCart({
-//     id: this.productSelectedData._id,
-//     name: this.productSelectedData.name,
-//     image: this.productSelectedData.images[0],
-//     variant: this.variantSelected,
-//     qty: 1
-//   });
-//   }
+public onAddToCart() {
+   if (!this.productSelectedData.variants || !this.productSelectedData._id) return;
+
+     const productPurchased = {
+     id: this.productSelectedData._id,
+    name: this.productSelectedData.name,
+    image: this.productSelectedData.images[0],
+    price: this.selectedVariant.price,
+    variantName: this.selectedVariant.name,
+    qty: 1,
+  }
+
+this.cartService.addToCart(productPurchased);
+  this.router.navigate(['/cart']);
+  }
 }
