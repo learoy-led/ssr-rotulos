@@ -97,6 +97,11 @@ a {
     list-style-type: none;
   }
 
+  h1 {
+    margin-right: 3%;
+    margin-left: 3%
+  }
+
   
      h1, .home-title, .small-title {
 text-transform: uppercase; 
@@ -248,7 +253,8 @@ form {
 .buttons-container {
   align-self: center;
    display: flex;
-    gap: 12px
+    gap: 12px;
+    margin: 16px
 }
 
 .error-message {

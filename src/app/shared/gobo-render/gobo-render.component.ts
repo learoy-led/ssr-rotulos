@@ -17,7 +17,7 @@ import { PlatformService } from '../../core/services/platform.service';
 })
 export class GoboRenderComponent implements OnInit {
 
-   //está con logo sin fondo pero si lleva fondo cómo hacerle un círculo
+
   public goboImage: string ='/rotulos-learoy-logo.webp'
 
     @Input() product!: Product;
@@ -31,7 +31,7 @@ export class GoboRenderComponent implements OnInit {
     public uploadPath: string = iconPaths.upload
 
   public errorMessage:string = ''
-  private allowedTypes:string[] = ['application/pdf', 'image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml']
+  private allowedTypes:string[] = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml']
   private maxSize:number = 2 * 1024 * 1024 //2MB
   
 

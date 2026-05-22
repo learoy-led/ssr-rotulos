@@ -174,7 +174,8 @@
     />
 
     <!-- 🌈 logo con aberración -->
-    <g filter="url(#chromaticAberration)">
+    <g [ngClass]="{ 'gobo-rotate': product.name.includes('giratorio') }" filter="url(#chromaticAberration)">
+      
       <image
         [attr.href]="goboImage"
         x="250"
@@ -197,8 +198,13 @@
  <app-icon [iconPath]="uploadPath" [ngClass]="'small-icon blue'"></app-icon>
   <span>Sube tu logo* para previsualizarlo y hacer tu pedido online</span>
    <span style="font-size: 14px;">*pdf, jpg, png, svg</span>
+     @if (errorMessage) {
+ <span class="error-message">{{errorMessage}}</span>      
+      } 
 </label>
-<!-- <p>{{errorMessage}}</p> -->
+
+
+ 
   </div>
 }
 </figure>    

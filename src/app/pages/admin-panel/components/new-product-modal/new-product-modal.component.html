@@ -66,6 +66,17 @@ Luminoso
         }
 </select>
 
+
+<input 
+class="form-field" 
+type="text"
+[(ngModel)]="newProductData.renderKey"
+placeholder="Palabra clave / renderKey"
+id="renderKey"
+name="renderKey"
+#renderKeyField="ngModel"
+>
+
 <textarea 
 placeholder="Descripción del nuevo producto."
 name="description" id="description" 
@@ -151,6 +162,44 @@ required
 >
   Por favor, enumera las aplicaciones del nuevo producto. 
 </p>
+
+ <div  class="variants-form-section">
+@for(variant of newProductData.variants; track $index) {
+  <div  class="variant-row">
+<input 
+class="form-field" 
+type="text"
+[(ngModel)]="variant.name"
+[placeholder]="'Nombre de la Variante ' + ($index + 1)"
+[id]="'variantName' + $index"
+[name]="'variantName' + $index"
+#variantNameField="ngModel"
+>
+<input 
+class="form-field" 
+type="number"
+[(ngModel)]="variant.size"
+placeholder="Tamaño de la Variante"
+[id]="'variantSize' + $index"
+[name]="'variantSize' + $index"
+#variantNameField="ngModel"
+>
+<input 
+class="form-field" 
+type="number"
+[(ngModel)]="variant.price"
+placeholder="precio de la Variante"
+[id]="'variantPrice' + $index"
+[name]="'variantPrice' + $index"
+#variantPriceField="ngModel"
+>
+</div>
+}
+
+<button type="button" class="add-button" (click)="addVariant()">+</button>
+</div>
+
+
 
 <label class="label" for="images">Selecciona imágenes en formato webp/jpg de menos de 2MB:</label>
 <input

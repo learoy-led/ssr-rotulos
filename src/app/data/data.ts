@@ -20,6 +20,7 @@ export const contactDetails: ContactDetails = {
   address2: '28947 Fuenlabrada, Madrid',
   phone: '642 678 199',
   email: 'rotulos@learoyled.com',
+  rgpdEmail: 'protecciondedatos@learoyled.com',
   open: '10:00 a 19:00h lunes a viernes y domingos',
   cif: 'B01609452',
   tiktok:'https://www.tiktok.com/@rotuloslearoy',

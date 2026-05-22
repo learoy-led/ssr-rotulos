@@ -27,6 +27,11 @@ export class NewProductModalComponent implements OnInit {
     light: false,
     metaDescription: '',
     categories: [],
+     variants: [{
+      name: '',
+      size: 0,
+      price: 0
+        }],
   }
   public selectedFiles: File[] = [];
   public categories$?: Observable <Category[]>;
@@ -59,6 +64,8 @@ this.categories$ = this.getProductsService.getCategories()
     value.forEach((v: string)=> {
 formData.append('categories', v as string);
     })
+    } else if(key ==='variants') {
+      formData.append('variants', JSON.stringify(value));
   } else {
   formData.append(key, value as string);
   }
@@ -105,5 +112,14 @@ public onFilesSelected(event: Event) {
 
   this.selectedFiles = files;
 
+}
+
+public addVariant() {
+  if(!this.newProductData.variants) return;
+  this.newProductData.variants.push({
+    name: '',
+    size: 0,
+    price: 0
+  });
 }
 }

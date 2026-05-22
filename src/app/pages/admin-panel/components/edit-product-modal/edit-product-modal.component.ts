@@ -37,11 +37,16 @@ export class EditProductModalComponent {
     application: '',
     light: false,
     metaDescription: '',
-    categories: []
+    categories: [],
+    variants: [{
+      name: '',
+      size: 0,
+      price: 0
+    }],
   }
   public categories$?: Observable<Category[]>;
   public errorMessage:string = ''
-  private allowedTypes:string[] = ['image/webp']
+  private allowedTypes:string[] = ['image/webp', 'image/jpg', 'image/jpeg']
   private maxSize:number = 2 * 1024 * 1024 //2MB
    public selectedFiles: File[] = [];
   
@@ -70,6 +75,8 @@ export class EditProductModalComponent {
   value.forEach((v: any)=> {
 formData.append('categories', v._id ?? v);
     })
+  } else if(key ==='variants') {
+      formData.append('variants', JSON.stringify(value));
   } else {
     formData.append(key, value as string);
   }  

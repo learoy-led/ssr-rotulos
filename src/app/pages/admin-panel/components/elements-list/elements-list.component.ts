@@ -50,7 +50,6 @@ export class ElementsListComponent {
   }
 
   public openEditElementModal(element:  Category | Product) {
-    console.log('abro', element)
     this.editableElement = element
     this.updateEditableElement.emit(this.editableElement)
     if (element.type === 'category') {
@@ -58,7 +57,6 @@ export class ElementsListComponent {
       this.updateCategoryModalIsOpenState.emit(this.updateCategoryModalIsOpen)
     } else {
       this.updateProductModalIsOpen = true
-      console.log( 'emite el botón editar', this.updateProductModalIsOpen)
       this.updateProductModalIsOpenState.emit(this.updateProductModalIsOpen)
     }
     

@@ -6,6 +6,7 @@ export interface ContactDetails {
   address2: string;
   phone: string;
   email: string;
+  rgpdEmail: string;
   open: string;
   cif: string;
   tiktok: string;

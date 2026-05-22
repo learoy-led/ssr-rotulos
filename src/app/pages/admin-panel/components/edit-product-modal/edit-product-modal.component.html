@@ -99,6 +99,39 @@ class="form-field"
   #applicationField="ngModel"
 ></textarea>
 
+@for(variant of updateProductData.variants; track $index) {
+<label class="label blue">Variante {{ $index + 1 }}:</label> 
+<input 
+class="form-field" 
+type="text"
+[(ngModel)]="variant.name"
+[placeholder]="variant.name"
+[id]="'variantName' + $index"
+[name]="'variantName' + $index"
+#variantNameField="ngModel"
+>
+<input 
+class="form-field" 
+type="number"
+[(ngModel)]="variant.size"
+[placeholder]="variant.size"
+[id]="'variantSize' + $index"
+[name]="'variantSize' + $index"
+#variantNameField="ngModel"
+>
+<input 
+class="form-field" 
+type="number"
+[(ngModel)]="variant.price"
+[placeholder]="variant.price"
+[id]="'variantPrice' + $index"
+[name]="'variantPrice' + $index"
+#variantPriceField="ngModel"
+>
+}
+
+
+
 <label class="label blue" for="images">Añade una o varias imágenes de menos de 2MB en formato webp o jpeg:</label>
 <input
   type="file"
