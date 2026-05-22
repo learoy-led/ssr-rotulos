@@ -8,7 +8,7 @@
 
   <defs>
 
-    <!-- 🔥 Glow del proyector -->
+    <!-- Glow del proyector -->
     <filter id="goboGlow" x="-50%" y="-50%" width="200%" height="200%">
 
       <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blurSmall"/>
@@ -41,7 +41,7 @@
 
     </filter>
 
-    <!-- 🎯 máscara circular del haz -->
+    <!--  máscara circular del haz -->
     <radialGradient id="beamFalloff">
       <stop offset="0%" stop-color="white" stop-opacity="1"/>
       <stop offset="60%" stop-color="white" stop-opacity="0.8"/>
@@ -53,14 +53,14 @@
       <circle cx="500" cy="500" r="320" fill="url(#beamFalloff)"/>
     </mask> 
 
-    <!-- 🔆 caída física de luz -->
+    <!--  caída física de luz -->
     <radialGradient id="inverseLight">
       <stop offset="0%" stop-color="white" stop-opacity="1"/>
       <stop offset="40%" stop-color="white" stop-opacity="0.6"/>
       <stop offset="100%" stop-color="white" stop-opacity="0.05"/>
     </radialGradient>
 
-    <!-- 🌈 aberración cromática -->
+    <!--  aberración cromática -->
     <filter id="chromaticAberration">
 
       <feOffset in="SourceGraphic" dx="-2" dy="0" result="r"/>
@@ -86,7 +86,7 @@
 
     </filter>
 
-    <!-- 🌫️ polvo volumétrico -->
+    <!--  polvo volumétrico -->
     <filter id="dustVolume" x="-50%" y="-50%" width="200%" height="200%">
 
       <feTurbulence
@@ -105,7 +105,7 @@
 
     </filter>
 
-<!-- ⚡ LED flicker (imperceptible realista) -->
+<!-- LED flicker (imperceptible realista) -->
     <filter id="ledFlicker">
       <feComponentTransfer>
         <feFuncA type="table" values="
@@ -124,9 +124,9 @@
 
   </defs>
 
-  <!-- 🟦 fondo -->
+  <!-- fondo -->
   <image
-    href="https://media.adeo.com/media/3791207/media.jpg?width=650&height=650&format=jpg&quality=80&fit=bounds"
+    href="/gobo-background.webp"
     x="0"
     y="0"
     width="100%"
@@ -134,7 +134,7 @@
     preserveAspectRatio="xMidYMid slice"
   />
 
-  <!-- 🔆 luz ambiental (inverse square) -->
+  <!-- luz ambiental (inverse square) -->
   <circle
     cx="500"
     cy="500"
@@ -143,10 +143,10 @@
     opacity="0.3"
   />
 
-  <!-- 🟪 proyección -->
+  <!-- proyección -->
   <g filter="url(#goboGlow)" mask="url(#goboMask)" opacity="0.95">
 
-     <!-- ⚡ flicker global del haz -->
+     <!-- flicker global del haz -->
     <g opacity="0.98">
       <animate attributeName="opacity"
         values="0.94;0.97;0.95;0.96;0.94"
@@ -163,7 +163,7 @@
       opacity="0.9"
     />
 
-    <!-- 🌫️ polvo en el haz -->
+    <!-- polvo en el haz -->
     <circle
       cx="500"
       cy="500"
@@ -173,7 +173,7 @@
       filter="url(#dustVolume)"
     />
 
-    <!-- 🌈 logo con aberración -->
+    <!-- logo con aberración -->
     <g [ngClass]="{ 'gobo-rotate': product.name.includes('giratorio') }" filter="url(#chromaticAberration)">
       
       <image
