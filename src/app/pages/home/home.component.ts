@@ -12,6 +12,8 @@ import { CardComponent } from '../../shared/card/card.component';
 import { Router } from '@angular/router';
 import { BannerPersonalizarComponent } from '../../shared/banner-personalizar/banner-personalizar.component';
 import { ButtonComponent } from '../../shared/button/button.component';
+import { map } from 'lodash';
+import { featuredIds } from '../../data/data';
 
 
 
@@ -33,14 +35,15 @@ import { ButtonComponent } from '../../shared/button/button.component';
 export class HomeComponent implements OnInit {
   public categories$?: Observable<Category[]>;
   public products$?: Observable<Product[]>;
-  
+  private featuredIds = featuredIds
 
 
   constructor(private router: Router, private getProductsService: GetProductsService, private schemaService: SchemaService, private platformService: PlatformService) {}
 
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
-    this.products$ =this.getProductsService.getFeaturedProducts()
+    this.products$ =this.getProductsService.getFeaturedProducts();
+
     this.schemaService.insertSchema(this.schemaService.getLocalBusinessSchema(),'schema-localbusiness')
     this.schemaService.insertSchema(this.schemaService.getWebSiteSchema(), 'schema-website')
   }

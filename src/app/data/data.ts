@@ -90,16 +90,20 @@ export const sectores = [
 
 export const letterImages: LetterImage[] = [
   {
-    name: 'Letras luminosas con contorno',
-    url: '/v1738170070/letra-luminosa-metacrilato-con-contorno-acero-rotulos-learoy_zzu5ho.webp'
-  },
-  {
     name: 'Letras de aluminio',
    url: '/v1738167659/letreros-de-aluminio-learoy_auxdsl.webp'
   },
+   {
+    name: 'Letras de neón',
+    url: '/v1779725979/neon-personalizado-learoy_k7sv6q.jpg'
+  },
   {
-    name: 'Letras de metacrilato y aluminio luminosas',
-   url: '/v1738167659/letras-luminosas-personalizadas-rotulos-learoy_r00xlm.webp'
+    name: 'Letras de hierro retroiluminadas',
+   url: '/v1769185261/rotuloslearoy/tz71fc6yrw5uuqnvvuts.webp'
+  },
+   {
+    name: 'Letras de acero inoxidable',
+   url: '/v1779724471/letras-corporeas-learoy-con-luz_amsoib.jpg'
   },
   {
     name: 'Números retroiluminados',
@@ -110,20 +114,21 @@ export const letterImages: LetterImage[] = [
    url: '/v1739457666/letras-de-neon-personalizadas-rotulos-learoy_yfboud.webp'
   },
   {
-    name: 'Aluminio y metacrilato',
+    name: 'Aluminio con luz trasera',
    url: '/v1738167179/letras-retroiluminadas-para-rotulos-learoy_zalyps.webp'
   },
+ 
   {
-    name: 'Letras de PVC',
-   url: '/v1736347828/letras-pvc-sin-luz-rotulos-learoy_ae6a7l.webp'
+    name: 'Letras de acero y metacrilato',
+   url: '/v1779727053/letras-corporeas-personalizadas_hvk7jf.jpg'
+  },
+   {
+    name: 'Letras acero inoxidable',
+   url: '/v1769185261/rotuloslearoy/jbpahmhqey3dtipbcfni.webp'
   },
   {
-    name: 'Letras retroiluminadas',
-   url: '/v1737645056/rotulo-retroiluminado-metacrilato-incrustado-learoy_ggw92f.webp'
-  },
-  {
-    name: 'Letras luminosas magnéticas',
-   url: '/v1738166930/rotulo-luminoso-con-barra-rotulos-learoy_psxrzd.webp'
+    name: 'Letras pvc',
+   url: '/v1779724640/rotulo-learoy-clinica-belleza_b99wtc.jpg'
   },
   {
     name: 'Letras retroiluminadas',
@@ -134,24 +139,18 @@ export const letterImages: LetterImage[] = [
    url: '/v1739457669/letras-retroiluminadas-rotulos-learoy_qstthr.webp'
   },
   {
-    name: 'Letras de madera',
-   url: '/v1739461861/letras-de-madera-de-colores-rotulos-learoy_lzvq1v.webp'
-  },
-  {
     name: 'Letras de neón',
    url: '/v1739457666/letras-led-neon-rotulos-learoy_q7owf6.webp'
   },
   {
-    name: 'Letras de acero y metacrilato',
-   url: '/v1739457665/letras-acero-incrustado-sobre-metacrilato-luminoso-rotulos-learoy_uqwefc.webp'
+    name: 'Letras retroiluminadas',
+   url: '/v1737645056/rotulo-retroiluminado-metacrilato-incrustado-learoy_ggw92f.webp'
   },
-  {
-    name: 'Letras luminosas de acrílico',
-   url: '/v1739457665/letras-corporativas-luminosas-colores-rotulos-learoy_vnov09.webp'
-  },
+ 
+
   {
     name: 'Letras LED',
-   url: '/v1739457665/letras-led-para-rotulos-learoy_idoy9o.webp'
+   url: '/v1769165813/rotuloslearoy/ujs5pn7ayutswlcl00cl.webp'
   },
   {
     name: 'Letras de acrílico con luz',
@@ -161,17 +160,21 @@ export const letterImages: LetterImage[] = [
     name: 'Letras de neón flexible',
    url: '/v1739457665/letras-de-neon-flexible-rotulos-learoy_ntwiv7.webp'
   },
+   {
+    name: 'Letras farmacias',
+   url: '/v1779725151/letras-iluminadas-learoy-farmacias_ppogqe.jpg'
+  },
   {
     name: 'Letras corpóreas personalizadas',
-   url: '/v1739457665/letras-corporeas-luminosas-rotulos-learoy_vaetfl.webp'
+   url: '/v1769692593/rotuloslearoy/sw5ophvfisop1qxt3vpw.webp'
   },
   {
     name: 'Letras luminosas de PVC',
-   url: '/v1739457665/letras-luminosas-pvc-rotulos-learoy_gdpw15.webp'
+   url: '/v1768921046/letras-retroiluminadas-acero-inoxidable-learoy_v8miax.webp'
   },
   {
     name: 'Letras de LED personalizadas',
-   url: '/v1739457666/letras-de-tira-led-rotulos-learoy_fyy5xv.webp'
+   url: '/v1752244860/letras-corporeas-learoy-para-se%C3%B1aletica_w8w6uj.webp'
   },
 ]
 
@@ -276,9 +279,11 @@ upload: "M342.6 73.4C330.1 60.9 309.8 60.9 297.3 73.4L169.3 201.4C156.8 213.9 15
 }
 
 export const featuredIds = [
-  '67a4d5b038f607a040cdfc32',
-    '688b3debc14555b074733914',
-    '67a4d5b038f607a040cdfc29',
-    '67a4d5b038f607a040cdfc2b',
-    '697b93da0fe0c578eb3f1e54',
+  '67a4d5b038f607a040cdfc2b',
+  '697b93da0fe0c578eb3f1e54',  
+     '688b3debc14555b074733914',
+     '67a4d5b038f607a040cdfc32',
+      '67a4d5b038f607a040cdfc29',
+    
+   
 ]

@@ -220,7 +220,15 @@ placeholder="precio de la Variante"
     {{ errorMessage }}
 </p>
 
-
+<textarea
+class="form-field"
+  placeholder="Meta descripción para SEO (106-141 caracteres)"
+  id="metaDescription"
+  name="metaDescription"
+  required
+  [(ngModel)]="newProductData.metaDescription"
+  #metaDescription="ngModel"
+></textarea>
 
 <div class="buttons-container">
   <button class="button"  (click)="closeNewProductModal()" type="submit" [disabled]="newProductForm.invalid">Añadir</button>

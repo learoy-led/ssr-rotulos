@@ -14,10 +14,10 @@
      min-width: fit-content; 
   }
 
-.left {
+ .left {
          margin-top: -89px;
       clip-path: inset(90px 0 0 0); 
-}
+} 
 
 .middle {
     margin-top: -29px;
@@ -27,14 +27,14 @@
 .right {
     margin-top: -149px;
     clip-path: inset(150px 0 0 0); 
-}
+} 
 
 .letter-list {
   display: flex;
     flex-direction: column;
         gap: 10px;
-    height: 600px;
-    animation: moveImages 10s linear infinite;   
+     height: 600px;
+    animation: moveImages 10s linear infinite;    
 }
 
 .letter-image {

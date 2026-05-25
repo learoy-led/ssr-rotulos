@@ -121,6 +121,15 @@
       />
     </filter>
 
+    <radialGradient id="softCircle">
+  <stop offset="70%" stop-color="white"/>
+  <stop offset="100%" stop-color="black"/>
+</radialGradient>
+
+  <mask id="goboCircleMask">
+  <rect width="1000" height="1000" fill="black"/>
+  <circle cx="500" cy="500" r="250" fill="url(#softCircle)"/>
+</mask>
 
   </defs>
 
@@ -173,8 +182,13 @@
       filter="url(#dustVolume)"
     />
 
+
+
+</g>
     <!-- logo con aberración -->
-    <g [ngClass]="{ 'gobo-rotate': product.name.includes('giratorio') }" filter="url(#chromaticAberration)">
+ </g>
+ @if(goboImage) {
+ <g mask="url(#goboCircleMask)" [ngClass]="{ 'gobo-rotate': product.name.includes('giratorio') }" filter="url(#chromaticAberration)">
       
       <image
         [attr.href]="goboImage"
@@ -185,9 +199,8 @@
         preserveAspectRatio="xMidYMid meet"
       />
     </g>
-
-  </g>
-</g>
+ }
+    
 </svg>
 
 @if(goboImage ==='/rotulos-learoy-logo.webp') {

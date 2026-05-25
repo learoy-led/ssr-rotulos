@@ -14,6 +14,18 @@
       #nameField="ngModel"
     />
 
+     <label for="slug" class="label blue">Slug:</label>
+      <input
+    class="form-field"
+    [placeholder]="categoryElement.slug"
+    [value]="categoryElement.slug"
+      type="text"
+      id="slug"
+      name="slug"
+      [(ngModel)]="updateCategoryData.slug"
+      #slugField="ngModel"
+    />
+
      <label for="products" class="label blue">Tipos:</label>
 
     <textarea
@@ -58,6 +70,17 @@ class="form-field"
   id="cost"
   name="cost"
   [(ngModel)]="updateCategoryData.description.cost"
+  #costField="ngModel"
+></textarea>
+
+<label for="metaDescription" class="label blue">Meta descrición para SEO (106-141 caracteres)</label>
+<textarea
+class="form-field" 
+[placeholder]="categoryElement.description.metaDescription"
+[value]="categoryElement.description.metaDescription"
+  id="metaDescription"
+  name="metaDescription"
+  [(ngModel)]="updateCategoryData.description.metaDescription"
   #costField="ngModel"
 ></textarea>
 

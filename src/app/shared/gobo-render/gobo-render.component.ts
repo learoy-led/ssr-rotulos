@@ -8,6 +8,7 @@ import { PricePipe } from '../../pipes/price.pipe';
 import { IconComponent } from '../icon/icon.component';
 import { iconPaths } from '../../data/data';
 import { PlatformService } from '../../core/services/platform.service';
+import { PdfService } from '../../services/pdf.service';
 
 @Component({
   selector: 'app-gobo-render',
@@ -19,6 +20,7 @@ export class GoboRenderComponent implements OnInit {
 
 
   public goboImage: string ='/rotulos-learoy-logo.webp'
+  private currentObjectUrl? : string
 
     @Input() product!: Product;
 
@@ -31,11 +33,11 @@ export class GoboRenderComponent implements OnInit {
     public uploadPath: string = iconPaths.upload
 
   public errorMessage:string = ''
-  private allowedTypes:string[] = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml']
+  private allowedTypes:string[] = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml', 'application/pdf']
   private maxSize:number = 2 * 1024 * 1024 //2MB
   
 
-   constructor(private cartService: CartService, private router: Router, private platformService: PlatformService) {}
+   constructor(private cartService: CartService, private router: Router, private platformService: PlatformService,  private pdfService: PdfService) {}
 
    ngOnInit() {
     if (this.product?.variants?.length) {
@@ -58,39 +60,40 @@ export class GoboRenderComponent implements OnInit {
   this.router.navigate(['/cart']);
   } 
 
-     public onFileSelected(event: Event) {
-    
-    if (!this.platformService.isBrowser()) return;
-    
+     public async onFileSelected(event: any) {
 
-  const input = event.target as HTMLInputElement;
-  const files = input.files;
+      if (!this.platformService.isBrowser() || typeof window === 'undefined') return;
 
-  if (!files || files.length === 0) return;
-
-    this.errorMessage = '';
-  
-     const file = files.item(0);
+      const file: File = event.target.files[0];
   if (!file) return;
 
+  this.errorMessage = '';
 
-    if (!this.allowedTypes.includes(file.type)) {
+      if (!this.allowedTypes.includes(file.type)) {
       this.errorMessage = 'Formato no permitido.';
       return;
     }
 
-    if (file.size > this.maxSize) {
+        if (file.size > this.maxSize) {
       this.errorMessage = 'El archivo no puede superar los 2MB.';
       return;
     }
 
-     if (this.goboImage) {
-    URL.revokeObjectURL(this.goboImage);
+     if (this.currentObjectUrl) {
+    URL.revokeObjectURL(this.currentObjectUrl);
+    this.currentObjectUrl = undefined;
   }
 
-  this.goboImage =  URL.createObjectURL(file);
+  if (file.type === 'application/pdf') {
+    this.goboImage = await this.pdfService.pdfToImage(file);
+  
+  } else {
+    this.currentObjectUrl = URL.createObjectURL(file);
+    this.goboImage = this.currentObjectUrl;
+  }
 
 }
+
 
 }
 

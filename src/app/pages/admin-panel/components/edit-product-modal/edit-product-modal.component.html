@@ -150,6 +150,16 @@ type="number"
     {{ errorMessage }}
 </p>
 
+<label for="metaDescription" class="label blue">Meta descrición para SEO (106-141 caracteres)</label>
+<textarea
+class="form-field" 
+[placeholder]="productElement.metaDescription"
+[value]="productElement.metaDescription"
+  id="metaDescription"
+  name="metaDescription"
+  [(ngModel)]="updateProductData.metaDescription"
+  #costField="ngModel"
+></textarea>
 
 <div class="buttons-container">
 <button class="button"  (click)="closeUpdateProductModal()" type="submit" [disabled]="editProductForm.invalid">Actaulizar</button>

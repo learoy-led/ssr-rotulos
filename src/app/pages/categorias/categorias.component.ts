@@ -27,8 +27,6 @@ private productsCache = new Map<string, Observable<Product[]>>();
   constructor(private getProductsService: GetProductsService  ){} 
 
   ngOnInit() {
-    //this.categories$ = this.getProductsService.getCategories();
-
      this.categories$ = this.getProductsService.getCategories().pipe(
     switchMap(categories =>
       forkJoin(
@@ -43,7 +41,7 @@ private productsCache = new Map<string, Observable<Product[]>>();
       )
     ),
     map(categories =>
-      categories.filter(category => category.products.length > 0)
+      categories.filter(category => category.products.length > 0).sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER))
     )
   );
   }

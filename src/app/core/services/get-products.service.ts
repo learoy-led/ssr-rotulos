@@ -30,7 +30,13 @@ export class GetProductsService {
   } 
 
   public  getFeaturedProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>( `${this.API_URL}products/featured?ids=${featuredIds.join(',')}`);   
+    return this.http.get<Product[]>( `${this.API_URL}products/featured?ids=${featuredIds.join(',')}`).pipe(
+    map(products =>
+      featuredIds.map(id =>
+        products.find(p => p._id === id)
+      ).filter(Boolean) as Product[]
+    )
+  )   
   } 
 
   public getCategoryBySlug(slug: string): Observable<Category> {
