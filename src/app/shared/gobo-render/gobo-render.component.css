@@ -11,7 +11,7 @@ justify-items: center;
 
 .preview-container {
     width:100%;
-    background-color: #f7f7f7;
+    background-color: var(--color-extra-light-grey);
     align-items: center;
     display: flex;
      flex-direction: column;
@@ -74,7 +74,7 @@ width: 100%;
   gap: 20px;
     padding: 32px;
      width:100%; 
-     background: #f7f7f7; 
+      background-color: var(--color-extra-light-grey);
 }
 
 .product-intro {

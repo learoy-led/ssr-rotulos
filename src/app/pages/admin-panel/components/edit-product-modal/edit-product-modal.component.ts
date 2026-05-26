@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { GetProductsService } from '../../../../core/services/get-products.service';
+import { iconPaths } from '../../../../data/data';
 
 @Component({
   selector: 'app-edit-product-modal',
@@ -19,10 +20,13 @@ export class EditProductModalComponent {
   @Output() productUpdated = new EventEmitter<void>()
   @Output() updateProductModalIsOpenState = new EventEmitter<boolean>()
 
+
+
   get productElement(): Product | null {
     return this.editableElement?.type === 'product' ? (this.editableElement as Product) : null;
   }
 
+  public binPath = iconPaths.bin
   public originalSlug: string = ''
 
   public updateProductData: Product = {
@@ -77,7 +81,11 @@ formData.append('categories', v._id ?? v);
     })
   } else if(key ==='variants') {
       formData.append('variants', JSON.stringify(value));
-  } else {
+  } else if (key === 'images') {
+  value.forEach((img: string) => 
+    formData.append('images', img)
+  );
+}  else {
     formData.append(key, value as string);
   }  
 });
@@ -85,6 +93,8 @@ formData.append('categories', v._id ?? v);
 this.selectedFiles.forEach(file => {
     formData.append('image', file);
   });
+
+
       this.adminProductsService.updateElement(formData, 'products', this.originalSlug);
       this.productUpdated.emit()
     }
@@ -118,4 +128,11 @@ this.selectedFiles.forEach(file => {
 
 }
 
+
+ public onDeleteImage(image: string) {
+  const deleteConfirmation = confirm('¿Estás seguro de que quieres eliminar la imagen?');
+   if (deleteConfirmation) {
+   this.updateProductData.images = this.updateProductData.images.filter((img) => img !== image)
+  } else return
+  }
 }

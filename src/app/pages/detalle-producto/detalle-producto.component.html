@@ -45,10 +45,15 @@
    }
 
       <div class="product-texts">
-        <h1 class="small-title blue-line">{{ productSelectedData.name }}</h1>
-        <p class="left" *ngFor="let paragraph of productSelectedData.description.split('.'); let last = last">
+    
+      <h2 class="small-title blue-line">{{ productSelectedData.name }}</h2>
+      
+ <p class="left" *ngFor="let paragraph of productSelectedData.description.split('.'); let last = last">
           {{ paragraph }}{{ last? '' : '.' }}
         </p>
+   
+    
+
 
          @if(!productSelectedData.renderKey) {
 
@@ -77,8 +82,10 @@
       </div>
     </div>
 
-    <div class="secondary-product-details">
+  <div class="secondary-product-details">
+
       <h2 class="small-title blue-line">Más información</h2>
+
       <h4 class="left blue">
         {{
           productSelectedData.name.charAt(0).toUpperCase() +
@@ -86,7 +93,7 @@
         }}
       </h4>
 
-      <ul class="selected-product-details left">
+         <ul class="selected-product-details left">
         <li>
           <h4 class="orange">Material</h4>
           <p>{{ productSelectedData.material }}</p>
@@ -104,7 +111,12 @@
           <p>{{ productSelectedData.application }}</p>
         </li>
       </ul>
+ 
+     
+
     </div>
+
+  
   </section>
   
 

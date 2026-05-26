@@ -9,7 +9,7 @@ margin-bottom: 20px
 }
 
 select {
-    background: #f7f7f7f7;
+ background-color: var(--color-extra-light-grey);
 }
 
 label {

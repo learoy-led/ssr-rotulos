@@ -22,3 +22,41 @@ label {
 textarea {
     min-height: 150px;
 }
+
+.images-section {
+background-color: var(--color-extra-light-grey);
+display: flex;
+flex-direction: column;
+gap: 20px;
+padding: 20px
+}
+
+.images-list {
+    display: flex;
+    gap: 20px;
+}
+
+.image-container {
+    height: 90px;
+    width: 90px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.product-miniature {
+     height: 100%;
+     width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+}
+
+svg {
+    display: flex;
+    fill: currentColor;
+    height: 20px;
+    cursor: pointer;
+    margin: 6px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

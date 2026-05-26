@@ -25,12 +25,19 @@
       [(ngModel)]="updateProductData.slug"
       #slugField="ngModel"
     />
-        
-     <label for="light" class="label blue">¿Tiene luz?</label>
-   <label class="label" for="light">
-<input type="checkbox" [(ngModel)]="updateProductData.light" name="light" id="light" [value]="productElement.light">
-Luminoso
-   </label>
+      
+   
+  <span class="label blue">¿Tiene luz?</span>
+
+  <label class="label checkbox-label">
+    <input
+      type="checkbox"
+      [(ngModel)]="updateProductData.light"
+      name="light"
+    />
+    Luminoso
+  </label>
+
 
      <label class="label blue" for="category">Selecciona una o varias categorías:</label> 
 <select name="category" id="category" multiple [size]="(categories$| async)?.length"
@@ -42,6 +49,17 @@ Luminoso
         <option [value]="category._id">{{ category.name }}</option>
         }
 </select>
+
+<label for="slug" class="label blue">Palabra clave:</label>
+<input 
+class="form-field" 
+type="text"
+[(ngModel)]="updateProductData.renderKey"
+[placeholder]="updateProductData.renderKey"
+id="renderKey"
+name="renderKey"
+#renderKeyField="ngModel"
+>
     
  <label class="label blue" for="description">Descripción:</label> 
 <textarea 
@@ -131,8 +149,8 @@ type="number"
 }
 
 
-
-<label class="label blue" for="images">Añade una o varias imágenes de menos de 2MB en formato webp o jpeg:</label>
+<div class="images-section">
+<label class="label blue" for="images">Imágenes (webp/jpeg hasta 2MB):</label>
 <input
   type="file"
   style="align-self: flex-start; padding-left: 12px"
@@ -143,12 +161,22 @@ type="number"
   (change)="onFilesSelected($event)"
   
 />
-<p
-  *ngIf="errorMessage "
-  class="error-message"
->
-    {{ errorMessage }}
-</p>
+@if(errorMessage) {
+<p class="error-message">{{ errorMessage }}</p>
+}
+
+<ul class="images-list">
+  @for(image of updateProductData.images; track $index) {
+  <li class="image-container">
+    <img class="product-miniature" [src]="image" [alt]="updateProductData.name+($index + 1)">
+       <svg role="button" class="edit-delete-button" (click)="onDeleteImage(image)"
+              xmlns="http://www.w3.org/2000/svg" 
+              aria-hidden="true" viewBox="0 0 640 640">
+              <path [attr.d]="binPath"></path></svg>
+  </li>
+  }
+</ul>
+</div>
 
 <label for="metaDescription" class="label blue">Meta descrición para SEO (106-141 caracteres)</label>
 <textarea
@@ -160,6 +188,9 @@ class="form-field"
   [(ngModel)]="updateProductData.metaDescription"
   #costField="ngModel"
 ></textarea>
+
+
+
 
 <div class="buttons-container">
 <button class="button"  (click)="closeUpdateProductModal()" type="submit" [disabled]="editProductForm.invalid">Actaulizar</button>
