@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GetProductsService } from '../../../../core/services/get-products.service';
 import { Observable } from 'rxjs';
+import { RichTextComponent } from '../../../../shared/rich-text/rich-text.component';
 
 @Component({
   selector: 'app-new-product-modal',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RichTextComponent],
   templateUrl: './new-product-modal.component.html',
   styleUrl: './new-product-modal.component.css'
 })

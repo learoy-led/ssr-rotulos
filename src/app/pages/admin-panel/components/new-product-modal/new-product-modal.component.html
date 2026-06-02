@@ -71,20 +71,21 @@ Luminoso
 class="form-field" 
 type="text"
 [(ngModel)]="newProductData.renderKey"
-placeholder="Palabra clave / renderKey"
+placeholder="Palabra clave / renderKey (dejar en blanco si no lleva persoanlizador)"
 id="renderKey"
 name="renderKey"
 #renderKeyField="ngModel"
 >
-
-<textarea 
-placeholder="Descripción del nuevo producto."
-name="description" id="description" 
- class="form-field"
-required
-  [(ngModel)]="newProductData.description"
+<label for="">Descripción del nuevo producto</label>
+<app-rich-text
+name="description" 
+[(ngModel)]="newProductData.description"
+required  
+  id="description" 
   #descriptionField="ngModel"
-></textarea>
+  >
+</app-rich-text>
+
 <p
   *ngIf="descriptionField.touched && descriptionField.errors?.['required']"
   class="error-message"
@@ -147,7 +148,7 @@ required
 
 
 <textarea
- placeholder="Enumera las aplicaciones del nuevo producto."
+ placeholder="Aplicaciones del nuevo producto."
   class="form-field"
   id="application"
   name="application"

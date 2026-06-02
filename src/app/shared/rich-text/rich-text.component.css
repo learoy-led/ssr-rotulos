@@ -1,0 +1,33 @@
+.editor {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 150px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+button {
+     background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+button:hover {
+background: #eee;
+}
+button.active {
+  background: #ddd;
+  font-weight: bold;
+}
+
+svg {
+display: flex;
+height: 20px;
+fill: currentColor;
+}
+
