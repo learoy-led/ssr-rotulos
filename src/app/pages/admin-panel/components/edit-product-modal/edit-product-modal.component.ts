@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { GetProductsService } from '../../../../core/services/get-products.service';
 import { iconPaths } from '../../../../data/data';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-edit-product-modal',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, DragDropModule],
   templateUrl: './edit-product-modal.component.html',
   styleUrl: './edit-product-modal.component.css'
 })
@@ -27,6 +28,7 @@ export class EditProductModalComponent {
   }
 
   public binPath = iconPaths.bin
+  public dragPath = iconPaths.drag
   public originalSlug: string = ''
 
   public updateProductData: Product = {
@@ -135,4 +137,15 @@ this.selectedFiles.forEach(file => {
    this.updateProductData.images = this.updateProductData.images.filter((img) => img !== image)
   } else return
   }
+
+ public drop(event: CdkDragDrop<string[]>) {
+  console.log('dropping')
+  moveItemInArray(
+    this.updateProductData.images,
+    event.previousIndex,
+    event.currentIndex
+  );
+  console.log('moving', event.previousIndex,  event.currentIndex)
+}
+
 }

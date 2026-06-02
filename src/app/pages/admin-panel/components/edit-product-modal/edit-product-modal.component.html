@@ -165,14 +165,26 @@ type="number"
 <p class="error-message">{{ errorMessage }}</p>
 }
 
-<ul class="images-list">
-  @for(image of updateProductData.images; track $index) {
-  <li class="image-container">
+<ul class="images-list"
+cdkDropList
+  (cdkDropListDropped)="drop($event)"
+   cdkDropListOrientation="mixed"
+  >
+  @for(image of updateProductData.images; track image; let i = $index) {
+  <li class="image-container" cdkDrag>
+ 
     <img class="product-miniature" [src]="image" [alt]="updateProductData.name+($index + 1)">
        <svg role="button" class="edit-delete-button" (click)="onDeleteImage(image)"
               xmlns="http://www.w3.org/2000/svg" 
               aria-hidden="true" viewBox="0 0 640 640">
               <path [attr.d]="binPath"></path></svg>
+
+               <svg class="drag-handle" cdkDragHandle
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 640 640">
+  <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+  <path [attr.d]="dragPath"/></svg>
+  
   </li>
   }
 </ul>

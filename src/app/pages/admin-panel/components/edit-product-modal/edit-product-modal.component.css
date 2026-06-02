@@ -33,6 +33,7 @@ padding: 20px
 
 .images-list {
     display: flex;
+      flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -41,6 +42,12 @@ padding: 20px
     width: 90px;
     border-radius: 10px;
     position: relative;
+     cursor: grab;
+     flex: 0 0 auto;
+}
+
+.image-container:active {
+  cursor: grabbing;
 }
 
 .product-miniature {
@@ -57,6 +64,33 @@ svg {
     cursor: pointer;
     margin: 6px;
     position: absolute;
-    top: 0;
+}
+
+.edit-delete-button {
+top: 0;
     right: 0;
+}
+
+.drag-handle {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Imagen mientras se arrastra */
+.cdk-drag-preview {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+   pointer-events: none;
+}
+
+/* Hueco que deja */
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+/* Animación suave */
+.cdk-drag-animating {
+  transition: transform 250ms ease;
 }
