@@ -3,10 +3,11 @@ import { Category } from '../../../../models/data.models';
 import { AdminProductsService } from '../../../../services/admin-products.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RichTextComponent } from '../../../../shared/rich-text/rich-text.component';
 
 @Component({
   selector: 'app-new-category-modal',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RichTextComponent],
   templateUrl: './new-category-modal.component.html',
   styleUrl: './new-category-modal.component.css'
 })

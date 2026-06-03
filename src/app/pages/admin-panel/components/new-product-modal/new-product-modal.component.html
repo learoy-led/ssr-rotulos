@@ -76,7 +76,7 @@ id="renderKey"
 name="renderKey"
 #renderKeyField="ngModel"
 >
-<label for="">Descripción del nuevo producto</label>
+<label for="description">Descripción del nuevo producto:</label>
 <app-rich-text
 name="description" 
 [(ngModel)]="newProductData.description"
@@ -86,83 +86,48 @@ required
   >
 </app-rich-text>
 
-<p
-  *ngIf="descriptionField.touched && descriptionField.errors?.['required']"
-  class="error-message"
->
-  Por favor, introduce una descripción para el nuevo producto. 
-</p>
-
-
-<textarea
- placeholder="Materiales con los que está fabricado el nuevo producto."
-  class="form-field"
-  id="material"
-  name="material"
-  required
-  [(ngModel)]="newProductData.material"
+<label for="material">Materiales con los que está fabricado el nuevo producto:</label>
+<app-rich-text
+name="material" 
+[(ngModel)]="newProductData.material"
+required  
+  id="material" 
   #materialField="ngModel"
-></textarea>
-
-<p
-  *ngIf="materialField.touched && materialField.errors?.['required']"
-  class="error-message"
->
-  Por favor, introduce los materiales con los que está fabricado el nuevo producto. 
-</p>
+  >
+</app-rich-text>
 
 
-<textarea
- placeholder="Describe el diseño del nuevo producto."
-  class="form-field"
-  id="design"
-  name="design"
-  required
-  [(ngModel)]="newProductData.design"
+<label for="design">Describe el diseño del nuevo producto:</label>
+<app-rich-text
+name="design" 
+[(ngModel)]="newProductData.design"
+required  
+  id="design" 
   #designField="ngModel"
-></textarea>
+  >
+</app-rich-text>
 
-<p
-  *ngIf="designField.touched && designField.errors?.['required']"
-  class="error-message"
->
-  Por favor, describe el diseño del nuevo producto. 
-</p>
-
-
-<textarea
- placeholder="Describe cómo instalar el nuevo producto."
-  class="form-field"
-  id="installation"
-  name="installation"
-  required
-  [(ngModel)]="newProductData.installation"
+<label for="installation">Describe cómo instalar el nuevo producto:</label>
+<app-rich-text
+name="installation" 
+[(ngModel)]="newProductData.installation"
+required  
+  id="installation" 
   #installationField="ngModel"
-></textarea>
-<p
-  *ngIf="installationField.touched && installationField.errors?.['required']"
-  class="error-message"
->
-  Por favor, describe cómo se instala el nuevo producto. 
-</p>
+  >
+</app-rich-text>
 
-
-<textarea
- placeholder="Aplicaciones del nuevo producto."
-  class="form-field"
-  id="application"
-  name="application"
-  required
-  [(ngModel)]="newProductData.application"
+<label for="application">Aplicaciones del nuevo producto:</label>
+<app-rich-text
+name="application" 
+[(ngModel)]="newProductData.application"
+required  
+  id="application" 
   #applicationField="ngModel"
-></textarea>
+  >
+</app-rich-text>
 
-<p
-  *ngIf="applicationField.touched && applicationField.errors?.['required']"
-  class="error-message"
->
-  Por favor, enumera las aplicaciones del nuevo producto. 
-</p>
+
 
  <div  class="variants-form-section">
 @for(variant of newProductData.variants; track $index) {

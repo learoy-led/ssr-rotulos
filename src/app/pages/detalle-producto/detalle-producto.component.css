@@ -26,6 +26,13 @@
     gap:30px;
   }
 
+  .product-description {
+ display: flex;
+    flex-direction: column;
+    gap: 10px
+  }
+
+
   .main-image {
     object-fit: cover;
      width:100%;

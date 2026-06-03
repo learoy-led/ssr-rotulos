@@ -34,4 +34,7 @@ viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fo
 
 </div>
 
-<div #editorElement class="editor"  (blur)="markTouched()"></div>
+<div #editorElement class="editor"></div>
+@if(showRequiredError) {
+<p class="error-message">Campo oblogatorio</p>
+}

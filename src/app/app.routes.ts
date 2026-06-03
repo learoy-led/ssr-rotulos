@@ -193,17 +193,20 @@ export const routes: Routes = [
       import('./pages/checkout/checkout.component').then(
         (c) => c.CheckoutComponent
       ),
-    title: 'Pago | RÓTULOS LEAROY', },
+    title: 'Pago | RÓTULOS LEAROY' 
+  },
     { path: 'success', loadComponent: () =>
       import('./pages/checkout/success/success.component').then(
         (c) => c.SuccessComponent
       ),
-    title: 'Pago completado | RÓTULOS LEAROY', },
+    title: 'Pago completado | RÓTULOS LEAROY'
+   },
     { path: 'error', loadComponent: () =>
       import('./pages/checkout/error/error.component').then(
         (c) => c.ErrorComponent
       ),
-    title: 'Pago erróneo | RÓTULOS LEAROY', },
+    title: 'Pago erróneo | RÓTULOS LEAROY'
+  },
   ]
     
   },

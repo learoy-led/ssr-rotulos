@@ -7,10 +7,11 @@ import { Observable } from 'rxjs';
 import { GetProductsService } from '../../../../core/services/get-products.service';
 import { iconPaths } from '../../../../data/data';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { RichTextComponent } from '../../../../shared/rich-text/rich-text.component';
 
 @Component({
   selector: 'app-edit-product-modal',
-  imports: [FormsModule, CommonModule, DragDropModule],
+  imports: [FormsModule, CommonModule, DragDropModule, RichTextComponent],
   templateUrl: './edit-product-modal.component.html',
   styleUrl: './edit-product-modal.component.css'
 })

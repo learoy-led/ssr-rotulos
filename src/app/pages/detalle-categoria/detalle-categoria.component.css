@@ -5,6 +5,12 @@
     margin: auto;
 }
 
+.category-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
 
  @media screen and (max-width: 931px) {
 .catalogue-section {

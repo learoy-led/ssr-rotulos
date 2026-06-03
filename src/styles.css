@@ -44,7 +44,6 @@ html {
   text-decoration: none;
      font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
-  font-style: normal;
     font-size: 16px; 
     line-height: 26px;
 }
@@ -53,6 +52,7 @@ html {
 body {
 background: var(--color-white);
   color: var(--color-grey);
+   font-family: system-ui, sans-serif;
 }
 
 main {
@@ -95,7 +95,7 @@ a {
     list-style-type: none;
   }
 
-  .editor ul {
+  .editor ul,  .product-description ul {
   list-style: disc;
   padding-left: 1.5rem;
 }

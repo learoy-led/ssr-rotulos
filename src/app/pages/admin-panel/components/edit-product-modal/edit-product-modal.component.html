@@ -61,61 +61,51 @@ name="renderKey"
 #renderKeyField="ngModel"
 >
     
- <label class="label blue" for="description">Descripción:</label> 
-<textarea 
-    class="form-field"
-    [placeholder]="productElement.description"
-  [value]="productElement.description"
-  id="description"
-  name="description"
-  [(ngModel)]="updateProductData.description"
+ <label class="label blue" for="description">Descripción:</label>
+ <app-rich-text
+name="description" 
+ id="description" 
+[(ngModel)]="updateProductData.description"
   #descriptionField="ngModel"
-></textarea>
+  >
+</app-rich-text> 
 
 
  <label class="label blue" for="material">Material:</label> 
-<textarea 
-class="form-field"
-[placeholder]="productElement.material"
-[value]="productElement.material"
-  id="material"
-  name="material"
-  [(ngModel)]="updateProductData.material"
+  <app-rich-text
+name="material" 
+ id="material" 
+[(ngModel)]="updateProductData.material"
   #materialField="ngModel"
-></textarea>
+  >
+</app-rich-text> 
 
  <label class="label blue" for="design">Diseño:</label> 
-<textarea 
-class="form-field" 
-[placeholder]="productElement.design"
-[value]="productElement.design"
-  id="design"
-  name="design"
-  [(ngModel)]="updateProductData.design"
+   <app-rich-text
+name="design" 
+ id="design" 
+[(ngModel)]="updateProductData.design"
   #designField="ngModel"
-></textarea>
+  >
+</app-rich-text> 
 
 <label class="label blue" for="installation">Instalación:</label> 
-<textarea 
-class="form-field" 
-[placeholder]="productElement.installation"
-[value]="productElement.installation"
-  id="installation"
-  name="installation"
-  [(ngModel)]="updateProductData.installation"
+   <app-rich-text
+name="installation" 
+ id="installation" 
+[(ngModel)]="updateProductData.installation"
   #installationField="ngModel"
-></textarea>
+  >
+</app-rich-text> 
 
-<label class="label blue" for="application">Aplicación:</label> 
-<textarea 
-class="form-field" 
-[placeholder]="productElement.application"
-[value]="productElement.application"
-  id="application"
-  name="application"
-  [(ngModel)]="updateProductData.application"
+<label class="label blue" for="application">Aplicación:</label>
+   <app-rich-text
+name="application" 
+ id="application" 
+[(ngModel)]="updateProductData.application"
   #applicationField="ngModel"
-></textarea>
+  >
+</app-rich-text>  
 
 @for(variant of updateProductData.variants; track $index) {
 <label class="label blue">Variante {{ $index + 1 }}:</label> 

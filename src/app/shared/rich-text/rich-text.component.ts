@@ -23,19 +23,19 @@ export class RichTextComponent  implements ControlValueAccessor, AfterViewInit, 
   
   editor!: Editor;
 
-    private onChange = (value: string) => {};
+  private onChange = (value: string) => {};
   private onTouched = () => {};
 
   value = '';
   disabled = false;
+  touched = false;
+  showRequiredError = false
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   public boldPath:string = iconPaths.bold
   public italicPath: string = iconPaths.italic
   public listPath: string = iconPaths.list
-
-
 
 
  ngAfterViewInit(): void {
@@ -47,13 +47,23 @@ export class RichTextComponent  implements ControlValueAccessor, AfterViewInit, 
 
       onUpdate: ({ editor }) => {
         const html = editor.getHTML();
-        this.value = html;
-        this.onChange(html);
+         const isEmpty =
+    html === '<p></p>' ||
+    html === '<p><br></p>';
+        const value = isEmpty ? '' : html;
+        console.log('value es' + value + 'touched es' + this.touched)
+         this.value = value;
+        this.onChange(value);
+          this.showRequiredError = value === '' && this.touched;
       }
     });
-
+this.editor.on('blur', () => {
+    this.markTouched();
+  });
+  
         this.editor.on('selectionUpdate', () => {
       this.cdr.markForCheck();
+
     });
   }
 
@@ -91,6 +101,7 @@ export class RichTextComponent  implements ControlValueAccessor, AfterViewInit, 
 
 
   markTouched(): void {
+    this.touched = true;
     this.onTouched();
   }
 

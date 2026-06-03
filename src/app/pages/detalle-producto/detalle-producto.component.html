@@ -48,12 +48,7 @@
     
       <h2 class="small-title blue-line">{{ productSelectedData.name }}</h2>
       
- <p class="left" *ngFor="let paragraph of productSelectedData.description.split('.'); let last = last">
-          {{ paragraph }}{{ last? '' : '.' }}
-        </p>
-   
-    
-
+ <div class="product-description left" [innerHTML]="productSelectedData.description"></div>
 
          @if(!productSelectedData.renderKey) {
 
@@ -96,19 +91,19 @@
          <ul class="selected-product-details left">
         <li>
           <h4 class="orange">Material</h4>
-          <p>{{ productSelectedData.material }}</p>
+          <div [innerHTML]="productSelectedData.material"></div>
         </li>
         <li>
           <h4 class="fuchsia">Diseño</h4>
-          <p>{{ productSelectedData.design }}</p>
+           <div [innerHTML]="productSelectedData.design"></div>
         </li>
         <li>
           <h4 class="green">Instalación</h4>
-          <p>{{ productSelectedData.installation }}</p>
+           <div [innerHTML]="productSelectedData.installation"></div>
         </li>
         <li>
           <h4 class="blue">Aplicación</h4>
-          <p>{{ productSelectedData.application }}</p>
+           <div [innerHTML]="productSelectedData.application"></div>
         </li>
       </ul>
  

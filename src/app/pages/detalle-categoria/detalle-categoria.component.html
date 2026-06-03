@@ -32,23 +32,23 @@
         <h2 class="subtitle orange">
           ¿Cuándo elegir {{ categorySelectedData.name }}?
         </h2>
-        <p>{{ categorySelectedData.description.application }}</p>
+        <p class="category-text" [innerHTML]="categorySelectedData.description.application"></p>
       </li>
       <li>
         <h2 class="subtitle fuchsia">Tipos de {{ categorySelectedData.name }}</h2>
-        <p>{{ categorySelectedData.description.products }}</p>
+        <p class="category-text" [innerHTML]="categorySelectedData.description.products"></p>
       </li>
       <li>
         <h2 class="subtitle green">
           ¿Se puede personalizar?
         </h2>
-        <p>{{ categorySelectedData.description.custom }}</p>
+        <p class="category-text" [innerHTML]="categorySelectedData.description.custom"></p>
       </li>
       <li>
         <h2 class="subtitle blue">
           ¿Cuánto cuesta?
         </h2>
-        <p>{{ categorySelectedData.description.cost }}</p>
+        <p class="category-text" [innerHTML]="categorySelectedData.description.cost"></p>
       </li>
     </ul>
   </section>

@@ -31,3 +31,7 @@ height: 20px;
 fill: currentColor;
 }
 
+.error-message {
+  margin-top: 10px
+}
+

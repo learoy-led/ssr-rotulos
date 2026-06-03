@@ -49,69 +49,47 @@
   </p>
 
  
- <textarea 
-    class="form-field"
-  placeholder="¿Cuándo elegir este nuevo tipo de rótulo?"
-  id="application"
-  name="application"
-  required
-  [(ngModel)]="newCategoryData.description.application"
+  <label for="application">¿Cuándo elegir este nuevo tipo de rótulo?</label>
+<app-rich-text
+name="application" 
+[(ngModel)]="newCategoryData.description.application"
+required  
+  id="application" 
   #applicationField="ngModel"
-></textarea>
-<p
-  *ngIf="applicationField.touched && applicationField.errors?.['required']"
-  class="error-message"
->
-  Por favor, describe cuándo elegir la nueva categoría. 
-</p>
+  >
+</app-rich-text>
 
- <textarea 
-class="form-field"
-  placeholder="Describe los tipos de producto que incluye la nueva categoría."
-  id="products"
-  name="products"
-  required
-  [(ngModel)]="newCategoryData.description.products"
+  <label for="products">Describe los tipos de producto que incluye la categoría (exterior/interior, empotrable/superficiee, etc.)</label>
+<app-rich-text
+name="products" 
+[(ngModel)]="newCategoryData.description.products"
+required  
+  id="products" 
   #productsField="ngModel"
-  ></textarea>
-<p
-  *ngIf="productsField.touched && productsField.errors?.['required']"
-  class="error-message"
->
-  Por favor, describe los tipos de producto que incluye la nueva categoría. 
-</p>
+  >
+</app-rich-text>
 
-<textarea
-class="form-field"
-  placeholder="¿Se pueden personalizar los rótulos de la nueva categoría?"
-  id="custom"
-  name="custom"
-  required
-  [(ngModel)]="newCategoryData.description.custom"
+<label for="custom"> ¿Se pueden personalizar los rótulos de la nueva categoría?</label>
+<app-rich-text
+name="custom" 
+[(ngModel)]="newCategoryData.description.custom"
+required  
+  id="custom" 
   #customField="ngModel"
-></textarea>
-<p
-  *ngIf="customField.touched && customField.errors?.['required']"
-  class="error-message"
->
-  Por favor, explica qué opciones de personalización permiten los rótulos de la nueva categoría. 
-</p>
+  >
+</app-rich-text>
 
-<textarea
-class="form-field"
-  placeholder="¿Cuánto cuesta este nuevo tipo de rótulos?"
-  id="cost"
-  name="cost"
-  required
-  [(ngModel)]="newCategoryData.description.cost"
+ 
+<label for="cost">¿Cuánto cuesta este nuevo tipo de rótulos?</label>
+<app-rich-text
+name="cost" 
+[(ngModel)]="newCategoryData.description.cost"
+required  
+  id="cost" 
   #costField="ngModel"
-></textarea>
-<p
-  *ngIf="costField.touched && costField.errors?.['required']"
-  class="error-message"
->
-  Por favor, da una orientación descriptiva (no numérica) sobre la inversión necesaria para este tipo de rótulos. 
-</p>
+  >
+</app-rich-text>
+
 
 <textarea
 class="form-field"
@@ -122,6 +100,12 @@ class="form-field"
   [(ngModel)]="newCategoryData.description.metaDescription"
   #metaDescriptionField="ngModel"
 ></textarea>
+ <p
+  *ngIf="metaDescriptionField.touched && metaDescriptionField.errors?.['required']"
+  class="error-message"
+>
+  Campo obligatorio. 
+</p>
 
 <div class="buttons-container">
 <button class="button"  (click)="closeNewCategoryModal()" type="submit" [disabled]="newCategoryForm.invalid">Añadir</button>

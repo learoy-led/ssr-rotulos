@@ -3,10 +3,11 @@ import { Category, Product } from '../../../../models/data.models';
 import { AdminProductsService } from '../../../../services/admin-products.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RichTextComponent } from '../../../../shared/rich-text/rich-text.component';
 
 @Component({
   selector: 'app-edit-category-modal',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RichTextComponent],
   templateUrl: './edit-category-modal.component.html',
   styleUrl: './edit-category-modal.component.css'
 })
