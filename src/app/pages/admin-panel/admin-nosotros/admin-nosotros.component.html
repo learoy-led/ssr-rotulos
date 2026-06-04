@@ -1,0 +1,62 @@
+@for(paragraph of paragraphs; track $index) {
+  <form #editNosotrosForm="ngForm"  (submit)="onSubmit(paragraph); editNosotrosForm.resetForm()"> 
+  <div class="admin-nosotros-paragraph-container">
+  <h2>Párrafo {{$index+1}} </h2>
+  <label for="title" class="label blue">Título:</label>
+    <input
+    class="form-field"
+      type="text"
+      id="title-{{$index}}"
+      name="title-{{$index}}"
+      [(ngModel)]="paragraphs[$index].title"
+      #titleField="ngModel"
+    />
+
+     <label for="slug" class="label blue">Subtítulo:</label>
+      <input
+    class="form-field"
+      type="text"
+      id="subtitle-{{$index}}"
+      name="subtitle-{{$index}}"
+      [(ngModel)]="paragraphs[$index].subtitle"
+      #subtitleField="ngModel"
+    />
+
+     <label for="text" class="label blue">Texto:</label>
+
+      <app-rich-text
+name="text-{{$index}}" 
+ id="text-{{$index}}" 
+[(ngModel)]="paragraphs[$index].text"
+  #textField="ngModel"
+  >
+</app-rich-text> 
+
+
+<label class="label blue" for="image">Imagen (webp/jpeg hasta 2MB):</label>
+<input
+  type="file"
+  style="align-self: flex-start; padding-left: 12px"
+   accept="image/webp, image/jpeg"
+  id="image-{{$index}}"
+  name="image-{{$index}}"
+  (change)="onFileSelected($event)"
+  
+/>
+@if(errorMessage) {
+<p class="error-message">{{ errorMessage }}</p>
+}
+
+
+<div class="buttons-container">
+<button class="button" type="submit" [disabled]="editNosotrosForm.invalid">Actaulizar</button>
+<button class="button" (click)="editNosotrosForm.resetForm()" type="button">Cancelar</button>
+</div> 
+
+</div>
+</form>  
+}
+
+
+
+

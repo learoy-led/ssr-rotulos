@@ -51,7 +51,7 @@ export class RichTextComponent  implements ControlValueAccessor, AfterViewInit, 
     html === '<p></p>' ||
     html === '<p><br></p>';
         const value = isEmpty ? '' : html;
-        console.log('value es' + value + 'touched es' + this.touched)
+        
          this.value = value;
         this.onChange(value);
           this.showRequiredError = value === '' && this.touched;

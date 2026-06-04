@@ -31,37 +31,23 @@ export const aboutParagraphs: AboutParagraph[] = [
   {
     title: 'Creamos todo tipo de rótulos',
     subtitle: 'Somos fabricantes',
-    text: [
-      'Sea cual sea tu necesidad, encontraremos la solución perfecta de acuerdo con tus objetivos, espacio y presupuesto.',
-      'Nuestro catálogo incluye letreros luminosos o sin luz con un rango muy amplio de diseños, tamaños, colores y otras posibilidades.',
-      'Letreros para exterior, cartelería interior y señalética en general.',
-      'Consúltanos y nuestro equipo te recomendará la mejor opción.',
-    ],
-    image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1753088451/rotulos-y-neones-decorativos-tiendas-learoy_vmxxsg.webp',
+    text: 'Sea cual sea tu necesidad, encontraremos la solución perfecta de acuerdo con tus objetivos, espacio y presupuesto. Nuestro catálogo incluye letreros luminosos o sin luz con un rango muy amplio de diseños, tamaños, colores y otras posibilidades. Letreros para exterior, cartelería interior y señalética en general. Consúltanos y nuestro equipo te recomendará la mejor opción.',
+    image: 'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1753088451/rotulos-y-neones-decorativos-tiendas-learoy_vmxxsg.webp',
+    _id: ''
   },
   {
     title: 'Múltiples posibilidades de personalización',
     subtitle: 'Tú imaginas y nosotros creamos',
-    text: [
-      'Si necesitas un diseño específico, un logotipo o cualuier rótulo personalizado, podemos ayudarte.',
-      'Trabajamos con distintos tipos de materiales con diferentes opciones de personalización.',
-      'Materiales flexibles que permiten jugar con la creatividad, letras que pueden fabricarse en gran tamaño y muchas más posibilidades.',
-      'Cuéntanos tu idea y nuestros especialistas te ayudarán a desarrollarla.',
-    ],
-    image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1753088581/carteles-para-peluquerias-y-tiendas-baratos-rotulos-learoy_u2jkvl.webp',
+    text: 'Si necesitas un diseño específico, un logotipo o cualuier rótulo personalizado, podemos ayudarte. Trabajamos con distintos tipos de materiales con diferentes opciones de personalización. Materiales flexibles que permiten jugar con la creatividad, letras que pueden fabricarse en gran tamaño y muchas más posibilidades. Cuéntanos tu idea y nuestros especialistas te ayudarán a desarrollarla.',
+    image: 'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1753088581/carteles-para-peluquerias-y-tiendas-baratos-rotulos-learoy_u2jkvl.webp',
+    _id: ''
   },
   {
     title: 'Showroom en Madrid',
     subtitle: 'Ven a visitarnos',
-    text: [
-      '¿Prefieres ver los materiales en persona o distintos tipos de letras y modelos de rótulos?',
-      'Te esperamos en nuestro showroom, con amplio horario de apertura de 10 a 19:30 todos los días excepto los sábados (domingos incluidos).',
-      'Pásate a buscar la solución que más se adapte a tus necesidades con la ayuda del personal.',
-    ],
-    image:
-      'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736523883/image_20250110164118_e4c5e4.webp',
+    text: '¿Prefieres ver los materiales en persona o distintos tipos de letras y modelos de rótulos? Te esperamos en nuestro showroom, con amplio horario de apertura de 10 a 19:30 todos los días excepto los sábados (domingos incluidos). Pásate a buscar la solución que más se adapte a tus necesidades con la ayuda del personal.',
+    image: 'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736523883/image_20250110164118_e4c5e4.webp',
+    _id: ''
   },
 ];
 

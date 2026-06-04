@@ -120,12 +120,33 @@ export const routes: Routes = [
   },
   {
     path: 'admin-panel',
-    loadComponent: () =>
+      canActivate: [authGuard],
+     children: [
+    { path: '', loadComponent: () =>
       import('./pages/admin-panel/admin-panel.component').then(
         (c) => c.AdminPanelComponent
       ),
-    canActivate: [authGuard],
     title: 'Panel administración | RÓTULOS LEAROY',
+  },
+    { path: 'admin-categories', loadComponent: () =>
+      import('./pages/admin-panel/admin-categories/admin-categories.component').then(
+        (c) => c.AdminCategoriesComponent
+      ),
+    title: 'Administración categorías'
+   },
+    { path: 'admin-nosotros', loadComponent: () =>
+      import('./pages/admin-panel/admin-nosotros/admin-nosotros.component').then(
+        (c) => c.AdminNosotrosComponent
+      ),
+    title: 'Administración Nosotros'
+  },
+  { path: 'admin-imagenes', loadComponent: () =>
+      import('./pages/admin-panel/admin-imagenes/admin-imagenes.component').then(
+        (c) => c.AdminImagenesComponent
+      ),
+    title: 'Administración Imágenes'
+  },
+  ]
   },
 
 {

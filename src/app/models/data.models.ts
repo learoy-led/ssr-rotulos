@@ -108,8 +108,9 @@ interface userDB {
 export interface AboutParagraph {
   title: string;
   subtitle: string;
-  text: string[];
+  text: string;
   image: string;
+  _id: string;
 }
 
 export interface LetterImage {

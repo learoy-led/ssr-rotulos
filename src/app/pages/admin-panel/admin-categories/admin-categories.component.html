@@ -1,0 +1,44 @@
+<main class="admin-panel-main centered-main">
+
+    <section>
+        <div class="title-and-add-button">
+    <h2 class="subtitle">Categorías</h2>
+
+    <svg role="button" (click)="openNewCategoryModal()"
+              xmlns="http://www.w3.org/2000/svg" 
+              aria-hidden="true" viewBox="0 0 640 640">
+              <path [attr.d]="plusPath"></path></svg>
+    </div>
+        <app-elements-list [elements]="categories$ | async"
+        (updateCategoryModalIsOpenState)="onUpdateModalStateChange($event)"
+        (categoryDeleted)="updateCategories()"
+    (updateEditableElement)="updateEditableElement($event)"
+    ></app-elements-list>
+    </section>
+
+    <div *ngIf="newCategoryModalIsOpen" class="modal-overlay">
+    <section  class="modal-section">
+        <app-new-category-modal 
+        [newCategoryModalIsOpen]="newCategoryModalIsOpen" 
+        (newCategoryModalIsOpenState)="onNewModalStateChange($event)"
+        (categoryAdded)="updateCategories()" 
+        ></app-new-category-modal> 
+    </section>
+</div>
+
+  <div *ngIf="updateCategoryModalIsOpen" class="modal-overlay">
+     <section  class="modal-section">
+      
+         <app-edit-category-modal 
+         (updateCategoryModalIsOpenState)="onUpdateModalStateChange($event)"
+         [updateCategoryModalIsOpen]="updateCategoryModalIsOpen" 
+         [editableElement]="editableElement"
+        (categoryUpdated)="updateCategories()" 
+          ></app-edit-category-modal>
+        
+
+    </section> 
+    </div>
+
+    </main>
+
