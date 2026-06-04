@@ -2,7 +2,7 @@
     
 <section>
     <h1 class="centered-text">Learoy, especialistas en rotulación</h1>
-@for(paragraph of paragraphs; track paragraph.title) {
+@for(paragraph of paragraphs$ | async; track paragraph.title) {
 <div class="about-paragraph">
 <div class="paragraph-text">
 <h2 class="small-title blue-line">{{paragraph.title}}</h2>
