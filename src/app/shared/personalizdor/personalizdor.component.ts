@@ -190,10 +190,9 @@ this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * 
    if (!variantSelected) {
   variantSelected = this.product.variants[this.product.variants.length - 1];
 } 
-console.log(variantSelected)
-console.log(area)
 
-    this.finalPrice =  (area / variantSelected.size) * variantSelected.price;
+   
+ area * variantSelected.price < 8000 ? this.finalPrice = 8000 :  this.finalPrice =  area * variantSelected.price;
       this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
    }
   }
