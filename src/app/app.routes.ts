@@ -120,15 +120,20 @@ export const routes: Routes = [
   },
   {
     path: 'admin-panel',
+    loadComponent: () =>
+    import('./pages/admin-panel/admin-panel.component').then(
+      (c) => c.AdminPanelComponent
+    ),
       canActivate: [authGuard],
      children: [
-    { path: '', loadComponent: () =>
-      import('./pages/admin-panel/admin-panel.component').then(
-        (c) => c.AdminPanelComponent
+    { path: '', redirectTo: 'admin-productos', pathMatch: 'full' },
+    { path: 'admin-productos', loadComponent: () =>
+      import('./pages/admin-panel/admin-products/admin-products.component').then(
+        (c) => c.AdminProductsComponent
       ),
     title: 'Panel administración | RÓTULOS LEAROY',
   },
-    { path: 'admin-categories', loadComponent: () =>
+    { path: 'admin-categorias', loadComponent: () =>
       import('./pages/admin-panel/admin-categories/admin-categories.component').then(
         (c) => c.AdminCategoriesComponent
       ),

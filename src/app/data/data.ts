@@ -1,7 +1,5 @@
 import {
-  AboutParagraph,
-  ContactDetails,
-  LetterImage,
+  ContactDetails
 } from '../models/data.models'
 
 export const carouselImages: string[] = [
@@ -27,183 +25,7 @@ export const contactDetails: ContactDetails = {
   instagram:'https://www.instagram.com/rotuloslearoy',
 };
 
-
-
-export const sectores = [
-  {
-    name: 'Tiendas y centros comerciales/Retail',
-    description: '',
-    image: '',
-  },
-  {
-    name: 'Eventos y exposiciones',
-    description: '',
-    image: '',
-  },
-  {
-    name: 'Oficinas y otros edificios',
-    description: '',
-    image: '',
-  },
-  {
-    name: 'Señalización',
-    description: '',
-    image: '',
-  },
-]
-
-export const letterImages: LetterImage[] = [
-  {
-    name: 'Letras de aluminio',
-   url: '/v1738167659/letreros-de-aluminio-learoy_auxdsl.webp'
-  },
-   {
-    name: 'Letras de neón',
-    url: '/v1779725979/neon-personalizado-learoy_k7sv6q.jpg'
-  },
-  {
-    name: 'Letras de hierro retroiluminadas',
-   url: '/v1769185261/rotuloslearoy/tz71fc6yrw5uuqnvvuts.webp'
-  },
-   {
-    name: 'Letras de acero inoxidable',
-   url: '/v1779724471/letras-corporeas-learoy-con-luz_amsoib.jpg'
-  },
-  {
-    name: 'Números retroiluminados',
-   url: '/v1738167179/numeros-retroiluminador-para-portales-rotulos-learoy_v2p4cs.webp'
-  },
-  {
-    name: 'Letras de LED neón',
-   url: '/v1739457666/letras-de-neon-personalizadas-rotulos-learoy_yfboud.webp'
-  },
-  {
-    name: 'Aluminio con luz trasera',
-   url: '/v1738167179/letras-retroiluminadas-para-rotulos-learoy_zalyps.webp'
-  },
- 
-  {
-    name: 'Letras de acero y metacrilato',
-   url: '/v1779727053/letras-corporeas-personalizadas_hvk7jf.jpg'
-  },
-   {
-    name: 'Letras acero inoxidable',
-   url: '/v1769185261/rotuloslearoy/jbpahmhqey3dtipbcfni.webp'
-  },
-  {
-    name: 'Letras pvc',
-   url: '/v1779724640/rotulo-learoy-clinica-belleza_b99wtc.jpg'
-  },
-  {
-    name: 'Letras retroiluminadas',
-   url: '/v1738167179/luminosos-de-metacrilato-y-aluminio-learoy_v9qvhn.webp'
-  },
-  {
-    name: 'Letras con luz posterior',
-   url: '/v1739457669/letras-retroiluminadas-rotulos-learoy_qstthr.webp'
-  },
-  {
-    name: 'Letras de neón',
-   url: '/v1739457666/letras-led-neon-rotulos-learoy_q7owf6.webp'
-  },
-  {
-    name: 'Letras retroiluminadas',
-   url: '/v1737645056/rotulo-retroiluminado-metacrilato-incrustado-learoy_ggw92f.webp'
-  },
- 
-
-  {
-    name: 'Letras LED',
-   url: '/v1769165813/rotuloslearoy/ujs5pn7ayutswlcl00cl.webp'
-  },
-  {
-    name: 'Letras de acrílico con luz',
-   url: '/v1739457664/letras-meatacrilato-luminoso-rotulos-learoy_cnmwum.webp'
-  },
-  {
-    name: 'Letras de neón flexible',
-   url: '/v1739457665/letras-de-neon-flexible-rotulos-learoy_ntwiv7.webp'
-  },
-   {
-    name: 'Letras farmacias',
-   url: '/v1779725151/letras-iluminadas-learoy-farmacias_ppogqe.jpg'
-  },
-  {
-    name: 'Letras corpóreas personalizadas',
-   url: '/v1769692593/rotuloslearoy/sw5ophvfisop1qxt3vpw.webp'
-  },
-  {
-    name: 'Letras luminosas de PVC',
-   url: '/v1768921046/letras-retroiluminadas-acero-inoxidable-learoy_v8miax.webp'
-  },
-  {
-    name: 'Letras de LED personalizadas',
-   url: '/v1752244860/letras-corporeas-learoy-para-se%C3%B1aletica_w8w6uj.webp'
-  },
-]
-
-export const cases = [
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779102842/rotulo-salon-belleza-fabricado-por-learoy_1_rzqef5.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779103369/rotulo-retroiluminado-learoy_dcdks0.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779102842/rotulo-salon-belleza-fabricado-por-learoy_2_ggzefm.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779098630/rotulo-fabricado-por-learoy_1_ofk1sx.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779098832/image_17_emisug.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779098630/rotulo-fabricado-por-learoy_2_m4mu7t.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779099055/rotulos-para-farmacias-learoy_3_iqocmc.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779099055/rotulos-para-farmacias-learoy_2_hp0che.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779099056/rotulos-para-farmacias-learoy_o1ywmf.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115272/rotulos-learoy-para-clinica-dental_1_sawdc1.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115274/rotulos-learoy-para-clinica-dental_2_q94lxp.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115273/rotulos-learoy-para-clinica-dental_3_xwmoyp.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115271/neones-y-luminosos-rotulos-learoy_1_rd7ofz.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115287/neones-y-luminosos-rotulos-learoy_3_knc86c.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115274/neones-y-luminosos-rotulos-learoy_2_mwey8x.jpg',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748247969/decoracion-neon-tiendas-rotulos-learoy_ckougv.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/carteles-neones-para-tiendas-rotulos-learoy_r1iuyn.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748247969/carteles-neon-tiendas-rotulos-learoy_h4yue1.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779110876/rotulo-luminoso-acrilico-learoy_3_f5buwm.jpg',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779110877/rotulo-luminoso-acrilico-learoy_1_kdabsr.jpg',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779110876/rotulo-luminoso-acrilico-learoy_2_v7ufet.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571013/luminoso-para-fachada-restaurante-rotulos-learoy_v3jrwg.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/banderola-luminosa-para-restaurante-rotulos-learoy_wyvura.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/luminoso-para-interior-restaurante-rotulos-learoy_ifdkpz.webp',
-
-    'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571016/neon-para-tiendas-rotulos-learoy_sb9sox.webp',
-   'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571013/letrero-led-rotulos-learoy_uf4iif.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/neon-para-decorar-paredes-rotulos-learoy_ilqj8q.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115732/rotulos-luminosos-learoy_4_ducvtp.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779116024/Frame_83_ycywqc.jpg',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115732/rotulos-luminosos-learoy_3_awwac1.jpg',
- 
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1759154769/banderola-redonda-rotulos-learoy-caja-de-luz_hjo64m.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251332/cartel-neon-para-bares-y-tiendas-rotulos-learoy_a3m3uq.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1759147690/lightbox-redondo-rotulos-learoy_swdktf.webp', 
-
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571010/cartel-luminoso-para-tienda-moda-rotulos-learoy_j9m5d6.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/banderola-para-rotulacion-tienda-moda-rotulos-learoy_j8l0ow.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571017/rotulacion-tienda-por-rotulos-learoy_nu3rtl.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748251510/cartel-luminoso-para-pared-rotulos-learoy_fnh8bo.webp',
-    'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/luminoso-para-stand-feria-rotulos-learoy_luqi73.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571014/neones-para-bares-rotulos-learoy_vdnyuh.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252191/regalos-neones-personalizados-rotulos-learoy_cinm2y.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252190/banderolas-lumninosas-baratas-rotulos-learoy_a6zkce.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1759147950/letras-metacrilato-luminosas-rotulos-learoy_u2fyse.webp',
-
-
-
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115730/rotulos-luminosos-learoy_1_cotpad.jpg',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1748252351/letras-luminosas-decoracion-oficinas-rotulos-learoy_jqfeic.webp',
-  
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1779115730/letras-corporeas-rotulos-fachadas-learoy_zzmurq.jpg',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742571009/cartel-con-logo-luminoso-rotulos-learoy_lhrmuo.webp',
-   
-  
-
-
-
-]
-
-export const keywords = [
+export const keywords: string[] = [
 'fabricamos rótulos personalizados', 
 'diseño de letreros baratos para tiendas',
 'montaje de letreros con luz',
@@ -246,10 +68,33 @@ italic: 'M256 128C256 110.3 270.3 96 288 96L480 96C497.7 96 512 110.3 512 128C51
 list: 'M112 208C138.5 208 160 186.5 160 160C160 133.5 138.5 112 112 112C85.5 112 64 133.5 64 160C64 186.5 85.5 208 112 208zM256 128C238.3 128 224 142.3 224 160C224 177.7 238.3 192 256 192L544 192C561.7 192 576 177.7 576 160C576 142.3 561.7 128 544 128L256 128zM256 288C238.3 288 224 302.3 224 320C224 337.7 238.3 352 256 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L256 288zM256 448C238.3 448 224 462.3 224 480C224 497.7 238.3 512 256 512L544 512C561.7 512 576 497.7 576 480C576 462.3 561.7 448 544 448L256 448zM112 528C138.5 528 160 506.5 160 480C160 453.5 138.5 432 112 432C85.5 432 64 453.5 64 480C64 506.5 85.5 528 112 528zM160 320C160 293.5 138.5 272 112 272C85.5 272 64 293.5 64 320C64 346.5 85.5 368 112 368C138.5 368 160 346.5 160 320z'
 }
 
-export const featuredIds = [
+export const featuredIds: string[] = [
   '67a4d5b038f607a040cdfc2b',
   '697b93da0fe0c578eb3f1e54',  
   '688b3debc14555b074733914',
   '67a4d5b038f607a040cdfc32',
   '67a4d5b038f607a040cdfc29', 
+]
+
+export const sectores = [
+  {
+    name: 'Tiendas y centros comerciales/Retail',
+    description: '',
+    image: '',
+  },
+  {
+    name: 'Eventos y exposiciones',
+    description: '',
+    image: '',
+  },
+  {
+    name: 'Oficinas y otros edificios',
+    description: '',
+    image: '',
+  },
+  {
+    name: 'Señalización',
+    description: '',
+    image: '',
+  },
 ]

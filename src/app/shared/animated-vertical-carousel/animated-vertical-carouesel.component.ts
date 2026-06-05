@@ -1,7 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
-import { LetterImage } from '../../models/data.models';
-import { letterImages } from '../../data/data';
+import { Component, OnInit } from '@angular/core';
+import { Image } from '../../models/data.models';
+import { ImagesService } from '../../services/images.service';
 
 @Component({
     selector: 'app-animated-vertical-carousel',
@@ -10,12 +10,26 @@ import { letterImages } from '../../data/data';
     templateUrl: './animated-vertical-carousel.component.html',
     styleUrl: './animated-vertical-carousel.component.css'
 })
-export class AnimatedVerticalCarouselComponent {
+export class AnimatedVerticalCarouselComponent implements OnInit {
 
-  public letterImages: LetterImage[] = letterImages
+  public letterImages: Image[] = []
 
-public letterImagesLeft: LetterImage[] = this.letterImages.slice(0,7)
-public letterImagesMiddle: LetterImage[] = this.letterImages.slice(7,14)
-public letterImagesRight: LetterImage[] = this.letterImages.slice(14,21)
+public letterImagesLeft: Image[] = []
+public letterImagesMiddle: Image[] = []
+public letterImagesRight: Image[] = []
+
+constructor(private imagesService: ImagesService
+  ) {}
+
+  ngOnInit() {
+this.imagesService.getImages().subscribe(images => {
+ this.letterImages =  images.filter(img => img.location === 'Carrusel letras');
+  
+  this.letterImagesLeft = this.letterImages.slice(0,7)
+   this.letterImagesMiddle = this.letterImages.slice(7,14)
+    this.letterImagesRight = this.letterImages.slice(14,21)
+
+    })
+  }
 
 }

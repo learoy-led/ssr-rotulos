@@ -1,0 +1,106 @@
+form {
+padding: 0;
+}
+
+.form-field {
+padding:0;
+margin-top: 0;
+margin-bottom: 20px
+}
+
+label {
+    font-family: "Abel", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.images-section {
+background-color: var(--color-extra-light-grey);
+display: flex;
+flex-direction: column;
+gap: 20px;
+padding: 20px
+}
+
+.images-list {
+    display: flex;
+      flex-wrap: wrap;
+    gap: 20px;
+}
+
+.image-container {
+    position: relative;
+     height: 90px;
+    width: 90px;
+    border-radius: 10px;
+     /* cursor: grab;  */
+}
+
+.product-miniature {
+     height: 100%;
+     width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      pointer-events: none;
+}
+
+svg {
+    display: flex;
+}
+
+.edit-delete-button {
+position: absolute;
+top: 6px;
+right: 6px;
+height: 20px;
+z-index: 2;
+fill: currentColor;
+cursor: pointer;
+}
+
+.my-drag-handle {
+     position: absolute;
+     opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 30px;
+  fill: currentColor;
+    z-index: 2;
+    background-color: white;
+    border-radius: 50%;
+    cursor: grab; 
+}
+
+.image-container:hover .cdk-drag-handle {
+  opacity: 0.8;
+}
+
+.cdk-drag-preview .cdk-drag-handle {
+  opacity: 1;
+       
+}
+
+.cdk-drag-dragging {
+  cursor: grabbing;
+}
+
+
+/* Imagen mientras se arrastra */
+.cdk-drag-preview {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+   pointer-events: none;
+}
+
+/* Hueco que deja */
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+/* Animación suave */
+.cdk-drag-animating {
+  transition: transform 250ms ease;
+}

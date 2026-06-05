@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RichTextComponent } from '../../../shared/rich-text/rich-text.component';
 import { AboutParagraph } from '../../../models/data.models';
@@ -12,7 +12,7 @@ import { AboutService } from '../../../services/about.service';
   templateUrl: './admin-nosotros.component.html',
   styleUrl: './admin-nosotros.component.css'
 })
-export class AdminNosotrosComponent {
+export class AdminNosotrosComponent implements OnInit {
 
   constructor(private seoService: SeoService, private aboutService: AboutService) {}
 

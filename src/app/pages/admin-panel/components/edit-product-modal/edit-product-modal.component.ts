@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Category, Product } from '../../../../models/data.models';
 import { AdminProductsService } from '../../../../services/admin-products.service';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { RichTextComponent } from '../../../../shared/rich-text/rich-text.compon
   templateUrl: './edit-product-modal.component.html',
   styleUrl: './edit-product-modal.component.css'
 })
-export class EditProductModalComponent {
+export class EditProductModalComponent implements OnInit {
 
   @Input() editableElement?: Category | Product
   @Input() updateProductModalIsOpen = true
@@ -140,13 +140,11 @@ this.selectedFiles.forEach(file => {
   }
 
  public drop(event: CdkDragDrop<string[]>) {
-  console.log('dropping')
   moveItemInArray(
     this.updateProductData.images,
     event.previousIndex,
     event.currentIndex
   );
-  console.log('moving', event.previousIndex,  event.currentIndex)
 }
 
 }

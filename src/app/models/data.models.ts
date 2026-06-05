@@ -113,9 +113,12 @@ export interface AboutParagraph {
   _id: string;
 }
 
-export interface LetterImage {
-  name: string;
-  url: string;
+export interface Image {
+url: string;
+caption?: string;
+location: string;
+order: number;
+_id?: string;
 }
 
 export interface Preview {

@@ -1,1 +1,61 @@
-<p>admin-imagenes works!</p>
+<main class="centered-main">
+  <section>
+  
+  @for(location of locations; track $index) {
+
+<h2 class="subtitle">{{location}}</h2>
+
+<form #imagesForm="ngForm"  (submit)="onSubmit(location, groupedImages[location])"> 
+ 
+ <div class="images-section">
+<label class="label blue" for="images">Imágenes (webp/jpeg hasta 2MB):</label>
+<input
+  type="file"
+  style="align-self: flex-start; padding-left: 12px"
+   accept="image/webp, image/jpeg"
+  multiple
+  id="images"
+  name="images"
+  (change)="onFilesSelected($event, location)"
+  
+/>
+@if(errorMessage) {
+<p class="error-message">{{ errorMessage }}</p>
+}
+
+<ul class="images-list"
+cdkDropList
+  (cdkDropListDropped)="drop($event, location)"
+   cdkDropListOrientation="mixed"
+  >
+  @for(image of groupedImages[location] || []; track image._id; let i = $index) {
+  <li class="image-container" cdkDrag>
+ 
+    <img class="product-miniature" [src]="image.url[0] === '/' ? 'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto'+ image.url : image.url" 
+    [alt]="image.caption || 'caso-de-exito-rotulos-learoy' +($index + 1)">
+       <svg role="button" class="edit-delete-button" (click)="onDeleteImage(image._id!)"
+              xmlns="http://www.w3.org/2000/svg" 
+              aria-hidden="true" viewBox="0 0 640 640">
+              <path [attr.d]="binPath"></path></svg>
+
+               <svg cdkDragHandle class="my-drag-handle"
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 640 640">
+  <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+  <path [attr.d]="dragPath"/></svg>
+  
+  </li>
+  }
+</ul>
+
+
+</div>
+
+<div class="buttons-container">
+<button class="button" type="submit" [disabled]="imagesForm.invalid">Actaulizar</button>
+<button class="button" (click)="cancel(location)" type="button">Cancelar</button>
+</div> 
+</form>
+}
+</section>
+</main>

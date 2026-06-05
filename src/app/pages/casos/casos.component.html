@@ -2,9 +2,9 @@
       <section class="centered-section cases full-width-section">
       <h1 class="centered-text">Trabajos realizados</h1>
       <ul class="cases-grid">
-        @for(case of cases; track case; let i = $index) {
+        @for(case of cases; track $index; let i = $index) {
 <li class="case-container" 
-       ><img (click)="selectCase(i)" class="case-image" [src]="case" [alt]="case | alt"></li>
+       ><img (click)="selectCase(i)" class="case-image" [src]="case.url" [alt]="case.url | alt"></li>
         }
       </ul>  
       @if(selectedCase) {

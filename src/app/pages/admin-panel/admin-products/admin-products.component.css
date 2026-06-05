@@ -1,0 +1,40 @@
+.admin-panel-main {
+position: relative;
+z-index: 0;
+}
+
+.title-and-add-button {
+    display: flex;
+    gap: 30px;
+    align-items: center
+}
+
+
+svg {
+    display: flex;
+    fill: currentColor;
+    height: 20px;
+    cursor: pointer;
+}
+
+    .modal-section {
+      background-color: var(--color-white); 
+          padding: 0;
+           max-width: 850px;
+      max-height: 70vh;
+       overflow-y:auto; 
+  z-index: 999;
+      position: fixed; 
+      top: 23%;
+      margin: auto;
+    } 
+
+    .modal-overlay {
+position: absolute;
+  inset: 0; 
+  background: rgba(0, 0, 0, 0.45);
+display: flex;
+justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+

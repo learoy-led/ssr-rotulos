@@ -1,0 +1,18 @@
+aside {
+    padding: 30px;
+      background-color: var(--color-extra-light-grey);
+      height: 100%
+}
+
+.nav-links {
+display: flex;
+flex-direction: column;
+gap: 30px
+}
+
+.nav-links a {
+    color: var(--color-grey)
+}
+.nav-links a:hover {
+    color: var(--color-blue)
+}

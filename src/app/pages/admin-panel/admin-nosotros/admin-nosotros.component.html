@@ -1,3 +1,6 @@
+<main class="centered-main">
+  <section>
+        <h2 class="subtitle">Nosotros</h2>
 @for(paragraph of paragraphs; track $index) {
   <form #editNosotrosForm="ngForm"  (submit)="onSubmit(paragraph); editNosotrosForm.resetForm()"> 
   <div class="admin-nosotros-paragraph-container">
@@ -56,7 +59,7 @@ name="text-{{$index}}"
 </div>
 </form>  
 }
-
-
+</section>
+</main>
 
 
