@@ -65,12 +65,11 @@ export interface CustomDetails {
   text: string;
   font: string,
   color: string,
-  frontColor?: string,
+  lightColor?: string,
   baseColor?: string,
   size: number,
   lines?: string[],
   proportionalWidth?: number,
-  frontCover?: boolean,
   base?: boolean,
   svgString?: string
 }
@@ -150,7 +149,8 @@ grosor?: number[]
 export interface Font {
   name: string;
   url: string;
-  minHeight: number
+  minHeight: number;
+  opentypeUrl: string
 }
 
 export interface CheckOutFormData {

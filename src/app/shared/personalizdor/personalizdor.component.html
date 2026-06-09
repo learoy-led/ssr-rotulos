@@ -11,62 +11,85 @@
   height="100%"
    xmlns="http://www.w3.org/2000/svg"
   >
-  <!-- aquí antes tenía que el renderKye era neon -->
-  
+   
     <defs>  
        
-      <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <filter id="glow-neon" x="-60%" y="-60%" width="220%" height="220%">
  
-     <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
-        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur2" />
-        <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="blur3"/>
+     <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="b2" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="b3" />
 
-          <feComponentTransfer in="blur3" result="blur3soft">
+          <feComponentTransfer in="b3" result="b3s">
     <feFuncA type="linear" slope="0.4"/>
   </feComponentTransfer>    
        
   <feMerge>
-  <feMergeNode in="blur3soft"/>
-          <feMergeNode in="blur2" />
-          <feMergeNode in="blur1" />
+  <feMergeNode in="b3s"/>
+  <feMergeNode in="b2" />
+          <feMergeNode in="b1" />
           <feMergeNode in="SourceGraphic" />
   </feMerge>
 </filter>
 
 
+ <filter id="glow-front" x="-40%" y="-40%" width="180%" height="180%">
+ 
+     <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b1" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="b2" />
 
-      
+          <feComponentTransfer in="b2" result="b2s">
+    <feFuncA type="linear" slope="0.25"/>
+  </feComponentTransfer>    
+       
+  <feMerge>
+  <feMergeNode in="b2s" />
+          <feMergeNode in="b1" />
+          <feMergeNode in="SourceGraphic" />
+  </feMerge>
+</filter>
+
+ <filter id="glow-retro" x="-80%" y="-80%" width="260%" height="260%">
+ 
+     <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b1" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="b2" />
+
+          <feComponentTransfer in="b2" result="b2s">
+    <feFuncA type="linear" slope="0.18"/>
+  </feComponentTransfer>    
+       
+  <feMerge>
+  <feMergeNode in="b2s" />
+  <feMergeNode in="b1" />
+  </feMerge>
+</filter>
     </defs>
+
+    @let effectiveBackground = background === 'default' && color.dark ? '/blanco.webp' : background;
   
-@if(background !== 'default') {
+@if(effectiveBackground !== 'default') {
     <image
-      [attr.href]="background === 'default' && (frontColor.dark || (frontColor.hex === 'transparent' && color.dark)) ? '/blanco.webp': background"
+      [attr.href]="effectiveBackground"
      x="0"
 y="0"
 width="100%"
 height="100%"
       preserveAspectRatio="xMidYMid slice"
     />
-     <rect x="0" y="0"  
-     x="0"
-y="0"
-width="100%"
-height="100%"
-fill="black"  opacity="0.4"></rect>
- } @else {
- <rect x="0" y="0"  
- x="0"
-y="0"
-width="100%"
-height="100%"
-fill="black"></rect>
- }
+}
+@if(effectiveBackground !== '/blanco.webp') {
+<rect x="0" y="0"  width="100%" height="100%" fill="black"
+[attr.opacity]="background === 'default'  && !color.dark ? 1 : 0.5"
+/>
+}
 
 
-   <!-- aquí antes tenía material en vez de product -->
+
+  
     
    @if(product.light) {
-<radialGradient id="wallGlow"> <stop offset="0%" [attr.stop-color]="glowColor" stop-opacity="0.25"/> 
+<radialGradient id="wallGlow"> 
+  <stop offset="0%" [attr.stop-color]="glowColor" stop-opacity="0.25"/> 
   <stop offset="100%" [attr.stop-color]="glowColor" stop-opacity="0"/> 
 </radialGradient> 
 <ellipse cx="50%" cy="50%" rx="35%" ry="25%" fill="url(#wallGlow)" />
@@ -78,82 +101,107 @@ fill="black"></rect>
     [attr.y]="overlay.top - 20"
     [attr.width]="overlay.width + 40 * 2"
     [attr.height]="overlay.height + 20 * 2"
-    [attr.fill]="product.renderKey === 'aluminio' && frontColor.hex === '#ffffff' ? '#383E42' : baseColor.hex"
-    rx="4">
+    [attr.fill]="product.renderKey === 'aluminio' && lightColor.hex === '#ffffff' ? '#383E42' : baseColor.hex"
+    rx="0">
   </rect>
    }
 
-
-   @for(line of lines; track i; let i = $index) {
-   <text 
-     [attr.x]="width/2"    [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
-      text-anchor="middle"
-     dominant-baseline="middle"
-      [attr.fill]="product.renderKey === 'acero' && product.name.includes('retro') && frontColor.hex === 'transparent' ? '#5a5a5a' : (frontColor.hex !== 'transparent' && frontColor.hex || color.hex)"   
-       [attr.filter]="product.light ? 'url(#glow)' : null"    
-       [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
-         [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
-    
-      [attr.stroke]="
-      frontColor.hex !== 'transparent' && product.renderKey === 'acero' ? '#5a5a5a' :
-      (frontColor.hex !== 'transparent' && product.renderKey !== 'neon' ? color.hex : null)
-      "
-
-  [attr.stroke-width]="frontColor.hex !== 'transparent' && product.renderKey !== 'neon' ? 1.5 : 0"
-  paint-order="stroke"
-
-
-  >
-        {{ line }}
-    </text>
-     }
-
-     <g #textGroup>
-     @for(line of lines; track i; let i = $index) {
-     
-     <text
-     [attr.x]="width/2"   [attr.y]="height/2 + (i - (lines.length - 1) / 2) * lineHeight"
-      text-anchor="middle"
-      dominant-baseline="middle"
-      [attr.font-weight]="product.renderKey !== 'neon' ? 700 : null"
-
+    <g #textGroup>
       
-      [attr.fill]="product.renderKey === 'neon' ? innerColor : 
-      (product.renderKey === 'acero' && frontColor.hex === 'transparent' ? '#5a5a5a' : (frontColor.hex !== 'transparent' && frontColor.hex || color.hex))"
-        [ngStyle]="{'font-family': font.name, 'font-size': fontSize}"
+        @for (p of textPaths; track p.d) {
+             @if (p.d && p.d.startsWith('M')) {
+             
+              <!-- letras atrás por defecto (frontal). Pues para product.name.includes('retro'), fill y stroke a lightColorSelected && lightColor.hex || '#ffffff' -->  
+        <path   
+        *ngIf="p.d && p.d.startsWith('M')"
+    [attr.d]="p.d" 
+    [attr.transform]="'translate(' + p.x + ',' + p.y + ')'"
+    
+     [attr.fill]="product.renderKey === 'neon' ? innerColor : (product.name.includes('retro') ? lightColorSelected && lightColor.hex || '#ffffff' : color.hex)"
+     [attr.stroke]="product.renderKey === 'neon' ? innerColor : (product.name.includes('retro') ? lightColorSelected && lightColor.hex || '#ffffff' : color.hex)"
 
-      >
-        {{ line }}
-    </text> 
-      }
-  </g>
+  [attr.stroke-width]="product.renderKey !== 'neon' ? 3.5 : 0"    
+   [attr.filter]="product.renderKey === 'neon' ? 'url(#glow-neon)' : (product.name.includes('retro') ? 'url(#glow-retro)' : null)"    
+    ></path>
+
+<!-- luz delante por defecto (frontal). Pues para product.name.includes('retro'),  fill y stroke a color.hex -->
+  <path   
+        *ngIf="product.renderKey !== 'neon' && product.light && p.d && p.d.startsWith('M') "
+    [attr.d]="p.d"    
+     [attr.transform]="'translate(' + (p.x-3.5) + ',' + (p.y-3.5) + ')'"
+     
+     [attr.fill]="product.name.includes('retro') ? color.hex : lightColorSelected && lightColor.hex || '#ffffff'"
+     [attr.stroke]="product.name.includes('retro') ? color.hex : lightColorSelected && lightColor.hex || '#ffffff'"
+  
+  [attr.stroke-width]="3.5"    
+     [attr.filter]="!product.name.includes('retro') ? 'url(#glow-front)' : null"
+    ></path>
+ }
+  }
+</g>
+     
+
+<g class="measure-overlay">
+  <line
+    [attr.x1]="overlay.left"
+    [attr.y1]="overlay.top"
+    [attr.x2]="overlay.left"
+    [attr.y2]="overlay.top + overlay.height"
+    stroke="#007aff"
+    stroke-width="2"
+    stroke-dasharray="5 3"
+  />
+    <line
+    [attr.x1]="overlay.left"
+    [attr.y1]="overlay.top + overlay.height"
+    [attr.x2]="overlay.left + overlay.width"
+    [attr.y2]="overlay.top + overlay.height"
+    stroke="#007aff"
+    stroke-width="2"
+    stroke-dasharray="5 3"
+  />
+    <text
+    [attr.x]="overlay.left + overlay.width / 2"
+    [attr.y]="overlay.top + overlay.height + 24"
+    text-anchor="middle"
+    fill="#007aff"
+    font-size="14"
+    font-weight="400"
+  >
+    {{ proportionalWidth | number:'1.0-0' }} cm
+  </text>
+  <text
+    [attr.x]="overlay.left - 18"
+    [attr.y]="overlay.top + overlay.height / 2"
+    text-anchor="middle"
+    fill="#007aff"
+    font-size="14"
+    font-weight="400"
+    [attr.transform]="
+      'rotate(-90 ' +
+      (overlay.left - 18) + ' ' +
+      (overlay.top + overlay.height / 2) +
+      ')'
+    "
+  >
+    {{ size }} cm
+  </text>
+</g>
 
   </svg>
 
-  <div class="measure-overlay">
-    <div class="measure-line horizontal"
-       [style.left.px]="overlay.left * scaleX"
-       [style.width.px]="overlay.width * scaleX"
-       [style.top.px]="(overlay.top + overlay.height) * scaleY + 15"
-       ><span>{{ proportionalWidth | number:'1.0-2' }} cm</span></div>
-      <div class="measure-line vertical"
-       [style.top.px]="overlay.top * scaleY"
-       [style.height.px]="overlay.height * scaleY"
-       [style.left.px]="overlay.left * scaleX - 15"
-      ><span>{{ size * lines.length }} cm</span></div>
-
-  </div>
 
 
 
+<p>{{ background }}</p>
   <ul role="listbox" class="background-picker">
      <li role="option" class="background-square black-background" (click)="selectBackground('default')"></li>
 
-  @for(background of material?.backgrounds; track i; let i = $index) {
+  @for(bg of material?.backgrounds; track i; let i = $index) {
       <li role="option"
       class="background-square"
-      [style.background-image]="background==='default' ? null : 'url(' + background + ')'"
-       (click)="selectBackground(background)"
+      [style.background-image]="bg==='default' ? null : 'url(' + bg + ')'"
+       (click)="selectBackground(bg)"
        ></li>
   }
  
@@ -194,14 +242,17 @@ fill="black"></rect>
 
      </div>
   
-  <label for="color"> {{
-  product.renderKey === 'neon' ? 'Selecciona un color': product.renderKey === 'acero' ? 'Selecciona el color de la luz' : 
-  'Selecciona el color de las letras'
+     @if(product.renderKey !== 'acero') {
+      
+<label for="color"> {{
+  product.renderKey === 'neon' ? 'Selecciona un color':  'Selecciona el color de las letras'
   }}:
  </label> 
   <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
-    @if(color.uses?.includes('letra')) {
+    
+    @if(color.uses?.includes('letra') && !(color.name === 'negro' && product.light && product.name.toLowerCase() !== 'letras retroiluminadas de hierro')) {
+      <div class="color-option">
       <input
       type="radio"
       [id]="'color-' + i"
@@ -214,10 +265,15 @@ fill="black"></rect>
       class="color-square"
       [style.background]="color.hex"
        ></label>
-
+      <span class="color-legend">{{color.name}}</span>
+    </div>
     }
+
   }
-</div>
+  </div>
+  }
+  
+
 
 
 
@@ -225,11 +281,11 @@ fill="black"></rect>
   
   <p>OPCIONAL:</p>
   <div class="options-container">
-  @if(!product.name.includes('retro') && product.light && (product.renderKey === 'acero' || product.light && product.renderKey === 'hierro' || product.light && product.renderKey === 'aluminio')) {
-     <div class="selector-button color-selector" (click)="openModal('frontCover')" [class.selected]="frontCover">
-    {{ product.renderKey === 'aluminio' ? 'Metacrilato' : 'Vinilo' }} frontal
-     @if(frontCover) {
-      <span class="color-square selector-button" [style.background]="frontColor.hex"></span>
+  @if(product.light && (product.renderKey === 'acero' || product.renderKey === 'hierro' || product.renderKey === 'aluminio')) {
+     <div class="selector-button color-selector" (click)="openModal('lightColor')" [class.selected]="lightColorSelected">
+   Color luz
+     @if(lightColorSelected) {
+      <span class="color-square selector-button" [style.background]="lightColor.hex"></span>
       }
     </div>
  }  
@@ -248,18 +304,19 @@ fill="black"></rect>
          <app-icon role="button" [iconPath]="xmarkPath" [ngClass]="'small-icon blue'" (click)="closeModal()"></app-icon>
 
       
-  <label [for]="activeModal === 'frontCover' ? 'frontColor': 'baseColor'">Elige el color 
-    {{ activeModal === 'frontCover' ? (product.renderKey === 'del aluminio' ? 'del metacrilato' : 'del vinilo') : 'de la base'  }}:
+  <label [for]="activeModal === 'base' ? 'baseColor': 'lightColor'">Elige el color 
+    {{ activeModal === 'base' ? 'de la base' : 'de la luz'  }}:
   </label>
  
 
 <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
-      @if(activeModal === 'frontCover'  && color.uses?.includes('vinilo') && product.renderKey !== 'aluminio' || color.uses?.includes('metacrilato') || activeModal === 'base' && color.uses?.includes('base')) {
+      @if(activeModal === 'lightColor' && color.uses?.includes('luz') || activeModal === 'base' && color.uses?.includes('base')) {
+        <div class="color-option">
     <input
       type="radio"
       [id]="'base-color-' + i"
-      [formControlName]="activeModal === 'base' ? 'baseColor' : 'frontColor'"
+      [formControlName]="activeModal === 'base' ? 'baseColor' : 'lightColor'"
       [value]="color"
       hidden>
 
@@ -268,6 +325,9 @@ fill="black"></rect>
       class="color-square"
       [style.background]="color.hex"
        ></label>
+
+           <span class="color-legend">{{color.name}}</span>
+      </div>
   }
    }
 </div>

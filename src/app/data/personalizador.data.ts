@@ -1,90 +1,107 @@
-import { Material } from "../models/data.models";
+import { Material, Font } from "../models/data.models";
 
-export const fonts = [
+export const fonts: Font[] = [
     {
     name: 'Agency FB',
     url: 'agency',
-    minHeight: 10
+    minHeight: 10,
+    opentypeUrl: '/fonts/AGENCYR.TTF',
     },
       {
     name: 'Arial',
     url: 'arial',
-    minHeight: 10
+    minHeight: 10,
+    opentypeUrl: '/fonts/arial.ttf',
     },
     {
     name: 'BankGothic Md BT',
     url: 'bankgothic',
-    minHeight: 10
+    minHeight: 10,
+    opentypeUrl: '/fonts/bgothm.ttf',
     },
     {
     name: 'Berlin Sans FB Demi',
     url: 'berlin',
-    minHeight: 10
+    minHeight: 10,
+    opentypeUrl: '/fonts/BRLNSDB.TTF',
     },
 {
     name: 'ChunkFive Print',
     url: 'chunkfive',
-    minHeight: 10
+    minHeight: 10,
+opentypeUrl: '/fonts/Chunk Five Print.ttf',
     },
      {
     name: 'Comic Sans MS',
     url: 'comic',
-    minHeight: 10
+    minHeight: 10,
+    opentypeUrl: '/fonts/comic.ttf',
     },
        {
     name: 'Forte',
     url: 'forte',
-    minHeight: 10
+    minHeight: 10,
+     opentypeUrl: '/fonts/FORTE.TTF',
     },
      {
     name: 'Futura Now Headline ExtraBlack',
     url: 'futura',
-    minHeight: 10
+    minHeight: 10,
+        opentypeUrl: '/fonts/FuturaNowHeadlineExtraBlack.ttf',
     },    
         {
     name: 'Geometr415 Blk BT',
     url: 'geometric',
-    minHeight: 10
+    minHeight: 10,
+          opentypeUrl: '/fonts/Geometr415 Blk BT Black.ttf',
     },
        {
     name: 'Gobold Bold',
     url: 'gobold',
-    minHeight: 10
+    minHeight: 10,
+     opentypeUrl: '/fonts/Gobold Bold.otf',
     },
          {
     name: 'Hakgyoansim Dunggeunmiso OTF B',
     url: 'hakgyo',
-    minHeight: 10
+    minHeight: 10,
+         opentypeUrl: '/fonts/Hakgyoansim Dunggeunmiso OTF B.otf',
     },
       {
     name: 'MV Boli',
     url: 'boli',
-    minHeight: 10
+    minHeight: 10,
+      opentypeUrl: '/fonts/mvboli.ttf',
     },
        {
     name: 'Freehand521 BT',
     url: 'freehand',
-    minHeight: 18
+    minHeight: 18,
+       opentypeUrl: '/fonts/Freehand521 BT.ttf',
     },
        {
     name: 'Freestyle Script',
     url: 'freestyle',
-    minHeight: 18
+    minHeight: 18,
+          opentypeUrl: '/fonts/FREESCPT.TTF',
     },
        {
-    name: 'Handelson Three',
+    name: '/fonts/Handelson Three',
     url: 'handelson',
-    minHeight: 18
+    minHeight: 18,
+     opentypeUrl: '/fonts/handelson-three.otf',
     },
       {
     name: 'Perpetua',
     url: 'perpetua',
-    minHeight: 18
+    minHeight: 18,
+         opentypeUrl: '/fonts/PER_____.TTF',
     },
        {
     name: 'Questrial',
     url: 'questrial',
-    minHeight: 18
+    minHeight: 18,
+    opentypeUrl: '/fonts/Questrial-Regular.ttf',
     },
 
 ]
@@ -96,18 +113,18 @@ const backgrounds = [
 ]
 
 const colors = [
-  {
-name: 'sin vinilo',
- hex: 'transparent',
- uses: ['vinilo'],
-  materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
-  },
+//    {
+//  name: 'incoloro',
+//   hex: 'transparent',
+//   uses: ['luz', 'base'],
+//    materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
+//    },
   {
 name: 'acero',
   hex: '#5a5a5a',
   uses: ['letra'],
-   materials: ['hierro'],
-   dark: true
+   materials: ['acero', 'hierro'],
+  //  dark: true
 }, 
   {
 name: 'plateado',
@@ -127,67 +144,79 @@ name: 'oro rosa',
   uses: ['letra'],
       materials: ['aluminio']
 }, 
-  {
+     {
+    name: 'blanco frío',
+    hex: '#ffffff',
+         uses: ['luz'],
+        materials: ['neon', 'acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+  },
+            {
+    name: 'blanco cálido',
+    hex: '#FFDFAF',
+         uses: ['luz'],
+        materials: ['neon', 'acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+  },    
+     {
     name: 'blanco',
     hex: '#ffffff',
-    uses: ['letra', 'vinilo', 'metacrilato'],
-    materials: ['hierro', 'aluminio', 'mini',  'pvc', '3d']
-    },
+         uses: ['letra'],
+        materials: ['neon', 'acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+  },
   {
     name: 'negro',
     hex: '#000000',
-    uses: ['letra', 'vinilo'],
+    uses: ['letra'],
     materials: ['hierro', 'aluminio', 'mini',  'pvc', '3d'],
     dark: true
     },
       {
     name: 'rojo',
     hex: '#f80000',
-    uses: ['letra', 'vinilo', 'luz'],
-    materials: ['hierro', 'aluminio', 'mini', 'pvc', '3d', 'proyector']
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
     },
        {
     name: 'naranja',
     hex: '#f88d00',
-    uses: ['letra', 'vinilo'],
-    materials: ['hierro', 'mini', 'pvc', '3d', 'proyector']
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'mini', 'pvc', '3d']
     },
       {
     name: 'amarillo',
     hex: '#ffff00',
-    uses: ['letra', 'vinilo'],
-    materials: ['hierro', 'aluminio', 'mini', 'pvc', '3d', 'proyector']
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
     },
          {
     name: 'verde claro',
     hex: '#00bb2d',
-    uses: ['letra', 'vinilo'],
-    materials: ['hierro', 'aluminio', 'mini', 'pvc', '3d', 'proyector']
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
     },
          {
     name: 'verde oscuro',
     hex: '#038622',
-    uses: ['letra', 'vinilo'],
-    materials: ['hierro', 'mini',  'pvc', '3d', 'proyector']
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'mini',  'pvc', '3d']
     },
     {
     name: 'azul claro',
     hex: '#3b83bd',
-    uses: ['letra', 'vinilo'],
-    materials: ['hierro','aluminio', 'mini', 'pvc', '3d', 'proyector']
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
     },
    {
     name: 'azul oscuro',
     'hex': '#1e2460',
-    uses: ['letra', 'vinilo'],
-    materials: ['hierro', 'mini', 'pvc','3d', 'proyector'],
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'mini', 'pvc','3d'],
     dark: true
     },
    {
     name: 'rosa',
     hex: '#cf3476',
-    uses: ['letra', 'vinilo'],
-    materials: ['hierro', 'mini', 'pvc', '3d', 'proyector']
+    uses: ['letra', 'luz'],
+    materials: ['hierro', 'acero', 'mini', 'pvc', '3d']
     },
 
  
@@ -222,8 +251,6 @@ name: 'azul',
       materials: ['aluminio'],
       dark: true
 }, 
-
-
           {
     name: 'RAL9016',
     hex: '#F6F6F6',
@@ -361,18 +388,7 @@ name: 'azul',
          uses: ['letra'],
         materials: ['neon']
   },
-          {
-    name: 'blanco frío',
-    hex: '#ffffff',
-         uses: ['letra'],
-        materials: ['neon', 'acero']
-  },
-            {
-    name: 'blanco cálido',
-    hex: '#FFDFAF',
-         uses: ['letra'],
-        materials: ['neon', 'acero']
-  },    
+     
   {
     name: 'rojo',
     hex: '#e50015',
@@ -407,7 +423,8 @@ name: 'azul',
     name: 'añil',
     hex: '#1d2087',
          uses: ['letra'],
-        materials: ['acero']
+        materials: ['acero'],
+        dark: true
   },   
   {
     name: 'rosa',

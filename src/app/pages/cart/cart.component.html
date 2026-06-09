@@ -34,7 +34,7 @@
             <span  >Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color letras: {{product.customDetails.color}}, Altura de las letras: {{product.customDetails.size}} cm    
             </span>
             @if(!product.name.includes('neón')) {
-            <span>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? product.customDetails.frontColor : 'no'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</span>
+            <span>Opciones: Color luz: {{ product.customDetails.lightColor ? product.customDetails.lightColor : 'no seleccionado'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</span>
             }
             } @else {
                <span  > {{ product.variantName}}    
@@ -72,7 +72,7 @@
     <p>Texto: {{ product.customDetails.text}}, Fuente: {{product.customDetails.font}}, Color letras: {{product.customDetails.color}}, Altura de las letras: {{product.customDetails.size}} cm</p>    
           
             @if(!product.name.includes('neón')) {
-            <p>Opciones: Frontal vinilo/metacrilato: {{ product.customDetails.frontCover ? product.customDetails.frontColor : 'no'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</p>
+            <p>Opciones: Color luz: {{ product.customDetails.lightColor ? product.customDetails.lightColor : 'no seleccionado'}}, Base de aluminio: {{ product.customDetails.base ? product.customDetails.baseColor : 'no' }}</p>
             }
             </td>
       </tr>

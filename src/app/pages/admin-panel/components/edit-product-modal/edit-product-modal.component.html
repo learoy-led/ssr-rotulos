@@ -107,7 +107,9 @@ name="application"
   >
 </app-rich-text>  
 
+<div  class="variants-form-section">
 @for(variant of updateProductData.variants; track $index) {
+  <div  class="variant-row">
 <label class="label blue">Variante {{ $index + 1 }}:</label> 
 <input 
 class="form-field" 
@@ -130,14 +132,17 @@ type="number"
 <input 
 class="form-field" 
 type="number"
-[(ngModel)]="variant.price"
-[placeholder]="variant.price"
+[ngModel]="variant.price / 100"
+(ngModelChange)="variant.price = $event * 100"
+[placeholder]="variant.price | price"
 [id]="'variantPrice' + $index"
 [name]="'variantPrice' + $index"
 #variantPriceField="ngModel"
 >
+</div>
 }
-
+<button type="button" class="add-button" (click)="addVariant()">{{ updateProductData.variants?.length ? '+': '+ Añadir Variante' }} </button>
+</div>
 
 <div class="images-section">
 <label class="label blue" for="images">Imágenes (webp/jpeg hasta 2MB):</label>

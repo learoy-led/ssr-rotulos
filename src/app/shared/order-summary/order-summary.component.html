@@ -5,7 +5,7 @@
       <h4 class="item">{{item.qty}} {{ item.name }}</h4>
       @if(item.customDetails) {
       <p>Texto: {{item.customDetails.text}}, Fuente: {{item.customDetails.font}}, Color: {{item.customDetails.color}}, Altura de las letras: {{item.customDetails.size}} cm</p>
-      <p>Opciones: Frontal vinilo/metacrilato: {{ item.customDetails.frontCover ? item.customDetails.frontColor : 'no'}}, Base de aluminio: {{ item.customDetails.base ? item.customDetails.baseColor : 'no' }}
+      <p>Opciones: Color luz: {{ item.customDetails.lightColor ? item.customDetails.lightColor : 'no seleccionado'}}, Base de aluminio: {{ item.customDetails.base ? item.customDetails.baseColor : 'no' }}
       </p>
       }
     </li>

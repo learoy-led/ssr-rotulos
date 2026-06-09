@@ -12,6 +12,7 @@ import { FontsService } from '../../services/fonts.service';
 import { iconPaths } from '../../data/data';
 import { IconComponent } from '../icon/icon.component';
 
+
 @Component({
   selector: 'app-personalizdor',
   imports: [ReactiveFormsModule, CommonModule, PricePipe, IconComponent],
@@ -33,7 +34,7 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
     name: '',
     hex: ''
   };
-  frontColor: Color = {
+  lightColor: Color = {
     name: '',
     hex: ''
   };
@@ -45,11 +46,12 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
   font: Font = {
     name: '',
     url: '',
-    minHeight: 10
+    minHeight: 10,
+    opentypeUrl: ''
   };
   background: string = 'default';
 
-  frontCover: boolean = false;
+  lightColorSelected: boolean = false;
   base: boolean = false;
 
   variantSize: number = 0;
@@ -67,9 +69,6 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit {
 
   finalPrice = 0
 
-private fitTimeout: any;
-
-private svgRect!:DOMRect
 
 public overlay = {
   left: 0,
@@ -78,9 +77,9 @@ public overlay = {
   height: 0
 };
 
-public scaleX: number = 1;
-public scaleY: number = 1;
-
+public scaleX:number = 0;
+public scaleY:number = 0;
+public offsetY: number = 0;
 
 public visibleFontsCount = 5;
 
@@ -99,16 +98,23 @@ toggleFonts() {
 
 
   get glowColor(): string {
-    return this.product.renderKey === 'neon' || (this.product.renderKey === 'acero') ? this.color.hex : '#fff5cc';
+    return this.product.renderKey === 'neon' ? this.color.hex : this.lightColor.hex;
 }
 
-public activeModal : 'frontCover' | 'base' | null = null
+public activeModal : 'lightColor' | 'base' | null = null
 
 @ViewChild('textGroup') textGroup!: ElementRef<SVGElement>;
 @ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
 @ViewChild('rangeEl') rangeEl!: ElementRef<HTMLInputElement>;
 
-
+private layoutReady: boolean = false
+private fontRef: any;
+private fontLoaded = false;
+public textPaths: {
+  d: string;
+  x: number;
+  y: number;
+}[] = [];
 
 
   constructor(private fb: FormBuilder, private platformService: PlatformService,
@@ -127,11 +133,10 @@ public activeModal : 'frontCover' | 'base' | null = null
     Validators.pattern(/^(?!Tu texto aquí$).+/)
   ]], 
       color: [ this.material?.colors.filter(color => color.uses?.includes('letra'))[0] || this.color, Validators.required],
-      frontColor: [ this.material?.colors.filter(color => color.uses?.includes('vinilo') || color.uses?.includes('metacrilato'))[0] || this.frontColor],
+      lightColor: [ this.material?.colors.filter(color => color.uses?.includes('vinilo') || color.uses?.includes('metacrilato'))[0] || this.lightColor],
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font, Validators.required],
       size: this.size,
-      frontCover: this.frontCover
     });
 
 
@@ -142,28 +147,51 @@ public activeModal : 'frontCover' | 'base' | null = null
   .subscribe(values => {
     this.applyFormValues(values)
   });
-
+console.log(this.background, this.color, this.lightColor)
 } 
+
+async loadFont(): Promise<void>  {
+   
+     if (!this.font?.opentypeUrl || !this.platformService.isBrowser()) {
+    console.warn('No se puede cargar fuente', {
+      opentypeUrl: this.font?.opentypeUrl,
+      isBrowser: this.platformService.isBrowser()
+    });
+    return;
+  }   
+   const font = await this.fontsService.loadOpenTypeFont(
+  this.font.opentypeUrl
+);
+this.fontRef = font
+this.fontLoaded = true;
+this.updateText();
+}
 
  async preloadTopFonts() {
     if (!this.material || !this.platformService.isBrowser()) return    
      const topFonts = this.material.fonts.slice(0, 4);
        await Promise.allSettled(
-  this.material.fonts.map(font => this.fontsService.loadFont(font.name, font.url))
+  this.material.fonts.map(font => this.fontsService.loadCssFont(font.name, font.url))
 );
 }
 
-  private applyFormValues(values: any) {
+  private async applyFormValues(values: any): Promise<void> {
     this.text = values.text || 'Tu texto aquí';
     this.color = values.color;
-     this.frontColor = values.frontColor;
+     this.lightColor = values.lightColor;
      this.baseColor = values.baseColor;
+
+      const fontChanged = this.font?.name !== values.font?.name;
     this.font = values.font;
+
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
     
+     if (fontChanged || !this.fontLoaded) {
+   await this.loadFont(); 
+  }
+
     this.updateText(); 
     this.updateRange();
-    
   }
 
   public updatePrice() {
@@ -200,20 +228,29 @@ this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * 
   private updateText() {
       this.innerColor = this.tintColor(this.color.hex, 0.9);
     this.lines = this.text.split('\n');
-
- this.recalcLayout()  
-
-
-  clearTimeout(this.fitTimeout);
-  
-    this.fitTimeout = setTimeout(() => {
-    this.autoFitText();
-  }, 50); 
-
-  //  setTimeout(() => {
-  //   this.autoFitText();
-  // }, 0);
+ 
+ if (!this.fontLoaded || !this.fontRef) {
+    this.layoutReady = false;
+    return;
   }
+
+  this.layoutReady = true;
+
+  this.fitTextWithMetrics();
+  this.recalcLayout();
+this.buildTextPaths();
+
+   requestAnimationFrame(() => {
+    this.updateOverlay();
+    this.updatePrice();
+  });
+  }
+
+  private measureLine(line: string, size: number): number {
+  if (!this.fontLoaded || !this.fontRef) return line.length * size * 0.6;
+
+  return this.fontRef.getAdvanceWidth(line, size);
+}
 
   private  tintColor(hex: string, amount = 0.9) {
 
@@ -230,44 +267,36 @@ this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * 
     return `rgb(${r}, ${g}, ${b})`;
   }
 
-async autoFitText() {
-  if (!this.platformService.isBrowser() || !this.textGroup) return;
-
-      const el = this.textGroup.nativeElement;
+private fitTextWithMetrics() {
+ if (!this.fontLoaded) return;
 
   const maxWidth = this.width * 0.9;
-  const maxHeight = this.height * 0.9;
+  const maxHeight = this.height * 0.85;
 
-let size = this.fontSize;
+  let size = 80;
 
-   while (size > 18) {
-     this.fontSize = size;
-     this.recalcLayout();
+  while (size > 16) {
+    const widths = this.lines.map(l => this.measureLine(l, size));
 
-    await new Promise(requestAnimationFrame);
+    const blockWidth = Math.max(...widths);
+    const blockHeight = this.lines.length * size * 1.2;
 
-    const box = (el as SVGGElement).getBBox();
+    if (blockWidth <= maxWidth && blockHeight <= maxHeight) {
+      break;
+    }
 
-    
-    this.proportionalWidth = (this.size * box.width)/this.lineHeight
-   if (box.width <= maxWidth && box.height <= maxHeight) {
-     break;
-   }
+    size -= 2;
+  }
 
- size -= 2;
-
- }
-
-this.fontSize = size;
-  this.recalcLayout()
-   this.updatePrice()
+  this.fontSize = size;
 }
 
  private recalcLayout() {
- this.lineHeight = this.fontSize * 1.2;
-  const totalHeight = (this.lines.length - 1) * this.lineHeight;
-  this.firstDy = -totalHeight / 2;
-this.updateOverlay()
+  if (!this.platformService.isBrowser()) return;
+  const lineH = this.fontSize * 1.2;
+ this.lineHeight = lineH;
+   const totalHeight = (this.lines.length - 1) * lineH;
+   this.offsetY = this.height / 2 - totalHeight / 2;
  }
 
   private updateRange() {
@@ -307,12 +336,11 @@ el.style.setProperty("--value", value);
       text: this.text,
       font: this.font.name,
       color: this.color.name,
-      frontColor: this.frontColor.name,
+      lightColor: this.lightColor.name,
       baseColor: this.baseColor.name,
       size: this.size,
       lines: this.lines,
       proportionalWidth: this.proportionalWidth,
-      frontCover: this.frontCover,
       base: this.base,
       svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
     }
@@ -328,35 +356,57 @@ el.style.setProperty("--value", value);
 
 
 public ngAfterViewInit() {
-  this.updateOverlay();
+  if (!this.platformService.isBrowser()) return
+   requestAnimationFrame(() => {
+    this.updateText();
+  });
+  
 }
 
 public updateOverlay(){
-  if (!this.platformService.isBrowser() || !this.textGroup || !this.svgEl) return
+  if (!this.platformService.isBrowser() || !this.textGroup 
+ || !this.fontLoaded) return
 
-const el = this.textGroup.nativeElement;
-const svg = this.svgEl.nativeElement;
+ const el = this.textGroup.nativeElement;
 
-const box = (el as SVGGElement).getBBox();
+  const bbox = (el as SVGGElement).getBBox();
 
-this.svgRect = svg.getBoundingClientRect();
-
-const viewBox = svg.viewBox.baseVal;
-
-this.scaleX = this.svgRect.width / viewBox.width;
-this.scaleY = this.svgRect.height / viewBox.height;
-
+  const padding = 4;
 
 this.overlay = {
-  left:  box.x,
-  top: box.y,
-  width: box.width,
-  height: box.height
+   left: bbox.x - padding,
+    top: bbox.y- padding,
+    width: bbox.width + padding* 2,
+    height: bbox.height + padding * 2
 };
-
-
+this.proportionalWidth = this.size * (this.overlay.width / this.overlay.height);
 }
 
+private buildTextPaths() {
+  if (!this.fontLoaded || !this.fontRef) {
+    this.textPaths = [];
+    return;
+  };
+
+  this.textPaths = this.lines.map((line, index) => {
+      const cleanLine = line.trim();
+         if (!cleanLine) {
+        return null;
+      }
+    const path = this.fontRef.getPath(cleanLine, 0, 0, this.fontSize);
+    const d = path.toPathData(2);
+   if (!d || !d.trim().startsWith('M')) {
+        return null;
+      }
+    const lineWidth = this.measureLine(cleanLine, this.fontSize);
+
+    return {
+      d,
+      x: this.width / 2 - lineWidth / 2,
+      y: this.offsetY + index * this.lineHeight
+    };
+  }).filter((p): p is { d: string; x: number; y: number } => p !== null);
+}
 
 public selectBackground(image: string){
 this.background = image
@@ -364,14 +414,13 @@ this.background = image
 
 
 
-public openModal(type: 'frontCover' | 'base' | null) {
+public openModal(type: 'lightColor' | 'base' | null) {
   this.activeModal = type
-  
-  if (type === 'frontCover') {
-this.frontCover = true
+  if(type === 'lightColor') {
+this.lightColorSelected = true
   }
-   if (type === 'base') {
-this.base = true
+    if(type === 'base') {
+    this.base = true
   }
   }
 
@@ -385,9 +434,9 @@ this.closeModal()
   }
 
   public unselectColor(activeModal: string) {
-    if (activeModal === 'frontCover') {
-      this.frontCover = false
-      this.frontColor = {
+    if (activeModal === 'lightColor') {
+      this.lightColorSelected = false
+      this.lightColor = {
         name: '',
         hex: ''
       }

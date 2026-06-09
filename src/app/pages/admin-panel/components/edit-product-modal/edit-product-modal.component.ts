@@ -8,10 +8,11 @@ import { GetProductsService } from '../../../../core/services/get-products.servi
 import { iconPaths } from '../../../../data/data';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { RichTextComponent } from '../../../../shared/rich-text/rich-text.component';
+import { PricePipe } from '../../../../pipes/price.pipe';
 
 @Component({
   selector: 'app-edit-product-modal',
-  imports: [FormsModule, CommonModule, DragDropModule, RichTextComponent],
+  imports: [FormsModule, CommonModule, DragDropModule, RichTextComponent, PricePipe],
   templateUrl: './edit-product-modal.component.html',
   styleUrl: './edit-product-modal.component.css'
 })
@@ -145,6 +146,15 @@ this.selectedFiles.forEach(file => {
     event.previousIndex,
     event.currentIndex
   );
+}
+
+public addVariant() {
+  if(!this.updateProductData.variants) return;
+  this.updateProductData.variants.push({
+    name: '',
+    size: 0,
+    price: 0
+  });
 }
 
 }
