@@ -87,6 +87,7 @@ get visibleFonts() {
    return this.material?.fonts?.slice(0, this.visibleFontsCount);
   }
 
+
 toggleFonts() {
   if (!this.material?.fonts) return
    if (this.visibleFontsCount < this.material?.fonts?.length) {
@@ -98,7 +99,7 @@ toggleFonts() {
 
 
   get glowColor(): string {
-    return this.product.renderKey === 'neon' ? this.color.hex : this.lightColor.hex;
+    return this.product.renderKey === 'neon' ? this.color.hex : this.lightColor.hex || '#ffffff';
 }
 
 public activeModal : 'lightColor' | 'base' | null = null
@@ -147,18 +148,12 @@ public textPaths: {
   .subscribe(values => {
     this.applyFormValues(values)
   });
-console.log(this.background, this.color, this.lightColor)
 } 
 
 async loadFont(): Promise<void>  {
    
-     if (!this.font?.opentypeUrl || !this.platformService.isBrowser()) {
-    console.warn('No se puede cargar fuente', {
-      opentypeUrl: this.font?.opentypeUrl,
-      isBrowser: this.platformService.isBrowser()
-    });
-    return;
-  }   
+     if (!this.font?.opentypeUrl || !this.platformService.isBrowser()) return;
+     
    const font = await this.fontsService.loadOpenTypeFont(
   this.font.opentypeUrl
 );

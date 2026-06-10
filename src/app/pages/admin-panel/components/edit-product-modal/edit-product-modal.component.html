@@ -107,10 +107,72 @@ name="application"
   >
 </app-rich-text>  
 
+<div  class="colors-form-section">
+@for(color of updateProductData.colors; track $index) {
+   <fieldset   class="variant-row"> 
+<legend class="label blue">Color {{ $index + 1 }}:</legend> 
+<input 
+class="form-field" 
+type="text"
+[(ngModel)]="color.name"
+[placeholder]="color.name"
+[id]="'colorName' + $index"
+[name]="'colorName' + $index"
+#colorNameField="ngModel"
+>
+<input 
+class="form-field" 
+type="text"
+[(ngModel)]="color.hex"
+[placeholder]="color.hex"
+[id]="'colorHex' + $index"
+[name]="'colorHex' + $index"
+#colorHexField="ngModel"
+>
+
+ <label class="label checkbox-label">
+    <input
+      type="checkbox"
+      [checked]="color.uses?.includes('letra')"
+    (change)="toggleUse(color, 'letra', $event)"
+    />
+    Letra
+  </label>
+   <label class="label checkbox-label">
+    <input
+      type="checkbox"
+      [checked]="color.uses?.includes('luz')"
+    (change)="toggleUse(color, 'luz', $event)"
+    />
+    Luz
+  </label>
+   <label class="label checkbox-label">
+    <input
+      type="checkbox"
+      [checked]="color.uses?.includes('base')"
+    (change)="toggleUse(color, 'base', $event)"
+    />
+    Base
+  </label>
+
+  <label class="label checkbox-label" for="dark">
+    <input
+      type="checkbox"
+      [(ngModel)]="color.dark"
+      name="dark"
+      id="dark"
+    />
+    Oscuro
+  </label>
+</fieldset >
+}
+<button type="button" class="add-button" (click)="addColor()">{{ updateProductData.colors?.length ? '+': '+ Añadir Color' }} </button>
+</div>
+
 <div  class="variants-form-section">
 @for(variant of updateProductData.variants; track $index) {
-  <div  class="variant-row">
-<label class="label blue">Variante {{ $index + 1 }}:</label> 
+  <fieldset   class="variant-row"> 
+<legend class="label blue">Variante {{ $index + 1 }}:</legend> 
 <input 
 class="form-field" 
 type="text"
@@ -139,10 +201,13 @@ type="number"
 [name]="'variantPrice' + $index"
 #variantPriceField="ngModel"
 >
-</div>
+</fieldset >
 }
 <button type="button" class="add-button" (click)="addVariant()">{{ updateProductData.variants?.length ? '+': '+ Añadir Variante' }} </button>
 </div>
+
+
+
 
 <div class="images-section">
 <label class="label blue" for="images">Imágenes (webp/jpeg hasta 2MB):</label>

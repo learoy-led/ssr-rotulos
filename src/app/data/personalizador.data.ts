@@ -1,5 +1,56 @@
 import { Material, Font } from "../models/data.models";
 
+export const neonFonts : Font[] = [
+     {
+    name: 'Handelson Three',
+    url: 'handelson',
+    minHeight: 18,
+     opentypeUrl: '/fonts/Handelson Three.otf',
+    },
+      {
+    name: 'MV Boli',
+    url: 'boli',
+    minHeight: 10,
+      opentypeUrl: '/fonts/mvboli.ttf',
+    },
+     {
+    name: 'Comic Sans MS',
+    url: 'comic',
+    minHeight: 10,
+    opentypeUrl: '/fonts/comic.ttf',
+    },
+    {
+    name: 'Amsterdan_CN',
+    url: 'amsterdan',
+    minHeight: 18,
+    opentypeUrl: '/fonts/Amsterdan_CN.ttf',
+    },
+       {
+    name: 'Beachfront_CN',
+    url: 'beachfront',
+    minHeight: 18,
+    opentypeUrl: '/fonts/Beachfront_CN.ttf',
+    },
+         {
+    name: 'Monaco_CN',
+    url: 'monaco',
+    minHeight: 18,
+    opentypeUrl: '/fonts/Monaco_CN.ttf',
+    },
+            {
+    name: 'NeoTokyo_CN Regular',
+    url: 'neotokyo',
+    minHeight: 18,
+    opentypeUrl: '/fonts/NeoTokyo_CN Regular.ttf',
+    },
+  {
+    name: 'Freestyle Script',
+    url: 'freestyle',
+    minHeight: 18,
+          opentypeUrl: '/fonts/FREESCPT.TTF',
+    },
+  ]
+
 export const fonts: Font[] = [
     {
     name: 'Agency FB',
@@ -26,10 +77,10 @@ export const fonts: Font[] = [
     opentypeUrl: '/fonts/BRLNSDB.TTF',
     },
 {
-    name: 'ChunkFive Print',
+    name: 'ChunkFive',
     url: 'chunkfive',
     minHeight: 10,
-opentypeUrl: '/fonts/Chunk Five Print.ttf',
+opentypeUrl: '/fonts/ChunkFive.ttf',
     },
      {
     name: 'Comic Sans MS',
@@ -77,7 +128,7 @@ opentypeUrl: '/fonts/Chunk Five Print.ttf',
     name: 'Freehand521 BT',
     url: 'freehand',
     minHeight: 18,
-       opentypeUrl: '/fonts/Freehand521 BT.ttf',
+    opentypeUrl: '/fonts/Freehand521 BT.ttf',
     },
        {
     name: 'Freestyle Script',
@@ -86,10 +137,10 @@ opentypeUrl: '/fonts/Chunk Five Print.ttf',
           opentypeUrl: '/fonts/FREESCPT.TTF',
     },
        {
-    name: '/fonts/Handelson Three',
+    name: 'Handelson Three',
     url: 'handelson',
     minHeight: 18,
-     opentypeUrl: '/fonts/handelson-three.otf',
+     opentypeUrl: '/fonts/Handelson Three.otf',
     },
       {
     name: 'Perpetua',
@@ -148,19 +199,19 @@ name: 'oro rosa',
     name: 'blanco frío',
     hex: '#ffffff',
          uses: ['luz'],
-        materials: ['neon', 'acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+        materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
   },
             {
     name: 'blanco cálido',
     hex: '#FFDFAF',
          uses: ['luz'],
-        materials: ['neon', 'acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+        materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
   },    
      {
     name: 'blanco',
     hex: '#ffffff',
          uses: ['letra'],
-        materials: ['neon', 'acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+        materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
   },
   {
     name: 'negro',
@@ -218,8 +269,6 @@ name: 'oro rosa',
     uses: ['letra', 'luz'],
     materials: ['hierro', 'acero', 'mini', 'pvc', '3d']
     },
-
- 
  {
 name: 'rojo',
   hex: '#ed1c24',
@@ -340,12 +389,19 @@ name: 'azul',
         uses: ['base'],
           materials: ['acero', 'hierro', 'aluminio', 'mini', 'pvc', '3d']
   },
-   {
-    name: 'amarillo',
-    hex: '#ffd500',
-     uses: ['letra'],
-        materials: ['neon'],
+
+     {
+    name: 'blanco frío',
+    hex: '#ffffff',
+         uses: ['letra'],
+        materials: ['neon']
   },
+            {
+    name: 'blanco cálido',
+    hex: '#FFDFAF',
+         uses: ['letra'],
+        materials: ['neon']
+  },    
    {
     name: 'rojo',
     hex: '#ef4444',
@@ -357,6 +413,12 @@ name: 'azul',
     hex: '#ff791a',
          uses: ['letra'],
         materials: ['neon']
+  },
+     {
+    name: 'amarillo',
+    hex: '#ffd500',
+     uses: ['letra'],
+        materials: ['neon'],
   },
     {
     name: 'verde',
@@ -455,7 +517,7 @@ grosor: [2,4,6,8,10,13]
  {
         name: "neon",
 colors: colors.filter(color => color.materials?.includes('neon')), 
-  fonts: fonts,
+  fonts: neonFonts,
 backgrounds: backgrounds,
 maxHeight: 150
     },
@@ -487,4 +549,3 @@ backgrounds: backgrounds,
 }
     
 ]
-

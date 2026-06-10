@@ -203,7 +203,7 @@
     
 </svg>
 
-@if(goboImage ==='/rotulos-learoy-logo.webp') {
+@if(goboImage ==='/rotulos-learoy-logo.webp' || '/proyeccion-logo-2-colores-rotulos-learoy.webp') {
   <div class="upload-overlay">
    <label class="upload-button">
   <input type="file" accept=".pdf,.png,.jpg,.jpeg,.svg" hidden
@@ -236,6 +236,7 @@
  @for(variant of product.variants; track i; let i = $index) {
     <input
       [(ngModel)]="selectedVariant"
+      (ngModelChange)="onVariantChange($event)"
       [value]="variant"
       type="radio"
       [id]="'variant-' + i"

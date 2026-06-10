@@ -18,8 +18,8 @@ import { PdfService } from '../../services/pdf.service';
 })
 export class GoboRenderComponent implements OnInit {
 
-
-  public goboImage: string ='/rotulos-learoy-logo.webp'
+  public goboImage: string = '/rotulos-learoy-logo.webp';
+  
   private currentObjectUrl? : string
 
     @Input() product!: Product;
@@ -94,6 +94,20 @@ export class GoboRenderComponent implements OnInit {
 
 }
 
+public onVariantChange(variant: Variant) {
+ this.selectedVariant = variant;
+
+  if (variant.name === 'lente 1 color') {
+    this.goboImage =  '/rotulos-learoy-logo.webp'
+  }
+ if (variant.name === 'lente 2 colores') {
+  this.goboImage = '/proyeccion-logo-2-colores-rotulos-learoy.webp'
+  }
+  if (variant.name === 'lente 3 colores') {
+  this.goboImage = '/proyeccion-logo-3-colores-rotulos-learoy.webp'
+  }
+
+}
 
 }
 

@@ -47,6 +47,7 @@ export interface Product {
   categories: Category[];
   renderKey?: string;
   variants?: Variant[];
+  colors?: Color[],
   _id?: string;
 }
 

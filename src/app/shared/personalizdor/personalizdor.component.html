@@ -12,9 +12,9 @@
    xmlns="http://www.w3.org/2000/svg"
   >
    
-    <defs>  
-       
-      <filter id="glow-neon" x="-60%" y="-60%" width="220%" height="220%">
+    <defs>
+      
+ <filter id="glow-neon" x="-60%" y="-60%" width="220%" height="220%">
  
      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1" />
         <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="b2" />
@@ -31,6 +31,7 @@
           <feMergeNode in="SourceGraphic" />
   </feMerge>
 </filter>
+
 
 
  <filter id="glow-front" x="-40%" y="-40%" width="180%" height="180%">
@@ -52,41 +53,37 @@
  <filter id="glow-retro" x="-80%" y="-80%" width="260%" height="260%">
  
      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b1" />
-        <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="b2" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="b2" /> 
 
-          <feComponentTransfer in="b2" result="b2s">
+           <feComponentTransfer in="b2" result="b2s">
     <feFuncA type="linear" slope="0.18"/>
-  </feComponentTransfer>    
+  </feComponentTransfer>     
        
   <feMerge>
   <feMergeNode in="b2s" />
   <feMergeNode in="b1" />
+    <feMergeNode in="SourceGraphic" /> 
   </feMerge>
 </filter>
+
+
     </defs>
 
     @let effectiveBackground = background === 'default' && color.dark ? '/blanco.webp' : background;
   
 @if(effectiveBackground !== 'default') {
     <image
-      [attr.href]="effectiveBackground"
-     x="0"
-y="0"
-width="100%"
-height="100%"
+      [attr.href]="effectiveBackground" x="0" y="0" width="100%" height="100%"
       preserveAspectRatio="xMidYMid slice"
     />
 }
 @if(effectiveBackground !== '/blanco.webp') {
-<rect x="0" y="0"  width="100%" height="100%" fill="black"
-[attr.opacity]="background === 'default'  && !color.dark ? 1 : 0.5"
-/>
+<rect x="0" y="0"  width="100%" height="100%" fill="black" [attr.opacity]="background === 'default'  && !color.dark ? 1 : 0.5"/>
 }
 
 
 
   
-    
    @if(product.light) {
 <radialGradient id="wallGlow"> 
   <stop offset="0%" [attr.stop-color]="glowColor" stop-opacity="0.25"/> 
@@ -110,33 +107,35 @@ height="100%"
       
         @for (p of textPaths; track p.d) {
              @if (p.d && p.d.startsWith('M')) {
-             
-              <!-- letras atrás por defecto (frontal). Pues para product.name.includes('retro'), fill y stroke a lightColorSelected && lightColor.hex || '#ffffff' -->  
+
+              <!-- este lo llevan todas -->  
         <path   
-        *ngIf="p.d && p.d.startsWith('M')"
     [attr.d]="p.d" 
     [attr.transform]="'translate(' + p.x + ',' + p.y + ')'"
-    
-     [attr.fill]="product.renderKey === 'neon' ? innerColor : (product.name.includes('retro') ? lightColorSelected && lightColor.hex || '#ffffff' : color.hex)"
-     [attr.stroke]="product.renderKey === 'neon' ? innerColor : (product.name.includes('retro') ? lightColorSelected && lightColor.hex || '#ffffff' : color.hex)"
-
-  [attr.stroke-width]="product.renderKey !== 'neon' ? 3.5 : 0"    
-   [attr.filter]="product.renderKey === 'neon' ? 'url(#glow-neon)' : (product.name.includes('retro') ? 'url(#glow-retro)' : null)"    
+     [attr.fill]="!product.light || product.renderKey === 'neon' ?  color.hex  : lightColorSelected && lightColor.hex || '#ffffff'"
+     [attr.stroke]="product.renderKey === 'neon' ? 'none'  : (product.name.includes('retro') ? lightColorSelected && lightColor.hex || '#ffffff' : color.hex)"
+  [attr.stroke-width]="product.renderKey === 'neon' ? 0 : 
+  (product.name.includes('retro') ? 3.5 : 1.5)"    
+   [attr.filter]="product.renderKey === 'neon' ? 'url(#glow-neon)' : 
+   product.name.includes('retro') || product.name.includes('integral') ? 'url(#glow-retro)' : 'url(#glow-front)'"
+    [attr.stroke-linecap]="product.renderKey === 'neon' ? 'round' : 'butt'"
+ [attr.stroke-linejoin]="product.renderKey === 'neon' ? 'round' : 'miter'"
+ [attr.paint-order]="'stroke'"
     ></path>
 
-<!-- luz delante por defecto (frontal). Pues para product.name.includes('retro'),  fill y stroke a color.hex -->
+<!-- este solo para neón y retro o integral --> 
+    @if(product.renderKey === 'neon' || product.name.includes('retro')) {
   <path   
-        *ngIf="product.renderKey !== 'neon' && product.light && p.d && p.d.startsWith('M') "
     [attr.d]="p.d"    
-     [attr.transform]="'translate(' + (p.x-3.5) + ',' + (p.y-3.5) + ')'"
-     
-     [attr.fill]="product.name.includes('retro') ? color.hex : lightColorSelected && lightColor.hex || '#ffffff'"
-     [attr.stroke]="product.name.includes('retro') ? color.hex : lightColorSelected && lightColor.hex || '#ffffff'"
-  
-  [attr.stroke-width]="3.5"    
-     [attr.filter]="!product.name.includes('retro') ? 'url(#glow-front)' : null"
-    ></path>
- }
+     [attr.transform]="product.renderKey === 'neon' ? 'translate(' + p.x + ',' + p.y + ')' :
+     'translate(' + (p.x+0.5) + ',' + (p.y-0.5) + ')'"
+     [attr.fill]="product.renderKey === 'neon' ? innerColor : color.hex"
+     [attr.stroke]="color.hex"
+ [attr.stroke-width]="product.renderKey === 'neon' ? 0.2 : 3.5"   
+        [attr.stroke-linecap]="product.renderKey === 'neon' ? 'round' : 'butt'"
+  [attr.stroke-linejoin]="product.renderKey === 'neon' ? 'round' : 'miter'"
+       ></path>
+ }}
   }
 </g>
      
@@ -192,8 +191,6 @@ height="100%"
 
 
 
-
-<p>{{ background }}</p>
   <ul role="listbox" class="background-picker">
      <li role="option" class="background-square black-background" (click)="selectBackground('default')"></li>
 
@@ -233,7 +230,7 @@ height="100%"
       [for]="'font-' + i"
       class="font-preview"
       [ngStyle]="{'font-family': font.name}"
-       >{{font.name.split(' ')[0]}}</label>
+       >{{font.name.includes(' ') ? font.name.split(' ')[0] : font.name.split('_')[0]}}</label>
   }
 
   <span role="button" class="fonts-expand more" (click)="toggleFonts()"> 
@@ -281,7 +278,7 @@ height="100%"
   
   <p>OPCIONAL:</p>
   <div class="options-container">
-  @if(product.light && (product.renderKey === 'acero' || product.renderKey === 'hierro' || product.renderKey === 'aluminio')) {
+  @if(product.light && product.renderKey !== 'mini') {
      <div class="selector-button color-selector" (click)="openModal('lightColor')" [class.selected]="lightColorSelected">
    Color luz
      @if(lightColorSelected) {

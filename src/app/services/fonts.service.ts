@@ -10,7 +10,6 @@ export class FontsService {
   private opentypeCache = new Map<string, any>();
 
   async loadCssFont(name: string, url: string): Promise<void> {
-  console.log('la fuente es', url)
    
   if (this.cssLoadedFonts.has(name)) return;
 

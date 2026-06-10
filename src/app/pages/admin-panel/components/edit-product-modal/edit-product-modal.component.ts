@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Category, Product } from '../../../../models/data.models';
+import { Category, Color, Product } from '../../../../models/data.models';
 import { AdminProductsService } from '../../../../services/admin-products.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -46,6 +46,12 @@ export class EditProductModalComponent implements OnInit {
     light: false,
     metaDescription: '',
     categories: [],
+    colors: [{
+      name: '',
+      hex: '',
+      uses: [],
+      dark: false
+    }],
     variants: [{
       name: '',
       size: 0,
@@ -83,8 +89,8 @@ export class EditProductModalComponent implements OnInit {
   value.forEach((v: any)=> {
 formData.append('categories', v._id ?? v);
     })
-  } else if(key ==='variants') {
-      formData.append('variants', JSON.stringify(value));
+  } else if(key ==='variants' || key === 'colors') {
+      formData.append(key, JSON.stringify(value));
   } else if (key === 'images') {
   value.forEach((img: string) => 
     formData.append('images', img)
@@ -155,6 +161,25 @@ public addVariant() {
     size: 0,
     price: 0
   });
+}
+
+public addColor() {
+if(!this.updateProductData.colors) return;
+this.updateProductData.colors.push({
+    name: '',
+    hex: '',
+    uses: [],
+    dark: false
+  });
+  }
+
+public toggleUse(color: Color, use: string, event: Event) {
+  const checked = (event.target as HTMLInputElement).checked;
+  if (checked) {
+    color.uses?.push(use);
+  } else {
+    color.uses = color.uses?.filter((u: string) => u !== use);
+  }
 }
 
 }
