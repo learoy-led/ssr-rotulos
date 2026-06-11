@@ -101,6 +101,37 @@
   color: var(--color-white)
 }
 
+.variant-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.variant-picker label {
+ border: 1px solid #e2e2e2;
+   border-radius: 5px
+ }
+
+
+.variant-picker label:hover {
+ border: 1px solid var(--color-grey);
+ cursor: pointer;
+ }
+
+ input[type="radio"]:checked + .variant-preview {
+border: 1px solid var(--color-grey);
+}
+
+.variant-preview {
+padding: 4px 8px;
+text-align: center;
+white-space: nowrap;
+ text-transform: capitalize;
+}
+
+.add-cart-left {
+  margin-left: 60px;
+}
 
   @media screen and (max-width: 766px) {
   .main-product-details {

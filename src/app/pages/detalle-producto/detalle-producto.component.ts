@@ -15,11 +15,12 @@ import { ImageCompareComponent } from './components/image-compare/image-compare.
 import { map } from 'rxjs';
 import { GoboRenderComponent } from '../../shared/gobo-render/gobo-render.component';
 import { PricePipe } from '../../pipes/price.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe],
+  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })
@@ -40,6 +41,7 @@ export class DetalleProductoComponent implements OnInit {
     metaDescription: '',
     renderKey: '',
     categories: [],
+    variants: [],
     _id: '',
   };
   public mainImageIndex = 0;
@@ -53,7 +55,6 @@ export class DetalleProductoComponent implements OnInit {
   
   }
   
-  finalPrice = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,17 +69,17 @@ export class DetalleProductoComponent implements OnInit {
 
   public ngOnInit() {
 
-     
-
     this.route.data.subscribe(data => {
     this.productSelectedData = data['product'];
 
+ if (this.productSelectedData?.variants?.length) {
+   this.selectedVariant = this.productSelectedData.variants[0];
+}
 
 const title = `${this.productSelectedData.name} · Rótulos Learoy`;
 const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
  const description = this.productSelectedData.metaDescription;
           const image = this.productSelectedData.images[0];
-          this.finalPrice = (this.productSelectedData.variants?.[0].price)  || 0 *10
           this.currentRoute = this.router.url;
   this.seoService.updateSeoDynamicTags(
             capitalizedTitle,
@@ -119,9 +120,20 @@ const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
     });
   }
 
-  changePrice(event: Event) {
-  const value = (event.target as HTMLSelectElement).value;
-  this.finalPrice = Number(value);
+//ver si se necesita para imágenes
+public onVariantChange(variant: Variant) {
+ this.selectedVariant = variant;
+
+//   if (variant.name === 'lente 1 color') {
+//     this.goboImage =  '/rotulos-learoy-logo.webp'
+//   }
+//  if (variant.name === 'lente 2 colores') {
+//   this.goboImage = '/proyeccion-logo-2-colores-rotulos-learoy.webp'
+//   }
+//   if (variant.name === 'lente 3 colores') {
+//   this.goboImage = '/proyeccion-logo-3-colores-rotulos-learoy.webp'
+//   }
+
 }
 
 

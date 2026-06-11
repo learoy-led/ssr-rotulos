@@ -95,9 +95,9 @@ a {
     list-style-type: none;
   }
 
-  .editor ul,  .product-description ul {
-  list-style: disc;
-  padding-left: 1.5rem;
+  .editor li,  .product-description li, .selected-product-details div li {
+  list-style: circle;
+  margin-left: 40px; 
 }
 
 
@@ -116,10 +116,11 @@ color: var(--color-black);
   border-left: 4px solid var(--color-blue);
 padding-left: 56px
  }
+
 .left {
   padding-left: 60px!important
 }
-  
+
    .home-title {
       font-family: "Rubik", sans-serif; 
       font-weight: 500;  

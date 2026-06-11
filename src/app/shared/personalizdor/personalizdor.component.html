@@ -113,17 +113,20 @@
     [attr.d]="p.d" 
     [attr.transform]="'translate(' + p.x + ',' + p.y + ')'"
      [attr.fill]="!product.light || product.renderKey === 'neon' ?  color.hex  : lightColorSelected && lightColor.hex || '#ffffff'"
-     [attr.stroke]="product.renderKey === 'neon' ? 'none'  : (product.name.includes('retro') ? lightColorSelected && lightColor.hex || '#ffffff' : color.hex)"
+     [attr.stroke]="product.renderKey === 'neon' ? 'none'  : 
+     (product.name.includes('retro') ? lightColorSelected && lightColor.hex || '#ffffff' : 
+     color.hex)"
   [attr.stroke-width]="product.renderKey === 'neon' ? 0 : 
-  (product.name.includes('retro') ? 3.5 : 1.5)"    
-   [attr.filter]="product.renderKey === 'neon' ? 'url(#glow-neon)' : 
-   product.name.includes('retro') || product.name.includes('integral') ? 'url(#glow-retro)' : 'url(#glow-front)'"
+  (product.name.includes('retro') ? 3.5 : 2)"    
+   [attr.filter]="!product.light ? null:
+   product.renderKey === 'neon' ? 'url(#glow-neon)' : 
+   (product.name.includes('retro') || product.name.includes('integral')) ? 'url(#glow-retro)' : 'url(#glow-front)'"
     [attr.stroke-linecap]="product.renderKey === 'neon' ? 'round' : 'butt'"
  [attr.stroke-linejoin]="product.renderKey === 'neon' ? 'round' : 'miter'"
  [attr.paint-order]="'stroke'"
     ></path>
 
-<!-- este solo para neón y retro o integral --> 
+<!-- este solo para neón y retro --> 
     @if(product.renderKey === 'neon' || product.name.includes('retro')) {
   <path   
     [attr.d]="p.d"    
@@ -239,16 +242,13 @@
 
      </div>
   
-     @if(product.renderKey !== 'acero') {
+  @if(product.renderKey === 'neon') {
       
-<label for="color"> {{
-  product.renderKey === 'neon' ? 'Selecciona un color':  'Selecciona el color de las letras'
-  }}:
- </label> 
+<label for="color"> Selecciona un color:</label> 
   <div class="color-picker">
   @for(color of material?.colors; track i; let i = $index) {
     
-    @if(color.uses?.includes('letra') && !(color.name === 'negro' && product.light && product.name.toLowerCase() !== 'letras retroiluminadas de hierro')) {
+    @if(color.uses?.includes('letra')) {
       <div class="color-option">
       <input
       type="radio"
@@ -269,81 +269,46 @@
   }
   </div>
   }
-  
-
-
 
 
 @if(product.renderKey !== 'neon') {
-  
-  <p>OPCIONAL:</p>
   <div class="options-container">
+@if(product.renderKey !== 'acero') {
+       <div class="img-selector-button" (click)="openModal('color')" [class.selected]="colorSelected" [style.background]="color.hex">
+        <img  class="img-button" [src]="product.name.includes('retro') ? '/color-frontal.jpg' : '/color-trasera.jpg'" alt="">
+   <span class="button-legend">Color letras</span> 
+    </div>
+    }
+
   @if(product.light && product.renderKey !== 'mini') {
-     <div class="selector-button color-selector" (click)="openModal('lightColor')" [class.selected]="lightColorSelected">
-   Color luz
-     @if(lightColorSelected) {
-      <span class="color-square selector-button" [style.background]="lightColor.hex"></span>
-      }
+     <div class="img-selector-button" (click)="openModal('lightColor')" [class.selected]="lightColorSelected" [style.background]="lightColor.hex">
+       <img class="img-button" [src]="product.name.includes('retro') ? '/color-trasera.jpg' : '/color-frontal.jpg'" alt="">
+   <span class="button-legend">Color luz</span> 
     </div>
  }  
- <div class="selector-button color-selector" (click)="openModal('base')" [class.selected]="base">
+
+  
+  </div>
+
+   <p>OPCIONAL:</p>
+ <div class="text-selector-button" (click)="openModal('base')" [class.selected]="base">
   Base de aluminio
  @if(base) {
       <span class="color-square selector-button" [style.background]="baseColor.hex"></span>
       }
     </div>
-  </div>
-}
-
-    @if(activeModal) {
-      <div  class="modal-overlay">
-      <div class="modal">
-         <app-icon role="button" [iconPath]="xmarkPath" [ngClass]="'small-icon blue'" (click)="closeModal()"></app-icon>
-
-      
-  <label [for]="activeModal === 'base' ? 'baseColor': 'lightColor'">Elige el color 
-    {{ activeModal === 'base' ? 'de la base' : 'de la luz'  }}:
-  </label>
- 
-
-<div class="color-picker">
-  @for(color of material?.colors; track i; let i = $index) {
-      @if(activeModal === 'lightColor' && color.uses?.includes('luz') || activeModal === 'base' && color.uses?.includes('base')) {
-        <div class="color-option">
-    <input
-      type="radio"
-      [id]="'base-color-' + i"
-      [formControlName]="activeModal === 'base' ? 'baseColor' : 'lightColor'"
-      [value]="color"
-      hidden>
-
-    <label
-      [for]="'base-color-' + i"
-      class="color-square"
-      [style.background]="color.hex"
-       ></label>
-
-           <span class="color-legend">{{color.name}}</span>
-      </div>
-  }
-   }
-</div>
-
-<div class="modal-buttons">
-<button class="button"  type="button" (click)="selectColor()">Aceptar</button>
-<button class="button"  type="button" (click)="unselectColor(activeModal)">Cancelar</button>
-</div>
-
-</div>
-</div>
 
 }
 
- 
-      
-  
+@if(activeModal) {
+   <app-color-modal 
+     [form]="form"
+   [activeModal]="activeModal" [material]="material!"
+    (cancel)="cancelModal()"
+  (closed)="activeModal = null">
 
-  
+   ></app-color-modal>
+}
 
 @if(product.variants?.length) {
 <label for="size">Elige la altura de las letras: {{ form.get('size')?.value < font.minHeight ? font.minHeight : form.get('size')?.value}} cm</label>

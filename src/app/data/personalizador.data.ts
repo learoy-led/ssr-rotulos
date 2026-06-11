@@ -82,12 +82,6 @@ export const fonts: Font[] = [
     minHeight: 10,
 opentypeUrl: '/fonts/ChunkFive.ttf',
     },
-     {
-    name: 'Comic Sans MS',
-    url: 'comic',
-    minHeight: 10,
-    opentypeUrl: '/fonts/comic.ttf',
-    },
        {
     name: 'Forte',
     url: 'forte',
@@ -117,30 +111,6 @@ opentypeUrl: '/fonts/ChunkFive.ttf',
     url: 'hakgyo',
     minHeight: 10,
          opentypeUrl: '/fonts/Hakgyoansim Dunggeunmiso OTF B.otf',
-    },
-      {
-    name: 'MV Boli',
-    url: 'boli',
-    minHeight: 10,
-      opentypeUrl: '/fonts/mvboli.ttf',
-    },
-       {
-    name: 'Freehand521 BT',
-    url: 'freehand',
-    minHeight: 18,
-    opentypeUrl: '/fonts/Freehand521 BT.ttf',
-    },
-       {
-    name: 'Freestyle Script',
-    url: 'freestyle',
-    minHeight: 18,
-          opentypeUrl: '/fonts/FREESCPT.TTF',
-    },
-       {
-    name: 'Handelson Three',
-    url: 'handelson',
-    minHeight: 18,
-     opentypeUrl: '/fonts/Handelson Three.otf',
     },
       {
     name: 'Perpetua',

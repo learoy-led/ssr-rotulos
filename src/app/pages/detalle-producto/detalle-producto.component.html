@@ -58,17 +58,28 @@
           [buttonLink]="'/contacto'"
         ></app-button> }
         @else {       
+<div class="variant-picker left">
+ @for(variant of productSelectedData.variants; track i; let i = $index) {
+    <input
+      [(ngModel)]="selectedVariant"
+      (ngModelChange)="onVariantChange($event)"
+      [value]="variant"
+      type="radio"
+      [id]="'variant-' + i"
+      name="variant"
+      hidden
+      >
 
-          <select name="variant" id="variant" (change)="changePrice($event)">
-            @for(variant of productSelectedData.variants; track i; let i = $index) {
-           <option [value]="variant.price">{{ variant.name }}</option>
-            }
-          </select>
-          
+    <label
+      [for]="'variant-' + i"
+      class="variant-preview"
+       >{{variant.name}}</label>
+  }
+     </div>    
+   
+          <p class="left">Precio <span class="price">{{ selectedVariant.price | price }}</span> IVA Incl.</p>
 
-          <p>Precio <span class="price">{{ finalPrice*10 | price }}</span> IVA Incl.</p>
-
-           <button class="button">Añadir al carrito</button>
+           <button class="add-cart-left button" (click)="onAddToCart()">Añadir al carrito</button>
         }
 
          }
