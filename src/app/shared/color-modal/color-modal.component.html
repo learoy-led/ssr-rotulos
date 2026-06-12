@@ -52,19 +52,24 @@
       />
 
      </div>
+
+
+
+
     <div class="measure-input">
-       <label for="baseWidth">Ancho (cm):</label>
-       <input
-        aria-label="Escribir alto de la base en centímetros"
+      
+     <label for="baseHeight">Ancho (cm): </label>
+    <input
+        aria-label="Escribir ancho de la base en centímetros"
         class="number-input"
         type="number"
         id="baseWidth"
         name="baseWidth"
-            formControlName="baseWidth"
-              step="1"
+           formControlName="baseWidth"
           [min]="lettersWidth+3"
         #baseWidth
       />
+        
       </div>
 </div>
 

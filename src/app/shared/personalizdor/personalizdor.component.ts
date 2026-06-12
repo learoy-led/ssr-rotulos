@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { materials } from '../../data/personalizador.data';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
 import { PlatformService } from '../../core/services/platform.service';
 import { Color, Font, Material, Product } from '../../models/data.models';
@@ -56,13 +56,10 @@ previousColor: Color = {
   colorSelected: boolean = false;
   lightColorSelected: boolean = false;
   base: boolean = false;
-  
 
   variantSize: number = 0;
   size: number = this.font.minHeight;
-  proportionalWidth: number  = 0
-  baseHeight: number = 0
-  baseWidth: number = 0
+  proportionalWidth: number  = 0;
 
   width: number = 650;
   height: number = 550;
@@ -136,8 +133,8 @@ get glowColor(): string {
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font, Validators.required],
       size: this.size,
-      baseHeight: [this.size + 3],
-      baseWidth: [Math.round(this.proportionalWidth + 3)] ,
+      baseHeight: [this.size + 3, [Validators.min(13), Validators.max(300)]],
+      baseWidth: [Math.round(this.proportionalWidth + 3), [Validators.min(this.proportionalWidth + 3)]]
     });
 
 
@@ -148,6 +145,7 @@ get glowColor(): string {
   .subscribe(values => {
     this.applyFormValues(values)
   });
+
 } 
 
 
@@ -172,15 +170,14 @@ private async applyFormValues(values: any): Promise<void> {
     this.font = values.font;
 
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
-    this.baseHeight = values.baseHeight;
-     this.baseWidth = values.baseWidth;
-    
+     
      if (fontChanged || !this.fontLoaded) {
    await this.loadFont(); 
   }
 
     this.updateText(); 
     this.updateRange();
+    
   }
 
  private async loadFont(): Promise<void>  {
@@ -211,10 +208,11 @@ this.updateText();
 this.buildTextPaths();
 
    requestAnimationFrame(() => {
-    this.updateOverlay();
+   this.updateOverlay();
     this.updatePrice();
   });
   }
+
  private  tintColor(hex: string, amount = 0.9) {
 
     const num = parseInt(hex.replace('#', ''), 16);
@@ -308,8 +306,9 @@ this.overlay = {
     height: bbox.height + padding * 2
 };
 this.proportionalWidth = this.size * (this.overlay.width / this.overlay.height);
-
+ console.log('en update overlay', this.proportionalWidth)
 }
+
 
 
   public updatePrice() {
@@ -375,9 +374,14 @@ this.colorSelected = true
 this.lightColorSelected = true
   }
     if(type === 'base') {
-    this.base = true
+    this.base = true;
+     this.form.patchValue({
+    baseWidth: Math.round(this.proportionalWidth + 3)
+  });
+  console.log('en open modal', this.proportionalWidth)
   }
-  }
+}
+
 
   public cancelModal() {
      this.form.patchValue({
@@ -404,18 +408,16 @@ public ngAfterViewInit() {
    requestAnimationFrame(() => {
     this.updateText();
   }); 
+
 }
    public onSubmit() { 
      if (this.form.invalid || !this.product.variants) return;
-   
-  
+     
         const variantSelected = this.product.variants.find(v => v.size >= this.variantSize);
-  
-   
+     
   if (!this.product?._id || !variantSelected) return;
 
- 
-  const productPurchased = {
+   const productPurchased = {
      id: this.product._id,
     name: this.product.name,
     image: this.product.images[0],
@@ -427,8 +429,8 @@ public ngAfterViewInit() {
       color: this.color.name,
       lightColor: this.lightColor.name,
       baseColor: this.baseColor.name,
-      baseHeight: this.baseHeight,
-      baseWidth: this.baseWidth,
+      baseHeight: this.form.value.baseHeight,
+      baseWidth: this.form.value.baseWidth,
       size: this.size,
       lines: this.lines,
       proportionalWidth: this.proportionalWidth,
