@@ -61,6 +61,8 @@ previousColor: Color = {
   variantSize: number = 0;
   size: number = this.font.minHeight;
   proportionalWidth: number  = 0
+  baseHeight: number = 0
+  baseWidth: number = 0
 
   width: number = 650;
   height: number = 550;
@@ -134,6 +136,8 @@ get glowColor(): string {
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font, Validators.required],
       size: this.size,
+      baseHeight: [this.size + 3],
+      baseWidth: [Math.round(this.proportionalWidth + 3)] ,
     });
 
 
@@ -168,6 +172,8 @@ private async applyFormValues(values: any): Promise<void> {
     this.font = values.font;
 
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
+    this.baseHeight = values.baseHeight;
+     this.baseWidth = values.baseWidth;
     
      if (fontChanged || !this.fontLoaded) {
    await this.loadFont(); 
@@ -284,6 +290,7 @@ this.buildTextPaths();
     };
   }).filter((p): p is { d: string; x: number; y: number } => p !== null);
 }
+
 public updateOverlay(){
   if (!this.platformService.isBrowser() || !this.textGroup 
  || !this.fontLoaded) return
@@ -301,7 +308,10 @@ this.overlay = {
     height: bbox.height + padding * 2
 };
 this.proportionalWidth = this.size * (this.overlay.width / this.overlay.height);
+
 }
+
+
   public updatePrice() {
      if (!this.product?.variants || this.text === 'Tu texto aquí') {
     this.finalPrice = 0;
@@ -393,8 +403,7 @@ public ngAfterViewInit() {
   if (!this.platformService.isBrowser()) return
    requestAnimationFrame(() => {
     this.updateText();
-  });
-  
+  }); 
 }
    public onSubmit() { 
      if (this.form.invalid || !this.product.variants) return;
@@ -418,10 +427,13 @@ public ngAfterViewInit() {
       color: this.color.name,
       lightColor: this.lightColor.name,
       baseColor: this.baseColor.name,
+      baseHeight: this.baseHeight,
+      baseWidth: this.baseWidth,
       size: this.size,
       lines: this.lines,
       proportionalWidth: this.proportionalWidth,
       base: this.base,
+      
       svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
     }
   }

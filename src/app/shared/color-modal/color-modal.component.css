@@ -92,3 +92,25 @@ position: relative;
   opacity: 1
 }
 
+.measures {
+  padding: 0;
+}
+
+legend {
+margin-bottom: 10px
+}
+
+.measures-inputs {
+  display: flex;
+  gap: 10px
+}
+
+.measure-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.number-input {
+  background-color: var(--color-extra-light-grey);
+    width: 80%
+}

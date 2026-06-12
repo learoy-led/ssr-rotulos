@@ -20,6 +20,9 @@ public xmarkPath:string = iconPaths.xmark
 @Input() material!: Material
 @Input() form!: FormGroup
 
+@Input() lettersHeight!: number;
+@Input() lettersWidth!: number;
+
 
 @Output() closed = new EventEmitter<void>();
 @Output() cancel = new EventEmitter<void>();

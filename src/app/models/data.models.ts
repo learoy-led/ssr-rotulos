@@ -68,6 +68,8 @@ export interface CustomDetails {
   color: string,
   lightColor?: string,
   baseColor?: string,
+  baseHeight?: number,
+  baseWidth?: number,
   size: number,
   lines?: string[],
   proportionalWidth?: number,

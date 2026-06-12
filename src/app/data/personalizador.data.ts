@@ -11,13 +11,13 @@ export const neonFonts : Font[] = [
     name: 'MV Boli',
     url: 'boli',
     minHeight: 10,
-      opentypeUrl: '/fonts/mvboli.ttf',
+      opentypeUrl: '/fonts/MV Boli.ttf',
     },
      {
     name: 'Comic Sans MS',
     url: 'comic',
     minHeight: 10,
-    opentypeUrl: '/fonts/comic.ttf',
+    opentypeUrl: '/fonts/Comic Sans MS.ttf',
     },
     {
     name: 'Amsterdan_CN',
@@ -38,31 +38,31 @@ export const neonFonts : Font[] = [
     opentypeUrl: '/fonts/Monaco_CN.ttf',
     },
             {
-    name: 'NeoTokyo_CN Regular',
+    name: 'NeoTokyo_CN',
     url: 'neotokyo',
     minHeight: 18,
-    opentypeUrl: '/fonts/NeoTokyo_CN Regular.ttf',
+    opentypeUrl: '/fonts/NeoTokyo_CN.ttf',
     },
   {
     name: 'Freestyle Script',
     url: 'freestyle',
     minHeight: 18,
-          opentypeUrl: '/fonts/FREESCPT.TTF',
+          opentypeUrl: '/fonts/Freestyle Script.TTF',
     },
   ]
 
 export const fonts: Font[] = [
+     {
+    name: 'Arial',
+    url: 'arial',
+    minHeight: 10,
+    opentypeUrl: '/fonts/Arial.ttf',
+    },
     {
     name: 'Agency FB',
     url: 'agency',
     minHeight: 10,
-    opentypeUrl: '/fonts/AGENCYR.TTF',
-    },
-      {
-    name: 'Arial',
-    url: 'arial',
-    minHeight: 10,
-    opentypeUrl: '/fonts/arial.ttf',
+    opentypeUrl: '/fonts/Agency FB.TTF',
     },
     {
     name: 'BankGothic Md BT',
@@ -86,7 +86,7 @@ opentypeUrl: '/fonts/ChunkFive.ttf',
     name: 'Forte',
     url: 'forte',
     minHeight: 10,
-     opentypeUrl: '/fonts/FORTE.TTF',
+     opentypeUrl: '/fonts/Forte.TTF',
     },
      {
     name: 'Futura Now Headline ExtraBlack',
@@ -107,16 +107,16 @@ opentypeUrl: '/fonts/ChunkFive.ttf',
      opentypeUrl: '/fonts/Gobold Bold.otf',
     },
          {
-    name: 'Hakgyoansim Dunggeunmiso OTF B',
+    name: 'Hakgyo DunggeunmisoOTF-B-KO',
     url: 'hakgyo',
     minHeight: 10,
-         opentypeUrl: '/fonts/Hakgyoansim Dunggeunmiso OTF B.otf',
+         opentypeUrl: '/fonts/Hakgyoansim DunggeunmisoOTF-B-KO.ttf',
     },
       {
     name: 'Perpetua',
     url: 'perpetua',
     minHeight: 18,
-         opentypeUrl: '/fonts/PER_____.TTF',
+         opentypeUrl: '/fonts/Perpetua.TTF',
     },
        {
     name: 'Questrial',

@@ -32,6 +32,45 @@
    }
 </div>
 
+@if(activeModal === 'base') {
+  <fieldset class="measures">
+    <legend>Indica las medidas de la base:</legend>
+    
+    <div class="measures-inputs">
+    <div class="measure-input">  
+ <label for="baseHeight">Alto (cm): </label>
+    <input
+        aria-label="Escribir alto de la base en centímetros"
+        class="number-input"
+        type="number"
+        id="baseHeight"
+        name="baseHeight"
+           formControlName="baseHeight"
+          [min]="lettersHeight+3"
+          max="300"
+        #baseHeight
+      />
+
+     </div>
+    <div class="measure-input">
+       <label for="baseWidth">Ancho (cm):</label>
+       <input
+        aria-label="Escribir alto de la base en centímetros"
+        class="number-input"
+        type="number"
+        id="baseWidth"
+        name="baseWidth"
+            formControlName="baseWidth"
+              step="1"
+          [min]="lettersWidth+3"
+        #baseWidth
+      />
+      </div>
+</div>
+
+      </fieldset>
+}
+
 <div class="modal-buttons">
 <button class="button"  type="button" (click)="closeModal()">Aceptar</button>
 <button class="button"  type="button" (click)="unselectColor()">Cancelar</button>
