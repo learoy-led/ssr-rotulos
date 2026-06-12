@@ -52,12 +52,12 @@ export const neonFonts : Font[] = [
   ]
 
 export const fonts: Font[] = [
-     {
-    name: 'Arial',
-    url: 'arial',
-    minHeight: 10,
-    opentypeUrl: '/fonts/Arial.ttf',
-    },
+    //  {
+    // name: 'Arial',
+    // url: 'arial',
+    // minHeight: 10,
+    // opentypeUrl: '/fonts/arial.ttf',
+    // },
     {
     name: 'Agency FB',
     url: 'agency',
