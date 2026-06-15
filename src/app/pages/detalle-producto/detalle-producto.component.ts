@@ -54,7 +54,7 @@ export class DetalleProductoComponent implements OnInit {
     price: 0,
   
   }
-  
+  public showCompare = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -111,7 +111,11 @@ const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
   }
 
   public updateProductDetails(index: number) {
-    this.mainImageIndex = index;
+
+  this.categoryName === 'Letras corpóreas' && this.productSelectedData.light ?
+this.mainImageIndex = index+2 : this.mainImageIndex = index;
+
+  this.showCompare = false
   }
 
   public listenLoading() {
@@ -123,17 +127,6 @@ const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
 //ver si se necesita para imágenes
 public onVariantChange(variant: Variant) {
  this.selectedVariant = variant;
-
-//   if (variant.name === 'lente 1 color') {
-//     this.goboImage =  '/rotulos-learoy-logo.webp'
-//   }
-//  if (variant.name === 'lente 2 colores') {
-//   this.goboImage = '/proyeccion-logo-2-colores-rotulos-learoy.webp'
-//   }
-//   if (variant.name === 'lente 3 colores') {
-//   this.goboImage = '/proyeccion-logo-3-colores-rotulos-learoy.webp'
-//   }
-
 }
 
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { materials } from '../../data/personalizador.data';
 import { CommonModule } from '@angular/common';
@@ -25,7 +25,22 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit, OnChanges 
 
   form!: FormGroup;
 
+  width: number = 650;
+  height: number = 550;
+  fontSize: number = 80
+
+  background: string = 'default';
+
   text: string = 'Tu texto aquí';
+  font: Font = {
+    name: '',
+    url: '',
+    minHeight: 10,
+    opentypeUrl: ''
+  };
+public visibleFontsCount = 5;
+private fontRef: any;
+private fontLoaded = false;
   
   color: Color = {
     name: '',
@@ -43,36 +58,26 @@ previousColor: Color = {
     name: '',
     hex: ''
   };
-
-
-  font: Font = {
-    name: '',
-    url: '',
-    minHeight: 10,
-    opentypeUrl: ''
-  };
-  background: string = 'default';
-
+  innerColor = '';
   colorSelected: boolean = false;
   lightColorSelected: boolean = false;
-  base: boolean = false;
 
-  variantSize: number = 0;
+
   size: number = this.font.minHeight;
   proportionalWidth: number  = 0;
-
-  width: number = 650;
-  height: number = 550;
-  fontSize: number = 80
-
-  lines: string[] = [];
-  lineHeight = 0;
-  firstDy = 0;
-  innerColor = '';
+  variantSize: number = 0;
 
   finalPrice = 0
 
+  lines: string[] = [];
+  lineHeight = 0;
+public textPaths: {
+  d: string;
+  x: number;
+  y: number;
+}[] = [];
 
+  
 public overlay = {
   left: 0,
   top: 0,
@@ -80,22 +85,10 @@ public overlay = {
   height: 0
 };
 
-public scaleX:number = 0;
-public scaleY:number = 0;
 public offsetY: number = 0;
 
-public visibleFontsCount = 5;
-
 public activeModal : 'color' | 'lightColor' | 'base' | null = null
-
-private layoutReady: boolean = false
-private fontRef: any;
-private fontLoaded = false;
-public textPaths: {
-  d: string;
-  x: number;
-  y: number;
-}[] = [];
+base: boolean = false;
 
 
 get visibleFonts() {
@@ -129,7 +122,7 @@ get glowColor(): string {
     Validators.pattern(/^(?!Tu texto aquí$).+/)
   ]], 
       color: [ this.material?.colors.filter(color => color.uses?.includes('letra'))[0] || this.color, Validators.required],
-      lightColor: [ this.material?.colors.filter(color => color.uses?.includes('vinilo') || color.uses?.includes('metacrilato'))[0] || this.lightColor],
+      lightColor: [ this.material?.colors.filter(color => color.uses?.includes('luz'))[0] || this.lightColor],
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font, Validators.required],
       size: this.size,
@@ -140,15 +133,15 @@ get glowColor(): string {
 
     this.applyFormValues(this.form.value);
 
-    this.form.valueChanges
-  .pipe(debounceTime(150))
-  .subscribe(values => {
-    this.applyFormValues(values)
-  });
+  ['text', 'color', 'lightColor', 'font', 'size', 'baseColor'].forEach(controlName => {
+  this.form.get(controlName)?.valueChanges
+    .pipe(debounceTime(150))
+    .subscribe(() => {
+      this.applyFormValues(this.form.value);
+    });
+});
 
 } 
-
-
 
 private findMaterial() {
 this.material  = materials.find((material) => material.name === this.product.renderKey);
@@ -196,13 +189,8 @@ this.updateText();
       this.innerColor = this.tintColor(this.color.hex, 0.9);
     this.lines = this.text.split('\n');
  
- if (!this.fontLoaded || !this.fontRef) {
-    this.layoutReady = false;
-    return;
-  }
-
-  this.layoutReady = true;
-
+ if (!this.fontLoaded || !this.fontRef) return;
+  
   this.fitTextWithMetrics();
   this.recalcLayout();
 this.buildTextPaths();
@@ -306,7 +294,6 @@ this.overlay = {
     height: bbox.height + padding * 2
 };
 this.proportionalWidth = this.size * (this.overlay.width / this.overlay.height);
- console.log('en update overlay', this.proportionalWidth)
 }
 
 
@@ -375,10 +362,15 @@ this.lightColorSelected = true
   }
     if(type === 'base') {
     this.base = true;
-     this.form.patchValue({
-    baseWidth: Math.round(this.proportionalWidth + 3)
-  });
-  console.log('en open modal', this.proportionalWidth)
+    const minBaseWidth = Math.round(this.proportionalWidth + 3);
+  const currentBaseWidth = this.form.get('baseWidth')?.value;
+
+   if (!currentBaseWidth || currentBaseWidth < minBaseWidth) {
+    this.form.patchValue({
+      baseWidth: minBaseWidth
+    }, { emitEvent: false });
+  }
+  
   }
 }
 
@@ -401,6 +393,18 @@ public toggleFonts() {
   }
 }
 
+public removeBase() {
+  this.base = false;
+
+  this.form.patchValue({
+    baseColor: this.material?.colors.find(color => color.uses?.includes('base')) || this.baseColor,
+    baseHeight: this.size + 3,
+    baseWidth: Math.round(this.proportionalWidth + 3)
+  }, { emitEvent: false });
+
+  this.activeModal = null;
+}
+
 
 
 public ngAfterViewInit() {
@@ -413,7 +417,9 @@ public ngAfterViewInit() {
    public onSubmit() { 
      if (this.form.invalid || !this.product.variants) return;
      
-        const variantSelected = this.product.variants.find(v => v.size >= this.variantSize);
+        //const variantSelected = this.product.variants.find(v => v.size >= this.variantSize);
+
+  const variantSelected = this.product.variants.find(v => v.size >= this.size) || this.product.variants[this.product.variants.length - 1];
      
   if (!this.product?._id || !variantSelected) return;
 
@@ -448,10 +454,68 @@ public ngAfterViewInit() {
    
     } 
 
-  ngOnChanges() {
-  this.findMaterial()
+  ngOnChanges(changes: SimpleChanges) {
+   if (changes['product'] && !changes['product'].firstChange) {
+    this.resetPersonalizador();
+  }
 }
 
+private resetPersonalizador() {
+  this.findMaterial();
+
+  if (!this.material || !this.form) return;
+
+  this.background = 'default'
+  this.text = 'Tu texto aquí';
+
+  this.visibleFontsCount = 5;
+  this.fontLoaded = false;
+  this.fontRef = null;
+
+this.previousColor = {
+    name: '',
+    hex: ''
+  };
+  this.innerColor = '';
+
+  this.base = false;
+  this.activeModal = null;
+
+  this.colorSelected = false;
+  this.lightColorSelected = false;
+    
+  this.lines = [];
+  this.lineHeight = 0;
+  this.textPaths = [];
+  this.proportionalWidth = 0;
+  this.variantSize = 0;
+  this.overlay = {
+  left: 0,
+  top: 0,
+  width: 0,
+  height: 0
+};
+
+this.offsetY = 0;
+
+  this.finalPrice = 0;
+  
+  const defaultFont = this.material.fonts[0] || this.font;
+const defaultSize = defaultFont.minHeight || 10;
+
+  this.form.reset({
+    text: '',
+    color: this.material.colors.find(color => color.uses?.includes('letra')) || this.color,
+    lightColor: this.material.colors.find(color => color.uses?.includes('luz')) || this.lightColor,
+    baseColor: this.material.colors.find(color => color.uses?.includes('base')) || this.baseColor,
+    font:  defaultFont,
+    size: defaultSize,
+    baseHeight: defaultSize + 3,
+    baseWidth: 0
+  }, { emitEvent: false });
+
+  this.applyFormValues(this.form.value);
+}
 
 }      
 

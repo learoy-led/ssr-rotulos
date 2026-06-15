@@ -4,7 +4,7 @@
 
 .main-product-details {
   display: flex;
-  gap: 74px;
+  gap: 35px;
   margin: auto;
 }
 
@@ -14,10 +14,9 @@
 
 .product-images {
     display: flex;
-    flex-direction: column;
     width: 45%;
     gap:10px;
-  }
+  } 
 
   .product-texts {
     display: flex;
@@ -35,17 +34,17 @@
 
   .main-image {
     object-fit: cover;
-     width:100%;
-     border-radius: 10px
+      width:80%; 
+      height:100%;
+     border-radius: 10px;
+     aspect-ratio: 1/1
   }
 
 
   .secondary-images {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    width:100%;
-    height: auto;
   }
 
 

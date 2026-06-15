@@ -1,13 +1,14 @@
 :host {
 display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+width:80%; 
+   height: 498.06px; 
+aspect-ratio: 1/1
 }
 
 .compare-container {
   position: relative;
-   width: 100%;
-     height: 100%;
+    width: 100%;
+height: 100%;  
    overflow: hidden;
      border-radius: 10px;
 }
@@ -15,36 +16,57 @@ display: block;
 .base {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+         width: 100%;
+height: 100%;  
+}
+
+.on {
+height: 100%;  
 }
 
 .overlay {
   position: absolute;
  top: 0;
   left: 0;
-  height: 100%;
+    height: 100%;  
     overflow: hidden;
 }
-
-.overlay img {
-   object-fit: cover;
-  height: 100%;
-}
-
 
 .slider {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 3px;
-  background: white;
   transform: translateX(-50%);
   cursor: ew-resize;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-bar {
+    position: absolute;
+  width: 3px;
+  height: 100%;
+ background-color: var(--color-white)
 }
 
 img {
-  border-radius: 10px;
+   border-radius: 10px; 
+     object-fit: cover;
+}
+
+.arrows {
+  height: 28px;
+  fill: var(--color-white);
+transform: rotate(90deg);
+  fill: var(--color-white);
+}
+
+.arrows-circle {
+    display: flex;
+background-color: var(--color-black);
+opacity: 0.5;
+padding: 5px;
+border-radius: 50%; 
 }

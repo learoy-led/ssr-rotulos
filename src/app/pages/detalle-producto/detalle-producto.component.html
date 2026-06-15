@@ -15,22 +15,17 @@
   @if (productSelectedData) {
   <section class="product-details">
     <div class="main-product-details">
-      @if(productSelectedData.light && productSelectedData.renderKey && productSelectedData.renderKey !== 'neon' && productSelectedData.renderKey !== 'proyector') {
-           <figure class="product-images">
-         <app-image-compare [images]="productSelectedData.images"></app-image-compare>
-         </figure>
-         } @else {
+     
        <figure class="product-images">
-        <img
-          class="main-image"
-          [src]="productSelectedData.images[mainImageIndex]"
-          [alt]="productSelectedData.slug"
-        />
-@if(productSelectedData.images.length > 1) {
+      
+        @if(productSelectedData.images.length > 1) {
         <ul class="secondary-images">
-          <li
-            *ngFor="let imageUrl of productSelectedData.images; let i = index"
-          >
+          @for(
+          imageUrl of categoryName === 'Letras corpóreas' && productSelectedData.light ? 
+          productSelectedData.images.slice(2,6) :
+          productSelectedData.images.slice(0,4)
+          ; track $index; let i = $index) {
+<li>
             <img
               class="product-image"
               [class.active]="i === mainImageIndex"
@@ -38,11 +33,24 @@
               [src]="imageUrl"
               [alt]="productSelectedData.slug+'-'+i"
             />
+            
           </li>
+          }
+          
         </ul>
         }
+          @if(categoryName === 'Letras corpóreas' && productSelectedData.light && showCompare) {
+            <app-image-compare [images]="productSelectedData.images.slice(0, 2)"></app-image-compare>
+} @else {
+  
+        <img
+          class="main-image"
+          [src]="productSelectedData.images[mainImageIndex]"
+          [alt]="productSelectedData.slug"
+        />
+}
       </figure> 
-   }
+   
 
       <div class="product-texts">
     

@@ -114,3 +114,21 @@ margin-bottom: 10px
   background-color: var(--color-extra-light-grey);
     width: 80%
 }
+
+.no-base-option {
+   display: flex;
+  flex-direction: column;
+    align-items: center;
+     gap: 6px;
+   border: 1px solid #e2e2e2;
+   background: linear-gradient(to top right, transparent 48%, red 48%, red 52%, transparent 52%),
+    linear-gradient(to top left, transparent 48%, red 48%, red 52%, transparent 52%);
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+  .no-base-option:hover {
+ border: 1px solid var(--color-grey);
+ }
+

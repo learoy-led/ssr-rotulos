@@ -21,10 +21,12 @@ public mainVariantPrice = 0
 
 public ngOnInit() {
 if(this.mainVariant) {
-this.product.categories.find((cat)=> cat.name === 'Letras corpóreas') ? this.mainVariantPrice = this.mainVariant?.price * 10 :
+
+
+this.product.renderKey && this.product.renderKey !== 'neon' && this.product.renderKey !== 'proyector' ?
+this.mainVariantPrice = this.mainVariant?.price * 10 :
 this.mainVariantPrice = this.mainVariant?.price
 }
 }
-
  
 }

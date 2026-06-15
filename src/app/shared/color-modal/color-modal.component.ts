@@ -15,6 +15,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class ColorModalComponent implements OnChanges {
 
 public xmarkPath:string = iconPaths.xmark
+public Math = Math;
 
 @Input() activeModal!: 'color' | 'lightColor' | 'base' 
 @Input() material!: Material
@@ -26,6 +27,7 @@ public xmarkPath:string = iconPaths.xmark
 
 @Output() closed = new EventEmitter<void>();
 @Output() cancel = new EventEmitter<void>();
+@Output() removeBaseSelected = new EventEmitter<void>();
 
 
 get activeControlName() {
@@ -42,6 +44,11 @@ this.closed.emit();
 
 public unselectColor() {
   this.cancel.emit();
+  this.closed.emit();
+}
+
+public removeBase() {
+  this.removeBaseSelected.emit();
   this.closed.emit();
 }
 

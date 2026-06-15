@@ -9,6 +9,17 @@
  
 
 <div class="color-picker">
+
+  @if(activeModal === 'base') {
+    <div class="color-option">
+    <button
+      type="button"
+      class="color-square no-base-option"
+      (click)="removeBase()">
+      <span class="color-legend">Sin base</span>
+    </button>
+  </div>
+  }
  
   @for(color of material.colors; track i; let i = $index) {
       @if(activeModal === 'color' && color.uses?.includes('letra') || activeModal === 'lightColor' && color.uses?.includes('luz') || activeModal === 'base' && color.uses?.includes('base')) {
@@ -58,7 +69,7 @@
 
     <div class="measure-input">
       
-     <label for="baseHeight">Ancho (cm): </label>
+     <label for="baseWidth">Ancho (cm): </label>
     <input
         aria-label="Escribir ancho de la base en centímetros"
         class="number-input"
@@ -66,7 +77,7 @@
         id="baseWidth"
         name="baseWidth"
            formControlName="baseWidth"
-          [min]="lettersWidth+3"
+          [min]="Math.round(lettersWidth + 3)"
         #baseWidth
       />
         

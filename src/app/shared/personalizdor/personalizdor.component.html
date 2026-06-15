@@ -300,8 +300,8 @@
    [lettersHeight]="size"
    [lettersWidth]="proportionalWidth"
     (cancel)="cancelModal()"
-  (closed)="activeModal = null">
-
+  (closed)="activeModal = null"
+    (removeBaseSelected)="removeBase()">
    ></app-color-modal>
 }
 
