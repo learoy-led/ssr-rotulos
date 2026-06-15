@@ -146,3 +146,23 @@ white-space: nowrap;
  padding: 15px 0;
 }
 }
+
+@media screen and (max-width: 374px) {
+  .product-images {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .main-image {
+     width: 100%
+  }
+.secondary-images {
+  flex-direction: row;
+  flex-wrap: nowrap;
+    overflow-x: scroll;
+      scroll-behavior: smooth;
+       flex: 0 0 auto;
+}
+.secondary-images li {
+ min-width: 25%
+}
+}

@@ -74,6 +74,7 @@ textarea:focus-visible {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
+  max-width: 374px;
   justify-content: center;
 }
 
@@ -278,5 +279,21 @@ flex-direction: column;
 .container {
 display: flex;
 flex-direction: column;
+}
+
+.color-picker, .font-picker, .background-picker {
+  gap: 10px;
+}
+.font-preview {
+  width: fit-content;
+  }
+}
+
+@media screen and (max-width: 374px) {
+.color-picker, .font-picker, .background-picker {
+  flex-wrap: nowrap;
+    overflow-x: scroll;
+      scroll-behavior: smooth;
+       flex: 0 0 auto;
 }
 }
