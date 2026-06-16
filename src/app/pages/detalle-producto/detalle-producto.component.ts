@@ -17,12 +17,11 @@ import { GoboRenderComponent } from '../../shared/gobo-render/gobo-render.compon
 import { PricePipe } from '../../pipes/price.pipe';
 import { FormsModule } from '@angular/forms';
 import { iconPaths } from '../../data/data';
-import { IconComponent } from '../../shared/icon/icon.component';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule, IconComponent],
+  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })
@@ -58,7 +57,9 @@ export class DetalleProductoComponent implements OnInit {
   
   }
   public showCompare:boolean = true;
-  public downArrow: string = iconPaths.downArrow
+  public downArrow: string = iconPaths.downArrow;
+  public upArrow: string = iconPaths.upArrow;
+  public isAtBottom: boolean = false
   
    @ViewChild('imagesCarousel') imagesCarousel!: ElementRef<HTMLUListElement>;
 
@@ -156,21 +157,17 @@ this.cartService.addToCart(productPurchased);
 
     public scrollToTarget() {
     if (!this.platformService.isBrowser()) return;
-      console.log('click');
+
     const element = this.imagesCarousel.nativeElement as HTMLUListElement;
       if (!element) return;
-      console.log({
-    scrollTop: element.scrollTop,
-    clientHeight: element.clientHeight,
-    scrollHeight: element.scrollHeight
-  });
-    const atBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 5;
-     console.log('atBottom es', atBottom)
+      
+    this.isAtBottom = !this.isAtBottom;
 
     element.scrollTo({
-      top: atBottom ? 0 : element.scrollHeight,
+      top: this.isAtBottom ? element.scrollHeight : 0,
       behavior: 'smooth'
     });
+      
   }
 
 

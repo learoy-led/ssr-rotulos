@@ -52,9 +52,13 @@ app-card::ng-deep .texts-container .price {
     :host {
        width: 90vw; 
       align-items: flex-start;
-      overflow-x: scroll;
+      overflow-x: auto;
       scroll-behavior: smooth;
       padding-bottom: 12px;
+      scrollbar-width: none; 
     } 
+     :host::-webkit-scrollbar {
+  display: none;
+}
     }
       

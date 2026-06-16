@@ -41,37 +41,55 @@
      aspect-ratio: 1/1
   }
 
-  .secondary-images-wrapper {
-          position: relative;
-           overflow-y: auto;
-    scroll-behavior: smooth;
-  scrollbar-width: none; 
+ .secondary-images-wrapper {
+          position: relative;   
+   
      }
 
-  .secondary-images {
+ .secondary-images {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    
+    max-height: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
   }
 
-  .secondary-images-wrapper::-webkit-scrollbar {
+ .secondary-images::-webkit-scrollbar {
   display: none;
 }
 
-.small-icon {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-   pointer-events: none;
-  transition: opacity 0.2s;
-}
-
-.secondary-images-wrapper:hover .small-icon {
-  opacity: 1;
+.secondary-images-wrapper:hover .arrows-circle {
+  opacity: 0.5;
     pointer-events: auto;
 }
+
+.arrows {
+  height: 22px;
+  fill: var(--color-white);
+}
+
+.arrows-circle {
+    display: flex;
+background-color: var(--color-black);
+opacity: 0;
+padding: 5px;
+border-radius: 50%; 
+position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+   pointer-events: none;
+  transition: opacity 0.2s, transform .3s;
+}
+
+.arrows-circle.up {
+  transform: translateX(-50%) translateY(-5px); 
+    bottom: auto;
+    top: -14px;
+  }
 
   .product-image {
     object-fit: cover;
@@ -174,9 +192,7 @@ white-space: nowrap;
 .personalizador-section  {
  padding: 15px 0;
 }
-}
-
-@media screen and (max-width: 374px) {
+/* aquí tenía solo movil */
   .product-images {
     flex-direction: column-reverse;
     align-items: center;

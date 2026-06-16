@@ -59,19 +59,21 @@ textarea:focus-visible {
  border: 1px solid #e2e2e2;
 }
 
-.color-picker, .font-picker, .background-picker {
+.color-picker, .font-picker {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
 }
 
 .background-picker {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 14px;
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  justify-content: center;
 }
 
 .black-background {
@@ -262,10 +264,55 @@ flex-direction: column;
 }
 
 @media screen and (max-width: 374px) {
-.color-picker, .font-picker, .background-picker {
-  flex-wrap: nowrap;
-    overflow-x: scroll;
+:host {
+  padding-top: 0;
+}
+
+.preview-container {
+  height: 55vh;
+}
+
+.preview-form {
+  padding: 22px
+}
+
+.preview-figure {
+      z-index: 200;
+      top: 0
+}
+
+textarea {
+ min-height: fit-content; 
+}
+
+.button.add-to-cart {
+      z-index: 300;
+      position: fixed;
+      bottom: 10px;
+      right: 10px
+}
+
+.color-picker, .font-picker {
+    overflow-x: auto;
       scroll-behavior: smooth;
        flex: 0 0 auto;
+           scrollbar-width: none; 
+}
+
+ .color-picker::-webkit-scrollbar,  .font-picker::-webkit-scrollbar {
+  display: none;
+}
+
+.color-picker, .font-picker {
+  flex-wrap: nowrap;
+}
+
+.background-square {
+width: 50px;
+height: 45px;
+background-size: 250%; 
+}
+label {
+    font-size: 14px; 
 }
 }

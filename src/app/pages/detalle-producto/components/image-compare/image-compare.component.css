@@ -58,7 +58,6 @@ img {
 
 .arrows {
   height: 28px;
-  fill: var(--color-white);
 transform: rotate(90deg);
   fill: var(--color-white);
 }

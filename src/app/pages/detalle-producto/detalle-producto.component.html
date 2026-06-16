@@ -19,8 +19,8 @@
        <figure class="product-images">
       
         @if(productSelectedData.images.length > 1) {
-          <div class="secondary-images-wrapper" #imagesCarousel>
-        <ul class="secondary-images" >
+          <div class="secondary-images-wrapper" >
+        <ul class="secondary-images" #imagesCarousel>
           @for(
           imageUrl of categoryName === 'Letras corpóreas' && productSelectedData.light ? 
           productSelectedData.images.slice(2,8) :
@@ -38,7 +38,13 @@
           </li>
           }
         </ul>
-  <app-icon role="button" (click)="scrollToTarget()" [ngClass]="'small-icon blue scroll-btn'" [iconPath]="downArrow"></app-icon>         
+        @if(categoryName === 'Letras corpóreas' && productSelectedData.light ? productSelectedData.images.length > 5 : productSelectedData.images.length > 3) {
+    <span class="arrows-circle" [class.up]="isAtBottom" role="button"  (click)="scrollToTarget()">
+  <svg class="arrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+    <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+    <path [attr.d]="isAtBottom ? upArrow : downArrow"/></svg>   
+    </span>  
+    }
       </div>
       }
           @if(categoryName === 'Letras corpóreas' && productSelectedData.light && showCompare) {
