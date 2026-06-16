@@ -4,7 +4,6 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { ScrollTopButtonComponent } from './core/components/scroll-top-button/scroll-top-button.component';
 import { SeoService } from './core/services/seo.service';
-import { LoadingService } from './core/services/loading.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { PlatformService } from './core/services/platform.service';
@@ -16,6 +15,8 @@ import {
   NgcNoCookieLawEvent,
   NgcStatusChangeEvent,
 } from 'ngx-cookieconsent';
+
+//import { LoadingService } from './core/services/loading.service';
 //import { LoaderComponent } from './core/components/loader/loader.component';
 
 declare global {

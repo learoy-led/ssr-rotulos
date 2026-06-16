@@ -19,7 +19,7 @@ export class ImageCompareComponent implements AfterViewInit {
   public sliderValue = 50; 
   private dragging = false;
 
-  constructor(private platformService: PlatformService,  private destroyRef: DestroyRef) {}
+  constructor(private platformService: PlatformService) {}
 
   ngAfterViewInit() {
     if (!this.platformService.isBrowser()) return;

@@ -9,7 +9,7 @@ export class ShowScrollButtonDirective {
 
   constructor(private platformService: PlatformService) { }
   
-  @HostBinding('class.visible') isVisible = false;
+@HostBinding('class.visible') isVisible = false;
 
 @HostListener('window:scroll', [])
   onWindowScroll() {

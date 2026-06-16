@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product, Variant } from '../../models/data.models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from '../../core/services/seo.service';
@@ -16,17 +16,20 @@ import { map } from 'rxjs';
 import { GoboRenderComponent } from '../../shared/gobo-render/gobo-render.component';
 import { PricePipe } from '../../pipes/price.pipe';
 import { FormsModule } from '@angular/forms';
+import { iconPaths } from '../../data/data';
+import { IconComponent } from '../../shared/icon/icon.component';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule],
+  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule, IconComponent],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })
 export class DetalleProductoComponent implements OnInit {
-  public categoryName = '';
-  public categoryLength = 0;
+
+  public categoryName: string = '';
+  public categoryLength: number = 0;
   public productSelectedData: Product = {
     type: '',
     name: '',
@@ -44,9 +47,9 @@ export class DetalleProductoComponent implements OnInit {
     variants: [],
     _id: '',
   };
-  public mainImageIndex = 0;
-  public productDetailsIndex = 0;
-  private currentRoute = '';
+  public mainImageIndex: number = 0;
+  public productDetailsIndex: number = 0;
+  private currentRoute:string = '';
   public isLoading: boolean = true;
   public selectedVariant: Variant = {
       name: '' ,
@@ -54,7 +57,11 @@ export class DetalleProductoComponent implements OnInit {
     price: 0,
   
   }
-  public showCompare = true;
+  public showCompare:boolean = true;
+  public downArrow: string = iconPaths.downArrow
+  
+   @ViewChild('imagesCarousel') imagesCarousel!: ElementRef<HTMLUListElement>;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -110,13 +117,13 @@ const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
     }
   }
 
-  public updateProductDetails(index: number) {
+public updateProductDetails(index: number) {
 
-  this.categoryName === 'Letras corpóreas' && this.productSelectedData.light ?
+this.categoryName === 'Letras corpóreas' && this.productSelectedData.light ?
 this.mainImageIndex = index+2 : this.mainImageIndex = index;
 
-  this.showCompare = false
-  }
+this.showCompare = false
+}
 
   public listenLoading() {
     this.loadingService.getLoadingStatus().subscribe((isLoading) => {
@@ -145,4 +152,26 @@ public onAddToCart() {
 this.cartService.addToCart(productPurchased);
   this.router.navigate(['/cart']);
   }
+
+
+    public scrollToTarget() {
+    if (!this.platformService.isBrowser()) return;
+      console.log('click');
+    const element = this.imagesCarousel.nativeElement as HTMLUListElement;
+      if (!element) return;
+      console.log({
+    scrollTop: element.scrollTop,
+    clientHeight: element.clientHeight,
+    scrollHeight: element.scrollHeight
+  });
+    const atBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 5;
+     console.log('atBottom es', atBottom)
+
+    element.scrollTo({
+      top: atBottom ? 0 : element.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+
+
 }

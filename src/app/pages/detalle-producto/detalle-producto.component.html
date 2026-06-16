@@ -19,11 +19,12 @@
        <figure class="product-images">
       
         @if(productSelectedData.images.length > 1) {
-        <ul class="secondary-images">
+          <div class="secondary-images-wrapper" #imagesCarousel>
+        <ul class="secondary-images" >
           @for(
           imageUrl of categoryName === 'Letras corpóreas' && productSelectedData.light ? 
-          productSelectedData.images.slice(2,6) :
-          productSelectedData.images.slice(0,4)
+          productSelectedData.images.slice(2,8) :
+          productSelectedData.images
           ; track $index; let i = $index) {
 <li>
             <img
@@ -36,19 +37,20 @@
             
           </li>
           }
-          
         </ul>
-        }
+  <app-icon role="button" (click)="scrollToTarget()" [ngClass]="'small-icon blue scroll-btn'" [iconPath]="downArrow"></app-icon>         
+      </div>
+      }
           @if(categoryName === 'Letras corpóreas' && productSelectedData.light && showCompare) {
             <app-image-compare [images]="productSelectedData.images.slice(0, 2)"></app-image-compare>
-} @else {
-  
+}
         <img
+        [ngClass]="{'solo-movil': categoryName === 'Letras corpóreas' && productSelectedData.light && showCompare }"
           class="main-image"
           [src]="productSelectedData.images[mainImageIndex]"
           [alt]="productSelectedData.slug"
         />
-}
+
       </figure> 
    
 

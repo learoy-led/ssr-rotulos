@@ -11,11 +11,10 @@ export class ShowSubmennuDirective {
 
   @HostBinding('class.visible') submenuVisible = this.catalogoMouseEnter;
   
-
   @HostListener('mouseleave')
   public onMouseExit() {
-     if (this.platformService.isBrowser()) {
+  if (this.platformService.isBrowser()) {
       this.submenuVisible = false;
-    }
+  }
   }
 }
