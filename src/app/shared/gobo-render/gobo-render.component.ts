@@ -36,8 +36,8 @@ export class GoboRenderComponent implements OnInit {
   private allowedTypes:string[] = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml', 'application/pdf']
   private maxSize:number = 2 * 1024 * 1024 //2MB
 
-  imageUploaded = false;
-  
+  public imageUploaded: boolean = false;
+  public showUpload: boolean = false
 
    constructor(private cartService: CartService, private router: Router, private platformService: PlatformService,  private pdfService: PdfService) {}
 
@@ -93,7 +93,8 @@ export class GoboRenderComponent implements OnInit {
     this.currentObjectUrl = URL.createObjectURL(file);
     this.goboImage = this.currentObjectUrl;
   }
-  this.imageUploaded = true
+  this.imageUploaded = true;
+  this.showUpload = false;
 }
 
 public onVariantChange(variant: Variant) {

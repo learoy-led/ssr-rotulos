@@ -34,10 +34,6 @@ position: relative
 opacity:0;
 pointer-events: none;
 }
-.preview-figure:hover .hide {
-  opacity:1;
-  pointer-events: auto;
-}
 
 .upload-button {
   display: flex;
@@ -152,4 +148,11 @@ flex-direction: column;
 display: flex;
 flex-direction: column;
 }
+}
+
+@media (hover: hover) {
+.preview-figure:hover .hide {
+opacity:1;
+pointer-events: auto;
+} 
 }
