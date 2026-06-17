@@ -193,7 +193,7 @@
 
 
   <ul role="listbox" class="background-picker">
-     <li role="option" class="background-square black-background" (click)="selectBackground('default')"></li>
+     <li role="option" class="background-square" (click)="selectBackground('default')"></li>
 
   @for(bg of material?.backgrounds; track i; let i = $index) {
       <li role="option"
@@ -248,6 +248,7 @@
     
     @if(color.uses?.includes('letra')) {
       <div class="color-option">
+          <span class="color-legend">{{color.name}}</span>
       <input
       type="radio"
       [id]="'color-' + i"
@@ -260,7 +261,7 @@
       class="color-square"
       [style.background]="color.hex"
        ></label>
-      <span class="color-legend">{{color.name}}</span>
+    
     </div>
     }
 
@@ -274,20 +275,21 @@
   <div class="options-container">
 @if(product.renderKey !== 'acero') {
        <div class="img-selector-button" (click)="openModal('color')" [class.selected]="colorSelected" [style.background]="color.hex">
-        <img  class="img-button" [src]="product.name.includes('retro') ? '/color-frontal.jpg' : '/color-trasera.jpg'" alt="boton-color-letra-corporea">
    <span class="button-legend">Color letras</span> 
+           <img  class="img-button" [src]="product.name.includes('retro') ? '/color-frontal.jpg' : '/color-trasera.jpg'" alt="boton-color-letra-corporea">
+
     </div>
     }
 
   @if(product.light && product.renderKey !== 'mini') {
      <div class="img-selector-button" (click)="openModal('lightColor')" [class.selected]="lightColorSelected" [style.background]="lightColor.hex">
-       <img class="img-button" [src]="product.name.includes('retro') ? '/color-trasera.jpg' : '/color-frontal.jpg'" alt="boton-color-luz-letra-corporea">
    <span class="button-legend">Color luz</span> 
+   <img class="img-button" [src]="product.name.includes('retro') ? '/color-trasera.jpg' : '/color-frontal.jpg'" alt="boton-color-luz-letra-corporea">
     </div>
  }  
   <div class="img-selector-button" (click)="openModal('base')" [class.selected]="base" [style.background]="baseColor.hex">
-   <img class="img-button" src="/base.jpg" alt="boton-base-letra-corporea">
     <span class="button-legend">Base de aluminio opcional</span> 
+    <img class="img-button" src="/base.jpg" alt="boton-base-letra-corporea">
     </div>
   </div>
 

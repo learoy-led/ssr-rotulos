@@ -1,17 +1,19 @@
 .modal {
-   background: var(--color-white);
-  padding: 32px;
- width: 90%;
-  max-width: 480px;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  overflow: hidden;
-  animation: scaleIn 0.2s ease;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
+   background: var(--color-white);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border-radius: 14px;
+  padding: 16px;
+ width: 90%;
+max-width: 480px;
+  overflow: hidden;
+  animation: scaleIn 0.2s ease;
 
+}
+.modal form {
+    padding: 16px;
+  }
 
 .modal-overlay {
 position: absolute;
@@ -21,7 +23,7 @@ position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: 99;
   animation: fadeIn 0.2s ease;
 }
 
@@ -37,16 +39,16 @@ position: absolute;
 }
 
 .color-picker label {
- border: 1px solid #e2e2e2;
+ border: 1px solid var(--color-light-grey);
    border-radius: 5px
  }
 
-  .color-picker label:hover {
+  .color-picker label:hover,   .no-base-option:hover {
  border: 1px solid var(--color-grey);
  cursor: pointer;
  }
 
-  input[type="radio"]:checked + .color-square {
+input[type="radio"]:checked {
 border: 1px solid var(--color-grey);
 }
 
@@ -69,23 +71,21 @@ border-radius: 5px;
 .color-legend {
   opacity: 0;
   transition: opacity .2s ease;
-   border: 1px solid #e2e2e2;
+   border: 1px solid var(--color-light-grey);
    border-radius: 5px;
    font-size: 14px;
-    padding: 2px 4px;
+    padding: 2px 8px;
 text-align: center;
-width: fit-content;
 position: absolute;
- top: -24px;
-  left: 24px;
     white-space: nowrap;
     background-color: var(--color-white);
-    z-index: 2;
+    z-index: 2; 
+ top: -50%;
+left: 70%;
 }
 
 .color-option {
 position: relative;
-  display: inline-block;
 }
 
 .color-option:hover .color-legend {
@@ -120,15 +120,11 @@ margin-bottom: 10px
   flex-direction: column;
     align-items: center;
      gap: 6px;
-   border: 1px solid #e2e2e2;
+   border: 1px solid var(--color-grey);
    background: linear-gradient(to top right, transparent 48%, red 48%, red 52%, transparent 52%),
     linear-gradient(to top left, transparent 48%, red 48%, red 52%, transparent 52%);
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-
-  .no-base-option:hover {
- border: 1px solid var(--color-grey);
- }
 
