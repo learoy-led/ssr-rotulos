@@ -30,6 +30,14 @@ position: relative
   justify-content: center;
  align-items: flex-end; 
 }
+.hide {
+opacity:0;
+pointer-events: none;
+}
+.preview-figure:hover .hide {
+  opacity:1;
+  pointer-events: auto;
+}
 
 .upload-button {
   display: flex;

@@ -35,6 +35,8 @@ export class GoboRenderComponent implements OnInit {
   public errorMessage:string = ''
   private allowedTypes:string[] = ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml', 'application/pdf']
   private maxSize:number = 2 * 1024 * 1024 //2MB
+
+  imageUploaded = false;
   
 
    constructor(private cartService: CartService, private router: Router, private platformService: PlatformService,  private pdfService: PdfService) {}
@@ -86,12 +88,12 @@ export class GoboRenderComponent implements OnInit {
 
   if (file.type === 'application/pdf') {
     this.goboImage = await this.pdfService.pdfToImage(file);
-  
+
   } else {
     this.currentObjectUrl = URL.createObjectURL(file);
     this.goboImage = this.currentObjectUrl;
   }
-
+  this.imageUploaded = true
 }
 
 public onVariantChange(variant: Variant) {

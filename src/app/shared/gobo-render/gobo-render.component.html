@@ -203,8 +203,9 @@
     
 </svg>
 
-@if(goboImage ==='/rotulos-learoy-logo.webp' || '/proyeccion-logo-2-colores-rotulos-learoy.webp') {
-  <div class="upload-overlay">
+
+  <div class="upload-overlay" [ngClass]="{ 'hide': imageUploaded }">
+     
    <label class="upload-button">
   <input type="file" accept=".pdf,.png,.jpg,.jpeg,.svg" hidden
    (change)="onFileSelected($event)">
@@ -219,7 +220,7 @@
 
  
   </div>
-}
+
 </figure>    
 </div>
 
