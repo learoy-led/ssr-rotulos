@@ -223,14 +223,13 @@
 
 </figure>    
 </div>
+ 
 
 <div class="preview-texts-container">
+<h2 class="subtitle blue">{{ product.name }}</h2>  
 
 
-
-<div class="product-intro"
-[innerHTML]="product.description"
-></div>
+<div class="product-description" [innerHTML]="product.description"></div>
 
 
 
@@ -257,7 +256,7 @@
 }
 
 <p>Precio <span class="price">{{ selectedVariant.price | price }}</span> IVA Incl.</p>
-<button (click)="onAddToCart()" class="button" [disabled]="selectedVariant.name !=='sin lente' && goboImage === '/rotulos-learoy-logo.webp'">Añadir al carrito</button> 
+<button (click)="onAddToCart()" class="button" [disabled]="selectedVariant.name !=='sin lente' && !imageUploaded">Añadir al carrito</button> 
 </div>
 </div>
 <p class="ia-advice">Esta imagen es una simulación. El producto real puede variar ligeramente.</p>

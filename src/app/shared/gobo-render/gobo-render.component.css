@@ -1,6 +1,5 @@
 :host {
   width: 70%;
-  padding-top: 52px;
 }
 
 .container {
@@ -80,9 +79,19 @@ width: 100%;
      width:100%; 
       background-color: var(--color-extra-light-grey);
 }
+.subtitle {
+  padding-bottom: 0
+}
 
-.product-intro {
-padding: 20px 0
+.product-description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+padding-bottom: 40px
+}
+
+:host ::ng-deep .product-description > p:last-of-type {
+  display: none;
 }
 
 .variant-picker {
