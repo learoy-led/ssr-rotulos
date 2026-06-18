@@ -228,7 +228,9 @@
 
 
 
-<p class="product-intro"> {{ product.description.split('.')[0] +'.'}}</p>
+<p class="product-intro"
+[innerHTML]="product.description"
+></p>
 
 
 
