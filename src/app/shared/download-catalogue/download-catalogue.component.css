@@ -40,7 +40,7 @@ background-color: var(--color-white);
 color: var(--color-black)
 }
   
-     @media screen and (max-width: 374px) {
+     @media screen and (max-width: 766px) {
     :host {
     display: flex;
     flex-direction: column-reverse;
