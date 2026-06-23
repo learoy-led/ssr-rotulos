@@ -38,6 +38,10 @@ textarea:focus-visible {
   gap: 14px;
 }
 
+.hidden-font {
+display: none
+}
+
 .background-picker {
   display: flex;
   justify-content: center;
@@ -190,7 +194,7 @@ flex-direction: column;
 }
 }
 
-@media screen and (max-width: 374px) {
+@media screen and (max-width: 430px) {
 .preview-form {
   padding: 22px;
   width: 100vw
@@ -207,9 +211,9 @@ textarea {
 
 .button.add-to-cart {
       z-index: 300;
-      position: fixed;
+      position: sticky;
       bottom: 10px;
-      right: 10px
+      align-self: flex-end;
 }
 
 .color-picker, .font-picker {
@@ -224,12 +228,20 @@ textarea {
   display: none;
 }
 
+.fonts-expand {
+display: none
+}
+
+.hidden-font {
+display: flex
+}
+
 .background-square {
 width: 50px;
 height: 45px;
 }
 
-label {
+label, .label {
     font-size: 14px; 
 }
 }

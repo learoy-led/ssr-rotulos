@@ -99,7 +99,7 @@ public onFilesSelected(event: Event) {
   const files = Array.from(input.files);
 
    for (const file of files) {
-    console.log(file.type)
+
     if (!this.allowedTypes.includes(file.type)) {
       this.errorMessage = 'Formato no permitido.';
       return;

@@ -216,10 +216,11 @@
       <label for="text">Texto del rótulo (añade líneas pulsando Enter):</label> 
       <textarea  class="form-field" placeholder="Tu texto aquí" formControlName="text" id="text" required></textarea>
     
+    
     <label for="font">Elige el diseño de letras:</label> 
      <div class="font-picker">
 
- @for(font of visibleFonts; track i; let i = $index) {
+ @for(font of material?.fonts; track i; let i = $index) {
     <input
       type="radio"
       [id]="'font-' + i"
@@ -230,16 +231,18 @@
     <label
       [for]="'font-' + i"
       class="font-preview"
+      [ngClass]="{'hidden-font': i > 4 && visibleFontsCount === 5}"
       [ngStyle]="{'font-family': font.name}"
        >{{font.name.includes(' ') ? font.name.split(' ')[0] : font.name.split('_')[0]}}</label>
   }
 
-  <span role="button" class="fonts-expand more" (click)="toggleFonts()"> 
-    {{visibleFontsCount < (material?.fonts?.length || 0) ? '&#9660;' : '&#9650;'}}  
+  <span role="button" class="fonts-expand" (click)="toggleFonts()"> 
+    {{visibleFontsCount === material?.fonts?.length ?  '&#9650;' : '&#9660;'}}
   </span>
 
      </div>
   
+
   @if(product.renderKey === 'neon') {
       
 <label for="color"> Selecciona un color:</label> 
@@ -271,7 +274,7 @@
 
 
 @if(product.renderKey !== 'neon') {
-  <span>Elige los colores:</span>
+  <span class="label">Elige los colores:</span>
   <div class="options-container">
 @if(product.renderKey !== 'acero') {
        <div class="img-selector-button" (click)="openModal('color')" [class.selected]="colorSelected" [style.background]="color.hex">
@@ -318,7 +321,7 @@ type="range"
 formControlName="size" 
 id="size">
  
-<p>Precio <span class="price">{{ finalPrice | price }}</span> IVA Incl.</p>
+<p class="price-line">Precio <span class="price">{{ finalPrice | price }}</span></p>
 <button type="submit" class="button add-to-cart" [disabled]="form.invalid">Añadir al carrito</button> 
 }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
 import { iconPaths } from '../../data/data';
 import { CommonModule } from '@angular/common';
@@ -12,7 +12,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './color-modal.component.html',
   styleUrl: './color-modal.component.css'
 })
-export class ColorModalComponent implements OnChanges {
+export class ColorModalComponent {
 
 public xmarkPath:string = iconPaths.xmark
 public Math = Math;
@@ -52,8 +52,5 @@ public removeBase() {
   this.closed.emit();
 }
 
-ngOnChanges() {
- console.log('FORM CAMBIÓ:', this.form.value.baseWidth);
- }
 
 }

@@ -39,8 +39,6 @@ export class HomeComponent implements OnInit {
   public ngOnInit() {
     this.categories$ = this.getProductsService.getCategories();
     this.products$ =this.getProductsService.getFeaturedProducts();
-
-    console.log(this.products$)
     
     this.schemaService.insertSchema(this.schemaService.getLocalBusinessSchema(),'schema-localbusiness')
     this.schemaService.insertSchema(this.schemaService.getWebSiteSchema(), 'schema-website')

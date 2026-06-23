@@ -182,7 +182,6 @@ white-space: nowrap;
   @media screen and (max-width: 766px) {
   .main-product-details {
     flex-direction: column-reverse;
-    gap: 24px;
   }
 
   .product-images, .product-texts {
@@ -196,6 +195,7 @@ white-space: nowrap;
   .product-images {
     flex-direction: column-reverse;
     align-items: center;
+    max-height: none
   }
   .main-image {
      width: 100%

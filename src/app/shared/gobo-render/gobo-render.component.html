@@ -255,7 +255,7 @@
           
 }
 
-<p>Precio <span class="price">{{ selectedVariant.price | price }}</span> IVA Incl.</p>
+<p class="price-line">Precio <span class="price">{{ selectedVariant.price | price }}</span></p>
 <button (click)="onAddToCart()" class="button" [disabled]="selectedVariant.name !=='sin lente' && !imageUploaded">Añadir al carrito</button> 
 </div>
 </div>

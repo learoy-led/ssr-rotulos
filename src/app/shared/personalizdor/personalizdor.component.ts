@@ -38,9 +38,9 @@ export class PersonalizdorComponent implements OnInit, AfterViewInit, OnChanges 
     minHeight: 10,
     opentypeUrl: ''
   };
-public visibleFontsCount = 5;
 private fontRef: any;
 private fontLoaded = false;
+public visibleFontsCount = 5;
   
   color: Color = {
     name: '',
@@ -90,10 +90,10 @@ public offsetY: number = 0;
 public activeModal : 'color' | 'lightColor' | 'base' | null = null
 base: boolean = false;
 
-
 get visibleFonts() {
    return this.material?.fonts?.slice(0, this.visibleFontsCount);
   }
+
 
 get glowColor(): string {
     return this.product.renderKey === 'neon' ? this.color.hex : this.lightColor.hex || '#ffffff';
@@ -114,7 +114,7 @@ get glowColor(): string {
  public ngOnInit() {
 
  this.findMaterial();
- this.preloadTopFonts();
+ this.preloadFonts();
 
       this.form = this.fb.group({
       text: ['',  [
@@ -146,9 +146,8 @@ get glowColor(): string {
 private findMaterial() {
 this.material  = materials.find((material) => material.name === this.product.renderKey);
 }
-private async preloadTopFonts() {
+private async preloadFonts() {
     if (!this.material || !this.platformService.isBrowser()) return    
-     //const topFonts = this.material.fonts.slice(0, 4);
        await Promise.allSettled(
   this.material.fonts.map(font => this.fontsService.loadCssFont(font.name, font.url))
 );
@@ -386,11 +385,7 @@ this.lightColorSelected = true
 
 public toggleFonts() {
   if (!this.material?.fonts) return
-   if (this.visibleFontsCount < this.material?.fonts?.length) {
-    this.visibleFontsCount = this.material?.fonts?.length;
-  } else {
-    this.visibleFontsCount = 5;
-  }
+ this.visibleFontsCount === 5 ? this.visibleFontsCount = this.material.fonts.length : this.visibleFontsCount = 5
 }
 
 public removeBase() {
@@ -447,7 +442,6 @@ public ngAfterViewInit() {
   }
 
   this.form.reset();
-  console.log(productPurchased)
   this.cartService.addToCart(productPurchased)
   this.router.navigate(['/cart']);
   
@@ -468,7 +462,6 @@ private resetPersonalizador() {
   this.background = 'default'
   this.text = 'Tu texto aquí';
 
-  this.visibleFontsCount = 5;
   this.fontLoaded = false;
   this.fontRef = null;
 

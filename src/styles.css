@@ -48,7 +48,6 @@ html {
     line-height: 26px;
 }
 
-
 body {
 background: var(--color-white);
   color: var(--color-grey);
@@ -404,5 +403,9 @@ form {
   .blue-line {
 padding-left: 40px
  }
+
+  .cc-revoke.cc-bottom {
+  display: none
+  } 
   }
 

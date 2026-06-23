@@ -99,7 +99,7 @@ export class AdminImagenesComponent implements OnInit {
       '¿Estás seguro de que quieres eliminar la imagen?',
     );
     if (!deleteConfirmation) return;
-    console.log('el id es', id);
+
     this.imagesService.deleteImage(id).subscribe({
       next: () => {
              alert('Imagen eliminada');
