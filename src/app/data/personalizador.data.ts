@@ -19,12 +19,6 @@ export const neonFonts : Font[] = [
     minHeight: 10,
     opentypeUrl: '/fonts/Comic Sans MS.ttf',
     },
-    {
-    name: 'Amsterdan_CN',
-    url: 'amsterdan',
-    minHeight: 18,
-    opentypeUrl: '/fonts/Amsterdan_CN.ttf',
-    },
        {
     name: 'Beachfront_CN',
     url: 'beachfront',
@@ -81,12 +75,6 @@ export const fonts: Font[] = [
     url: 'chunkfive',
     minHeight: 10,
 opentypeUrl: '/fonts/ChunkFive.ttf',
-    },
-       {
-    name: 'Forte',
-    url: 'forte',
-    minHeight: 10,
-     opentypeUrl: '/fonts/Forte.TTF',
     },
      {
     name: 'Futura Now Headline ExtraBlack',

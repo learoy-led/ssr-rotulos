@@ -18,12 +18,7 @@ export class HomeCarouselComponent {
 public carouselImages: string[] = carouselImages
 
 public letras: string[] = ['metacrilato', 'PVC', 'neón', 'hierro']
-public imagesSelected: string[] = [
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1769692593/rotuloslearoy/sw5ophvfisop1qxt3vpw.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167382/letras-de-metacrilato-retroiluminadas-rotulos-learoy_wuvwtd.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1753955604/frase-luminosa-neon-learoy_s2250h.webp',
-'https://res.cloudinary.com/dxuseyfxa/image/upload/v1738167179/rotulo-luminoso-metacrilato-learoy_eeuwtu.webp'
-]
+
 
 @ViewChild('videoEl') videoEl!: ElementRef<HTMLVideoElement>;
 constructor(private platformService: PlatformService) {}

@@ -26,7 +26,7 @@ declare global {
   }
 }
 
-declare let gtag: (...args: any[]) => void;
+//declare let gtag: (...args: any[]) => void;
 
 @Component({
   selector: 'app-root',
@@ -71,9 +71,12 @@ export class AppComponent implements OnInit, OnDestroy {
      if (this.platformService.isBrowser()) {
 
           //this.listenLoading();
+   this.loadGoogleTag()
 
-      this.getCookie('cookieconsent_status') === 'allow' && this.addAnalyticsScript();
-
+ if (this.getCookie('cookieconsent_status') === 'allow') {
+  this.updateGoogleTag(true);
+}
+     
       
       this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
         () => {}
@@ -107,14 +110,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
       this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
         (event: NgcStatusChangeEvent) => {
-          event.status === 'allow'
-            ? this.addAnalyticsScript()
-            : this.deleteAnalyticsScript();
+this.updateGoogleTag(event.status === 'allow')
         }
       );
 
       this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
-        () => this.deleteAnalyticsScript()
+        () => this.updateGoogleTag(false)
       );
 
       this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
@@ -141,17 +142,13 @@ export class AppComponent implements OnInit, OnDestroy {
   const url = 'https://www.rotuloslearoy.com' + event.urlAfterRedirects;
   this.setCanonicalTag(url);        
 
-        if (typeof gtag === 'function') {
-          gtag('event', 'page_view', {
+          window.gtag?.('event', 'page_view', {
             page_path: event.urlAfterRedirects,
           });
-        }
       }
     });
 
    
-  
-
     }
   }
 
@@ -170,44 +167,43 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-
-  private addAnalyticsScript() {
-    if (!document.getElementById('google-analytics-script')) {
-      const script = document.createElement('script');
-      script.id = 'google-analytics-script';
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1JGFTPJSEQ';
-      script.async = true;
-      document.head.appendChild(script);
-
-      const secondScript = document.createElement('script');
-      secondScript.id = 'google-analytics-second-script';
-      secondScript.innerHTML = `
-          window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-         gtag('consent', 'update', {
-    analytics_storage: 'granted'
-  });
-        gtag('js', new Date());
-        gtag('config', 'G-1JGFTPJSEQ');
-        `;
-      document.head.appendChild(secondScript);
-    }
+  private loadGoogleTag() {
+      if (!document.getElementById('google-tag')) {
+    const script = document.createElement('script');
+    script.id = 'google-tag';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-1JGFTPJSEQ';
+    document.head.appendChild(script);
   }
 
-  private deleteAnalyticsScript() {
-    console.log('ejecuta quitar script');
-    if (!this.platformService.isBrowser()) return;
-    if (
-      document.getElementById('google-analytics-script') &&
-      document.getElementById('google-analytics-second-script')
-    ) {
-      document.getElementById('google-analytics-script')?.remove();
-      document.getElementById('google-analytics-second-script')?.remove();
-    }
-    if (window.dataLayer) {
-      window.dataLayer.length = 0;
-    }
+window.dataLayer = window.dataLayer || [];
+
+window.gtag = function () {
+  window.dataLayer.push(arguments);
+};
+
+window.gtag('consent', 'default', {
+  analytics_storage: 'denied',
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied'
+});
+
+window.gtag('js', new Date());
+
+window.gtag('config', 'G-1JGFTPJSEQ', {
+  send_page_view: false
+});
   }
+
+private updateGoogleTag(granted: boolean) {
+window.gtag?.('consent', 'update', {
+  analytics_storage: granted ? 'granted' : 'denied',
+  ad_storage: granted ? 'granted' : 'denied',
+  ad_user_data: granted ? 'granted' : 'denied',
+  ad_personalization: granted ? 'granted' : 'denied'
+});
+}
 
   private setCanonicalTag(url: string) {
   const link: HTMLLinkElement = document.querySelector("link[rel='canonical']") || document.createElement('link');
