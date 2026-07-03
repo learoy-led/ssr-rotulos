@@ -163,6 +163,11 @@ padding-left: 56px
         letter-spacing: 2px;
         text-transform: uppercase; 
       }
+
+      .small-legend {
+        font-family: "Abel", sans-serif; 
+        letter-spacing: 0.5px;
+      }
   
    .centered-text {
     text-align: center;
