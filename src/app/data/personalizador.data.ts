@@ -1,13 +1,7 @@
 import { Material, Font } from "../models/data.models";
 
 export const neonFonts : Font[] = [
-     {
-    name: 'Handelson Three',
-    url: 'handelson',
-    minHeight: 18,
-     opentypeUrl: '/fonts/Handelson Three.otf',
-    },
-      {
+          {
     name: 'MV Boli',
     url: 'boli',
     minHeight: 10,
