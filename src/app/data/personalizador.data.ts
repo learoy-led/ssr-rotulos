@@ -8,11 +8,18 @@ export const neonFonts : Font[] = [
       opentypeUrl: '/fonts/MV Boli.ttf',
     },
             {
-    name: 'Handelson Three Web Fixed',
-    url: 'handelson', 
+    name: 'Handelson Three Neon Clean',
+    url: 'handelsonthree', 
     minHeight: 18,
-      opentypeUrl: '/fonts/Handelson Three Web Fixed.otf',
+      opentypeUrl: '/fonts/Handelson Three Neon Clean.otf',
     },
+             {
+    name: 'Sacramento',
+    url: 'sacramento', 
+    minHeight: 18,
+      opentypeUrl: '/fonts/Sacramento.ttf',
+    },
+
      {
     name: 'Comic Sans MS',
     url: 'comic',
