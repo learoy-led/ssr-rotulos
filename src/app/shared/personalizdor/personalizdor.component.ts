@@ -245,7 +245,7 @@ this.buildTextPaths();
 }
  private recalcLayout() {
   if (!this.platformService.isBrowser()) return;
-  const lineH = this.fontSize * 1.2;
+  const lineH = this.fontSize * 1.05;
  this.lineHeight = lineH;
    const totalHeight = (this.lines.length - 1) * lineH;
    this.offsetY = this.height / 2 - totalHeight / 2;

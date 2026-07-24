@@ -9,7 +9,7 @@ export const neonFonts : Font[] = [
     },
             {
     name: 'Handelson Three',
-    url: 'handelson',
+    url: 'handelson', 
     minHeight: 18,
       opentypeUrl: '/fonts/Handelson Three.otf',
     },
