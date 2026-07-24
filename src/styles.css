@@ -131,6 +131,7 @@ padding-left: 56px
      .home-title {
       font-size: 80px;
     line-height: 90px;
+    padding-left: 0
   }
 
   h1.centered-text, .subtitle.centeted-text, .small-title.centered-text, h4.centered-text {
