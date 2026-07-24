@@ -8,7 +8,7 @@
 [src]="product.images[0] | cloudinary:192" [alt]="product.images[0] | alt" />
 </div>
 <div class="texts-container">
-<h4 class="product-name">{{ product.name }}</h4>
+<p class="product-name">{{ product.name }}</p>
  @if(mainVariant) {
     <p class="price">{{ mainVariantPrice | price }}</p>
     }
