@@ -32,7 +32,12 @@
       <p>Desde letras o números de PVC hasta metacrilato, hierro, etc. Diseños minimalistas o personalizados que se integran en cualquier espacio.</p>
       <app-button [buttonText]="'Ver todas'" [ngClass]="'dark-button'" [buttonLink]="'/letras-corporeas'"></app-button>
     </div>
-    <app-animated-vertical-carousel></app-animated-vertical-carousel> 
+
+    @defer (on viewport) {
+  <app-animated-vertical-carousel />
+} @placeholder {
+  <div style="height: 571px;"></div>
+}
     </div>
   </section>
 

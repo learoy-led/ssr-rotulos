@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CloudinaryPipe implements PipeTransform {
 
 transform(url: string | null | undefined, width?: number): string {
-console.log('le mando url y width',  url, width)
 
 if (!url) {
       return '';
@@ -39,7 +38,6 @@ const rest = after.substring(firstSlash + 1);
   ]
     .filter(Boolean)
     .join(',');
-console.log('no tiene', before, transforms, after)
 
   return `${before}${transforms}/${after}`;
 }
@@ -58,7 +56,6 @@ if (!currentTransforms.includes('q_auto')) {
   currentTransforms.push('q_auto');
 }
 
-console.log('ya tiene', before, currentTransforms.join(','), rest)
 return `${before}${currentTransforms.join(',')}/${rest}`;
 
 }
