@@ -39,7 +39,7 @@
 }
 
 p {
-  color:#878787
+  color: var(--color-grey);
 }
 
 

@@ -35,7 +35,7 @@ transform: scale(1.02);
 
 .product-name {
  text-transform: none;
-  color: #878787;
+  color:  var(--color-grey);
    font-family: "Open Sans", sans-serif;
     font-size: 16px; 
     font-weight: bold;

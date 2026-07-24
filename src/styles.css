@@ -8,12 +8,14 @@ html {
   --color-fuchsia: #ff01fb;
   --color-lima: #FAFF00; */
 
-  --color-blue: #007aff;
+  /* --color-blue: #007aff; */
+  --color-blue: #006DE0;
+  
   --color-orange: #f2662f;
   --color-fuchsia: #fa2b7e;
   --color-green: #23ddac;
   --color-black: #060a0d;
-  --color-grey: #878787;
+  --color-grey: #767676;
   --color-light-grey: #e2e2e2;
   --color-extra-light-grey: #f7f7f7;
   
