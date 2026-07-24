@@ -1,5 +1,11 @@
 <div class="image-container">
-<img class="card-image" [src]="product.images[0]" [alt]="product.images[0] | alt" />
+<img class="card-image" 
+  loading="lazy"
+   decoding="async"
+   width="192"
+  height="192"
+  
+[src]="product.images[0]" [alt]="product.images[0] | alt" />
 </div>
 <div class="texts-container">
 <h4 class="product-name">{{ product.name }}</h4>
