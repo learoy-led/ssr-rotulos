@@ -2,10 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import {  Product } from '../../models/data.models';
 import { AltPipe } from '../../pipes/alt.pipe';
 import { PricePipe } from '../../pipes/price.pipe';
+import { CloudinaryPipe } from '../../pipes/cloudinary.pipe';
 
 @Component({
   selector: 'app-card',
-  imports: [AltPipe, PricePipe],
+  imports: [AltPipe, PricePipe, CloudinaryPipe],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
