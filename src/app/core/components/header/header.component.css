@@ -31,12 +31,8 @@ header {
   margin: auto;
 }
 
-.logo {
-  height: 7vh;
-}
-
 .logo > img {
-    height: 100%;
+    height: 166px;
   } 
 
 .contact-buttons {
