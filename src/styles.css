@@ -106,7 +106,7 @@ a {
   }
 
   
-     h1, .home-title, .small-title {
+     h1, .small-title {
 text-transform: uppercase; 
 color: var(--color-black);
  }
@@ -120,19 +120,18 @@ padding-left: 56px
   padding-left: 60px!important
 }
 
-   .home-title {
-      font-family: "Rubik", sans-serif; 
-      font-weight: 500;  
-      font-size: 80px;
-    line-height: 90px
-  }
-
     h1 {
      font-family: "Rubik", sans-serif; 
        font-weight: 500;  
          font-size: 60px;
     line-height: 63px;
     
+  }
+
+     .home-title {
+      font-size: 80px;
+    line-height: 90px;
+    text-transform: uppercase; 
   }
 
   h1.centered-text, .subtitle.centeted-text, .small-title.centered-text, h4.centered-text {
