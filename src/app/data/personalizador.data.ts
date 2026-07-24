@@ -7,6 +7,12 @@ export const neonFonts : Font[] = [
     minHeight: 10,
       opentypeUrl: '/fonts/MV Boli.ttf',
     },
+            {
+    name: 'Handelson Three',
+    url: 'handelson',
+    minHeight: 18,
+      opentypeUrl: '/fonts/Handelson Three.otf',
+    },
      {
     name: 'Comic Sans MS',
     url: 'comic',
