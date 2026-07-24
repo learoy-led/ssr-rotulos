@@ -49,7 +49,7 @@ export const routes: Routes = [
       description:
         'Soluciones de señalización para comercios, edificios y eventos de todo tipo, así como letras corpóreas y materiales para rótulos. Conócenos.',
       image:
-        'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736523883/image_20250110164118_e4c5e4.webp',
+        'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736523883/image_20250110164118_e4c5e4.webp',
     },
   },
   {

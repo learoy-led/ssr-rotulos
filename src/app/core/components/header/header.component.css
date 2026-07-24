@@ -31,7 +31,8 @@ header {
   margin: auto;
 }
 
-.logo > img {
+
+.logo, .logo > img {
     height: 166px;
   } 
 

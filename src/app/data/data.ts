@@ -3,11 +3,11 @@ import {
 } from '../models/data.models'
 
 export const carouselImages: string[] = [
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1742550802/rotulo-luminoso-learoy_dgqanb.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736351997/letreros-gigantes-rotulos-learoy_wpqlgm.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736781104/carteles-led-neon-personalizados-rotulos-learoy_phjj7e.webp',
-  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736352003/se%C3%B1aletica-luminosa-rotulos-learoy_nvhlze.webp',
-  //'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto/v1736352182/frame_61_jw9dfc.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1742550802/rotulo-luminoso-learoy_dgqanb.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736351997/letreros-gigantes-rotulos-learoy_wpqlgm.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736781104/carteles-led-neon-personalizados-rotulos-learoy_phjj7e.webp',
+  'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736352003/se%C3%B1aletica-luminosa-rotulos-learoy_nvhlze.webp',
+  //'https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1736352182/frame_61_jw9dfc.webp',
 ];
 
 export const contactDetails: ContactDetails = {
