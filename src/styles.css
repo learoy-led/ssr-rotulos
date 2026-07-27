@@ -409,3 +409,9 @@ padding-left: 40px
   } 
   }
 
+ @media screen and (max-width: 374px) {
+  h1, .home-title {
+      font-size: 30px;
+      line-height: 42px;
+    } 
+    }

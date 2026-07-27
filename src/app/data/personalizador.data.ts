@@ -140,7 +140,7 @@ name: 'acero',
   hex: '#5a5a5a',
   uses: ['letra'],
    materials: ['acero', 'hierro'],
-  //  dark: true
+  dark: true
 }, 
   {
 name: 'plateado',
@@ -160,18 +160,18 @@ name: 'oro rosa',
   uses: ['letra'],
       materials: ['aluminio']
 }, 
+            {
+    name: 'blanco cálido',
+    hex: '#FFDFAF',
+         uses: ['luz'],
+        materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
+  },  
      {
     name: 'blanco frío',
     hex: '#ffffff',
          uses: ['luz'],
         materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
   },
-            {
-    name: 'blanco cálido',
-    hex: '#FFDFAF',
-         uses: ['luz'],
-        materials: ['acero', 'hierro', 'aluminio', 'mini',  'pvc', '3d']
-  },    
      {
     name: 'blanco',
     hex: '#ffffff',
@@ -189,50 +189,99 @@ name: 'oro rosa',
     name: 'rojo',
     hex: '#f80000',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc']
+    },
+     {
+        name: 'rojo',
+    hex: '#f80000',
+    uses: ['luz'],
+    materials: ['3d']
     },
        {
     name: 'naranja',
     hex: '#f88d00',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'acero', 'mini', 'pvc']
+    },
+         {
+    name: 'naranja',
+    hex: '#f88d00',
+    uses: ['luz'],
+    materials: ['3d']
     },
       {
     name: 'amarillo',
     hex: '#ffff00',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc']
+    },
+         {
+    name: 'amarillo',
+    hex: '#ffff00',
+    uses: ['luz'],
+    materials: ['3d']
     },
          {
     name: 'verde claro',
     hex: '#00bb2d',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc']
+    },
+     {
+    name: 'verde claro',
+    hex: '#00bb2d',
+    uses: ['luz'],
+    materials: ['3d']
     },
          {
     name: 'verde oscuro',
     hex: '#038622',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'mini',  'pvc', '3d']
+    materials: ['hierro', 'acero', 'mini',  'pvc']
+    },
+     {
+    name: 'verde oscuro',
+    hex: '#038622',
+    uses: ['luz'],
+    materials: ['3d']
     },
     {
     name: 'azul claro',
     hex: '#3b83bd',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'acero', 'aluminio', 'mini', 'pvc']
+    },
+    {
+    name: 'azul claro',
+    hex: '#3b83bd',
+    uses: ['luz'],
+    materials: [ '3d']
     },
    {
     name: 'azul oscuro',
     'hex': '#1e2460',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'mini', 'pvc','3d'],
+    materials: ['hierro', 'acero', 'mini', 'pvc'],
+    dark: true
+    },
+     {
+    name: 'azul oscuro',
+    'hex': '#1e2460',
+    uses: ['luz'],
+    materials: ['3d'],
     dark: true
     },
    {
     name: 'rosa',
     hex: '#cf3476',
     uses: ['letra', 'luz'],
-    materials: ['hierro', 'acero', 'mini', 'pvc', '3d']
+    materials: ['hierro', 'acero', 'mini', 'pvc']
+    },
+    {
+    name: 'rosa',
+    hex: '#cf3476',
+    uses: ['luz'],
+    materials: [ '3d']
     },
  {
 name: 'rojo',

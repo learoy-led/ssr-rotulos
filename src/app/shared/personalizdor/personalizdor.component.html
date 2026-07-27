@@ -71,6 +71,8 @@
     </defs>
 
     @let effectiveBackground = background === 'default' && color.dark ? '/blanco.webp' : background;
+
+    //añádirle || background === 'default' && colorLight.dark
   
 @if(effectiveBackground !== 'default') {
     <image
@@ -184,7 +186,7 @@
       ')'
     "
   >
-    {{ size }} cm
+    {{ this.lines.length * size }} cm
   </text>
 </g>
 
