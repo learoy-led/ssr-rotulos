@@ -4,15 +4,25 @@
       <ul class="cases-grid">
         @for(case of cases; track $index; let i = $index) {
 <li class="case-container" 
-       ><img (click)="selectCase(i)" class="case-image" [src]="case.url" [alt]="case.url | alt"></li>
+       >
+        <button
+        type="button"
+        class="case-image-button"
+        [attr.aria-label]="'Ampliar imagen: ' + (case.url | alt)"
+        (click)="selectCase(i)">
+
+       <img class="case-image" [src]="case.url" [alt]="case.url | alt">
+          </button>
+      </li>
         }
       </ul>  
       @if(selectedCase) {
-<figure class="image-zoom-container">
+<figure class="image-zoom-container" role="dialog" aria-modal="true">
         <img 
       loading="lazy" decoding="async" class="case-image-zoom blue-shadow" [src]="selectedCase" [alt]="selectedCase | alt">
-      <span role="button" class="button xmark" (click)="closeImageZoom()">X</span>
-      <!-- <app-icon [iconPath]="xmarkPath"></app-icon> -->
+      <button type="button"
+      aria-label="Cerrar imagen" class="button xmark" (click)="closeImageZoom()"
+      >X</button>
         
 </figure>
       }

@@ -198,7 +198,8 @@ class="form-field"
 ></textarea>
 
 <div class="buttons-container">
-  <button class="button"  (click)="closeNewProductModal()" type="submit" [disabled]="newProductForm.invalid">Añadir</button>
   <button class="button"  type="button" (click)="closeNewProductModal()">Cancelar</button>
+    <button class="button"  (click)="closeNewProductModal()" type="submit" [disabled]="newProductForm.invalid">Añadir</button>
+
   </div>
 </form>

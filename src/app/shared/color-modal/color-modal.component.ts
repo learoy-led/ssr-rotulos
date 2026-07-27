@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { IconComponent } from '../icon/icon.component';
 import { iconPaths } from '../../data/data';
 import { CommonModule } from '@angular/common';
@@ -40,17 +40,19 @@ get activeControlName() {
 
 public closeModal() {
 this.closed.emit();
-  }
+}
 
-public unselectColor() {
+public cancelChanges() {
   this.cancel.emit();
   this.closed.emit();
 }
 
 public removeBase() {
   this.removeBaseSelected.emit();
-  this.closed.emit();
 }
 
-
+@HostListener('document:keydown.escape')
+onEscape(): void {
+    this.cancelChanges()
+}
 }

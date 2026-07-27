@@ -1,5 +1,8 @@
 @if(!hideCarouselPrevArrow) {
-  <app-icon role="button" [ngClass]="'small-icon blue'" [iconPath]="leftArrow" (click)="carouselPrevElements()"></app-icon>
+  <button type="button" class="arrow-button" aria-label="Producto anterior" (click)="carouselPrevElements()">
+  <app-icon 
+  [ngClass]="'small-icon blue'" [iconPath]="leftArrow"></app-icon>
+  </button>
 }
 
 <ul class="cards-list desktop-carousel">
@@ -25,7 +28,9 @@
 
 
 @if (products.length > 5 && !hideCarouselNextArrow) {
-  <app-icon role="button" [ngClass]="'small-icon blue'"  [iconPath]="rightArrow" (click)="carouselNextElements()"></app-icon>
+  <button type="button" class="arrow-button" aria-label="Producto siguiente" (click)="carouselNextElements()">
+  <app-icon [ngClass]="'small-icon blue'"  [iconPath]="rightArrow" ></app-icon>
+  </button>
 }
 
 <!-- <ul class="carousel-dots">

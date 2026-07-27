@@ -32,6 +32,11 @@ position: absolute;
   gap: 10px
 }
 
+.close-button {
+background-color: transparent;
+align-self: flex-end;
+}
+
 .color-picker {
   display: flex;
   flex-wrap: wrap;
@@ -57,11 +62,6 @@ width: 35px;
 height: 35px;
 display: inline-block;
 border-radius: 5px;
-}
-
-.small-icon {
-  align-self: flex-end;
-   cursor: pointer;
 }
 
 .small-icon:hover {

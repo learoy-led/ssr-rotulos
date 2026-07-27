@@ -1,6 +1,9 @@
 <div  class="modal-overlay">
       <div class="modal">
-         <app-icon role="button" [iconPath]="xmarkPath" [ngClass]="'small-icon blue'" (click)="closeModal()"></app-icon>
+        <button class="close-button" (click)="cancelChanges()" aria-label="Cerrar ventana">
+<app-icon [iconPath]="xmarkPath" [ngClass]="'small-icon blue'" ></app-icon>
+        </button>
+         
 
      <form [formGroup]="form"> 
   <label [for]="activeControlName">Elige el color 
@@ -88,8 +91,8 @@
 }
 
 <div class="modal-buttons">
+<button class="button"  type="button" (click)="cancelChanges()">Cancelar</button>
 <button class="button"  type="button" (click)="closeModal()">Aceptar</button>
-<button class="button"  type="button" (click)="unselectColor()">Cancelar</button>
 </div>
 </form>
 

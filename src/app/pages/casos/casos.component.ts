@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { iconPaths } from '../../data/data';
 import { AltPipe } from '../../pipes/alt.pipe';
 import { KeywordsAnimationComponent } from '../../shared/keywords-animation/keywords-animation.component';
@@ -35,5 +35,12 @@ public selectCase(i:number) {
 
 public closeImageZoom () {
   this.selectedCase = null
+}
+
+@HostListener('document:keydown.escape')
+onEscape(): void {
+  if (this.selectedCase) {
+    this.closeImageZoom();
+  }
 }
 }

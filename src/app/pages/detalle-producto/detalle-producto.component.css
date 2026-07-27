@@ -217,4 +217,8 @@ white-space: nowrap;
  min-width: 25%;
 height: 100%
 }
+
+.arrows-circle {
+display: none;
+}
 }

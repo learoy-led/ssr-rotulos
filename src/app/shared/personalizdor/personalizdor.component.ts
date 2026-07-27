@@ -50,14 +50,15 @@ public visibleFontsCount = 5;
     name: '',
     hex: ''
   };
-  baseColor: Color = {
+  baseColor: Color | null = {
     name: '',
     hex: ''
   };
-previousColor: Color = {
-    name: '',
-    hex: ''
-  };
+
+previousColor!: Color;
+previousLightColor!: Color;
+previousBaseColor?: Color | null;
+
   innerColor = '';
   colorSelected: boolean = false;
   lightColorSelected: boolean = false;
@@ -88,7 +89,7 @@ public overlay = {
 public offsetY: number = 0;
 
 public activeModal : 'color' | 'lightColor' | 'base' | null = null
-base: boolean = false;
+//base: boolean = false;
 
 get visibleFonts() {
    return this.material?.fonts?.slice(0, this.visibleFontsCount);
@@ -351,16 +352,33 @@ this.background = image
 
 public openModal(type: 'color' | 'lightColor' | 'base' | null) {
    this.activeModal = type
+
+      switch (type) {
+case 'color':
+this.previousColor  = { ...this.form.value.color }
+break;
+
+case 'lightColor':
+this.previousLightColor = {...this.form.value.lightColor  }
+break;
+
+case 'base':
+   this.previousBaseColor = this.form.value.baseColor
+    ? { ...this.form.value.baseColor }
+    : null;
+
+      break;
+    }
+
   if(type === 'color') {
 this.colorSelected = true
   }
 
-  this.activeModal = type
   if(type === 'lightColor') {
 this.lightColorSelected = true
   }
     if(type === 'base') {
-    this.base = true;
+    //this.base = true;
     const minBaseWidth = Math.round(this.proportionalWidth + 3);
   const currentBaseWidth = this.form.get('baseWidth')?.value;
 
@@ -375,9 +393,28 @@ this.lightColorSelected = true
 
 
   public cancelModal() {
+    
+        switch (this.activeModal) {
+    case 'color':
      this.form.patchValue({
-    [this.activeModal as string]: this.previousColor
+    color: this.previousColor
   });
+      break;
+
+      case 'lightColor':
+         this.form.patchValue({
+    lightColor: this.previousLightColor
+  });      
+      break;
+
+         case 'base':
+         this.form.patchValue({
+    baseColor: this.previousBaseColor,
+  baseHeight: this.size + 3,
+  baseWidth: Math.round(this.proportionalWidth + 3)
+  });
+      break;
+    }
 
   this.activeModal = null;
   }
@@ -389,15 +426,10 @@ public toggleFonts() {
 }
 
 public removeBase() {
-  this.base = false;
-
+  //this.base = false;
   this.form.patchValue({
-    baseColor: this.material?.colors.find(color => color.uses?.includes('base')) || this.baseColor,
-    baseHeight: this.size + 3,
-    baseWidth: Math.round(this.proportionalWidth + 3)
-  }, { emitEvent: false });
-
-  this.activeModal = null;
+   baseColor: null
+   });
 }
 
 
@@ -429,13 +461,13 @@ public ngAfterViewInit() {
       font: this.font.name,
       color: this.color.name,
       lightColor: this.lightColor.name,
-      baseColor: this.baseColor.name,
+      baseColor: this.baseColor?.name,
       baseHeight: this.form.value.baseHeight,
       baseWidth: this.form.value.baseWidth,
       size: this.size,
       lines: this.lines,
       proportionalWidth: this.proportionalWidth,
-      base: this.base,
+      base: this.baseColor ? true : false,
       
       svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
     }
@@ -469,9 +501,19 @@ this.previousColor = {
     name: '',
     hex: ''
   };
+
+  this.previousLightColor = {
+    name: '',
+    hex: ''
+  };
+
+    this.previousBaseColor = {
+    name: '',
+    hex: ''
+  };
   this.innerColor = '';
 
-  this.base = false;
+  //this.base = false;
   this.activeModal = null;
 
   this.colorSelected = false;

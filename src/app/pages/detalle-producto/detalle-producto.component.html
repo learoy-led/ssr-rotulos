@@ -40,11 +40,15 @@
           }
         </ul>
         @if(categoryName === 'Letras corpóreas' && productSelectedData.light ? productSelectedData.images.length > 5 : productSelectedData.images.length > 3) {
-    <span class="arrows-circle" [class.up]="isAtBottom" role="button"  (click)="scrollToTarget()">
-  <svg class="arrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+    <button type="button"
+    class="arrows-circle" [class.up]="isAtBottom" 
+    (click)="scrollToTarget()" 
+    [attr.aria-label]="isAtBottom ? 'Imagen anterior' : 'Imagen siguiente'"
+    >
+  <svg class="arrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true"  focusable="false">
     <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
     <path [attr.d]="isAtBottom ? upArrow : downArrow"/></svg>   
-    </span>  
+  </button>  
     }
       </div>
       }
