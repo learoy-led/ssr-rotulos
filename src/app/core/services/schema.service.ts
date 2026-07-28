@@ -101,7 +101,7 @@ export class SchemaService {
     "@type": "PostalAddress",
     "streetAddress": this.contactDetails.address1,
     "addressLocality": "Madrid",
-    "postalCode": "28946",
+    "postalCode": "28947",
     "addressCountry": "ES"
   },
   "telephone": '+34'+this.contactDetails.phone,

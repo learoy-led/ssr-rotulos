@@ -71,13 +71,14 @@ previousBaseColor?: Color | null;
   finalPrice = 0
 
   lines: string[] = [];
-  lineHeight = 0;
+
 public textPaths: {
   d: string;
   x: number;
   y: number;
 }[] = [];
 
+public maxLineHeight:number = 0
   
 public overlay = {
   left: 0,
@@ -85,6 +86,8 @@ public overlay = {
   width: 0,
   height: 0
 };
+
+private referenceHeight: number = 0
 
 public offsetY: number = 0;
 
@@ -159,7 +162,7 @@ private async applyFormValues(values: any): Promise<void> {
      this.lightColor = values.lightColor;
      this.baseColor = values.baseColor;
 
-      const fontChanged = this.font?.name !== values.font?.name;
+    const fontChanged = this.font?.name !== values.font?.name;
     this.font = values.font;
 
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
@@ -186,15 +189,14 @@ this.updateText();
 }
 
  private updateText() {
-      this.innerColor = this.tintColor(this.color.hex, 0.9);
+    this.innerColor = this.tintColor(this.color.hex, 0.9);
     this.lines = this.text.split('\n');
  
  if (!this.fontLoaded || !this.fontRef) return;
-  
-  this.fitTextWithMetrics();
-  this.recalcLayout();
-this.buildTextPaths();
 
+ const layout = this.fitTextWithMetrics();
+   this.buildLayout(layout);
+  
    requestAnimationFrame(() => {
    this.updateOverlay();
     this.updatePrice();
@@ -216,68 +218,161 @@ this.buildTextPaths();
     return `rgb(${r}, ${g}, ${b})`;
   }
 
-  private fitTextWithMetrics() {
- if (!this.fontLoaded) return;
+private measureLayout(fontSize: number) {
 
-  const maxWidth = this.width * 0.9;
+  const linesData: {
+    d: string;
+    width: number;
+    height: number;
+    top: number;
+    bottom: number;
+  }[] = [];
+
+  let maxWidth = 0;
+  let maxHeight = 0;
+
+  for (const line of this.lines) {
+
+    const clean = line.trim();
+
+    if (!clean) continue;
+
+    const path = this.fontRef.getPath(clean, 0, 0, fontSize);
+
+    const d = path.toPathData(2);
+
+    if (!d || !d.startsWith('M')) continue;
+
+    const box = path.getBoundingBox();
+
+    const width = box.x2 - box.x1;
+    const height = box.y2 - box.y1;
+
+    maxWidth = Math.max(maxWidth, width);
+    maxHeight = Math.max(maxHeight, height);
+
+    linesData.push({
+      d,
+      width,
+      height,
+       top: box.y1,
+      bottom: box.y2
+    });
+  }
+
+  return {
+    maxWidth,
+    maxHeight,
+    linesData
+  };
+}
+
+private getTotalHeight(
+   linesData: {
+    top: number;
+    bottom: number;
+  }[],
+  gap: number
+): number {
+
+  if (!linesData.length) return 0;
+
+  let currentY = 0;
+
+  for (const line of linesData) {
+
+    const y = currentY - line.top;
+
+    currentY = y + line.bottom + gap;
+
+  }
+
+  return currentY - gap;
+}
+
+
+  private fitTextWithMetrics() {
+    const maxWidth = this.width * 0.9;
   const maxHeight = this.height * 0.85;
 
   let size = 80;
 
+  let layout = this.measureLayout(size);
+
   while (size > 16) {
-    const widths = this.lines.map(l => this.measureLine(l, size));
 
-    const blockWidth = Math.max(...widths);
-    const blockHeight = this.lines.length * size * 1.2;
+    const gap = size * 0.2;
 
-    if (blockWidth <= maxWidth && blockHeight <= maxHeight) {
+    const totalHeight = this.getTotalHeight(
+      layout.linesData,
+      gap
+    );
+
+    if (
+      layout.maxWidth <= maxWidth &&
+      totalHeight <= maxHeight
+    ) {
       break;
     }
 
     size -= 2;
+
+    layout = this.measureLayout(size);
+
   }
 
   this.fontSize = size;
-}
- private measureLine(line: string, size: number): number {
-  if (!this.fontLoaded || !this.fontRef) return line.length * size * 0.6;
 
-  return this.fontRef.getAdvanceWidth(line, size);
+  return layout;
+
 }
- private recalcLayout() {
-  if (!this.platformService.isBrowser()) return;
-  const lineH = this.fontSize * 1.05;
- this.lineHeight = lineH;
-   const totalHeight = (this.lines.length - 1) * lineH;
-   this.offsetY = this.height / 2 - totalHeight / 2;
- }
- private buildTextPaths() {
-  if (!this.fontLoaded || !this.fontRef) {
+
+   
+ private buildLayout(layout: ReturnType<typeof this.measureLayout>) {
+   if (!layout.linesData.length) {
     this.textPaths = [];
     return;
-  };
+  }
 
-  this.textPaths = this.lines.map((line, index) => {
-      const cleanLine = line.trim();
-         if (!cleanLine) {
-        return null;
-      }
-    const path = this.fontRef.getPath(cleanLine, 0, 0, this.fontSize);
-    const d = path.toPathData(2);
-   if (!d || !d.trim().startsWith('M')) {
-        return null;
-      }
-    const lineWidth = this.measureLine(cleanLine, this.fontSize);
+  this.referenceHeight = layout.maxHeight
+
+   const gap = this.fontSize * 0.2;
+
+     let currentY = 0;
+
+  const positioned = layout.linesData.map(line => {
+
+    const y = currentY - line.top;
+
+    currentY = y + line.bottom + gap;
 
     return {
-      d,
-      x: this.width / 2 - lineWidth / 2,
-      y: this.offsetY + index * this.lineHeight
+      ...line,
+      y
     };
-  }).filter((p): p is { d: string; x: number; y: number } => p !== null);
+
+  });
+
+  // Altura total del bloque
+  const totalHeight = currentY - gap;
+
+  // Desplazamiento para centrar verticalmente
+  this.offsetY =
+    this.height / 2 - totalHeight / 2;
+
+  this.textPaths = positioned.map(line => ({
+
+    d: line.d,
+
+    x: this.width / 2 - line.width / 2,
+
+    y: line.y + this.offsetY
+
+  }));
+
 }
 
-public updateOverlay(){
+private updateOverlay(){
   if (!this.platformService.isBrowser() || !this.textGroup 
  || !this.fontLoaded) return
 
@@ -289,11 +384,16 @@ public updateOverlay(){
 
 this.overlay = {
    left: bbox.x - padding,
-    top: bbox.y- padding,
+    top: bbox.y - padding,
     width: bbox.width + padding* 2,
     height: bbox.height + padding * 2
 };
-this.proportionalWidth = this.size * (this.overlay.width / this.overlay.height);
+
+
+this.proportionalWidth = this.size * (bbox.width / this.referenceHeight );
+
+console.log(bbox.width, bbox.height/this.lines.length, this.size )
+
 }
 
 
@@ -426,7 +526,6 @@ public toggleFonts() {
 }
 
 public removeBase() {
-  //this.base = false;
   this.form.patchValue({
    baseColor: null
    });
@@ -441,10 +540,10 @@ public ngAfterViewInit() {
   }); 
 
 }
-   public onSubmit() { 
+   
+public onSubmit() { 
      if (this.form.invalid || !this.product.variants) return;
      
-        //const variantSelected = this.product.variants.find(v => v.size >= this.variantSize);
 
   const variantSelected = this.product.variants.find(v => v.size >= this.size) || this.product.variants[this.product.variants.length - 1];
      
@@ -520,7 +619,6 @@ this.previousColor = {
   this.lightColorSelected = false;
     
   this.lines = [];
-  this.lineHeight = 0;
   this.textPaths = [];
   this.proportionalWidth = 0;
   this.variantSize = 0;

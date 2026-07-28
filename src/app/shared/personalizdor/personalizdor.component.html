@@ -71,8 +71,6 @@
     </defs>
 
     @let effectiveBackground = background === 'default' && color.dark ? '/blanco.webp' : background;
-
-    //añádirle || background === 'default' && colorLight.dark
   
 @if(effectiveBackground !== 'default') {
     <image
@@ -84,7 +82,7 @@
 <rect x="0" y="0"  width="100%" height="100%" fill="black" [attr.opacity]="background === 'default'  && !color.dark ? 1 : 0.5"/>
 }
  
-@if(baseColor) {
+@if(baseColor && product.renderKey !== 'neon') {
       <rect
     [attr.x]="overlay.left - 40"
     [attr.y]="overlay.top - 20"
@@ -186,7 +184,7 @@
       ')'
     "
   >
-    {{ this.lines.length * size }} cm
+    {{ lines.length * size + (lines.length - 1) * (size * 0.2) | number:'1.0-2' }} cm
   </text>
 </g>
 
