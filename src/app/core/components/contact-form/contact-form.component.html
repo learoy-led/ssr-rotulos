@@ -4,6 +4,7 @@
       <input
         class="form-field"
         placeholder="Nombre"
+        aria-label="Nombre"
         type="text"
         id="name"
         name="name"
@@ -23,6 +24,7 @@
         <input
           class="form-field"
           placeholder="Correo electrónico"
+          aria-label="Correo electrónico"
           type="email"
           id="email"
           name="email"
@@ -50,6 +52,7 @@
         <input
           class="form-field"
           placeholder="Teléfono"
+          aria-label="Teléfono"
           type="text"
           id="phone"
           name="phone"
@@ -70,11 +73,13 @@
       <textarea
         class="form-field"
         placeholder="Escribe aquí tu consulta"
+        aria-label="Escribe tu consulta"
         id="question"
         name="message"
         required
         [(ngModel)]="formData.message"
         #messageField="ngModel"
+        [attr.aria-invalid]="messageField.invalid && messageField.touched ? true : null"
         [attr.aria-describedby]="messageField.invalid && messageField.touched ? 'question-error' : null"
       ></textarea>
       @if (messageField.invalid && messageField.touched) {
