@@ -1,0 +1,9 @@
+<h2>Preguntas frecuentes</h2>
+
+@for(faq of faqsProcessed; track faq) {
+    
+<h3>{{ faq.question }}</h3>
+ <div [innerHTML]="faq.answear"></div> 
+}
+
+

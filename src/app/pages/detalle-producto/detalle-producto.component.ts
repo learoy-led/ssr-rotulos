@@ -17,11 +17,12 @@ import { GoboRenderComponent } from '../../shared/gobo-render/gobo-render.compon
 import { PricePipe } from '../../pipes/price.pipe';
 import { FormsModule } from '@angular/forms';
 import { iconPaths } from '../../data/data';
+import { FaqsComponent } from '../../shared/faqs/faqs.component';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule],
+  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule, FaqsComponent],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })

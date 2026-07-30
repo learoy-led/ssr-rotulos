@@ -187,3 +187,14 @@ export interface Order {
     emailSent: boolean,
     customer: CheckOutFormData
  }
+
+ export interface Faq {
+  question: string;
+  answear: string;
+  }
+
+export interface Variable {
+  material: string,
+  correo: string,
+  telefono: string
+};
