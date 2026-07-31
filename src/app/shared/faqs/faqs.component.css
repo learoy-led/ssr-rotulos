@@ -1,17 +1,33 @@
-
-.titulo-tercero {
-font-size: 19px;
+:host {
+  width: 100%;
 }
 
-.faqs-container{
-display: flex;
-flex-direction: column;
-gap: 25px;
-margin: 15px 0px;
+.faqs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 15px 0px;
 }
 
 .faq-container {
-background-color:var(--color-extra-light-grey);
-padding: 15px 25px;
-border-radius: 1rem;
+  background-color: var(--color-extra-light-grey);
+  padding: 15px 25px;
+  border-radius: 1rem;
+  width: 100%;
+}
+
+.faq-question {
+  width: 100%;
+  background-color: transparent;
+  text-align: left;
+  font-size: 19px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+
+.faq-answear {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

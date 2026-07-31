@@ -1,21 +1,21 @@
 <h2 class="small-title centered-text">Preguntas frecuentes</h2>
 
-
 <div class="faqs-container">
 
+@for(faq of faqsProcessed; track faq; let i = $index) {
+    <div class="faq-container">
+<h3>
+ <button  class="faq-question blue" type="button" (click)="answearToggle(i)"
+       [attr.aria-expanded]="openIndex === i"
+        [attr.aria-controls]="'faq-' + i"
+ >{{ faq.question }}</button>
+</h3>
 
+@if (openIndex === i) {
+ <div [innerHTML]="faq.answear" class="faq-answear" [id]="'faq-' + i"></div>
+ }
 
-
-
-    
-
-
-@for(faq of faqsProcessed; track faq) {
-<div class="faq-container"> 
-<h3 class="titulo-tercero blue">{{ faq.question }}</h3>
- <div [innerHTML]="faq.answear"></div>
- </div>
- 
+</div> 
 }
 
 </div>

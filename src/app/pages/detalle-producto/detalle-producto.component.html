@@ -148,7 +148,7 @@
   
   @if(productSelectedData.renderKey) {
   <section class="centered-section">
-    <app-faqs [material]="productSelectedData.renderKey"></app-faqs>
+    <app-faqs [material]="productSelectedData.renderKey === 'neon' ? 'neón' : productSelectedData.renderKey "></app-faqs>
   </section>
 }
 

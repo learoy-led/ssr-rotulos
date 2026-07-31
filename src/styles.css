@@ -23,10 +23,10 @@ html {
   --color-red: #dc3232;
   /* --color-red: #ff3b3b; */
   
- 
+/*  
   --white-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); 
   --black-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-  --blue-shadow: 2px 2px 4px rgba(2, 169, 234, 0.5); 
+  --blue-shadow: 2px 2px 4px rgba(2, 169, 234, 0.5);  */
    --hover-scale: scale(1.01); 
   --smooth-scale: transform 0.3s ease;
 
