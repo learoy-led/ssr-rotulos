@@ -1,0 +1,17 @@
+
+.titulo-tercero {
+font-size: 19px;
+}
+
+.faqs-container{
+display: flex;
+flex-direction: column;
+gap: 25px;
+margin: 15px 0px;
+}
+
+.faq-container {
+background-color:var(--color-extra-light-grey);
+padding: 15px 25px;
+border-radius: 1rem;
+}
