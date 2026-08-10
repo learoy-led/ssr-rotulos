@@ -17,6 +17,10 @@ app-user-data-form {
 .checkout-container {
     flex-direction: column;
 }
+
+app-user-data-form {
+     width: 100%;
+}
     
 app-order-summary {
 width: 100%;
