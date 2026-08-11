@@ -26,6 +26,7 @@ export class UserDataFormComponent {
 
   @ViewChild('redsysForm') formEl!: ElementRef<HTMLFormElement>;
 
+
    constructor(private fb: FormBuilder,
     private checkoutService: CheckoutService, private cartService: CartService) {}
 
@@ -33,12 +34,14 @@ export class UserDataFormComponent {
   public signature!: string;
   public signatureVersion!: string;
   public merchantParameters!: string;
-  public redirectUrl: string = ''
+  public redirectUrl: string = '';
+  public paying: boolean = false;
 
 
   public onSubmit() {
-   if (this.form.invalid) return;
-  
+    if (this.form.invalid || this.paying) return;
+
+ this.paying = true;
 
     const payload = {
   customer: this.form.value,
@@ -48,18 +51,30 @@ export class UserDataFormComponent {
    
 this.checkoutService.pagar(payload).subscribe({
   next: (data: any) => {
+
+    console.log('1. RESPUESTA CREATE PAYMENT', data);
    
     this.signatureVersion = data.signatureVersion;
     this.merchantParameters = data.merchantParameters;
     this.signature = data.signature;
     this.redirectUrl = data.redirectUrl;
 
+      console.log('2. REDIRECT URL', this.redirectUrl);
+  console.log('3. FORM ELEMENT', this.formEl);
+
     requestAnimationFrame(() => {
-      this.formEl.nativeElement.submit();
+      
+         console.log('4. ANTES DE REDSYS SUBMIT');
+
+    this.formEl.nativeElement.submit();
+
+    console.log('5. DESPUÉS DE REDSYS SUBMIT');
+
     });
   },
 
   error: (err) => {
+
     console.error('Error en pago:', err);
 //    window.location.href = '/checkout/error';
 console.log('Payload en error:', payload);

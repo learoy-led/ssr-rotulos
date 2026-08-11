@@ -43,7 +43,17 @@ cdkDropList
   viewBox="0 0 640 640">
   <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
   <path [attr.d]="dragPath"/></svg>
-  
+  @if(location === 'Carrusel letras') {
+     <textarea
+       [(ngModel)]="image.caption"
+         [name]="'caption-' + image._id"
+           placeholder="Añadir leyenda..."
+    class="image-caption" 
+    rows="3"
+    >
+  </textarea>
+ 
+  }
   </li>
   }
 </ul>

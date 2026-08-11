@@ -166,7 +166,7 @@
     [value]="merchantParameters"
   />
   <input type="hidden" name="Ds_Signature" [value]="signature" />
-  <button type="submit" class="button" [disabled]="form.invalid">
+  <button type="submit" class="button" [disabled]="form.invalid || paying">
     Pagar ahora
   </button>
 </form>

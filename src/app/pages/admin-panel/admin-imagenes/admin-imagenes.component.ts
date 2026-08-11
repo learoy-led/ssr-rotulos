@@ -44,7 +44,8 @@ export class AdminImagenesComponent implements OnInit {
     const formData = new FormData();
 
     formData.append('location', location);
-    formData.append('images', JSON.stringify(images.map((img) => img._id)));
+    formData.append('images', JSON.stringify(
+      images.map((img) => img._id)));
 
     formData.append(
       'order',
@@ -52,6 +53,7 @@ export class AdminImagenesComponent implements OnInit {
         images.map((img, index) => ({
           id: img._id,
           order: index,
+           caption: img.caption || ''
         })),
       ),
     );
