@@ -1,0 +1,42 @@
+:host {
+    display: flex;
+    padding: 52px 0
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.banner-image {
+    border-radius: 10px;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+}
+
+.text {
+    margin-bottom: 20px
+}
+
+@media screen and (max-width: 670px) {
+
+    .image-container,
+    .banner-image {
+        border-radius: 0px
+    }
+}
+
+@media screen and (max-width: 766px) {
+    :host {
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 12px 0
+    }
+
+}

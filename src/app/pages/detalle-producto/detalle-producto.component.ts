@@ -18,16 +18,27 @@ import { PricePipe } from '../../pipes/price.pipe';
 import { FormsModule } from '@angular/forms';
 import { iconPaths } from '../../data/data';
 import { FaqsComponent } from '../../shared/faqs/faqs.component';
+import { IconsBannerComponent } from '../../shared/icons-banner/icons-banner.component';
 
 @Component({
   selector: 'app-detalle-producto',
   standalone: true,
-  imports: [ItemsCarouselComponent, CommonModule, ButtonComponent, PersonalizdorComponent, ImageCompareComponent, GoboRenderComponent, PricePipe, FormsModule, FaqsComponent],
+  imports: [
+    ItemsCarouselComponent,
+    CommonModule,
+    ButtonComponent,
+    PersonalizdorComponent,
+    ImageCompareComponent,
+    GoboRenderComponent,
+    PricePipe,
+    FormsModule,
+    FaqsComponent,
+    IconsBannerComponent,
+  ],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',
 })
 export class DetalleProductoComponent implements OnInit {
-
   public categoryName: string = '';
   public categoryLength: number = 0;
   public productSelectedData: Product = {
@@ -49,83 +60,86 @@ export class DetalleProductoComponent implements OnInit {
   };
   public mainImageIndex: number = 0;
   public productDetailsIndex: number = 0;
-  private currentRoute:string = '';
+  private currentRoute: string = '';
   public isLoading: boolean = true;
   public selectedVariant: Variant = {
-      name: '' ,
+    name: '',
     size: 0,
     price: 0,
-  
-  }
-  public showCompare:boolean = true;
+  };
+  public showCompare: boolean = true;
   public downArrow: string = iconPaths.downArrow;
   public upArrow: string = iconPaths.upArrow;
-  public isAtBottom: boolean = false
-  
-   @ViewChild('imagesCarousel') imagesCarousel!: ElementRef<HTMLUListElement>;
+  public isAtBottom: boolean = false;
 
+
+  @ViewChild('imagesCarousel') imagesCarousel!: ElementRef<HTMLUListElement>;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router, 
+    private router: Router,
     private seoService: SeoService,
     private getProductsService: GetProductsService,
     private loadingService: LoadingService,
     private platformService: PlatformService,
     private schemaService: SchemaService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {}
 
   public ngOnInit() {
+    this.route.data.subscribe((data) => {
+      this.productSelectedData = data['product'];
 
-    this.route.data.subscribe(data => {
-    this.productSelectedData = data['product'];
+      if (this.productSelectedData?.variants?.length) {
+        this.selectedVariant = this.productSelectedData.variants[0];
+      }
 
- if (this.productSelectedData?.variants?.length) {
-   this.selectedVariant = this.productSelectedData.variants[0];
-}
+      const title = `${this.productSelectedData.name} · Rótulos Learoy`;
+      const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+      const description = this.productSelectedData.metaDescription;
+      const image = this.productSelectedData.images[0];
+      this.currentRoute = this.router.url;
+      this.seoService.updateSeoDynamicTags(
+        capitalizedTitle,
+        description,
+        image,
+        this.currentRoute,
+      );
+      this.schemaService.insertSchema(
+        this.schemaService.getServiceSchema(
+          capitalizedTitle,
+          description,
+          this.currentRoute,
+          image,
+        ),
+        'schema-service',
+      );
 
-const title = `${this.productSelectedData.name} · Rótulos Learoy`;
-const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
- const description = this.productSelectedData.metaDescription;
-          const image = this.productSelectedData.images[0];
-          this.currentRoute = this.router.url;
-  this.seoService.updateSeoDynamicTags(
-            capitalizedTitle,
-            description,
-            image,
-            this.currentRoute
-          );
-    this.schemaService.insertSchema(this.schemaService.getServiceSchema(capitalizedTitle, description, this.currentRoute, image), 'schema-service')
+      this.getProductsService
+        .getCategoryWithProductSlug(this.productSelectedData.slug)
+        .subscribe((category) => {
+          this.categoryName = category?.name ?? '';
+          this.getProductsService
+            .getProductsByCategory(category?.slug ?? '')
+            .pipe(map((products) => products.length))
+            .subscribe((length) => {
+              this.categoryLength = length;
+            });
+        });
+    });
 
-   this.getProductsService.getCategoryWithProductSlug(
-            this.productSelectedData.slug).subscribe(
-            (category) => {
-              this.categoryName = category?.name ?? ''
-            this.getProductsService.getProductsByCategory(category?.slug ?? '').pipe(
-    map(products => products.length)
-  )
-  .subscribe(length => {
-    this.categoryLength = length;
-  });
-
-            }
-          );
-}); 
-
-  
     if (this.platformService.isBrowser()) {
       this.listenLoading();
     }
   }
 
-public updateProductDetails(index: number) {
+  public updateProductDetails(index: number) {
+    this.categoryName === 'Letras corpóreas' && this.productSelectedData.light
+      ? (this.mainImageIndex = index + 2)
+      : (this.mainImageIndex = index);
 
-this.categoryName === 'Letras corpóreas' && this.productSelectedData.light ?
-this.mainImageIndex = index+2 : this.mainImageIndex = index;
-
-this.showCompare = false
-}
+    this.showCompare = false;
+  }
 
   public listenLoading() {
     this.loadingService.getLoadingStatus().subscribe((isLoading) => {
@@ -133,43 +147,39 @@ this.showCompare = false
     });
   }
 
-//ver si se necesita para imágenes
-public onVariantChange(variant: Variant) {
- this.selectedVariant = variant;
-}
-
-
-public onAddToCart() {
-   if (!this.productSelectedData.variants || !this.productSelectedData._id) return;
-
-     const productPurchased = {
-     id: this.productSelectedData._id,
-    name: this.productSelectedData.name,
-    image: this.productSelectedData.images[0],
-    price: this.selectedVariant.price,
-    variantName: this.selectedVariant.name,
-    qty: 1,
+  //ver si se necesita para imágenes
+  public onVariantChange(variant: Variant) {
+    this.selectedVariant = variant;
   }
 
-this.cartService.addToCart(productPurchased);
-  this.router.navigate(['/cart']);
+  public onAddToCart() {
+    if (!this.productSelectedData.variants || !this.productSelectedData._id)
+      return;
+
+    const productPurchased = {
+      id: this.productSelectedData._id,
+      name: this.productSelectedData.name,
+      image: this.productSelectedData.images[0],
+      price: this.selectedVariant.price,
+      variantName: this.selectedVariant.name,
+      qty: 1,
+    };
+
+    this.cartService.addToCart(productPurchased);
+    this.router.navigate(['/cart']);
   }
 
-
-    public scrollToTarget() {
+  public scrollToTarget() {
     if (!this.platformService.isBrowser()) return;
 
     const element = this.imagesCarousel.nativeElement as HTMLUListElement;
-      if (!element) return;
-      
+    if (!element) return;
+
     this.isAtBottom = !this.isAtBottom;
 
     element.scrollTo({
       top: this.isAtBottom ? element.scrollHeight : 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
-      
   }
-
-
 }

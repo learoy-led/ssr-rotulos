@@ -1,0 +1,25 @@
+<div class="image-container">
+<img src="https://res.cloudinary.com/dxuseyfxa/image/upload/f_auto,q_auto/v1786527652/neon-entrega-rotulos-learoy_mvsm6a.jpg" class="banner-image"
+
+  loading="lazy"
+   decoding="async"
+   width="470"
+  height="470"
+  >
+</div>
+
+<div class="text-container">
+<p class="small-title blue-line">{{ title }} </p>
+<h4 class="blue left">{{ subtitle }}</h4>
+<p class="text left">{{ description }}</p>
+<ul>
+   @for(icon of icons; track icon.path) {
+ <li>
+   <app-icon [iconPath]="icon.path" [ngClass]="'small-icon blue'"></app-icon>
+    <app-icon [iconPath]="icon.path" [ngClass]="'big-icon'"></app-icon>
+    <p>{{ icon.text }}</p>
+    
+</li> 
+}
+</ul>
+</div>
