@@ -6,12 +6,17 @@
 .image-container {
     display: flex;
     align-items: center;
+    margin: auto;
     justify-content: center;
     border-radius: 10px;
+    min-width:370px;
+
 }
 
 .banner-image {
     border-radius: 10px;
+    width:100%;
+
 }
 
 .text-container {
@@ -21,7 +26,31 @@
 }
 
 .text {
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.icon-container {
+
+ display: flex;  
+ gap: 20px; 
+ border-bottom: 1px solid var(--color-light-grey);
+ align-items: center;
+ padding-bottom: 20px;
+}
+.icons-container {
+     display: flex;
+     flex-direction: column;  
+ gap: 20px; 
+}
+.icon-embalaje {
+    height:55px ;
+    stroke-width: 25;
+    stroke:var(--color-orange);
+    fill:none;
+}
+.text-icon {
+    font-weight: bold;
 }
 
 @media screen and (max-width: 670px) {
@@ -34,7 +63,6 @@
 
 @media screen and (max-width: 766px) {
     :host {
-        display: flex;
         flex-direction: column-reverse;
         padding: 12px 0
     }

@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { IconComponent } from '../icon/icon.component';
 import { iconPaths } from '../../data/data';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-icons-banner',
-  imports: [IconComponent, CommonModule],
+  imports: [CommonModule],
   templateUrl: './icons-banner.component.html',
   styleUrl: './icons-banner.component.css'
 })
@@ -20,15 +19,15 @@ public iconPaths: Object = iconPaths
 public icons = [
   {
 path: iconPaths.plugin,
-text: 'Transformador'
+text: 'Cableado'
   },
     {
 path: iconPaths.interruptor,
-text: 'Cableado'
+text: 'Interruptor de encendido y apagado'
   },
       {
 path: iconPaths.transformador,
-text: 'Interruptor de encendido y apagado'
+text: 'Transformador'
   },
 ]
 

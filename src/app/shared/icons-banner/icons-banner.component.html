@@ -3,22 +3,24 @@
 
   loading="lazy"
    decoding="async"
-   width="470"
-  height="470"
   >
 </div>
 
 <div class="text-container">
-<p class="small-title blue-line">{{ title }} </p>
-<h4 class="blue left">{{ subtitle }}</h4>
-<p class="text left">{{ description }}</p>
-<ul>
+<p class="small-title">{{ title }} </p>
+<p class="text">{{ description }}</p>
+<ul class="icons-container">
    @for(icon of icons; track icon.path) {
- <li>
-   <app-icon [iconPath]="icon.path" [ngClass]="'small-icon blue'"></app-icon>
-    <app-icon [iconPath]="icon.path" [ngClass]="'big-icon'"></app-icon>
-    <p>{{ icon.text }}</p>
-    
+ <li class="icon-container">
+   
+
+    <svg xmlns="http://www.w3.org/2000/svg"  aria-hidden="true" focusable="false" class="icon-embalaje"
+  viewBox="0 0 640 640">
+    <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+              <path [attr.d]="icon.path"/>
+            </svg>
+
+    <p class="text-icon">{{ icon.text }}</p>
 </li> 
 }
 </ul>
