@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { iconPaths } from '../../data/data';
 import { FaqsComponent } from '../../shared/faqs/faqs.component';
 import { IconsBannerComponent } from '../../shared/icons-banner/icons-banner.component';
+import { VideoBannerComponent } from '../../shared/video-banner/video-banner.component';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -34,6 +35,7 @@ import { IconsBannerComponent } from '../../shared/icons-banner/icons-banner.com
     FormsModule,
     FaqsComponent,
     IconsBannerComponent,
+    VideoBannerComponent
   ],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',

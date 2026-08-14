@@ -1,0 +1,46 @@
+:host {
+    display: flex;
+    padding: 52px 0
+}
+
+.video-container {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    border-radius: 10px;
+    min-width:370px;
+}
+
+.video-banner {
+    border-radius: 10px;
+    width:100%;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+}
+
+.text {
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+
+@media screen and (max-width: 670px) {
+
+    .video-container,
+    .video-banner {
+        border-radius: 0px
+    }
+}
+
+@media screen and (max-width: 766px) {
+    :host {
+        flex-direction: column-reverse;
+        padding: 12px 0
+    }
+
+}
