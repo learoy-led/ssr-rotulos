@@ -1,6 +1,7 @@
 {
   "name": "ssr-rotulos",
   "version": "0.0.0",
+    "type": "module",
   "scripts": {
     "ng": "ng",
     "build": "ng build --configuration production",
