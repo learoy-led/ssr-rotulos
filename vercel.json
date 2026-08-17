@@ -4,10 +4,7 @@
   "functions": {
     "api/index.ts": {
       "runtime": "nodejs20.x",
-      "includeFiles": [
-        "dist/ssr-rotulos/browser/**",
-        "dist/ssr-rotulos/server/index.server.html"
-      ]
+      "includeFiles": "dist/ssr-rotulos/**"
     }
   },
   "routes": [
