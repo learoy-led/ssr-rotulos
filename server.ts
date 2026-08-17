@@ -126,6 +126,6 @@ function run(): void {
 
 
 // Vercel imports app() and does not need to start its own listener.
-if (process.env['VERCEL'] !== '1') {
+if (process.env['VERCEL']) {
   run();
 }
