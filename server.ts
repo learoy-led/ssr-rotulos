@@ -25,7 +25,7 @@ export function app(): express.Express {
   
 //AQUI
 server.get('/:category/:product', async (req, res, next) => {
-  console.log('>>> RUTA PRODUCTO EXPRESS:', req.originalUrl);
+res.setHeader('X-SSR-Express', 'yes');
   try {
     const { category, product } = req.params;
 
