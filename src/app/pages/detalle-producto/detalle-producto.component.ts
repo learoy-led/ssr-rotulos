@@ -116,18 +116,17 @@ export class DetalleProductoComponent implements OnInit {
         ),
         'schema-service',
       );
-
+  
+      const category = this.productSelectedData.categories[0];
+      this.categoryName = category?.name ?? '';
+          
       this.getProductsService
-        .getCategoryWithProductSlug(this.productSelectedData.slug)
-        .subscribe((category) => {
-          this.categoryName = category?.name ?? '';
-          this.getProductsService
-            .getProductsByCategory(category?.slug ?? '')
-            .pipe(map((products) => products.length))
-            .subscribe((length) => {
-              this.categoryLength = length;
-            });
-        });
+  .getProductsByCategory(category?.slug ?? '')
+  .pipe(map((products) => products.length))
+  .subscribe((length) => {
+    this.categoryLength = length;
+  });
+
     });
 
     if (this.platformService.isBrowser()) {

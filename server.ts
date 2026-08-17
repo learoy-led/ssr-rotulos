@@ -22,6 +22,39 @@ export function app(): express.Express {
   // server.get('/api/**', (req, res) => { });
 
   
+//AQUI
+server.get('/:category/:product', async (req, res, next) => {
+  try {
+    const { category, product } = req.params;
+
+    const response = await fetch(
+      `https://rotuloslearoy-api.onrender.com/api/products/${product}`
+    );
+
+    if (!response.ok) {
+      return next();
+    }
+
+    const productData = await response.json();
+    const canonicalCategory = productData.categories?.[0]?.slug;
+
+    if (!canonicalCategory || canonicalCategory === category) {
+      return next();
+    }
+
+    const canonicalUrl = `/${canonicalCategory}/${product}`;
+
+    console.log(`308: /${category}/${product} → ${canonicalUrl}`);
+
+    return res.redirect(308, canonicalUrl);
+
+  } catch (error) {
+    return next(error);
+  }
+});
+
+
+
   // Serve static files from /browser
   server.get('**', express.static(browserDistFolder, {
     maxAge: '1y',
