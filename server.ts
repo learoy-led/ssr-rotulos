@@ -9,6 +9,7 @@ import bootstrap from './src/main.server';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
+  console.log('>>> SERVER.TS EJECUTADO <<<');
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
   const browserDistFolder = resolve(serverDistFolder, '../browser');
   const indexHtml = join(serverDistFolder, 'index.server.html');
@@ -24,6 +25,7 @@ export function app(): express.Express {
   
 //AQUI
 server.get('/:category/:product', async (req, res, next) => {
+  console.log('>>> RUTA PRODUCTO EXPRESS:', req.originalUrl);
   try {
     const { category, product } = req.params;
 
