@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "functions": {
+    "api/index.ts": {
+      "runtime": "nodejs20.x",
+      "includeFiles": [
+        "dist/ssr-rotulos/browser/**",
+        "dist/ssr-rotulos/server/index.server.html"
+      ]
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api"
+    }
+  ]
+}
