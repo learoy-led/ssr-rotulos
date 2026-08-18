@@ -40,6 +40,7 @@ export class UserDataFormComponent {
 
 
   public onSubmit() {
+  
     if (!this.platformService.isBrowser() || this.form.invalid || this.paying) return;
 
  this.paying = true;
@@ -53,42 +54,29 @@ export class UserDataFormComponent {
 this.checkoutService.pagar(payload).subscribe({
   next: (data: any) => {
 
-    console.log('1. RESPUESTA CREATE PAYMENT', data);
    
     this.signatureVersion = data.signatureVersion;
     this.merchantParameters = data.merchantParameters;
     this.signature = data.signature;
     this.redirectUrl = data.redirectUrl;
 
-      console.log('2. REDIRECT URL', this.redirectUrl);
-  console.log('3. FORM ELEMENT', this.formEl);
 
     requestAnimationFrame(() => {
       
-         console.log('4. ANTES DE REDSYS SUBMIT');
+         const form = this.formEl.nativeElement;
+          if (!form) {
+      console.error('NO EXISTE REDSYS FORM');
+      return;
+    }
 
-         console.log('SIGNATURE VERSION:', this.signatureVersion);
-console.log('MERCHANT PARAMETERS:', this.merchantParameters);
-console.log('SIGNATURE:', this.signature);
-console.log('REDIRECT URL:', this.redirectUrl);
-
-console.log(
-  'FORM INPUTS:',
-  this.formEl.nativeElement.querySelectorAll('input')
-);
-
-    this.formEl.nativeElement.submit();
-
-    console.log('5. DESPUÉS DE REDSYS SUBMIT');
+   form.submit();
+ 
 
     });
   },
 
   error: (err) => {
-
     console.error('Error en pago:', err);
-//    window.location.href = '/checkout/error';
-console.log('Payload en error:', payload);
   }
 });
 
