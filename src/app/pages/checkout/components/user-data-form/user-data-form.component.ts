@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../../core/services/cart.service';
 import { emailValidator } from '../../../../core/components/contact-form/validator';
+import { PlatformService } from '../../../../core/services/platform.service';
 
 @Component({
   selector: 'app-user-data-form',
@@ -28,7 +29,7 @@ export class UserDataFormComponent {
 
 
    constructor(private fb: FormBuilder,
-    private checkoutService: CheckoutService, private cartService: CartService) {}
+    private checkoutService: CheckoutService, private cartService: CartService, private platformService: PlatformService) {}
 
 
   public signature!: string;
@@ -39,7 +40,7 @@ export class UserDataFormComponent {
 
 
   public onSubmit() {
-    if (this.form.invalid || this.paying) return;
+    if (!this.platformService.isBrowser() || this.form.invalid || this.paying) return;
 
  this.paying = true;
 
@@ -65,6 +66,16 @@ this.checkoutService.pagar(payload).subscribe({
     requestAnimationFrame(() => {
       
          console.log('4. ANTES DE REDSYS SUBMIT');
+
+         console.log('SIGNATURE VERSION:', this.signatureVersion);
+console.log('MERCHANT PARAMETERS:', this.merchantParameters);
+console.log('SIGNATURE:', this.signature);
+console.log('REDIRECT URL:', this.redirectUrl);
+
+console.log(
+  'FORM INPUTS:',
+  this.formEl.nativeElement.querySelectorAll('input')
+);
 
     this.formEl.nativeElement.submit();
 
