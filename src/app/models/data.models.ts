@@ -160,11 +160,16 @@ export interface CheckOutFormData {
   name: string;
   email: string;
   phone: string;
-  empresa: string;
   address: string,
     cp: string,
      ciudad: string,
-     provincia: string
+     provincia: string,
+     razon: string;
+      invoiceAddress: string,
+    invoiceCp: string,
+     invoiceCiudad: string,
+     invoiceProvincia: string,
+
 }
 
 export interface PaymentData {

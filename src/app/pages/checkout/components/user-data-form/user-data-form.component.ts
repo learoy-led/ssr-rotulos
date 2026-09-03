@@ -18,11 +18,18 @@ export class UserDataFormComponent {
       name:  new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, emailValidator]),
       phone: new FormControl('', Validators.required),
-      empresa: new FormControl(''),
       address:  new FormControl('', Validators.required),
       cp: new FormControl('', Validators.required),
       ciudad: new FormControl('', Validators.required),
       provincia: new FormControl('', Validators.required),
+      invoice: new FormControl(false),
+      razon: new FormControl(''),
+       cif: new FormControl(''),
+       invoiceAddress:  new FormControl(''),
+      invoiceCp: new FormControl(''),
+      invoiceCiudad: new FormControl(''),
+      invoiceProvincia: new FormControl(''),
+
     });
 
   @ViewChild('redsysForm') formEl!: ElementRef<HTMLFormElement>;
@@ -38,6 +45,30 @@ export class UserDataFormComponent {
   public redirectUrl: string = '';
   public paying: boolean = false;
 
+ngOnInit(): void {
+  this.form.get('invoice')?.valueChanges.subscribe(checked => {
+    const invoiceFields = [
+      'razon',
+      'cif',
+      'invoiceAddress',
+      'invoiceCp',
+      'invoiceCiudad',
+      'invoiceProvincia'
+    ];
+
+    invoiceFields.forEach(field => {
+      const control = this.form.get(field);
+
+      if (checked) {
+        control?.addValidators(Validators.required);
+      } else {
+        control?.removeValidators(Validators.required);
+      }
+
+      control?.updateValueAndValidity();
+    });
+  });
+}
 
   public onSubmit() {
   

@@ -9,7 +9,7 @@
   <fieldset>
   <legend class="form-subtitle fuchsia">Datos de contacto</legend>
 
-  <div>
+
     <input
       class="form-field"
       placeholder="Nombre y apellidos"
@@ -22,14 +22,7 @@
           : null
       "
     />
-    <input
-      class="form-field"
-      placeholder="Empresa (opcional)"
-      type="text"
-      id="empresa"
-      formControlName="empresa"
-    />
-  </div>
+
   @if (form.get("name")?.touched && form.get("name")?.hasError("required")) {
     <p class="error-message" id="name-error">El nombre es obligatorio.</p>
   }
@@ -158,6 +151,133 @@
     </p>
   }
 </fieldset>
+
+
+
+
+<fieldset>
+  <legend class="form-subtitle blue">Facturación</legend>
+
+   <label class="label invoice" for="invoice">
+<input  type="checkbox" name="invoice" id="invoice" formControlName="invoice" #invoice>
+Necesito factura
+   </label>    
+@if (invoice.checked) {
+  <div>
+    <input
+      class="form-field"
+      placeholder="Razón social"
+      type="text"
+      id="razon"
+      formControlName="razon"
+      [attr.aria-describedby]="
+        form.get('razon')?.touched && form.get('razon')?.hasError('required')
+          ? 'razon-error'
+          : null
+      "
+    />
+    <input
+      class="form-field"
+      placeholder="CIF/NIF/NIE"
+      type="text"
+      id="cif"
+      formControlName="cif"
+    />
+  </div>
+  @if (form.get("razon")?.touched && form.get("razon")?.hasError("required")) {
+    <p class="error-message" id="razon-error">La razón social es obligatoria si necesitas factura.</p>
+    }
+    
+
+      @if (form.get("cif")?.touched && form.get("cif")?.hasError("required")) {
+    <p class="error-message" id="cif-error">El CIF/NIF/NIE es obligatorio si necesitas factura.</p>
+    }
+
+     <label class="label invoice-address" >
+<input  type="checkbox"  #invoiceAddress>
+Dirección de facturación distinta a la de envío
+   </label>    
+@if (invoiceAddress.checked) {
+  <input
+    class="form-field"
+    placeholder="Dirección de facturación"
+    type="text"
+    id="invoiceAddress"
+    formControlName="invoiceAddress"
+    [attr.aria-describedby]="
+      form.get('invoiceAddress')?.touched && form.get('invoiceAddress')?.hasError('required')
+        ? 'invoiceAddress-error'
+        : null
+    "
+  />
+  @if (
+    form.get("invoiceAddress")?.touched && form.get("invoiceAddress")?.hasError("required")
+  ) {
+    <p class="error-message" id="invoice-address-error">La dirección de facturación es obligatoria.</p>
+  }
+
+  <div>
+    <input
+      class="form-field"
+      placeholder="Código Postal"
+      type="text"
+      id="invoice-cp"
+      formControlName="invoiceCp"
+      [attr.aria-describedby]="
+        form.get('invoiceCp')?.touched && form.get('invoiceCp')?.hasError('required')
+          ? 'invoiceCp-error'
+          : null
+      "
+    />
+    <input
+      class="form-field"
+      placeholder="Ciudad"
+      type="text"
+      id="invoiceCiudad"
+      formControlName="invoiceCiudad"
+      [attr.aria-describedby]="
+        form.get('invoiceCiudad')?.touched && form.get('invoiceCiudad')?.hasError('required')
+          ? 'invoiceCiudad-error'
+          : null
+      "
+    />
+    <input
+      class="form-field"
+      placeholder="Provincia"
+      type="text"
+      id="invoiceProvincia"
+      formControlName="invoiceProvincia"
+      [attr.aria-describedby]="
+        form.get('invoiceProvincia')?.touched &&
+        form.get('invoiceProvincia')?.hasError('required')
+          ? 'invoiceProvincia-error'
+          : null
+      "
+    />
+  </div>
+  @if (form.get("invoiceCp")?.touched && form.get("invoiceCp")?.hasError("required")) {
+    <p class="error-message" id="invoiceCp-error">El código postal es obligatorio.</p>
+  }
+
+  @if (
+    form.get("invoiceCiudad")?.touched && form.get("invoiceCiudad")?.hasError("required")
+  ) {
+    <p class="error-message" id="invoiceCiudad-error">La ciudad es obligatoria.</p>
+  }
+
+  @if (
+    form.get("invoiceProvincia")?.touched &&
+    form.get("invoiceProvincia")?.hasError("required")
+  ) {
+    <p class="error-message" id="invoiceProvincia-error">
+      La provincia es obligatoria.
+    </p>
+  }
+  }
+
+  }
+</fieldset>
+
 
   <input type="hidden" name="Ds_SignatureVersion" [value]="signatureVersion" />
   <input

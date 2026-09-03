@@ -117,6 +117,9 @@ get glowColor(): string {
 
  public ngOnInit() {
 
+  console.log('proportionalWidth en init es', this.proportionalWidth)
+  console.log('lines lenght en init es', this.lines.length)
+
  this.findMaterial();
  this.preloadFonts();
 
@@ -174,6 +177,9 @@ private async applyFormValues(values: any): Promise<void> {
     this.updateText(); 
     this.updateRange();
     
+      console.log('proportionalWidth en valores form es', this.proportionalWidth)
+  console.log('lines lenght en valoes form es', this.lines.length)
+
   }
 
  private async loadFont(): Promise<void>  {
@@ -415,18 +421,27 @@ this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * 
       this.finalPrice = 0;
       return;
     }
-     const area = (this.size * this.lines.length * this.proportionalWidth)/10000
+
+    const totalHeight = this.lines.length * this.size + (this.lines.length - 1) * (this.size * 0.2)
+     const area = ( totalHeight * this.proportionalWidth)/10000
+     console.log('area es', area)
 
    let variantSelected = this.product.variants.find(v => v.size >= area);
+   console.log('variantSelected es', variantSelected)
         
    if (!variantSelected) {
   variantSelected = this.product.variants[this.product.variants.length - 1];
 } 
 
-   
+ console.log('variantSelected price es', variantSelected.price)   
+ console.log('multiplicar area x price es', area * variantSelected.price)   
+
  area * variantSelected.price < 8000 ? this.finalPrice = 8000 :  this.finalPrice =  area * variantSelected.price;
       this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
    }
+
+
+
   }
   
 private updateRange() {

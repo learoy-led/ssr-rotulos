@@ -1,13 +1,23 @@
 <div class="container">
-<div class="preview-container">
-<figure class="preview-figure">
+    
+ @let effectiveBackground = background === 'default' && color.dark ? '/blanco.webp' : background;
+<div class="preview-container"  
+[style.background-image]="effectiveBackground !== 'default' ? 'url(' + effectiveBackground + ')' : 'none'"
+[style.background-size]="'cover'"
+>
+
+<figure class="preview-figure"
+ [style.backgroundColor]="effectiveBackground !== '/blanco.webp'
+  ? (background === 'default' && !color.dark ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0.5)')
+  : 'transparent'">
 
  
  <svg 
+
  class="ia-image"
     #svgEl
   [attr.viewBox]="'0 0 ' + width + ' ' + height"
-  preserveAspectRatio="xMidYMid slice"
+  preserveAspectRatio="xMidYMid meet"
   width="100%"
   height="100%"
    xmlns="http://www.w3.org/2000/svg"
@@ -70,17 +80,13 @@
 
     </defs>
 
-    @let effectiveBackground = background === 'default' && color.dark ? '/blanco.webp' : background;
+
   
-@if(effectiveBackground !== 'default') {
-    <image
-      [attr.href]="effectiveBackground" x="0" y="0" width="100%" height="100%"
-      preserveAspectRatio="xMidYMid slice"
-    />
-}
+<!-- @if(effectiveBackground !== 'default') {
+} 
 @if(effectiveBackground !== '/blanco.webp') {
 <rect x="0" y="0"  width="100%" height="100%" fill="black" [attr.opacity]="background === 'default'  && !color.dark ? 1 : 0.5"/>
-}
+}-->
  
 @if(baseColor && product.renderKey !== 'neon') {
       <rect
@@ -210,6 +216,7 @@
 
 </figure>    
 </div>
+
 
 <form [formGroup]="form"  class="preview-form" (ngSubmit)="onSubmit()"> 
   
