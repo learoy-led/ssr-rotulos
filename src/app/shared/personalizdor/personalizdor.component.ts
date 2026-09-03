@@ -87,7 +87,7 @@ public overlay = {
   height: 0
 };
 
-private referenceHeight: number = 0
+//private referenceHeight: number = 0
 
 public offsetY: number = 0;
 
@@ -117,8 +117,6 @@ get glowColor(): string {
 
  public ngOnInit() {
 
-  console.log('proportionalWidth en init es', this.proportionalWidth)
-  console.log('lines lenght en init es', this.lines.length)
 
  this.findMaterial();
  this.preloadFonts();
@@ -177,8 +175,6 @@ private async applyFormValues(values: any): Promise<void> {
     this.updateText(); 
     this.updateRange();
     
-      console.log('proportionalWidth en valores form es', this.proportionalWidth)
-  console.log('lines lenght en valoes form es', this.lines.length)
 
   }
 
@@ -340,7 +336,7 @@ private getTotalHeight(
     return;
   }
 
-  this.referenceHeight = layout.maxHeight
+  //this.referenceHeight = layout.maxHeight
 
    const gap = this.fontSize * 0.2;
 
@@ -361,6 +357,7 @@ private getTotalHeight(
 
   // Altura total del bloque
   const totalHeight = currentY - gap;
+
 
   // Desplazamiento para centrar verticalmente
   this.offsetY =
@@ -396,9 +393,14 @@ this.overlay = {
 };
 
 
-this.proportionalWidth = this.size * (bbox.width / this.referenceHeight );
+//this.proportionalWidth = this.size * (bbox.width / this.referenceHeight );
+const totalHeight =
+  this.lines.length * this.size +
+  (this.lines.length - 1) * (this.size * 0.2);
 
-console.log(bbox.width, bbox.height/this.lines.length, this.size )
+this.proportionalWidth =
+  totalHeight * (bbox.width / bbox.height);
+
 
 }
 
@@ -424,17 +426,15 @@ this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * 
 
     const totalHeight = this.lines.length * this.size + (this.lines.length - 1) * (this.size * 0.2)
      const area = ( totalHeight * this.proportionalWidth)/10000
-     console.log('area es', area)
+    
 
    let variantSelected = this.product.variants.find(v => v.size >= area);
-   console.log('variantSelected es', variantSelected)
+  
         
    if (!variantSelected) {
   variantSelected = this.product.variants[this.product.variants.length - 1];
 } 
 
- console.log('variantSelected price es', variantSelected.price)   
- console.log('multiplicar area x price es', area * variantSelected.price)   
 
  area * variantSelected.price < 8000 ? this.finalPrice = 8000 :  this.finalPrice =  area * variantSelected.price;
       this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
