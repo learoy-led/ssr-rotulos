@@ -50,10 +50,9 @@ public visibleFontsCount = 5;
     name: '',
     hex: ''
   };
-  baseColor: Color | null = {
-    name: '',
-    hex: ''
-  };
+  baseColor: Color | null = null
+
+
 
 previousColor!: Color;
 previousLightColor!: Color;
@@ -68,7 +67,11 @@ previousBaseColor?: Color | null;
   proportionalWidth: number  = 0;
   variantSize: number = 0;
 
-  finalPrice = 0
+  baseWidth: number = 0;
+  baseHeight: number = 0;
+    
+
+  finalPrice: number = 0
 
   lines: string[] = [];
 
@@ -92,7 +95,7 @@ public overlay = {
 public offsetY: number = 0;
 
 public activeModal : 'color' | 'lightColor' | 'base' | null = null
-//base: boolean = false;
+base: boolean = false;
 
 get visibleFonts() {
    return this.material?.fonts?.slice(0, this.visibleFontsCount);
@@ -131,8 +134,8 @@ get glowColor(): string {
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font, Validators.required],
       size: this.size,
-      baseHeight: [this.size + 3, [Validators.min(13), Validators.max(300)]],
-      baseWidth: [Math.round(this.proportionalWidth + 3), [Validators.min(this.proportionalWidth + 3)]]
+      baseHeight: [this.size + 3, [Validators.min(13) || this.baseHeight, Validators.max(300)]],
+      baseWidth: [Math.round(this.proportionalWidth + 3) || this.baseWidth, [Validators.min(this.proportionalWidth + 3)]]
     });
 
 
@@ -167,7 +170,10 @@ private async applyFormValues(values: any): Promise<void> {
     this.font = values.font;
 
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
-     
+
+    this.baseHeight = values.baseHeight 
+    this.baseWidth = values.baseWidth 
+
      if (fontChanged || !this.fontLoaded) {
    await this.loadFont(); 
   }
@@ -412,12 +418,23 @@ this.proportionalWidth =
     return;
   } 
    if(this.product.renderKey !== 'neon') {
-     let variantSelected = this.product.variants.find(v => v.size >= this.size);
+    let basePrice = 0
+ 
+if (this.base) { 
+  const baseArea  = (this.baseWidth * this.baseHeight)/10000 ;
+  const pricePerSquareMeter = baseArea < 100 ? 50000 : 40000
+  basePrice = baseArea * pricePerSquareMeter
+  console.log(pricePerSquareMeter, basePrice)
+}
+
+  
+    let variantSelected = this.product.variants.find(v => v.size >= this.size);
    if (!variantSelected) {
   variantSelected = this.product.variants[this.product.variants.length - 1];
 } 
-this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * this.size 
-  this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
+this.finalPrice = variantSelected.price * this.text.replace(/\s/g, '').length * this.size + basePrice
+this.finalPrice =  Math.round(this.finalPrice * 100) / 100; 
+
    } else {
     if (!this.overlay) {
       this.finalPrice = 0;
@@ -466,6 +483,7 @@ this.background = image
 }
 
 public openModal(type: 'color' | 'lightColor' | 'base' | null) {
+  console.log('color base en openModal', this.baseColor)
    this.activeModal = type
 
       switch (type) {
@@ -493,7 +511,7 @@ this.colorSelected = true
 this.lightColorSelected = true
   }
     if(type === 'base') {
-    //this.base = true;
+    this.base = true;
     const minBaseWidth = Math.round(this.proportionalWidth + 3);
   const currentBaseWidth = this.form.get('baseWidth')?.value;
 
@@ -532,6 +550,7 @@ this.lightColorSelected = true
     }
 
   this.activeModal = null;
+    console.log('color base en cancelModal', this.baseColor)
   }
 
 
@@ -541,9 +560,11 @@ public toggleFonts() {
 }
 
 public removeBase() {
+  this.base = false
   this.form.patchValue({
    baseColor: null
    });
+   
 }
 
 
@@ -553,7 +574,7 @@ public ngAfterViewInit() {
    requestAnimationFrame(() => {
     this.updateText();
   }); 
-
+console.log('color base en afeterviewInit', this.baseColor)
 }
    
 public onSubmit() { 
@@ -627,7 +648,7 @@ this.previousColor = {
   };
   this.innerColor = '';
 
-  //this.base = false;
+  this.base = false;
   this.activeModal = null;
 
   this.colorSelected = false;

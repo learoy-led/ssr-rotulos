@@ -12,7 +12,7 @@ export class CartService {
   public items = signal<ProductPurchased[]>([]);
 
   public totalPrice = computed(() =>
-    this.items().reduce((acc, item) => acc + item.price * item.qty, 0)
+     this.items().reduce((acc, item) => acc + item.price * item.qty, 0)
   );
 
   constructor(private platformService: PlatformService) {

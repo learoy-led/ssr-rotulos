@@ -84,10 +84,12 @@
 </section>
 
 <section class="subtotal-container">
+<div class="numbers-container">
+<p class="price-shipment">Subtotal <span class="price-shipment"> {{ cartService.totalPrice() | price }}</span></p>
+<p class="price-shipment">Envío <span class="price-shipment"> 7,00 €</span></p>
+<p class="subtitle">Total <span class="subtitle black left"> {{ cartService.totalPrice() + 700 | price }} </span></p>
+</div>
 
-<p class="price-shipment">Envío gratis</p>
-
-<p class="subtitle">Total <span class="subtitle black left"> {{ cartService.totalPrice() | price }}</span></p>
 <div class="cart-buttons">
 <app-button class="secondary-button" [buttonText]="'< Seguir comprando'" [buttonLink]="'/catalogo'"></app-button>
 <app-button  [buttonText]="'Pagar pedido'" [buttonLink]="'/checkout'"></app-button>

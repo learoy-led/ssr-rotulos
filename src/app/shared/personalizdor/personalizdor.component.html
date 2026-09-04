@@ -88,7 +88,7 @@
 <rect x="0" y="0"  width="100%" height="100%" fill="black" [attr.opacity]="background === 'default'  && !color.dark ? 1 : 0.5"/>
 }-->
  
-@if(baseColor && product.renderKey !== 'neon') {
+@if(base && baseColor) {
       <rect
     [attr.x]="overlay.left - 40"
     [attr.y]="overlay.top - 20"
@@ -281,9 +281,10 @@
 
 
 @if(product.renderKey !== 'neon') {
-  <span class="label">Elige los colores:</span>
+  
   <div class="options-container">
 @if(product.renderKey !== 'acero') {
+  <span class="label">Elige el color de las letras:</span>
        <div class="img-selector-button" (click)="openModal('color')" [class.selected]="colorSelected" [style.background]="color.hex">
    <span class="button-legend">Color letras</span> 
            <img  class="img-button" [src]="product.name.includes('retro') ? '/color-frontal.jpg' : '/color-trasera.jpg'" alt="boton-color-letra-corporea">
@@ -292,11 +293,13 @@
     }
 
   @if(product.light && product.renderKey !== 'mini') {
+    <span class="label">Elige el color de la luz:</span>
      <div class="img-selector-button" (click)="openModal('lightColor')" [class.selected]="lightColorSelected" [style.background]="lightColor.hex">
    <span class="button-legend">Color luz</span> 
    <img class="img-button" [src]="product.name.includes('retro') ? '/color-trasera.jpg' : '/color-frontal.jpg'" alt="boton-color-luz-letra-corporea">
     </div>
  }  
+ <span class="label">Base de aluminio (opcional):</span>
   <div class="img-selector-button" (click)="openModal('base')" [class.selected]="baseColor" [style.background]="baseColor?.hex">
     <span class="button-legend">Base de aluminio opcional</span> 
     <img class="img-button" src="/base.jpg" alt="boton-base-letra-corporea">

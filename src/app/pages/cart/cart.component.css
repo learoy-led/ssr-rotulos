@@ -74,6 +74,11 @@ svg path {
     align-items: flex-end
 }
 
+.numbers-container {
+ display: flex;
+flex-direction: column;
+}
+
 .cart-buttons {
     display: flex;
     gap: 14px
@@ -95,6 +100,11 @@ padding: 0
     line-height: 26px;
     letter-spacing: 2px;
     font-weight: bold;
+}
+
+p.price-shipment {
+display: flex;
+justify-content: space-between;
 }
 
 .mobile-tr, .mobile {
