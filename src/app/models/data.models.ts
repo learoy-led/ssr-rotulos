@@ -67,13 +67,13 @@ export interface CustomDetails {
   font: string,
   color: string,
   lightColor?: string,
+  base: boolean,
   baseColor?: string,
   baseHeight?: number,
   baseWidth?: number,
   size: number,
   lines?: string[],
   proportionalWidth?: number,
-  base?: boolean,
   svgString?: string
 }
 

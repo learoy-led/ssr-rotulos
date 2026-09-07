@@ -81,23 +81,17 @@
     </defs>
 
 
-  
-<!-- @if(effectiveBackground !== 'default') {
-} 
-@if(effectiveBackground !== '/blanco.webp') {
-<rect x="0" y="0"  width="100%" height="100%" fill="black" [attr.opacity]="background === 'default'  && !color.dark ? 1 : 0.5"/>
-}-->
  
-@if(base && baseColor) {
+ @if(base && baseColor) { 
       <rect
-    [attr.x]="overlay.left - 40"
-    [attr.y]="overlay.top - 20"
-    [attr.width]="overlay.width + 40 * 2"
-    [attr.height]="overlay.height + 20 * 2"
+    [attr.x]="overlay.left - ((baseWidth * heightRatio) - overlay.width) / 2"
+  [attr.y]="overlay.top - ((baseHeight * heightRatio) - overlay.height) / 2"
+    [attr.width]="baseWidth * heightRatio"
+    [attr.height]="baseHeight * heightRatio"
     [attr.fill]="product.renderKey === 'aluminio' && lightColor.hex === '#ffffff' ? '#383E42' : baseColor.hex"
     rx="0">
   </rect>
-   }
+   } 
 
       @if(product.light) {
 <radialGradient id="wallGlow"> 

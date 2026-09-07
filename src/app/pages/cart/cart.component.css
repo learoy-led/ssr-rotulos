@@ -37,11 +37,6 @@ td {
     text-transform: uppercase;
 }
 
-.product-info {
-display: flex;
-flex-direction: column;
-gap: 3px
-}
 
 .qty-wrapper {
     display: flex;

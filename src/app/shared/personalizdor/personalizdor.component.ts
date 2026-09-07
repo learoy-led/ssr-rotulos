@@ -67,9 +67,13 @@ previousBaseColor?: Color | null;
   proportionalWidth: number  = 0;
   variantSize: number = 0;
 
-  baseWidth: number = 0;
+  base: boolean = false;
+  baseCustomized: boolean = false;
   baseHeight: number = 0;
-    
+  baseWidth: number = 0;
+  heightRatio: number = 0;
+
+
 
   finalPrice: number = 0
 
@@ -90,12 +94,12 @@ public overlay = {
   height: 0
 };
 
-//private referenceHeight: number = 0
+
 
 public offsetY: number = 0;
 
 public activeModal : 'color' | 'lightColor' | 'base' | null = null
-base: boolean = false;
+
 
 get visibleFonts() {
    return this.material?.fonts?.slice(0, this.visibleFontsCount);
@@ -115,7 +119,7 @@ get glowColor(): string {
 
   constructor(private fb: FormBuilder, private platformService: PlatformService,
      private cartService: CartService, private router: Router,
-     private fontsService: FontsService,
+     private fontsService: FontsService,   
    ) {}
 
  public ngOnInit() {
@@ -134,17 +138,20 @@ get glowColor(): string {
       baseColor: [ this.material?.colors.filter(color => color.uses?.includes('base'))[0] || this.baseColor],
       font: [this.material?.fonts[0] || this.font, Validators.required],
       size: this.size,
-      baseHeight: [this.size + 3, [Validators.min(13) || this.baseHeight, Validators.max(300)]],
-      baseWidth: [Math.round(this.proportionalWidth + 3) || this.baseWidth, [Validators.min(this.proportionalWidth + 3)]]
+      baseHeight: [this.size + 3, [Validators.min(13), Validators.max(300)]],
+      baseWidth:  [this.baseWidth]
     });
 
 
     this.applyFormValues(this.form.value);
 
-  ['text', 'color', 'lightColor', 'font', 'size', 'baseColor'].forEach(controlName => {
+  ['text', 'color', 'lightColor', 'font', 'size', 'baseColor', 'baseHeight', 'baseWidth'].forEach(controlName => {
   this.form.get(controlName)?.valueChanges
     .pipe(debounceTime(150))
     .subscribe(() => {
+       if (controlName === 'baseWidth' || controlName === 'baseHeight') {
+        this.baseCustomized = true;
+      }
       this.applyFormValues(this.form.value);
     });
 });
@@ -171,8 +178,10 @@ private async applyFormValues(values: any): Promise<void> {
 
     this.size = values.size < values.font.minHeight ? values.font.minHeight : values.size;
 
-    this.baseHeight = values.baseHeight 
-    this.baseWidth = values.baseWidth 
+    //this.baseHeight = values.baseHeight  < values.size + 3 ?  values.size + 3 : values.baseHeight 
+    this.baseHeight = values.baseHeight  
+    this.baseWidth = values.baseWidth  
+
 
      if (fontChanged || !this.fontLoaded) {
    await this.loadFont(); 
@@ -180,8 +189,7 @@ private async applyFormValues(values: any): Promise<void> {
 
     this.updateText(); 
     this.updateRange();
-    
-
+  
   }
 
  private async loadFont(): Promise<void>  {
@@ -197,6 +205,7 @@ this.updateText();
 }
 
  private updateText() {
+
     this.innerColor = this.tintColor(this.color.hex, 0.9);
     this.lines = this.text.split('\n');
  
@@ -342,8 +351,6 @@ private getTotalHeight(
     return;
   }
 
-  //this.referenceHeight = layout.maxHeight
-
    const gap = this.fontSize * 0.2;
 
      let currentY = 0;
@@ -388,26 +395,45 @@ private updateOverlay(){
  const el = this.textGroup.nativeElement;
 
   const bbox = (el as SVGGElement).getBBox();
-
-  const padding = 4;
-
+  
 this.overlay = {
-   left: bbox.x - padding,
-    top: bbox.y - padding,
-    width: bbox.width + padding* 2,
-    height: bbox.height + padding * 2
+   left: bbox.x,
+    top: bbox.y,
+    width: bbox.width,
+    height: bbox.height
 };
 
-
-//this.proportionalWidth = this.size * (bbox.width / this.referenceHeight );
 const totalHeight =
   this.lines.length * this.size +
   (this.lines.length - 1) * (this.size * 0.2);
 
-this.proportionalWidth =
+  this.proportionalWidth =
   totalHeight * (bbox.width / bbox.height);
+  this.heightRatio = bbox.height / totalHeight;
 
+  const minBaseWidth = Math.round(this.proportionalWidth + 3);
+const minBaseHeight = totalHeight + 3;
 
+const oldBaseWidth = this.baseWidth;
+const oldBaseHeight = this.baseHeight;
+
+if (!this.baseCustomized) {
+  this.baseWidth = minBaseWidth;
+  this.baseHeight = minBaseHeight;
+} else {
+  this.baseWidth = Math.max(this.baseWidth, minBaseWidth);
+  this.baseHeight = Math.max(this.baseHeight, minBaseHeight);
+}
+
+if (
+  this.baseWidth !== oldBaseWidth ||
+  this.baseHeight !== oldBaseHeight
+) {
+this.form.patchValue({
+  baseWidth: this.baseWidth,
+  baseHeight: this.baseHeight
+}, { emitEvent: false });
+ }
 }
 
 
@@ -512,15 +538,18 @@ this.lightColorSelected = true
   }
     if(type === 'base') {
     this.base = true;
-    const minBaseWidth = Math.round(this.proportionalWidth + 3);
-  const currentBaseWidth = this.form.get('baseWidth')?.value;
 
-   if (!currentBaseWidth || currentBaseWidth < minBaseWidth) {
-    this.form.patchValue({
-      baseWidth: minBaseWidth
-    }, { emitEvent: false });
-  }
-  
+      if (!this.baseCustomized) {
+
+    const totalHeight =
+  this.lines.length * this.size +
+  (this.lines.length - 1) * (this.size * 0.2);
+
+     this.form.patchValue({
+  baseWidth: Math.round(this.proportionalWidth + 3),
+  baseHeight: totalHeight + 3 
+}, { emitEvent: false });
+   }
   }
 }
 
@@ -541,11 +570,7 @@ this.lightColorSelected = true
       break;
 
          case 'base':
-         this.form.patchValue({
-    baseColor: this.previousBaseColor,
-  baseHeight: this.size + 3,
-  baseWidth: Math.round(this.proportionalWidth + 3)
-  });
+        this.removeBase()
       break;
     }
 
@@ -561,8 +586,12 @@ public toggleFonts() {
 
 public removeBase() {
   this.base = false
+  this.baseCustomized = false;
+
   this.form.patchValue({
-   baseColor: null
+   baseColor: null,
+   baseWidth: 0,
+   baseHeight: 0
    });
    
 }
@@ -574,7 +603,6 @@ public ngAfterViewInit() {
    requestAnimationFrame(() => {
     this.updateText();
   }); 
-console.log('color base en afeterviewInit', this.baseColor)
 }
    
 public onSubmit() { 
@@ -596,14 +624,13 @@ public onSubmit() {
       font: this.font.name,
       color: this.color.name,
       lightColor: this.lightColor.name,
+      base: this.base,
       baseColor: this.baseColor?.name,
       baseHeight: this.form.value.baseHeight,
       baseWidth: this.form.value.baseWidth,
       size: this.size,
       lines: this.lines,
-      proportionalWidth: this.proportionalWidth,
-      base: this.baseColor ? true : false,
-      
+      proportionalWidth: this.proportionalWidth,    
       svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
     }
   }
@@ -648,7 +675,7 @@ this.previousColor = {
   };
   this.innerColor = '';
 
-  this.base = false;
+
   this.activeModal = null;
 
   this.colorSelected = false;
@@ -657,6 +684,13 @@ this.previousColor = {
   this.lines = [];
   this.textPaths = [];
   this.proportionalWidth = 0;
+  this.heightRatio = 0;
+  this.base = false;
+  this.baseCustomized = false;
+  this.baseHeight = 0;
+  this.baseWidth = 0;
+
+
   this.variantSize = 0;
   this.overlay = {
   left: 0,
