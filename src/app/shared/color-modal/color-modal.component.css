@@ -40,7 +40,7 @@ align-self: flex-end;
 .color-picker {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 6px;
 }
 
 .color-picker label {
@@ -53,7 +53,7 @@ align-self: flex-end;
  cursor: pointer;
  }
 
-input[type="radio"]:checked {
+input[type="radio"]:checked + label {
 border: 1px solid var(--color-grey);
 }
 

@@ -1,6 +1,10 @@
+:host {
+max-width: 1237px; 
+}
+
 .container {
 display: grid;
-grid-template-columns: 50% 50%;
+grid-template-columns: 55% 45%;
 background-color: var(--color-extra-light-grey);
 }
 
@@ -21,6 +25,13 @@ width: 100%;
 .preview-form {
 padding: 32px;
 position: relative;
+gap: 30px
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap:12px
 }
 
 textarea {
@@ -32,10 +43,14 @@ textarea:focus-visible {
  border: 1px solid #e2e2e2;
 }
 
-.color-picker, .font-picker {
+.color-picker, .font-picker{
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 6px;
+}
+
+.font-picker {
+  justify-content: space-around;
 }
 
 .hidden-font {
@@ -59,7 +74,7 @@ height: 60px;
 background-size: 250%; 
 }
 
-.color-picker label, .font-picker label, .background-picker li, .img-selector-button {
+.color-picker label, .font-picker label, .background-picker li, .selector-container {
 border: 1px solid var(--color-light-grey);
 border-radius: 5px
 }
@@ -85,12 +100,12 @@ border: 1px solid  var(--color-black);
 cursor: pointer;
 }
 
- .color-picker label:hover, .font-picker label:hover, .background-picker li:hover, .img-selector-button:hover {
- border: 1px solid var(--color-grey);
+ .color-picker label:hover, .font-picker label:hover, .background-picker li:hover, .selector-container:hover {
+ border: 1px solid var(--color-grey)!important;
  cursor: pointer;
  }
 
-input[type="radio"]:checked {
+input[type="radio"]:checked + label {
 border: 1px solid var(--color-grey);
 }
 
@@ -134,7 +149,7 @@ input[type="range"]::-webkit-slider-thumb {
 
  .options-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;  */
   gap: 12px
 } 
 
@@ -175,8 +190,24 @@ left: 70%;
 opacity: 1
 }
 
-.img-selector-button:hover .img-button {
-transform: scale(1.05)
+/*.img-selector-button:hover .img-button {
+ transform: scale(1.05) 
+}*/
+
+.selector-container {
+  width: 50%;
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.selector-container.base {
+  width: 100%;
+}
+
+.small { 
+  font-size: 14px;
 }
 
 @keyframes scaleIn {

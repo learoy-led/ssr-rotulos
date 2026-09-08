@@ -214,10 +214,12 @@
 
 <form [formGroup]="form"  class="preview-form" (ngSubmit)="onSubmit()"> 
   
+  <div class="form-group">
       <label for="text">Texto del rótulo (añade líneas pulsando Enter):</label> 
       <textarea  class="form-field" placeholder="Tu texto aquí" formControlName="text" id="text" required></textarea>
+    </div>
     
-    
+    <div class="form-group">
     <label for="font">Elige el diseño de letras:</label> 
      <div class="font-picker">
 
@@ -278,43 +280,54 @@
   
   <div class="options-container">
 @if(product.renderKey !== 'acero') {
-  <span class="label">Elige el color de las letras:</span>
-       <div class="img-selector-button" (click)="openModal('color')" [class.selected]="colorSelected" [style.background]="color.hex">
+<div  class="selector-container" [style.border-right]="'8px solid' + color.hex" (click)="openModal('color')">
+       <div class="img-selector-button"  >
    <span class="button-legend">Color letras</span> 
            <img  class="img-button" [src]="product.name.includes('retro') ? '/color-frontal.jpg' : '/color-trasera.jpg'" alt="boton-color-letra-corporea">
-
     </div>
+      <span class="label small">Color letras</span>
+      </div>
     }
 
   @if(product.light && product.renderKey !== 'mini') {
-    <span class="label">Elige el color de la luz:</span>
-     <div class="img-selector-button" (click)="openModal('lightColor')" [class.selected]="lightColorSelected" [style.background]="lightColor.hex">
+ <div class="selector-container"  [style.border-right]="'8px solid' + lightColor.hex" (click)="openModal('lightColor')">
+     <div class="img-selector-button" >
    <span class="button-legend">Color luz</span> 
    <img class="img-button" [src]="product.name.includes('retro') ? '/color-trasera.jpg' : '/color-frontal.jpg'" alt="boton-color-luz-letra-corporea">
     </div>
+       <span class="label small">Color luz</span>
+       </div>
  }  
- <span class="label">Base de aluminio (opcional):</span>
-  <div class="img-selector-button" (click)="openModal('base')" [class.selected]="baseColor" [style.background]="baseColor?.hex">
+
+  </div>
+  }
+</div>
+
+  @if(product.renderKey !== 'neon') {
+  <div class="form-group">
+      <label>¿Quieres añadir base de aluminio?</label> 
+   <div  class="selector-container base"  [style.border-right]="base ? '8px solid' + baseColor?.hex : '1px solid #e2e2e2'" (click)="openModal('base')">
+  <div class="img-selector-button" >
     <span class="button-legend">Base de aluminio opcional</span> 
     <img class="img-button" src="/base.jpg" alt="boton-base-letra-corporea">
     </div>
-  </div>
-
+<span class="label small">Base de aluminio (opcional)</span>
+</div>
+</div>
 }
 
 @if(activeModal) {
    <app-color-modal 
      [form]="form"
    [activeModal]="activeModal" [material]="material!"
-   [lettersHeight]="size"
-   [lettersWidth]="proportionalWidth"
     (cancel)="cancelModal()"
   (closed)="activeModal = null"
     (removeBaseSelected)="removeBase()">
    ></app-color-modal>
 }
 
-@if(product.variants?.length) {
+<!-- @if(product.variants?.length) { -->
+ <div class="form-group">
 <label for="size">Elige la altura de las letras*: {{ form.get('size')?.value < font.minHeight ? font.minHeight : form.get('size')?.value}} cm</label>
 
 <input #rangeEl 
@@ -325,10 +338,13 @@ type="range"
 formControlName="size" 
 id="size">
 <span class="small-legend">*Para un alto superior a {{ material?.maxHeight || 200}} cm, <a class="small-legend" href="/contacto">contacta con nosotros ></a></span>
+</div>
 
+ <div class="form-group">
 <p class="price-line">Precio <span class="price">{{ finalPrice | price }}</span></p>
 <button type="submit" class="button add-to-cart" [disabled]="form.invalid">Añadir al carrito</button> 
-}
+</div>
+<!-- } -->
 
 
 

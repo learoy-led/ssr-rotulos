@@ -53,6 +53,7 @@
     <div class="measures-inputs">
     <div class="measure-input">  
  <label for="baseHeight">Alto (cm): </label>
+
     <input
         aria-label="Escribir alto de la base en centímetros"
         class="number-input"
@@ -60,8 +61,8 @@
         id="baseHeight"
         name="baseHeight"
            formControlName="baseHeight"
-          [min]="lettersHeight+3"
           max="300"
+            inputmode="decimal"
         #baseHeight
       />
 
@@ -80,7 +81,7 @@
         id="baseWidth"
         name="baseWidth"
            formControlName="baseWidth"
-          [min]="Math.round(lettersWidth + 3)"
+             inputmode="decimal"
         #baseWidth
       />
         
