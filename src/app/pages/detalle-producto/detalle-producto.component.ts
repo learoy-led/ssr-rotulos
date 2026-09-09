@@ -96,7 +96,7 @@ export class DetalleProductoComponent implements OnInit {
         this.selectedVariant = this.productSelectedData.variants[0];
       }
 
-      const title = `${this.productSelectedData.name} · Rótulos Learoy`;
+      const title = `${this.productSelectedData.name} · RÓTULOS LEAROY`;
       const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
       const description = this.productSelectedData.metaDescription;
       const image = this.productSelectedData.images[0];

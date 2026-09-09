@@ -62,7 +62,7 @@ public productsShown$!: Observable<Product[]>;
     this.route.data.subscribe(data => {
     this.categorySelectedData = data['category'];
 
-          const title = `${this.categorySelectedData?.name} · Rótulos Learoy`;
+          const title = `${this.categorySelectedData?.name} · RÓTULOS LEAROY`;
           const description =
             this.categorySelectedData?.description.metaDescription;
           const image = this.categorySelectedData?.image;

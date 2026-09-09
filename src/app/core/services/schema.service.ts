@@ -35,7 +35,7 @@ export class SchemaService {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "@id": "https://www.rotuloslearoy.com/#business",
-      "name": "Rótulos Learoy",
+      "name": "RÓTULOS LEAROY",
       "image": 'https://www.rotuloslearoy.com/rotulos-learoy-logo.webp',
       "url": this.contactDetails.url,
       "telephone": '+34'+this.contactDetails.phone,
@@ -66,7 +66,7 @@ export class SchemaService {
       "@type": "WebSite",
       "@id": "https://www.rotuloslearoy.com/#website",
       "url": this.contactDetails.url,
-      "name": "Rótulos Learoy",
+      "name": "RÓTULOS LEAROY",
       "description": "Todo tipo de rótulación y cartelería para tiendas, hoteles, oficinas, etc. Pide tu letrero luminoso o sin luz para interior o exterior.",
       "inLanguage": "es",
       "publisher": {
@@ -96,7 +96,7 @@ export class SchemaService {
   "provider": {
     "@type": "LocalBusiness",
     "@id": "https://www.rotuloslearoy.com/#business",
-    "name": "Rótulos Learoy", 
+    "name": "RÓTULOS LEAROY", 
     "address": {
     "@type": "PostalAddress",
     "streetAddress": this.contactDetails.address1,

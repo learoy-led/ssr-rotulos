@@ -8,7 +8,7 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Rótulos Learoy · Carteles y letreros personalizados para tiendas',
+    title: 'RÓTULOS LEAROY · Carteles y letreros personalizados para tiendas',
     data: {
       description:
         'Todo tipo de rótulación y cartelería para tiendas, hoteles, oficinas, etc. Pide tu letrero luminoso o sin luz para interior o exterior.',
@@ -56,7 +56,7 @@ export const routes: Routes = [
     path: 'casos-de-exito',
     loadComponent: () =>
       import('./pages/casos/casos.component').then((c) => c.CasosComponent),
-    title: 'Casos de éxito de Rótulos Learoy',
+    title: 'Casos de éxito de RÓTULOS LEAROY',
     data: {
       description:
         'Ejemplos de rótulos llamativos. Ideas para letreros para fachadas o interior. Pide presupuesto a medida y con entrega rápida.',
@@ -73,7 +73,7 @@ export const routes: Routes = [
     title: 'Contacto RÓTULOS LEAROY',
     data: {
       description:
-        'Contacto Rótulos Learoy, proveedor de rotulación de confianza. Si buscas un letrero o cartel de cualquier tipo, haz tu consulta.',
+        'Contacto RÓTULOS LEAROY, proveedor de rotulación de confianza. Si buscas un letrero o cartel de cualquier tipo, haz tu consulta.',
       image:
         'https://res.cloudinary.com/dxuseyfxa/image/upload/v1742550802/rotulo-luminoso-learoy_dgqanb.webp',
     },

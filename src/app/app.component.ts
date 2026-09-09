@@ -43,7 +43,7 @@ declare global {
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'Rótulos Learoy';
+  title = 'RÓTULOS LEAROY';
 
   //public isLoading: boolean = true;
 

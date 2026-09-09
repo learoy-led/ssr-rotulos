@@ -12,7 +12,7 @@ export class SeoService {
   public updateSeoStaticTags() { 
 
       const route = this.getDeepestChild(this.router.routerState.root);
-      const title = route.routeConfig?.title ?? 'Rótulos Learoy'; 
+      const title = route.routeConfig?.title ?? 'RÓTULOS LEAROY'; 
         this.titleService.setTitle(title as string)
       const data = route.snapshot.data;
     this.meta.updateTag({ name: 'description', content: data['description']});

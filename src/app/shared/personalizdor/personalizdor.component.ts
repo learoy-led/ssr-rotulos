@@ -450,7 +450,6 @@ if (this.base) {
   const baseArea  = (this.baseWidth * this.baseHeight)/10000 ;
   const pricePerSquareMeter = baseArea < 100 ? 50000 : 40000
   basePrice = baseArea * pricePerSquareMeter
-  console.log(pricePerSquareMeter, basePrice)
 }
 
   
@@ -482,8 +481,6 @@ this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
  area * variantSelected.price < 8000 ? this.finalPrice = 8000 :  this.finalPrice =  area * variantSelected.price;
       this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
    }
-
-
 
   }
   
