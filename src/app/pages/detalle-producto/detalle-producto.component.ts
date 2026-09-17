@@ -20,6 +20,7 @@ import { iconPaths } from '../../data/data';
 import { FaqsComponent } from '../../shared/faqs/faqs.component';
 import { IconsBannerComponent } from '../../shared/icons-banner/icons-banner.component';
 import { VideoBannerComponent } from '../../shared/video-banner/video-banner.component';
+import { CustomersComponent } from '../../shared/customers/customers.component';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -35,7 +36,8 @@ import { VideoBannerComponent } from '../../shared/video-banner/video-banner.com
     FormsModule,
     FaqsComponent,
     IconsBannerComponent,
-    VideoBannerComponent
+    VideoBannerComponent,
+    CustomersComponent
   ],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',

@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+align-items: center;
+margin: auto;
+padding: 30px 0
+}
+
+    .logos-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 10px
+  }
+
+.arrow-button {
+background-color: transparent;
+}
+
+  @media screen and (max-width: 966px) {
+    
+    :host {
+       width: 90vw; 
+      align-items: flex-start;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 12px;
+      scrollbar-width: none; 
+    } 
+     :host::-webkit-scrollbar {
+  display: none;
+}
+    }
+      
