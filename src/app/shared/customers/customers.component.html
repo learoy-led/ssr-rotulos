@@ -1,19 +1,26 @@
- <button type="button" class="arrow-button" aria-label="Logotipo anterior" (click)="carouselPrevElements()">
+ <h2 _ngcontent-ng-c3809309318="" class="small-title centered-text">Clientes que han confiado en nosotros</h2>
+ 
+ <div class="custmers-container"
+    >
+  <button type="button" class="arrow-button" aria-label="Logotipo anterior" (click)="carouselPrevElements()">
   <app-icon 
-  [ngClass]="'small-icon blue'" [iconPath]="leftArrow"></app-icon>
+  [ngClass]="'small-icon blue arrow-customer'" [iconPath]="leftArrow"></app-icon>
   </button>
 
 
-<ul class="logos-list">
-      @for(logo of customerLogos; track $index; let i = $index) {
-    <li>
-        <img [ngSrc]="
-            '/logos/'+ logo
+ <ul class="logos-list"
+     [class.moving]="isMoving"
+    [style.transform]="isMoving ? 'translateX(-20%)' : 'translateX(0)'">
+      @for(logo of customerLogosShown; track $index; let i = $index) {
+    <li class="carousel-item">
+        <img class="customer-logo" [src]="
+            '/logos/'+ logo + '.png'
             " alt="logo">
     </li>
         }
 </ul>
 
   <button type="button" class="arrow-button" aria-label="Producto siguiente" (click)="carouselNextElements()">
-  <app-icon [ngClass]="'small-icon blue'"  [iconPath]="rightArrow" ></app-icon>
+  <app-icon [ngClass]="'small-icon blue arrow-customer'"  [iconPath]="rightArrow" ></app-icon>
   </button>
+</div>
