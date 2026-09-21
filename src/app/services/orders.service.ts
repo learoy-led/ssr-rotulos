@@ -20,5 +20,19 @@ export class OrdersService {
     .subscribe(order => this.order.set(order));
 
     }
+
+public uploadGobo(
+  orderId: string,
+  itemId: string,
+  file: File
+) {
+  const formData = new FormData();
+  formData.append('gobo', file);
+
+  return this.http.post(
+    `${this.API_URL}orders/${orderId}/items/${itemId}/gobo`,
+    formData
+  );
+}
   
 }

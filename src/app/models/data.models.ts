@@ -58,9 +58,10 @@ export interface ProductPurchased {
   price: number;
   qty: number;
   customDetails?: CustomDetails;
+  goboDetails?: GoboDetails;
   variantName?: string;
+  _id?: string
 }
-
 
 export interface CustomDetails {
   text: string;
@@ -75,6 +76,12 @@ export interface CustomDetails {
   lines?: string[],
   proportionalWidth?: number,
   svgString?: string
+}
+
+export interface GoboDetails {
+  goboFileKey: string,
+  goboFileName: string,
+  goboFileType: string
 }
 
 export interface Variant {
@@ -190,7 +197,8 @@ export interface Order {
     status: string,
     items: ProductPurchased[],  
     emailSent: boolean,
-    customer: CheckOutFormData
+    customer: CheckOutFormData,
+    _id:string
  }
 
  export interface Faq {

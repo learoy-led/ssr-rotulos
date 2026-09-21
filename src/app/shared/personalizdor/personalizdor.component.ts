@@ -4,7 +4,7 @@ import { materials } from '../../data/personalizador.data';
 import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
 import { PlatformService } from '../../core/services/platform.service';
-import { Color, Font, Material, Product } from '../../models/data.models';
+import { Color, Font, Material, Product, ProductPurchased } from '../../models/data.models';
 import { CartService } from '../../core/services/cart.service';
 import { PricePipe } from '../../pipes/price.pipe';
 import { Router } from '@angular/router';
@@ -76,6 +76,7 @@ previousBaseColor?: Color | null;
 
 
   finalPrice: number = 0
+  neonMinimumPrice = 10000
 
   lines: string[] = [];
 
@@ -478,7 +479,7 @@ this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
 } 
 
 
- area * variantSelected.price < 8000 ? this.finalPrice = 8000 :  this.finalPrice =  area * variantSelected.price;
+ area * variantSelected.price < this.neonMinimumPrice ? this.finalPrice = this.neonMinimumPrice :  this.finalPrice =  area * variantSelected.price;
       this.finalPrice =  Math.round(this.finalPrice * 100) / 100;
    }
 
@@ -610,14 +611,17 @@ public onSubmit() {
      
   if (!this.product?._id || !variantSelected) return;
 
-   const productPurchased = {
+   let productPurchased: ProductPurchased = {
      id: this.product._id,
     name: this.product.name,
     image: this.product.images[0],
     price: this.finalPrice,
-    qty: 1,
-    customDetails: {
-      text: this.text,
+    qty: 1
+    }
+
+    if(this.product.renderKey && this.product.renderKey !== 'proyector') {
+    const customDetails = {
+    text: this.text,
       font: this.font.name,
       color: this.color.name,
       lightColor: this.lightColor.name,
@@ -630,7 +634,9 @@ public onSubmit() {
       proportionalWidth: this.proportionalWidth,    
       svgString: new XMLSerializer().serializeToString(this.svgEl.nativeElement)
     }
-  }
+  productPurchased = { ...productPurchased, customDetails  } 
+}
+
 
   this.form.reset();
   this.cartService.addToCart(productPurchased)

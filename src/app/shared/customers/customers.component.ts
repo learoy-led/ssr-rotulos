@@ -68,26 +68,27 @@ carouselNextElements() {
   this.isMoving = true;
 
   setTimeout(() => {
-
     const total = this.customerLogos.length;
-
     this.currentIndex =
       (this.currentIndex + 1) % total;
-
     this.updateCarouselShown();
-
     this.isMoving = false;
-
   }, 700);
 }
 
 
 carouselPrevElements() {
+
+if (this.isMoving) return;
+
+  this.isMoving = true;
+
+  setTimeout(() => {
   const total = this.customerLogos.length;
-
   this.currentIndex = (this.currentIndex - 1 + total) % total;
-
   this.updateCarouselShown();
+   this.isMoving = false;
+  }, 700);
 }
 
 

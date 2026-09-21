@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {  Product, Variant } from '../../models/data.models';
+import {  Product, ProductPurchased, Variant } from '../../models/data.models';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
@@ -9,6 +9,7 @@ import { IconComponent } from '../icon/icon.component';
 import { iconPaths } from '../../data/data';
 import { PlatformService } from '../../core/services/platform.service';
 import { PdfService } from '../../services/pdf.service';
+import { GoboStorageService } from '../../services/gobo-storage.service';
 
 @Component({
   selector: 'app-gobo-render',
@@ -39,7 +40,14 @@ export class GoboRenderComponent implements OnInit {
   public imageUploaded: boolean = false;
   public showUpload: boolean = false
 
-   constructor(private cartService: CartService, private router: Router, private platformService: PlatformService,  private pdfService: PdfService) {}
+  private uploadedFile?: File;
+private goboFileKey?: string;
+
+   constructor(private cartService: CartService, 
+    private router: Router, private platformService: PlatformService,  private pdfService: PdfService,
+  private goboStorageService : GoboStorageService
+   
+  ) {}
 
    ngOnInit() {
     if (this.product?.variants?.length) {
@@ -50,14 +58,28 @@ export class GoboRenderComponent implements OnInit {
    public onAddToCart() { 
      if (!this.product.variants || !this.product._id) return;
      
-  const productPurchased = {
+
+  let productPurchased: ProductPurchased = {
      id: this.product._id,
     name: this.product.name,
-    image: this.product.images[0],
+    image:   this.product.images[0],
     price: this.selectedVariant.price,
     variantName: this.selectedVariant.name,
     qty: 1,
   }
+
+if (this.uploadedFile && this.goboFileKey) {
+  productPurchased = {
+    ...productPurchased,
+    goboDetails: {
+      goboFileKey: this.goboFileKey,
+      goboFileName: this.uploadedFile.name,
+      goboFileType: this.uploadedFile.type
+    }
+  };
+}
+
+
   this.cartService.addToCart(productPurchased)
   this.router.navigate(['/cart']);
   } 
@@ -95,10 +117,25 @@ export class GoboRenderComponent implements OnInit {
   }
   this.imageUploaded = true;
   this.showUpload = false;
+
+  this.uploadedFile = file;
+
+ const goboFileKey = crypto.randomUUID();
+ 
+  await this.goboStorageService.saveFile(
+    goboFileKey,
+    file
+  );
+    
+    this.goboFileKey = goboFileKey;
 }
+
+
 
 public onVariantChange(variant: Variant) {
  this.selectedVariant = variant;
+
+ //si el usuario ya ha subido un logo, PTE no cambiar
 
   if (variant.name === 'lente 1 color') {
     this.goboImage =  '/rotulos-learoy-logo.webp'

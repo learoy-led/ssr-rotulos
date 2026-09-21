@@ -91,7 +91,6 @@ this.checkoutService.pagar(payload).subscribe({
     this.signature = data.signature;
     this.redirectUrl = data.redirectUrl;
 
-
     requestAnimationFrame(() => {
       
          const form = this.formEl.nativeElement;
@@ -100,7 +99,7 @@ this.checkoutService.pagar(payload).subscribe({
       return;
     }
 
-   form.submit();
+ form.submit();
  
 
     });

@@ -10,6 +10,9 @@
         @if(item.customDetails.base) {
       <span>| Color y medidas de la base: {{ item.customDetails.baseColor }}, {{ item.customDetails.baseWidth }} x {{ item.customDetails.baseHeight }} cm</span>
       }
+  @else {
+        <span><b>Modelo:</b> {{ item.variantName}}</span>
+}
     </p>
       }
     </li>
