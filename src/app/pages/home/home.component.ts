@@ -12,6 +12,7 @@ import { CardComponent } from '../../shared/card/card.component';
 import { Router } from '@angular/router';
 import { BannerPersonalizarComponent } from '../../shared/banner-personalizar/banner-personalizar.component';
 import { ButtonComponent } from '../../shared/button/button.component';
+import { CustomersComponent } from '../../shared/customers/customers.component';
 
 
 @Component({
@@ -24,7 +25,8 @@ import { ButtonComponent } from '../../shared/button/button.component';
     AnimatedVerticalCarouselComponent,
     CardComponent,
     BannerPersonalizarComponent,
-    ButtonComponent
+    ButtonComponent,
+    CustomersComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

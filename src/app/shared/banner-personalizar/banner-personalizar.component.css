@@ -1,6 +1,6 @@
 :host {
     display: flex;
-    padding: 52px 0
+    padding-top: 52px;
 }
 
 .image-container {

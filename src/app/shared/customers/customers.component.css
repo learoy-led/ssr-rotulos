@@ -7,36 +7,36 @@ align-items: center;
 width: 100%;
 padding-top: 45px;
 overflow: hidden;
-  }
-
-.logos-list {
-width: 100%;
-transform: translateX(0);
 }
+
+
 
 .logos-list.moving {
-  transition: transform 0.7s ease-in-out
+  transition: transform 0.7s ease-in-out;
+  transform: translateX(calc(-1 * var(--carousel-shift)));
 }
 
-.carousel-item {
+.logo-container {
   flex: 0 0 20%;
+  margin: 0;
+  padding: 0;
 }
 
  .customer-logo {
-  height: 70px; 
+  height: 55px; 
   width: 100%;
   object-fit: contain;
   }
     .logos-list {
     display: flex;
-    justify-content: space-between;
+    margin: 0;
     width: 100%;
-    padding: 0 10px
+    padding: 0;
   }
 
 .arrow-button {
 background-color: white;
-z-index: 999;
+z-index: 2;
 height: 80px;
 padding: 20px;
 }
@@ -45,18 +45,32 @@ padding: 20px;
   color: var(--color-black)
   }
 
-  @media screen and (max-width: 966px) {
-    
-    :host { display: none;
-       width: 90vw; 
-      align-items: flex-start;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding-bottom: 12px;
-      scrollbar-width: none; 
-    } 
-     :host::-webkit-scrollbar {
-  display: none;
-}
-    }
+  @media screen and (max-width: 1120px) {
+    .logo-container {
       
+  flex: 0 0 33.33%;
+  transform: translateX(-33.33%); 
+ }  
+  .logos-list {
+    --carousel-shift : 33.333% !important;
+  }
+}
+      @media screen and (max-width: 780px) {
+    .logo-container {
+  flex: 0 0 50%;
+  transform: translateX(-50%) ;
+ }
+ .logos-list {
+    --carousel-shift: 50% !important;
+  }
+}
+
+  @media screen and (max-width: 580px) {
+    .logo-container {
+  flex: 0 0 100%;
+  transform: translateX(-100%);
+  }
+  .logos-list {
+    --carousel-shift: 100% !important;
+  }
+ }

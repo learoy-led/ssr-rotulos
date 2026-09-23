@@ -10,9 +10,9 @@
 
  <ul class="logos-list"
      [class.moving]="isMoving"
-    [style.transform]="isMoving ? 'translateX(-20%)' : 'translateX(0)'">
+    [style.--carousel-shift]="'20%'">
       @for(logo of customerLogosShown; track $index; let i = $index) {
-    <li class="carousel-item">
+    <li class="logo-container">
         <img class="customer-logo" [src]="
             '/logos/'+ logo + '.png'
             " alt="logo">

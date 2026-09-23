@@ -72,7 +72,9 @@ carouselNextElements() {
     this.currentIndex =
       (this.currentIndex + 1) % total;
     this.updateCarouselShown();
-    this.isMoving = false;
+    requestAnimationFrame(() => {
+      this.isMoving = false;
+    });
   }, 700);
 }
 
@@ -101,22 +103,5 @@ private updateCarouselShown() {
     (_, i) => this.customerLogos[(this.currentIndex + i) % total]
   );
 }
- //carouselNextElements() {
-  //this.currentIndex < this.customerLogos.length - 5 ?  this.currentIndex =  this.currentIndex + 1 :  this.currentIndex = 0;
-  //this.customerLogosShown = this.customerLogos.slice(this.currentIndex,this.currentIndex + 5)
-  //this.hideCarouselPrevArrow = false
-  //if (this.currentIndex  > this.customerLogos.length - 5 ) { this.hideCarouselNextArrow = true
-  //}
-  //}
-
-
-  //carouselPrevElements() {
-    //this.currentIndex > 0 ? this.currentIndex = this.currentIndex - 1 : this.currentIndex = this.customerLogos.length;
-   // this.currentIndex > 0 ? this.customerLogosShown = this.customerLogos.slice(this.currentIndex,this.currentIndex + 5) : this.customerLogosShown = this.customerLogos.slice(this.currentIndex,this.currentIndex +5)
-    //if (this.currentIndex  < 5 ) {
-      //this.hideCarouselPrevArrow = true
-      //this.hideCarouselNextArrow = false
-    //}  
-  //}
 
 }
