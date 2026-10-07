@@ -95,6 +95,10 @@ app-search-input {
 }
   
   @media screen and (max-width: 580px) {
+      .secondary-header {
+  display:none
+}
+
   .main-header {
     padding: 12px 0;
   }
@@ -102,11 +106,6 @@ app-search-input {
   .contact-button .fuchsia {
 display: none
   }
-
-  .secondary-header-claim {
-  display:none
-}
-
   } 
 
   @media screen and (max-width: 374px) {

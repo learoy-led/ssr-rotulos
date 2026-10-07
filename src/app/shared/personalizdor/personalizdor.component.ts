@@ -50,6 +50,7 @@ public visibleFontsCount = 5;
     name: '',
     hex: ''
   };
+  //lightColor: Color | null = null
   baseColor: Color | null = null
 
 
@@ -108,7 +109,7 @@ get visibleFonts() {
 
 
 get glowColor(): string {
-    return this.product.renderKey === 'neon' ? this.color.hex : this.lightColor.hex || '#ffffff';
+    return this.product.renderKey === 'neon' ? this.color.hex : this.lightColor?.hex || '#ffffff';
 }
 
 
