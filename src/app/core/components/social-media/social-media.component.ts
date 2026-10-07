@@ -1,5 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PlatformService } from '../../services/platform.service';
+import { SocialMediaService } from '../../../services/social-media.service';
 
 @Component({
   selector: 'app-social-media',
@@ -7,10 +8,16 @@ import { PlatformService } from '../../services/platform.service';
   templateUrl: './social-media.component.html',
   styleUrl: './social-media.component.css'
 })
-export class SocialMediaComponent implements AfterViewInit {
-  constructor(private platformService: PlatformService) {
-
+export class SocialMediaComponent implements OnInit, AfterViewInit {
+  constructor(private platformService: PlatformService, 
+    public socialMediaService: SocialMediaService
+  ) {
   }
+
+public ngOnInit() {
+  this.socialMediaService.getTikTokVideos();
+}
+
 public ngAfterViewInit() {
   if(this.platformService.isBrowser()){  
   const tiktokScript = document.createElement('script');

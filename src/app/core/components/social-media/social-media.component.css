@@ -5,6 +5,14 @@ justify-content: center;
 padding: 52px 0
 }
 
+blockquote {
+    max-width: fit-content;
+    margin: 0 auto; 
+}
+
+  blockquote iframe {
+max-height: fit-content;
+  }  
 
 @media screen and (max-width: 766px) {
 .social-media-post:nth-child(3), .social-media-post:nth-child(4) {
