@@ -505,6 +505,26 @@ name: 'azul',
 
 ]
 
+export const goboColors  = [
+  '#0000FA',
+'#019FE9',
+'#FD00FB',
+'#9800CC',
+'#E1017B',
+'#9A0002',
+'#E40014',
+'#F18101',
+'#FF6501',
+'#FFFF01',
+'#F5D800',
+'#000000',
+'#019642',
+'#22E821',
+'#006634',
+'#683F23',
+'#ffffff',
+'#747B81',
+]
 
 export const materials: Material[] = [
     {

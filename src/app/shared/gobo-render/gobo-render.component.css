@@ -141,6 +141,8 @@ border-radius: 50%;
 }
 
 
+
+
 @media screen and (max-width: 1300px) {
   :host {
 width: 100%

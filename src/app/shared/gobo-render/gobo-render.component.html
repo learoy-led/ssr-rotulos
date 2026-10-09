@@ -232,7 +232,6 @@
 <div class="product-description" [innerHTML]="product.description"></div>
 
 
-
 @if(product.variants?.length) {
    <div class="variant-picker">
  @for(variant of product.variants; track i; let i = $index) {
@@ -257,6 +256,10 @@
 
 <p class="price-line">Precio <span class="price">{{ selectedVariant.price | price }}</span></p>
 <button (click)="onAddToCart()" class="button" [disabled]="selectedVariant.name !=='sin lente' && !imageUploaded">Añadir al carrito</button> 
+
+
+
+
 </div>
 </div>
 <p class="ia-advice">Esta imagen es una simulación. El producto real puede variar ligeramente.</p>

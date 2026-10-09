@@ -26,6 +26,7 @@ public products$?: Observable <Product[]>;
 
   public plusPath = iconPaths.plus
 
+
  constructor(private seoService: SeoService, private getProductsService: GetProductsService) {}
 
  

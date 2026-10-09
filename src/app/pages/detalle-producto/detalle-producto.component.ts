@@ -21,6 +21,7 @@ import { FaqsComponent } from '../../shared/faqs/faqs.component';
 import { IconsBannerComponent } from '../../shared/icons-banner/icons-banner.component';
 import { VideoBannerComponent } from '../../shared/video-banner/video-banner.component';
 import { CustomersComponent } from '../../shared/customers/customers.component';
+import { GoboColorsComponent } from '../../shared/gobo-colors/gobo-colors.component';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -37,7 +38,8 @@ import { CustomersComponent } from '../../shared/customers/customers.component';
     FaqsComponent,
     IconsBannerComponent,
     VideoBannerComponent,
-    CustomersComponent
+    CustomersComponent,
+    GoboColorsComponent
   ],
   templateUrl: './detalle-producto.component.html',
   styleUrl: './detalle-producto.component.css',

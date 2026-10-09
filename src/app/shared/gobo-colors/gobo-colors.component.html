@@ -1,0 +1,17 @@
+<div class="gobo-colors-title-container">
+<p class="gobo-colors-title">Colores disponibles para la lente</p>
+<svg role="button" (click)="toggleGoboColors()"
+              xmlns="http://www.w3.org/2000/svg" 
+              aria-hidden="true" viewBox="0 0 640 640">
+              <path [attr.d]="buttonContent"></path></svg>
+</div>
+
+@if(goboColorsVisible) {
+<ul class="gobo-colors">
+  @for(goboColor of goboColors; track $index) {
+<li class="color-square" [ngStyle]="{backgroundColor: goboColor}"></li>
+  }
+</ul>
+  }
+
+

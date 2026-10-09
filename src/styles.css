@@ -404,6 +404,10 @@ form {
 padding-left: 40px
  }
 
+   .left {
+ padding-left: 12px!important;
+}
+
   .cc-revoke.cc-bottom {
   display: none
   } 
@@ -418,3 +422,8 @@ padding-left: 40px
       font-size: 18px;
     }
     }
+
+
+
+       
+

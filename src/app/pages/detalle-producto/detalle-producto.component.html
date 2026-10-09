@@ -71,6 +71,11 @@
       
  <div class="product-description left" [innerHTML]="productSelectedData.description"></div>
 
+
+@if(productSelectedData.renderKey === 'proyector') {
+ <app-gobo-colors></app-gobo-colors>
+  }
+
          @if(!productSelectedData.renderKey) {
 
           @if(productSelectedData.variants && productSelectedData.variants.length === 0) {

@@ -1,0 +1,58 @@
+:host {
+ margin-left: 60px;
+}
+
+.gobo-colors-title-container {
+  display: flex;
+  gap: .5rem;
+  align-items: center
+}
+
+.gobo-colors-title {
+  font-weight: 700;
+}
+
+.gobo-colors {
+margin-top: 12px;
+ display: grid;
+ grid-template-columns: repeat(9,1fr);
+ justify-items: center;
+ gap: 6px
+}
+
+.color-square {
+width: 35px;
+height: 35px;
+display: inline-block;
+border: 1px solid var(--color-light-grey);
+border-radius: 5px;
+}
+
+
+  svg {
+    display: flex;
+    fill: currentColor;
+    height: 20px;
+    cursor: pointer;
+    height: 16px
+}
+
+ @media screen and (min-width: 766px) and (max-width: 876px)  {
+  .gobo-colors {
+ grid-template-columns: repeat(6,1fr);
+  }
+  }
+
+  @media screen and (max-width: 494px) {
+      .gobo-colors {
+     grid-template-columns: repeat(6,1fr);
+  }
+}
+
+    @media screen and (max-width: 766px) {
+  :host {
+ margin-left: 12px;
+}
+}
+
+
